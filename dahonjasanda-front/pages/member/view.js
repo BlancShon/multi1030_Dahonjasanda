@@ -7,7 +7,7 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import axios from 'axios';
 import Header from '../../components/header';
 import Footer from '../../components/footer';
-import '../globals.css'
+import './globals.css'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { useRouter } from 'next/router';
 
@@ -65,6 +65,7 @@ export default function memberView() {
             console.log(response);
             if (response.data.result === true) {
                 alert('회원정보가 수정되었습니다.');
+                setLoginInfo(response.data.member);
             } else {
                 alert('회원정보 수정 실패!');
 
@@ -73,7 +74,7 @@ export default function memberView() {
             console.log(e);
             alert('회원정보 수정 실패!');
         }
-        location.reload();
+        // location.reload();
     }
 
     const onChangeText = (e) => {
@@ -128,7 +129,7 @@ export default function memberView() {
                         <br />
                         <h3 align="center">회원정보 조회/수정</h3>
                         <br />
-                        <form id="enroll-container" method="post" onSubmit={onSubmitMemberUpdate}>
+                        <form id="enroll-container"  onSubmit={onSubmitMemberUpdate}>
                             <table>
                                 <tbody>
                                     <tr>

@@ -6,7 +6,7 @@ import * as React from 'react';
 import { useState, useEffect } from 'react';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import axios from 'axios';
-import '../globals.css'
+import './globals.css'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Header from '../../components/header';
 import Footer from '../../components/footer';

@@ -7,7 +7,7 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import axios from 'axios';
 import Header from '../../components/header';
 import Footer from '../../components/footer';
-import '../globals.css'
+import './globals.css'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { useRouter } from 'next/router';
 
