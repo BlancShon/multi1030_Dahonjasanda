@@ -3,7 +3,7 @@ import Router from 'next/router'
 import Head from 'next/head'
 import NProgress from 'nprogress'
 import ScrollTopButton from '../components/ScrollTopButton'
-import '../scss/theme.scss'
+import './board/globals.css'
 
 const Finder = ({ Component, pageProps }) => {
 
