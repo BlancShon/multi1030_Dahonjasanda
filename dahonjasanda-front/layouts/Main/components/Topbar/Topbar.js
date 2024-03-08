@@ -1,95 +1,86 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import Box from '@mui/material/Box';
-import Button from '@mui/material/Button';
-import { alpha, useTheme } from '@mui/material/styles';
-import MenuIcon from '@mui/icons-material/Menu';
+import React from "react";
+import PropTypes from "prop-types";
+import Box from "@mui/material/Box";
+import Button from "@mui/material/Button";
+import { alpha, useTheme } from "@mui/material/styles";
+import MenuIcon from "@mui/icons-material/Menu";
 
-import { NavItem } from './components';
+import { NavItem } from "./components";
 
 const Topbar = ({ onSidebarOpen, pages, colorInvert = false }) => {
   const theme = useTheme();
   const { mode } = theme.palette;
   const {
-    landings: landingPages,
-    secondary: secondaryPages,
-    company: companyPages,
-    account: accountPages,
-    portfolio: portfolioPages,
-    blog: blogPages,
+    finance: financePages,
+    realEstate: realEstatePages,
+    animalPlant: animalPlantPages,
+    party: partyPages,
+    shopping: shoppingPages,
   } = pages;
 
   return (
     <Box
-      display={'flex'}
-      justifyContent={'space-between'}
-      alignItems={'center'}
+      display={"flex"}
+      justifyContent={"space-between"}
+      alignItems={"center"}
       width={1}
     >
       <Box
-        display={'flex'}
+        display={"flex"}
         component="a"
         href="/"
         title="theFront"
         width={{ xs: 100, md: 120 }}
       >
         <Box
-          component={'img'}
+          component={"img"}
           src={
-            mode === 'light' && !colorInvert
-              ? 'https://assets.maccarianagency.com/the-front/logos/logo.svg'
-              : 'https://assets.maccarianagency.com/the-front/logos/logo-negative.svg'
+            mode === "light" && !colorInvert
+              ? "/public/images/logo/logo.png"
+              : "/public/images/logo/logo.png"
           }
           height={1}
           width={1}
         />
       </Box>
-      <Box sx={{ display: { xs: 'none', md: 'flex' } }} alignItems={'center'}>
-        <Box>
+      <Box sx={{ display: { xs: "none", md: "flex" } }} alignItems={"center"}>
+        <Box marginLeft={4}>
           <NavItem
-            title={'Landings'}
-            id={'landing-pages'}
-            items={landingPages}
+            title={"금융"}
+            id={"finance-pages"}
+            items={financePages}
             colorInvert={colorInvert}
           />
         </Box>
         <Box marginLeft={4}>
           <NavItem
-            title={'Company'}
-            id={'company-pages'}
-            items={companyPages}
+            title={"부동산"}
+            id={"realEstate-pages"}
+            items={realEstatePages}
             colorInvert={colorInvert}
           />
         </Box>
         <Box marginLeft={4}>
           <NavItem
-            title={'Account'}
-            id={'account-pages'}
-            items={accountPages}
+            title={"동식물"}
+            id={"animalPlant-pages"}
+            items={animalPlantPages}
             colorInvert={colorInvert}
           />
         </Box>
         <Box marginLeft={4}>
           <NavItem
-            title={'Pages'}
-            id={'secondary-pages'}
-            items={secondaryPages}
+            title={"파티원"}
+            id={"party-pages"}
+            items={partyPages}
             colorInvert={colorInvert}
           />
         </Box>
         <Box marginLeft={4}>
           <NavItem
-            title={'Blog'}
-            id={'blog-pages'}
-            items={blogPages}
-            colorInvert={colorInvert}
-          />
-        </Box>
-        <Box marginLeft={4}>
-          <NavItem
-            title={'Portfolio'}
-            id={'portfolio-pages'}
-            items={portfolioPages}
+            title={"쇼핑몰"}
+            id={"shopping-pages"}
+            items={shoppingPages}
             colorInvert={colorInvert}
           />
         </Box>
@@ -102,18 +93,18 @@ const Topbar = ({ onSidebarOpen, pages, colorInvert = false }) => {
             href="https://mui.com/store/items/the-front-landing-page/"
             size="large"
           >
-            Buy now
+            로그인
           </Button>
         </Box>
       </Box>
-      <Box sx={{ display: { xs: 'block', md: 'none' } }} alignItems={'center'}>
+      <Box sx={{ display: { xs: "block", md: "none" } }} alignItems={"center"}>
         <Button
           onClick={() => onSidebarOpen()}
           aria-label="Menu"
-          variant={'outlined'}
+          variant={"outlined"}
           sx={{
             borderRadius: 2,
-            minWidth: 'auto',
+            minWidth: "auto",
             padding: 1,
             borderColor: alpha(theme.palette.divider, 0.2),
           }}

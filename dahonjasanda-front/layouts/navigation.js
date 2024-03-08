@@ -1,125 +1,29 @@
 const pages = {
-  landings: [
+  finance: [
     {
-      title: 'Mobile App',
-      href: '/mobile-app',
+      title: 'DEPOSIT',
+      href: '/deposit',
     },
     {
-      title: 'Desktop App',
-      href: '/desktop-app',
+      title: 'LOAN',
+      href: '/loan',
     },
     {
-      title: 'Startup',
-      href: '/startup',
+      title: 'STOCK',
+      href: '/stock',
     },
     {
-      title: 'Expo',
-      href: '/expo',
-    },
-    {
-      title: 'Marketing',
-      href: '/',
-    },
-    {
-      title: 'Service',
-      href: '/service',
-    },
-    {
-      title: 'Enterprise',
-      href: '/enterprise',
-    },
-    {
-      title: 'Cloud Hosting',
-      href: '/cloud-hosting',
-    },
-    {
-      title: 'Design Company',
-      href: '/design-company',
-    },
-    {
-      title: 'Web Basic',
-      href: '/web-basic',
-    },
-    {
-      title: 'Overview',
-      href: '/home',
-    },
-    {
-      title: 'Agency',
-      href: '/agency',
-    },
-    {
-      title: 'E-Learning',
-      href: '/e-learning',
-    },
-    {
-      title: 'Coworking',
-      href: '/coworking',
-    },
-    {
-      title: 'Rental',
-      href: '/rental',
-    },
-    {
-      title: 'Job Listing',
-      href: '/job-listing',
-    },
-    {
-      title: 'Logistics',
-      href: '/logistics',
-    },
-    {
-      title: 'E-commerce',
-      href: '/e-commerce',
+      title: 'MYSTOCK',
+      href: '/my-stock',
     },
   ],
-  company: [
+  realEstate: [
     {
-      title: 'Career Lising',
-      href: '/career-listing',
-    },
-    {
-      title: 'Job Opening',
-      href: '/career-opening',
-    },
-    {
-      title: 'Customer Stories',
-      href: '/customers',
-    },
-    {
-      title: 'Hire Us',
-      href: '/hire-us',
-    },
-    {
-      title: 'About: Startup',
-      href: '/about-side-cover',
-    },
-    {
-      title: 'About',
-      href: '/about',
-    },
-    {
-      title: 'Pricing',
-      href: '/pricing',
-    },
-    {
-      title: 'Terms',
-      href: '/company-terms',
-    },
-    {
-      title: 'Contact: Map',
-      href: '/contact-sidebar-map',
-    },
-    {
-      title: 'Contact: Minimal',
-      href: '/contact-page-cover',
-    },
-    {
-      title: 'Contact: Startup',
-      href: '/contact-page',
+      title: 'HOUSING',
+      href: '/housingFront',
     },
   ],
-  account: [
+  animalPlant: [
     {
       title: 'General Settings',
       href: '/account-general',
@@ -161,7 +65,7 @@ const pages = {
       href: '/password-reset-cover',
     },
   ],
-  secondary: [
+  party: [
     {
       title: 'Help Center: Overview',
       href: '/help-center',
@@ -187,7 +91,7 @@ const pages = {
       href: '/career-listing-minimal',
     },
   ],
-  blog: [
+  shopping: [
     {
       title: 'Reach View',
       href: '/blog-reach-view',
@@ -203,24 +107,6 @@ const pages = {
     {
       title: 'Article',
       href: '/blog-article',
-    },
-  ],
-  portfolio: [
-    {
-      title: 'Grid View',
-      href: '/portfolio-grid',
-    },
-    {
-      title: 'Masonry',
-      href: '/portfolio-masonry',
-    },
-    {
-      title: 'Basic',
-      href: '/portfolio-page',
-    },
-    {
-      title: 'Parallax',
-      href: '/agency',
     },
   ],
 };
