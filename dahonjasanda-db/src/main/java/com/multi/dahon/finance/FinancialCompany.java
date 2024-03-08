@@ -34,18 +34,22 @@ public class FinancialCompany {
 	@Column(nullable = false)
 	private String calTel;
 	
+	@Column
+	private String companyType;
+	
 	@OneToMany(mappedBy = "financialCompany", cascade = CascadeType.ALL, orphanRemoval = true)
 	private Set<FinancialCompanyOption> options = new HashSet<>();
 
 	protected FinancialCompany() {
 	}
 
-	public FinancialCompany(String dclsMonth, String finCoNo, String korCoNm, String dclsChrgMan, String homeUrl, String calTel) {
+	public FinancialCompany(String dclsMonth, String finCoNo, String korCoNm, String dclsChrgMan, String homeUrl, String calTel, String companyType) {
 		this.dclsMonth = dclsMonth;
 		this.finCoNo = finCoNo;
 		this.korCoNm = korCoNm;
 		this.dclsChrgMan = dclsChrgMan;
 		this.homeUrl = homeUrl;
 		this.calTel = calTel;
+		this.companyType = companyType;
 	}
 }

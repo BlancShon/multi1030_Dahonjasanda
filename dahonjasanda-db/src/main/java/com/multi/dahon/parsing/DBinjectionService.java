@@ -68,7 +68,7 @@ public class DBinjectionService {
 
     private FinancialCompany injectingTargetDTOForCompany(FinancialCompanyParsingForm dto){
         return new FinancialCompany(dto.getDcls_month(), dto.getFin_co_no(), dto.getKor_co_nm(),
-                dto.getDcls_chrg_man(), dto.getHomp_url(), dto.getCal_tel());
+                dto.getDcls_chrg_man(), dto.getHomp_url(), dto.getCal_tel(), dto.getCompanyType());
     }
 
 

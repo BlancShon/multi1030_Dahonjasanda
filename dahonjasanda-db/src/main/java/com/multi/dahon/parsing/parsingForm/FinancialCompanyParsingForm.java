@@ -10,4 +10,5 @@ public class FinancialCompanyParsingForm {
     private String dcls_chrg_man;  // 공시담당자
     private String homp_url;    // 홈페이지 주소
     private String cal_tel;     // 전화번호
+    private String companyType;
 }
