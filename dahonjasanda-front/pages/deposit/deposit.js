@@ -9,7 +9,7 @@ import {
     Search 
 } from "./components";
 
-const Deposit = () => {
+const deposit = () => {
     return (
         <Main>
             <Box>
