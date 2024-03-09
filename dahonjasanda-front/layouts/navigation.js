@@ -25,45 +25,45 @@ const pages = {
   ],
   animalPlant: [
     {
-      title: 'General Settings',
-      href: '/account-general',
+      title: 'Plant',
+      href: '/plant',
     },
     {
       title: 'Security Settings',
       href: '/account-security',
     },
-    {
-      title: 'Notifications Options',
-      href: '/account-notifications',
-    },
-    {
-      title: 'Billing Options',
-      href: '/account-billing',
-    },
-    {
-      title: 'Sign up: Simple',
-      href: '/signup-simple',
-    },
-    {
-      title: 'Sign up: Cover',
-      href: '/signup-cover',
-    },
-    {
-      title: 'Sign in: Simple',
-      href: '/signin-simple',
-    },
-    {
-      title: 'Sign in: Cover',
-      href: '/signin-cover',
-    },
-    {
-      title: 'Password: Simple',
-      href: '/password-reset-simple',
-    },
-    {
-      title: 'Password: Cover',
-      href: '/password-reset-cover',
-    },
+    // {
+    //   title: 'Notifications Options',
+    //   href: '/account-notifications',
+    // },
+    // {
+    //   title: 'Billing Options',
+    //   href: '/account-billing',
+    // },
+    // {
+    //   title: 'Sign up: Simple',
+    //   href: '/signup-simple',
+    // },
+    // {
+    //   title: 'Sign up: Cover',
+    //   href: '/signup-cover',
+    // },
+    // {
+    //   title: 'Sign in: Simple',
+    //   href: '/signin-simple',
+    // },
+    // {
+    //   title: 'Sign in: Cover',
+    //   href: '/signin-cover',
+    // },
+    // {
+    //   title: 'Password: Simple',
+    //   href: '/password-reset-simple',
+    // },
+    // {
+    //   title: 'Password: Cover',
+    //   href: '/password-reset-cover',
+    // },
   ],
   party: [
     {
