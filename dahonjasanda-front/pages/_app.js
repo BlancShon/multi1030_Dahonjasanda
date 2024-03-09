@@ -4,6 +4,7 @@ import Head from 'next/head'
 import NProgress from 'nprogress'
 import ScrollTopButton from '../components/ScrollTopButton'
 import './board/globals.css'
+import '../scss/theme.scss'
 
 const Finder = ({ Component, pageProps }) => {
 
