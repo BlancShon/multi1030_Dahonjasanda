@@ -1,7 +1,7 @@
 import Main from "layouts/Main";
 import HeroAndSearchForm from "./components/HeroAndSearchForm";
-import ResultAndBox from "./components/ResultAndBox";
 import { Container } from "react-bootstrap";
+import ResultList from "./components/ResultList";
 
 const LoansPage = () => {
     const onSearchHandler = (searchData) => {
@@ -16,7 +16,7 @@ const LoansPage = () => {
                 </Container>
                 <hr />
                 <Container className="mt-3">
-                    <ResultAndBox />
+                    <ResultList />
                 </Container>
             </Main>
         </>

@@ -10,9 +10,9 @@ import CheckBoxList from "./CheckBoxList";
 const BgParallax = dynamic(() => import('../../../components/BgParallax'), { ssr: false })
 
 const searchCondition = {
-    '주택담보대출' : {lendrateType금리유형 : ['lendrateType금리유형','고정금리F','변동금리C'], rpayType상환유형 : ['rpayType상환유형','만기일시상환방식S', '분활상환방식D']},
-    '개인신용대출' : {crdtprdtType상품유형 : ['crdtprdtType상품유형','일반신용대출1','마이너스한도대출2','장기카드대출(카드론)3'], crdtlendrateType금리타입 : ['crdtlendrateType금리타입','대출금리A', '기준금리B', '가산금리C', '가감조정금리D']},
-    '전세대출' : {lendrateType금리유형 : ['lendrateType금리유형','고정금리F','변동금리C'], rpayType상환유형 : ['rpayType상환유형','만기일시상환방식S', '분활상환방식D']}
+    '주택담보대출' : {lendrateType금리유형 : ['lendrateType금리유형','고정금리F','변동금리C'], rpayType상환유형 : ['rpayType상환유형','만기일시상환방식S', '분활상환방식D'], 정렬 : ['정렬조건','금리낮은순', '금리높은순']},
+    '개인신용대출' : {crdtprdtType상품유형 : ['crdtprdtType상품유형','일반신용대출1','마이너스한도대출2','장기카드대출(카드론)3'], crdtlendrateType금리타입 : ['crdtlendrateType금리타입','대출금리A', '기준금리B', '가산금리C', '가감조정금리D'], 정렬 : ['정렬조건','금리낮은순', '금리높은순']},
+    '전세대출' : {lendrateType금리유형 : ['lendrateType금리유형','고정금리F','변동금리C'], rpayType상환유형 : ['rpayType상환유형','만기일시상환방식S', '분활상환방식D'], 정렬 : ['정렬조건','금리낮은순', '금리높은순']}
   }
 
 const bankFin = {
@@ -48,12 +48,12 @@ const categories = [
         title: '주택담보대출'
       },
       {
-        media: 'fi-entertainment',
+        media: 'fi-credit-card',
         color: 'accent',
         title: '개인신용대출'
       },
       {
-        media: 'fi-entertainment',
+        media: 'fi-building',
         color: 'danger',
         title: '전세대출'
       },
@@ -181,26 +181,6 @@ const HeroAndSearchForm = () => {
                                         const list = bankFin[type];
                                         return (
                                         <CheckBoxList listName={type} list={list} indx={index} />
-
-                                        // <Accordion key={index} defaultActiveKey=''>
-                                        //     <Accordion.Item eventKey={index.toString()}>
-                                        //     <Accordion.Header>{type}</Accordion.Header>
-                                        //     <Accordion.Body>
-                                        //     <div className='mx-5 px-3'>
-                                        //         {bankFin[type].map((bank, bankIndex) => (
-                                        //         <Form.Check
-                                        //             key={bankIndex}
-                                        //             inline
-                                        //             label={bank}
-                                        //             name={`${type}.${bankIndex}`}
-                                        //             type='checkbox'
-                                        //             id={`${type}.${bankIndex}`}
-                                        //         />
-                                        //         ))}
-                                        //     </div>
-                                        //     </Accordion.Body>
-                                        //     </Accordion.Item>
-                                        // </Accordion>
                                     )})
                                 }
                             </Col>

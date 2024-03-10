@@ -10,8 +10,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-@Entity
-@Table(name = "orders")
 @Getter
 @Setter
 public class Order {

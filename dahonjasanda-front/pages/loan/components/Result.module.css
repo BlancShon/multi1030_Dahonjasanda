@@ -1,0 +1,8 @@
+.card:hover {
+    cursor: pointer;
+  }
+
+.card {
+    width :13rem;
+    height :16rem;
+}
