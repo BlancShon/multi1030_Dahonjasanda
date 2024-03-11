@@ -7,7 +7,7 @@ import ImageLoader from "../../../components/ImageLoader"
 import Link from "next/link"
 import ResultCard from "./Result"
 
-const ResultList = () => {
+const ResultList = ({resultList, onChangeSearchFormHandler}) => {
 
     return (
 
@@ -26,19 +26,14 @@ const ResultList = () => {
                     </Row>
                     
                     <Row xxs={2} xs={2} md={3} lg={4} className='gy-4 gl-4 gl-xxl-4 py-4 px-5 mx-5'>
-                        <Col>
-                            <ResultCard finName='우리은행' prdtName='우리대출' prdtInfo1='금리유형' prdtInfo2='상환유형' prdtInfo3='2.31'></ResultCard>
-                        </Col>
-                        <Col>
-                            <ResultCard finName='우리은행' prdtName='우리대출' prdtInfo1='금리유형' prdtInfo2='상환유형' prdtInfo3='2.31'></ResultCard>
-                        </Col>
-                        <Col>
-                            <ResultCard finName='우리은행' prdtName='우리대출' prdtInfo1='금리유형' prdtInfo2='상환유형' prdtInfo3='2.31'></ResultCard>
-                        </Col>
-                        <Col>
-                            <ResultCard finName='우리은행' prdtName='우리대출' prdtInfo1='금리유형' prdtInfo2='상환유형' prdtInfo3='2.31'></ResultCard>
-                        </Col>
-                        
+                        {resultList.map((result)=> {
+                            return     (
+                                <ResultCard key={result.id}
+                                finName={result.korCoNm} prdtName={result.finPrdtNm} prdtInfo1={result.lendRateTypeNm} 
+                                prdtInfo2={result.rpayTypeNm} prdtInfo3={result.lendRateMin} prdtInfo4={result.lendRateMax}>
+                                </ResultCard>
+                            )
+                        })}
                     </Row>
 
                     <Container className="my-5" style={{ display: 'flex', justifyContent: 'center' }}>

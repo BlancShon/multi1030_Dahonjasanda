@@ -1,2 +1,2 @@
-export { default } from "./loanPage";
+export { default } from "./LoansPage";
 

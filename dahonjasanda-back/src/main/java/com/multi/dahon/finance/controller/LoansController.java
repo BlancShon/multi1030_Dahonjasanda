@@ -1,7 +1,7 @@
 package com.multi.dahon.finance.controller;
 
-import java.util.List;
-
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -24,8 +24,8 @@ public class LoansController {
 		this.service = service;
 	}
     @GetMapping(value = "/mortgages")
-    public ResponseEntity<List<MortgageOptionAndProdDTO>> mortgageLoanList(){
-    	List<MortgageOptionAndProdDTO> findAllMortgage = service.findAllMortgage();
+    public ResponseEntity<Page<MortgageOptionAndProdDTO>> mortgageLoanList(Pageable pageable){
+    	Page<MortgageOptionAndProdDTO> findAllMortgage = service.findAllMortgage(pageable);
         return ResponseEntity.ok(findAllMortgage);
     }
     

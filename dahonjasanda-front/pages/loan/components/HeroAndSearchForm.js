@@ -10,10 +10,61 @@ import CheckBoxList from "./CheckBoxList";
 const BgParallax = dynamic(() => import('../../../components/BgParallax'), { ssr: false })
 
 const searchCondition = {
-    '주택담보대출' : {lendrateType금리유형 : ['lendrateType금리유형','고정금리F','변동금리C'], rpayType상환유형 : ['rpayType상환유형','만기일시상환방식S', '분활상환방식D'], 정렬 : ['정렬조건','금리낮은순', '금리높은순']},
-    '개인신용대출' : {crdtprdtType상품유형 : ['crdtprdtType상품유형','일반신용대출1','마이너스한도대출2','장기카드대출(카드론)3'], crdtlendrateType금리타입 : ['crdtlendrateType금리타입','대출금리A', '기준금리B', '가산금리C', '가감조정금리D'], 정렬 : ['정렬조건','금리낮은순', '금리높은순']},
-    '전세대출' : {lendrateType금리유형 : ['lendrateType금리유형','고정금리F','변동금리C'], rpayType상환유형 : ['rpayType상환유형','만기일시상환방식S', '분활상환방식D'], 정렬 : ['정렬조건','금리낮은순', '금리높은순']}
-  }
+  주택담보대출: {
+    lendrateType: {
+      "": "금리유형",
+      F: "고정금리F",
+      C: "변동금리C",
+    },
+    rpayType: {
+      "": "상환유형",
+      S: "만기일시상환방식S",
+      D: "분활상환방식D",
+    },
+    sort: {
+      "": "정렬조건",
+      asc: "금리낮은순",
+      desc: "금리높은순",
+    },
+  },
+  개인신용대출: {
+    crdtprdtType: {
+      "": "crdtprdtType상품유형",
+      "1": "일반신용대출1",
+      "2": "마이너스한도대출2",
+      "3": "장기카드대출(카드론)3",
+    },
+    crdtlendrateType금리타입: {
+      "": "crdtlendrateType금리타입",
+      A: "대출금리A",
+      B: "기준금리B",
+      C: "가산금리C",
+      D: "가감조정금리D",
+    },
+    sort: {
+      "": "정렬조건",
+      asc: "금리낮은순",
+      desc: "금리높은순",
+    },
+  },
+  전세대출: {
+    lendrateType금리유형: {
+      "": "lendrateType금리유형",
+      F: "고정금리F",
+      C: "변동금리C",
+    },
+    rpayType상환유형: {
+      "": "rpayType상환유형",
+      S: "만기일시상환방식S",
+      D: "분활상환방식D",
+    },
+    sort: {
+      "": "정렬조건",
+      asc: "금리낮은순",
+      desc: "금리높은순",
+    },
+  },
+};
 
 const bankFin = {
     은행 : ['우린은행', '국민은행', '신한은행', '하나은행', '넘흐옙흐네', '넘흐옙흐네', '넘흐옙흐네', '넘흐옙흐네', '넘흐옙흐네', '넘흐옙흐네', '넘흐옙흐네', '넘흐옙흐네'],
@@ -58,23 +109,19 @@ const categories = [
         title: '전세대출'
       },
   ]  
-
-const HeroAndSearchForm = () => {
-    const [selectCategory, setSelectCategory] = useState('주택담보대출');
+const HeroAndSearchForm = ({selectedCategory, onChangeCategoryHandler, onChangeSearchFormHandler}) => {
     const [selectOptions, setSelectOptions] = useState(searchCondition['주택담보대출'])
     const [selectedValues, setSelectedValues] = useState({});
 
+    
     useEffect(() => {
         // selectCategory가 변경될 때마다 선택된 옵션을 초기화
-        setSelectOptions(searchCondition[selectCategory]);
+        setSelectOptions(searchCondition[selectedCategory]);
         setSelectedValues({}); // 선택된 값 초기화
-    }, [selectCategory]);
+    }, [selectedCategory]);
 
     const onCategoryHandler = (selectedCategory) => {
-        setSelectCategory(selectedCategory);
-        console.log('In onCategoryHandler', selectedCategory)
-        console.log('In onCategoryHandler222', selectOptions)
-        console.log('In onCategoryHandler333', selectedValues)
+        onChangeCategoryHandler(selectedCategory)
     }
 
     const onChangeOptionHandler = (condition, value) => {
@@ -82,6 +129,10 @@ const HeroAndSearchForm = () => {
             ...prevSelectedValues,
             [condition]: value,
         }));
+
+        console.log("컨디션 뭐 넘어왔지",condition)
+        console.log("벨류는 뭐 넘어왔지",value)
+        console.log("셀렉티드벨류는 뭐있지",selectedValues)
     };
 
     return (
@@ -108,7 +159,7 @@ const HeroAndSearchForm = () => {
                                             mediaShape='circle'
                                             title={category.title}
                                             align='center'
-                                            isSelected={selectCategory === category.title}
+                                            isSelected={selectedCategory === category.title}
                                         />
                                     </div>
                                 </Col>
@@ -136,13 +187,31 @@ const HeroAndSearchForm = () => {
                         <div className="px-5 mt-3">
                             <Container className='pb-3 d-flex justify-content-center'>
 
-                                {Object.keys(selectOptions).map((condition, index) => {
+                           
+                            {/* {
+                                lendrateType: {
+                                "": "lendrateType금리유형",
+                                F: "고정금리F",
+                                C: "변동금리C",
+                                },
+
+                                rpayType: {
+                                "": "rpayType상환유형",
+                                S: "만기일시상환방식S",
+                                D: "분활상환방식D",
+                                },
+                                정렬: { 
+                                "": "정렬조건", 
+                                asc: "금리낮은순", 
+                                desc: "금리높은순" },  */}
+                                 {Object.keys(selectOptions).map((condition, index) => {
                                     return (
                                         <Form.Select
                                             key={index}
                                             aria-label="Default select example"
                                             className="mx-5"
                                             value={selectedValues[condition] || ""}
+                                            name={condition}
                                             onChange={(e) =>
                                                 onChangeOptionHandler(
                                                     condition,
@@ -150,19 +219,56 @@ const HeroAndSearchForm = () => {
                                                 )
                                             }
                                         >
-                                            {selectOptions[condition].map(
-                                                (option, optionIndex) => (
-                                                    <option
-                                                        key={optionIndex}
-                                                        value={option}
-                                                    >
-                                                        {option}
-                                                    </option>
-                                                )
-                                            )}
+                                        {Object.keys(selectOptions[condition]).map((innerCond) => {
+                                             const finValue =  selectOptions[condition][innerCond];
+                                            return (
+                                                <option
+                                                key={innerCond}
+                                                value={`${innerCond}`}
+                                            >
+                                                {finValue}
+                                            </option>
+                                            )
+                                            
+                                        })}
                                         </Form.Select>
-                                    );
+                                    )
                                 })}
+
+                                {/* {Object.keys(selectOptions).map((condition, index) => {
+                                    return (
+                                        Object.keys(selectOptions[condition]).map((innerCond, innerIndex) => {
+                                            return (
+                                                <Form.Select
+                                                    key={innerCond + innerIndex}
+                                                    aria-label="Default select example"
+                                                    className="mx-5"
+                                                    value={selectedValues[innerCond] || ""}
+                                                    name={innerCond}
+                                                    onChange={(e) =>
+                                                        onChangeOptionHandler(
+                                                            innerCond,
+                                                            e.target.value
+                                                        )
+                                                    }
+                                                >
+                                               {Object.keys(selectOptions[condition][innerCond]).map((finKey) => {
+                                                    const finValue =  selectOptions[condition][innerCond][finKey];
+                                                        return (
+                                                            <option
+                                                                key={finKey}
+                                                                value={`${finKey}`}
+                                                            >
+                                                                {finValue}
+                                                            </option>
+                                                        );
+                                                })}
+                                                </Form.Select>
+                                            )
+
+                                        })
+                                    )
+                                })} */}
 
                             </Container>
                         </div>
@@ -180,7 +286,7 @@ const HeroAndSearchForm = () => {
                                     Object.keys(bankFin).map((type, index) => {
                                         const list = bankFin[type];
                                         return (
-                                        <CheckBoxList listName={type} list={list} indx={index} />
+                                        <CheckBoxList key={type+index} listName={type} list={list} indx={index} />
                                     )})
                                 }
                             </Col>

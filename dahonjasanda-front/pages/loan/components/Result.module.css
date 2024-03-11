@@ -4,5 +4,6 @@
 
 .card {
     width :13rem;
-    height :16rem;
+    height :17rem;
+    border: 2px solid black; /* 테두리를 2픽셀 두께로 설정합니다. */
 }
