@@ -4,6 +4,7 @@ import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import { alpha, useTheme } from "@mui/material/styles";
 import MenuIcon from "@mui/icons-material/Menu";
+import Typography from "@mui/material/Typography";
 
 import { NavItem } from "./components";
 
@@ -27,21 +28,26 @@ const Topbar = ({ onSidebarOpen, pages, colorInvert = false }) => {
     >
       <Box
         display={"flex"}
+        alignItems={"center"}
+        color={'primary.dark'}
         component="a"
         href="/"
-        title="theFront"
+        title="다혼자산다"
         width={{ xs: 100, md: 120 }}
       >
         <Box
           component={"img"}
           src={
             mode === "light" && !colorInvert
-              ? "/public/images/logo/logo.png"
-              : "/public/images/logo/logo.png"
+              ? "/favicon/logo.png"
+              : "/favicon/logo.png"
           }
-          height={1}
-          width={1}
+          height={0.5}
+          width={0.5}
         />
+        <Typography fontWeight={700} marginLeft={1}>
+          다혼산
+        </Typography>
       </Box>
       <Box sx={{ display: { xs: "none", md: "flex" } }} alignItems={"center"}>
         <Box marginLeft={4}>
