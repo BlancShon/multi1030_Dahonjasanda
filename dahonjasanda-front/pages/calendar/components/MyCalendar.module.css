@@ -1,0 +1,81 @@
+/* MyCalendar.css */
+
+/* 캘린더와 마진을 가지는 컨테이너 스타일 조정 */
+div.my-calendar-container {
+  margin-top: 10px;
+}
+
+/* 헤더 스타일 */
+.fc .fc-toolbar.fc-header-toolbar {
+  margin: 0;
+  padding: 0 40px;
+  background-color: skyblue;
+  height: 63px;
+  font-weight: 600;
+  font-size: 15px;
+  line-height: 29px;
+  color: white;
+  border-radius: 20px 20px 0px 0px;
+}
+
+/* 캘린더 양 옆 넘기는 버튼 스타일 */
+.fc .fc-button,
+.fc .fc-button-primary {
+  background-color: transparent;
+  border: none;
+  color: white;
+  transition: background-color 0.3s ease;
+}
+
+.fc .fc-button-primary span {
+  font-weight: 500;
+  font-size: 28px;
+}
+
+.fc .fc-button-primary:hover {
+  background-color: transparent;
+}
+
+/* 날짜 텍스트 스타일 조정 */
+.fc-toolbar-title {
+  color: white;
+  font-size: 10px;
+}
+
+/* 테이블 헤더 스타일 조정 */
+.fc-theme-standard th {
+  height: 32px;
+  padding-top: 3.5px;
+  background: #e5edff;
+  border: 1px solid #dddee0;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 19px;
+  color: #7b7b7b;
+}
+/* 오늘 날짜 스타일 조정 */
+.fc .fc-daygrid-day.fc-day-today {
+  position: relative;
+  background-color: #fdf8c7;
+  color: #e0693a;
+}
+
+/* 이벤트 스타일 조정 */
+.fc-event {
+  cursor: pointer;
+  padding: 5px 8px;
+  margin-bottom: 5px;
+  border-radius: 4px;
+  font-weight: 500;
+  font-size: 14px;
+}
+
+/* 그리드 셀 스타일 조정 */
+.fc .fc-daygrid-day-frame {
+  padding: 10px;
+}
+
+.fc .fc-daygrid-day-top {
+  flex-direction: row;
+  margin-bottom: 3px;
+}
