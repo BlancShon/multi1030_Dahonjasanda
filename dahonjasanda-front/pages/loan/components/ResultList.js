@@ -6,8 +6,11 @@ import 'swiper/css/pagination'
 import ImageLoader from "../../../components/ImageLoader"
 import Link from "next/link"
 import ResultCard from "./Result"
+import PageComponent from "./PageComponent"
 
-const ResultList = ({resultList, onChangeSearchFormHandler}) => {
+const ResultList = ({resultList, onChangePageHandler, pageable}) => {
+
+    const { pageNumber, totalPages, totalElements } = pageable;
 
     return (
 
@@ -19,7 +22,7 @@ const ResultList = ({resultList, onChangeSearchFormHandler}) => {
                         <div className='d-flex flex-sm-row flex-column align-items-sm-center align-items-stretch my-2'>
                             <div className='d-none d-sm-flex align-items-center flex-shrink-0 text-muted'>
                                 <i className='fi-check-circle me-2'></i>
-                                <span className='fs-sm mt-n1'>148 개의 결과</span>
+                                <span className='fs-sm mt-n1'>{totalElements} 개의 결과</span>
                             </div>
                         </div>
                     </Container>
@@ -28,30 +31,34 @@ const ResultList = ({resultList, onChangeSearchFormHandler}) => {
                     <Row xxs={2} xs={2} md={3} lg={4} className='gy-4 gl-4 gl-xxl-4 py-4 px-5 mx-5'>
                         {resultList.map((result)=> {
                             return     (
-                                <ResultCard key={result.id}
-                                finName={result.korCoNm} prdtName={result.finPrdtNm} prdtInfo1={result.lendRateTypeNm} 
-                                prdtInfo2={result.rpayTypeNm} prdtInfo3={result.lendRateMin} prdtInfo4={result.lendRateMax}>
+                                <ResultCard 
+                                    key={result.id}
+                                    finName={result.korCoNm} 
+                                    prdtName={result.finPrdtNm} 
+                                    prdtInfo1={result.lendRateTypeNm} 
+                                    prdtInfo2={result.rpayTypeNm} 
+                                    prdtInfo3={result.lendRateMin} 
+                                    prdtInfo4={result.lendRateMax}>
                                 </ResultCard>
                             )
                         })}
                     </Row>
 
                     <Container className="my-5" style={{ display: 'flex', justifyContent: 'center' }}>
-                        <Pagination>
-                        <Pagination.Item>
-                            <i className='fi-chevron-left me-sm-2'></i>
-                            <span className='d-none d-sm-inline'>Prev</span>
-                        </Pagination.Item>
-                        <Pagination.Item>{1}</Pagination.Item>
-                        <Pagination.Item active>{2}</Pagination.Item>
-                        <Pagination.Item>{3}</Pagination.Item>
-                        <Pagination.Ellipsis />
-                        <Pagination.Item>{10}</Pagination.Item>
-                        <Pagination.Item>
-                            <span className='d-none d-sm-inline'>Next</span>
-                            <i className='fi-chevron-right ms-sm-2'></i>
-                        </Pagination.Item>
-                        </Pagination>
+                        {/* <Pagination>
+                            <Pagination.Item disabled={pageNumber === 0}>
+                                <i className='fi-chevron-left me-sm-2'></i>
+                                <span className='d-none d-sm-inline'>Prev</span>
+                            </Pagination.Item>
+                            {pageNumbers.map((page, index) => (
+                                <Pagination.Item onClick={()=>onChangePageHandler({index})} key={index} active={pageNumber === index}>{page}</Pagination.Item>
+                            ))}
+                            <Pagination.Item disabled={pageNumber === totalPages - 1}>
+                                <span className='d-none d-sm-inline'>Next</span>
+                                <i className='fi-chevron-right ms-sm-2'></i>
+                            </Pagination.Item>
+                        </Pagination> */}
+                        <PageComponent totalPages={totalPages} currentPage={pageNumber} onPageChange={onChangePageHandler} />
                     </Container>
 
 

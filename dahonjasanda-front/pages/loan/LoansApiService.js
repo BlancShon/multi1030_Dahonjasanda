@@ -6,6 +6,6 @@ const loansApiClient = axios.create(
     }
 )
 
-export const findMortgageList = () => loansApiClient.get('/mortgages')
-export const findRentHouseList = () => loansApiClient.get('/rent-houses')
-export const findCreditList = () => loansApiClient.get('/credits')
+export const findMortgageList = (param) => loansApiClient.get('/mortgages' + param)
+export const findRentHouseList = (param) => loansApiClient.get('/rent-houses'+ param)
+export const findCreditList = (param) => loansApiClient.get('/credits'+ param)
