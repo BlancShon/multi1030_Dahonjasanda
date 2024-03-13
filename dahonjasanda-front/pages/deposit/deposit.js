@@ -3,9 +3,9 @@ import Box from "@mui/material/Box";
 import Main from "layouts/Main";
 import Container from "components/Container";
 import Card from '@mui/material/Card';
-import customBackgroundImage from '../images/img3.jpg';
+import customBackgroundImage from '../../src/images/img3.jpg';
 
-import { Hero, SearchBox, FilterToggleButton, FilterPanel, VerticalMinimalDesignedBlogCards} from "./components";
+import { Hero, SearchBox, FilterToggleButton, FilterPanel, VerticalMinimalDesignedBlogCards, AdvertisementCard, PollCard, DeadlineCard, EditorsPickCard} from "./components";
 
 
 const deposit = () => {
@@ -20,13 +20,13 @@ const deposit = () => {
     "수령조건": [],
     // 다른 그룹명에 대한 초기값 추가...
   });
-  console.log("Initial checkedState:", checkedState);
+  // console.log("Initial checkedState:", checkedState);
 
   // Updated to handle checkbox changes for groups by their names
   const handleCheckboxChange = (groupName, newCheckedValues) => {
     setCheckedState(prevState => {
       const updatedState = { ...prevState, [groupName]: newCheckedValues };
-      console.log("Updated checkedState:", updatedState); // 로그 추가
+      // console.log("Updated checkedState:", updatedState); // 로그 추가
       return updatedState;
     });
   };
@@ -37,7 +37,7 @@ const deposit = () => {
   };
 
   const handleSearch = (value) => {
-    console.log(value);
+    // console.log(value);
   };
 
   const sectionsData = [
@@ -60,6 +60,13 @@ const deposit = () => {
           ],
         },
         {
+          name: "월납입금액",
+          options: [
+            { name: "단리", value: "simple" },
+            { name: "복리", value: "compound" },
+          ],
+        },
+        {
           name: "기간",
           options: [
             { name: "1년", value: "1" },
@@ -67,6 +74,11 @@ const deposit = () => {
             { name: "3년", value: "3" },
             { name: "5년", value: "5" },
             { name: "10년", value: "10" },
+            { name: "21년", value: "21" },
+            { name: "22년", value: "22" },
+            { name: "23년", value: "23" },
+            { name: "25년", value: "25" },
+            { name: "210년", value: "210" },
             // Add other options here
           ],
         },
@@ -201,14 +213,76 @@ const deposit = () => {
               {activePanel === 'deposit' && <FilterPanel showFilterBox={true} filterSections={sectionsData.filter(section => section.title === "예금")} checked={checkedState} onCheckboxChange={handleCheckboxChange} />}
               {activePanel === 'savings' && <FilterPanel showFilterBox={true} filterSections={sectionsData.filter(section => section.title === "적금")} checked={checkedState} onCheckboxChange={handleCheckboxChange} />}
               {activePanel === 'annuity' && <FilterPanel showFilterBox={true} filterSections={sectionsData.filter(section => section.title === "연금")} checked={checkedState} onCheckboxChange={handleCheckboxChange} />}
-
             </Box>
           </Container>
         </Hero>
-        <Box padding={{ xs: 3, sm: 6 }}>
-          
-          <VerticalMinimalDesignedBlogCards />
-        </Box>
+
+        <Container>
+          <Box display="flex" gap={2}>
+            <Box flex={8}>
+              {activePanel === 'deposit' && (
+                <div>
+                  <Box padding={{ xs: 3, sm: 6 }}>
+                    <h1 style={{ textAlign: 'left' }}>예금 Top 12 추천</h1>
+                    <hr style={{ margin: '20px 0', border: 'none', borderBottom: '1px solid black' }} />
+                    <VerticalMinimalDesignedBlogCards />
+                  </Box>
+                </div>
+              )}
+              {activePanel === 'savings' && (
+                <div>
+                  {/* Add code for Top 10 savings */}
+                  <Box padding={{ xs: 3, sm: 6 }}>
+                    <h1 style={{ textAlign: 'left' }}>적금 Top 12 추천</h1>
+                    <hr style={{ margin: '20px 0', border: 'none', borderBottom: '1px solid black' }} />
+                    <VerticalMinimalDesignedBlogCards />
+                  </Box>
+                </div>
+              )}
+              {activePanel === 'annuity' && (
+                <div>
+                  {/* Add code for Top 10 annuity */}
+                  <Box padding={{ xs: 3, sm: 6 }}>
+                    <h1 style={{ textAlign: 'left' }}>연금 Top 12 추천</h1>
+                    <hr style={{ margin: '20px 0', border: 'none', borderBottom: '1px solid black' }} />
+                    <VerticalMinimalDesignedBlogCards />
+                  </Box>
+                </div>
+              )}
+              {!activePanel && (
+                <div>
+                  {/* Add code for default content */}
+                  <Box padding={{ xs: 3, sm: 6 }}>
+                    <h1 style={{ textAlign: 'left' }}>은행별 예금 Top 12 추천</h1>
+                    <hr style={{ margin: '20px 0', border: 'none', borderBottom: '1px solid black' }} />
+                    <VerticalMinimalDesignedBlogCards />
+                  </Box>
+                </div>
+              )}
+            </Box>
+            <Box flex={4}>
+              {/* Add code for advertisement banner */}
+              <Box flex={4}>
+                <AdvertisementCard />
+              </Box>
+
+              <Box flex={4}>
+                <PollCard />
+              </Box>
+
+              <Box flex={4}>
+                <DeadlineCard />
+              </Box>
+
+              <Box flex={4}>
+                <EditorsPickCard />
+              </Box>
+            </Box>
+          </Box>
+        </Container>
+
+        
+
       </Box>
     </Main>
   );

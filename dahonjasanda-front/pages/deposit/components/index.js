@@ -5,3 +5,7 @@ export {default as FilterToggleButton} from './FilterToggleButton';
 export {default as Hero} from './Hero';
 export {default as SearchBox} from './SearchBox';
 export {default as VerticalMinimalDesignedBlogCards} from './VerticalMinimalDesignedBlogCards';
+export {default as AdvertisementCard} from './AdvertisementCard';
+export {default as PollCard} from './PollCard';
+export {default as DeadlineCard} from './DeadlineCard';
+export {default as EditorsPickCard} from './EditorsPickCard';

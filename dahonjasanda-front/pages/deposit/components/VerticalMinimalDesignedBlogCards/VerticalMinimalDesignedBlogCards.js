@@ -1,152 +1,140 @@
 import React from 'react';
 import { useTheme } from '@mui/material/styles';
-import Divider from '@mui/material/Divider';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
-import Box from '@mui/material/Box';
-import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Grid from '@mui/material/Grid';
-import Avatar from '@mui/material/Avatar';
 
 import Container from 'components/Container';
+import bankimage from '../../../../src/images/banks/wr_bank.png'
+import cardimage from '../../../../src/images/cards/wr_card.jpg'
 
-const mock = [
+
+const savingsPlanData = [
   {
-    image: 'https://assets.maccarianagency.com/backgrounds/img2.jpg',
-    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
-    title: 'Lorem ipsum dolor sit amet,',
-    author: {
-      name: 'Clara Bertoletti',
-      avatar: 'https://assets.maccarianagency.com/avatars/img4.jpg',
-    },
-    date: '04 Aug',
+    image: bankimage,
+    ProductName: '우리SUPER 주거래적금',
+    SubscriptionPeriodOptions: '1년, 2년, 3년',
+    SubscriptionAmountLimits: '최소 50만원 이상',
+    InterestRates: '연 2.55%~',
+    AccountOpeningChannels: '인터넷뱅킹, 스마트뱅킹, 전국 우리은행 영업점',
+    SpecialConditionsorBonuses: '우리은행 주거래고객 1.9%p 추가금리',
   },
   {
-    image: 'https://assets.maccarianagency.com/backgrounds/img3.jpg',
-    description: 'Excepteur sint occaecat cupidatat non proident',
-    title: 'Consectetur adipiscing elit',
-    author: {
-      name: 'Jhon Anderson',
-      avatar: 'https://assets.maccarianagency.com/avatars/img5.jpg',
-    },
-    date: '12 Sep',
+    image: cardimage,
+    ProductName: '우리SUPER 주거래적금',
+    SubscriptionPeriodOptions: '1년, 2년, 3년',
+    SubscriptionAmountLimits: '최소 50만원 이상',
+    InterestRates: '연 2.55%~',
+    AccountOpeningChannels: '인터넷뱅킹, 스마트뱅킹, 전국 우리은행 영업점',
+    SpecialConditionsorBonuses: '우리은행 주거래고객 1.9%p 추가금리',
   },
   {
-    image: 'https://assets.maccarianagency.com/backgrounds/img4.jpg',
-    description: 'Eiusmod tempor incididunt ut labore et dolore magna aliqua. ',
-    title: 'Labore et dolore magna aliqua',
-    author: {
-      name: 'Chary Smith',
-      avatar: 'https://assets.maccarianagency.com/avatars/img6.jpg',
-    },
-    date: '22 Nov',
+    image: bankimage,
+    ProductName: '우리SUPER 주거래적금',
+    SubscriptionPeriodOptions: '1년, 2년, 3년',
+    SubscriptionAmountLimits: '최소 50만원 이상',
+    InterestRates: '연 2.55%~',
+    AccountOpeningChannels: '인터넷뱅킹, 스마트뱅킹, 전국 우리은행 영업점',
+    SpecialConditionsorBonuses: '우리은행 주거래고객 1.9%p 추가금리',
+  },
+  {
+    image: cardimage,
+    ProductName: '우리SUPER 주거래적금',
+    SubscriptionPeriodOptions: '1년, 2년, 3년',
+    SubscriptionAmountLimits: '최소 50만원 이상',
+    InterestRates: '연 2.55%~',
+    AccountOpeningChannels: '인터넷뱅킹, 스마트뱅킹, 전국 우리은행 영업점',
+    SpecialConditionsorBonuses: '우리은행 주거래고객 1.9%p 추가금리',
+  },
+  {
+    image: bankimage,
+    ProductName: '우리SUPER 주거래적금',
+    SubscriptionPeriodOptions: '1년, 2년, 3년',
+    SubscriptionAmountLimits: '최소 50만원 이상',
+    InterestRates: '연 2.55%~',
+    AccountOpeningChannels: '인터넷뱅킹, 스마트뱅킹, 전국 우리은행 영업점',
+    SpecialConditionsorBonuses: '우리은행 주거래고객 1.9%p 추가금리',
+  },
+  {
+    image: cardimage,
+    ProductName: '우리SUPER 주거래적금',
+    SubscriptionPeriodOptions: '1년, 2년, 3년',
+    SubscriptionAmountLimits: '최소 50만원 이상',
+    InterestRates: '연 2.55%~',
+    AccountOpeningChannels: '인터넷뱅킹, 스마트뱅킹, 전국 우리은행 영업점',
+    SpecialConditionsorBonuses: '우리은행 주거래고객 1.9%p 추가금리',
   },
 ];
 
 const VerticalMinimalDesignedBlogCards = () => {
   const theme = useTheme();
+
+  // Log the image paths
+  console.log(
+    "Image paths:",
+    savingsPlanData.map((plan) => plan.image)
+  );
+
   return (
     <Container>
       <Grid container spacing={4}>
-        {mock.map((item, i) => (
-          <Grid item xs={12} md={4} key={i}>
-            <Box
-              component={'a'}
-              href={''}
-              display={'block'}
-              width={1}
-              height={1}
+        {savingsPlanData.map((plan, index) => (
+          <Grid item xs={12} key={index}>
+            <Card
               sx={{
-                textDecoration: 'none',
+                width: 1,
+                height: 1,
+                boxShadow: 4,
+                display: 'flex',
+                flexDirection: 'row', // Change to row
                 transition: 'all .2s ease-in-out',
                 '&:hover': {
                   transform: `translateY(-${theme.spacing(1 / 2)})`,
                 },
+                height: 200,
               }}
             >
-              <Box
-                component={Card}
-                width={1}
-                height={1}
-                boxShadow={4}
-                display={'flex'}
-                flexDirection={'column'}
-                sx={{ backgroundImage: 'none' }}
+              <CardMedia
+                component="img"
+                image={plan.image.src}
+                alt={`${plan.ProductName} image`}
+                sx={{
+                  width: '30%', // Set the width to 30%
+                  objectFit: 'cover',
+                  objectPosition: 'center',
+                }}
+              />
+              <CardContent
+                sx={{
+                  width: '70%', // Set the width to 70%
+                  display: 'flex',
+                  flexDirection: 'column',
+                }}
               >
-                <CardMedia
-                  image={item.image}
-                  title={item.title}
-                  sx={{
-                    height: { xs: 300, md: 360 },
-                    position: 'relative',
-                  }}
-                />
-                <Box component={CardContent} position={'relative'}>
-                  <Typography variant={'h6'} gutterBottom>
-                    {item.title}
-                  </Typography>
-                  <Typography color="text.secondary">
-                    {item.description}
-                  </Typography>
-                </Box>
-                <Box flexGrow={1} />
-                <Box padding={2} display={'flex'} flexDirection={'column'}>
-                  <Box marginBottom={2}>
-                    <Divider />
-                  </Box>
-                  <Box
-                    display={'flex'}
-                    justifyContent={'space-between'}
-                    alignItems={'center'}
-                  >
-                    <Box display={'flex'} alignItems={'center'}>
-                      <Avatar
-                        src={item.author.avatar}
-                        sx={{ marginRight: 1 }}
-                      />
-                      <Typography color={'text.secondary'}>
-                        {item.author.name}
-                      </Typography>
-                    </Box>
-                    <Typography color={'text.secondary'}>
-                      {item.date}
-                    </Typography>
-                  </Box>
-                </Box>
-              </Box>
-            </Box>
+                <Typography variant="h5" gutterBottom>
+                  {plan.ProductName}
+                </Typography>
+                <Typography color="text.secondary">
+                  가입 기간: {plan.SubscriptionPeriodOptions}
+                </Typography>
+                <Typography color="text.secondary">
+                  가입 한도: {plan.SubscriptionAmountLimits}
+                </Typography>
+                <Typography color="text.secondary">
+                  이자율: {plan.InterestRates}
+                </Typography>
+                <Typography color="text.secondary">
+                  계좌 개설 채널: {plan.AccountOpeningChannels}
+                </Typography>
+                <Typography color="text.secondary">
+                  특별 조건: {plan.SpecialConditionsorBonuses}
+                </Typography>
+              </CardContent>
+            </Card>
           </Grid>
         ))}
-        <Grid item container justifyContent={'center'} xs={12}>
-          <Button
-            fullWidth
-            variant={'outlined'}
-            size={'large'}
-            sx={{ height: 54, maxWidth: 400, justifyContent: 'space-between' }}
-            endIcon={
-              <Box
-                component={'svg'}
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-                width={24}
-                height={24}
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M17 8l4 4m0 0l-4 4m4-4H3"
-                />
-              </Box>
-            }
-          >
-            Load More
-          </Button>
-        </Grid>
       </Grid>
     </Container>
   );

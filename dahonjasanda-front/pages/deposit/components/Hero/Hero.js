@@ -14,7 +14,7 @@ const Hero = ({
 }) => {
   const theme = useTheme();
   const defaultImage = 'https://assets.maccarianagency.com/backgrounds/img3.jpg';
-  console.log('Background image URL:', backgroundImage);
+  // console.log('Background image URL:', backgroundImage);
   const imageUrl = backgroundImage || defaultImage;
 
   return (
@@ -45,12 +45,11 @@ const Hero = ({
         zIndex={3}
         position={'relative'}
         minHeight={{ xs: 300, sm: 400, md: 600 }}
-        maxHeight={600}
         display={'flex'}
         alignItems={'center'}
         justifyContent={'center'}
       >
-        <Box>
+        <Box sx={{ width: '100%', maxWidth: 1000 }}>
           <Box marginBottom={2}>
             <Typography
               variant="h2"
@@ -79,19 +78,7 @@ const Hero = ({
           {children}
         </Box>
       </Container>
-      <Box
-        component={'svg'}
-        preserveAspectRatio="none"
-        xmlns="http://www.w3.org/2000/svg"
-        x="0px"
-        y="0px"
-        viewBox="0 0 1920 100.1"
-        width={1}
-        maxHeight={120}
-        bottom={0}
-        position={'absolute'}
-        zIndex={2}
-      ></Box>
+      
     </Box>
   );
 };

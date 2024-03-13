@@ -6,7 +6,7 @@ import Container from 'components/Container';
 import { Hero } from './deposit/components';
 import { Card, CardContent, Grid, Typography } from '@mui/material';
 
-import customBackgroundImage from './images/main-hero.png';
+import customBackgroundImage from '../src/images/main-hero.png';
 
 
 const indexPage = () => {

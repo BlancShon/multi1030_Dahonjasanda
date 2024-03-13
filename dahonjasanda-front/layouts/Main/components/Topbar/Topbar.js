@@ -34,6 +34,7 @@ const Topbar = ({ onSidebarOpen, pages, colorInvert = false }) => {
         href="/"
         title="다혼자산다"
         width={{ xs: 100, md: 120 }}
+        sx={{ textDecoration: 'none' }} // Add this line to remove underline
       >
         <Box
           component={"img"}
@@ -45,10 +46,12 @@ const Topbar = ({ onSidebarOpen, pages, colorInvert = false }) => {
           height={0.5}
           width={0.5}
         />
-        <Typography fontWeight={700} marginLeft={1}>
-          다혼산
+        <Typography fontWeight={700} marginLeft={1} sx={{ whiteSpace: 'nowrap', fontSize: '1.5rem', color: 'black' }}>
+          다혼자산다
         </Typography>
       </Box>
+
+
       <Box sx={{ display: { xs: "none", md: "flex" } }} alignItems={"center"}>
         <Box marginLeft={4}>
           <NavItem

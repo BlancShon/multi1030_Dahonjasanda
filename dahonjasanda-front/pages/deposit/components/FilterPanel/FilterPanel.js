@@ -7,7 +7,7 @@ import Divider from '@mui/material/Divider';
 
 
 const FilterPanel = ({ showFilterBox, filterSections, checked, onCheckboxChange }) => {
-  console.log("Checked state in FilterPanel:", checked);
+  // console.log("Checked state in FilterPanel:", checked);
 
     return (
       <Collapse in={showFilterBox}>
