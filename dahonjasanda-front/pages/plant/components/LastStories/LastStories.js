@@ -16,7 +16,7 @@ const mock = [
     image: 'https://www.nongsaro.go.kr/cms_contents/301/19715_MF_REPR_ATTACH_01.jpg',
     description:
       '농사로 식물 관련 설명',
-    title: '농사로 식물 이름',
+    title: '농사로 식물 이름1',
     author: {
       name: '이름',
       avatar: 'https://assets.maccarianagency.com/avatars/img1.jpg',
@@ -25,7 +25,7 @@ const mock = [
   {
     image: 'https://www.nongsaro.go.kr/cms_contents/1122/204870_MF_BIMG_01.jpg',
     description: '농사로 식물 관련 설명',
-    title: '농사로 식물 이름',
+    title: '농사로 식물 이름2',
     author: {
       name: '이름',
       avatar: 'https://assets.maccarianagency.com/avatars/img2.jpg',
@@ -35,7 +35,7 @@ const mock = [
   {
     image: 'https://www.nongsaro.go.kr/cms_contents/1122/204870_MF_BIMG_01.jpg',
     description: '농사로 식물 관련 설명',
-    title: '농사로 식물 이름',
+    title: '농사로 식물 이름3',
     author: {
       name: '이름',
       avatar: 'https://assets.maccarianagency.com/avatars/img2.jpg',
@@ -45,7 +45,7 @@ const mock = [
   {
     image: 'https://www.nongsaro.go.kr/cms_contents/1122/204870_MF_BIMG_01.jpg',
     description: '농사로 식물 관련 설명',
-    title: '농사로 식물 이름',
+    title: '농사로 식물 4',
     author: {
       name: '이름',
       avatar: 'https://assets.maccarianagency.com/avatars/img2.jpg',
@@ -55,7 +55,7 @@ const mock = [
   {
     image: 'https://www.nongsaro.go.kr/cms_contents/1122/204870_MF_BIMG_01.jpg',
     description: '농사로 식물 관련 설명',
-    title: '농사로 식물 이름',
+    title: '농사로 식물 이름5',
     author: {
       name: '이름',
       avatar: 'https://assets.maccarianagency.com/avatars/img2.jpg',
@@ -65,7 +65,26 @@ const mock = [
   {
     image: 'https://www.nongsaro.go.kr/cms_contents/1122/204870_MF_BIMG_01.jpg',
     description: '농사로 식물 관련 설명',
-    title: '농사로 식물 이름',
+    title: '농사로 식물 이름6',
+    author: {
+      name: '이름',
+      avatar: 'https://assets.maccarianagency.com/avatars/img2.jpg',
+    },
+    date: '02 Aug',
+  },
+  {
+    image: 'https://www.nongsaro.go.kr/cms_contents/1122/204870_MF_BIMG_01.jpg',
+    description: '농사로 식물 관련 설명',
+    title: '농사로 식물 이름6',
+    author: {
+      name: '이름',
+      avatar: 'https://assets.maccarianagency.com/avatars/img2.jpg',
+    },
+    date: '02 Aug',
+  },  {
+    image: 'https://www.nongsaro.go.kr/cms_contents/1122/204870_MF_BIMG_01.jpg',
+    description: '농사로 식물 관련 설명',
+    title: '농사로 식물 이름6',
     author: {
       name: '이름',
       avatar: 'https://assets.maccarianagency.com/avatars/img2.jpg',
@@ -106,16 +125,17 @@ const LastStories = () => {
           </Box> */}
         </Box>
       </Box>
-      <Grid container spacing={4}>
+      <Grid container spacing={4} >
         {/* mock 데이터를 갖고옴 */}
         {mock.map((item, i) => (
-          <Grid item xs={12} sm={6} md={3} key={i}>
+          <Grid item xs={12} sm={6} md={3} key={i} sx={{marginBottom:-20}} >
+            
             <Box
               component={'a'}
               href={''}
               display={'block'}
               width={1}  //? 0.8 이나..1?
-              height={0.7}
+              height={1}
               sx={{
                 textDecoration: 'none',
                 transition: 'all .2s ease-in-out',
@@ -124,10 +144,11 @@ const LastStories = () => {
                 },
               }}
             >
+              
               <Box
                 component={Card}
                 width={1}
-                height={1}
+                height={0.7}
                 boxShadow={7}
                 display={'flex'}
                 flexDirection={'column'}
@@ -195,9 +216,13 @@ const LastStories = () => {
                       {item.date}
                     </Typography>
                   </Box>
+                  
                 </Box>
+                
               </Box>
+              
             </Box>
+            
           </Grid>
         ))}
       </Grid>

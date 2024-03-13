@@ -9,21 +9,22 @@ import Avatar from '@mui/material/Avatar';
 import Chip from '@mui/material/Chip';
 
 const mock = {
-  image: 'https://assets.maccarianagency.com/backgrounds/img4.jpg',
+  
+  image: 'https://previews.123rf.com/images/denayunebgt/denayunebgt2110/denayunebgt211000181/175743056-%EC%A4%91%EC%9A%94%ED%95%9C-%EB%AC%B8%EC%A0%9C-%EC%8B%9C%EA%B0%84-%EA%B4%80%EB%A6%AC-%EC%9E%91%EC%97%85-%EC%A1%B0%EC%A7%81-%EB%B0%8F-%EC%83%9D%ED%99%9C-%EC%9D%B4%EB%B2%A4%ED%8A%B8-%EC%95%8C%EB%A6%BC-%EB%98%90%EB%8A%94-%ED%9C%B4%EC%9D%BC%EC%9D%84-%EA%B3%84%ED%9A%8D%ED%95%98%EA%B8%B0-%EC%9C%84%ED%95%9C-%EC%9B%90-%EA%B8%B0%ED%98%B8%EA%B0%80-%EC%9E%88%EB%8A%94-%EB%8B%AC%EB%A0%A5-%EB%B0%B0%EA%B2%BD-%EB%B2%A1%ED%84%B0.jpg',
   description:
-    'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+    '바쁜 현대 사회에서 필요한 일자를 기억못하는 건 당연하죠! 더욱 의미있는 하루하루가 되도록 반려 식물과의 기념일과 성장 일기를 기록하세요!',
   title:
-    'Labore et dolore magna aliqua. Eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+    '기른지 며칠이 됐지? 물은 언제 줬더라? 치료는 언제?',
   author: {
-    name: 'Chary Smith',
-    avatar: 'https://assets.maccarianagency.com/avatars/img6.jpg',
+    name: '캘린더 입력 바로가기',
+    avatar: 'https://media.istockphoto.com/id/1262025969/ko/%EB%B2%A1%ED%84%B0/%EC%84%A0%ED%83%9D%ED%95%9C-%EB%82%A0%EC%A7%9C%EA%B0%80-%EC%9E%88%EB%8A%94-%EC%BA%98%EB%A6%B0%EB%8D%94%EC%9E%85%EB%8B%88%EB%8B%A4-%EB%B2%A1%ED%84%B0-%EC%9D%BC%EB%9F%AC%EC%8A%A4%ED%8A%B8%EB%A0%88%EC%9D%B4%EC%85%98.jpg?s=612x612&w=0&k=20&c=hIHsYdIieF5ikqCb7YiSxR-2Lznf7szkO92sxupBdYY=',
   },
-  date: '22 Nov',
 };
 
 const FeaturedArticle = () => {
   const theme = useTheme();
   return (
+    
     <Box>
       <Box
         component={'a'}
@@ -63,18 +64,9 @@ const FeaturedArticle = () => {
               alt="..."
               sx={{
                 objectFit: 'cover',
-                maxHeight: 360,
+                maxHeight: 300,
                 filter:
                   theme.palette.mode === 'dark' ? 'brightness(0.7)' : 'none',
-              }}
-            />
-            <Chip
-              label="Featured"
-              sx={{
-                position: 'absolute',
-                top: 20,
-                right: 20,
-                bgcolor: 'background.paper',
               }}
             />
             <Box
@@ -106,27 +98,28 @@ const FeaturedArticle = () => {
             sx={{
               position: 'relative',
               width: { xs: 1, md: '50%' },
-              padding: 4,
+              padding: 6,
               display: 'flex',
               flexDirection: 'column',
               justifyContent: 'space-between',
             }}
           >
             <Box>
-              <Typography variant={'h5'} gutterBottom>
-                {mock.title}
-              </Typography>
-              <Typography color="text.secondary">{mock.description}</Typography>
+              <Typography variant={'h5'} gutterBottom >
+                {mock.title} 
+              </Typography><br></br>
+              <Typography color="text.secondary" >{mock.description}</Typography>
             </Box>
             <Box>
-              <Divider sx={{ marginY: 2 }} />
+              <Divider sx={{ marginY: 2}}/>
               <Box
+                marginY={3}
                 display={'flex'}
                 justifyContent={'space-between'}
                 alignItems={'center'}
               >
+              <Avatar src={mock.author.avatar} sx={{ marginRight: -39 }} />
                 <Box display={'flex'} alignItems={'center'}>
-                  <Avatar src={mock.author.avatar} sx={{ marginRight: 1 }} />
                   <Typography color={'text.secondary'}>
                     {mock.author.name}
                   </Typography>

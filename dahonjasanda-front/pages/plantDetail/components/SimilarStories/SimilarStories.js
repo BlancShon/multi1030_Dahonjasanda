@@ -9,11 +9,10 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Grid from '@mui/material/Grid';
 import Avatar from '@mui/material/Avatar';
-import Pagination from '@mui/material/Pagination';
 
 const mock = [
   {
-    image: 'https://assets.maccarianagency.com/backgrounds/img17.jpg',
+    image: 'https://assets.maccarianagency.com/backgrounds/img23.jpg',
     description:
       'Sed ut perspiciatis unde omnis iste natus error sit voluptatem',
     title: 'Eiusmod tempor incididunt',
@@ -23,7 +22,7 @@ const mock = [
     },
   },
   {
-    image: 'https://assets.maccarianagency.com/backgrounds/img13.jpg',
+    image: 'https://assets.maccarianagency.com/backgrounds/img24.jpg',
     description: 'At vero eos et accusamus et iusto odio dignissimos ducimus',
     title: 'Sed ut perspiciatis',
     author: {
@@ -33,7 +32,7 @@ const mock = [
     date: '02 Aug',
   },
   {
-    image: 'https://assets.maccarianagency.com/backgrounds/img14.jpg',
+    image: 'https://assets.maccarianagency.com/backgrounds/img25.jpg',
     description:
       'Qui blanditiis praesentium voluptatum deleniti atque corrupti',
     title: 'Unde omnis iste natus',
@@ -45,7 +44,7 @@ const mock = [
   },
 ];
 
-const PopularArticles = () => {
+const SimilarStories = () => {
   const theme = useTheme();
   return (
     <Box>
@@ -58,10 +57,10 @@ const PopularArticles = () => {
       >
         <Box>
           <Typography fontWeight={700} variant={'h6'} gutterBottom>
-            인기 게시글
+            Similar stories
           </Typography>
           <Typography color={'text.secondary'}>
-            1인 가구 회원들이 올려놓은 식물 소개글입니다
+            Here’s what we’ve been up to recently.
           </Typography>
         </Box>
         <Box display="flex" marginTop={{ xs: 2, md: 0 }}>
@@ -72,13 +71,13 @@ const PopularArticles = () => {
             size="large"
             marginLeft={2}
           >
-            전체보기
+            View all
           </Box>
         </Box>
       </Box>
       <Grid container spacing={4}>
         {mock.map((item, i) => (
-          <Grid item xs={12} sm={i === 0 ? 12 : 6} md={i < 2 ? 4 : 4} key={i}>
+          <Grid item xs={12} md={4} key={i}>
             <Box
               component={'a'}
               href={''}
@@ -169,12 +168,9 @@ const PopularArticles = () => {
             </Box>
           </Grid>
         ))}
-        <Grid item container justifyContent={'center'} xs={12}>
-          <Pagination count={10} size={'large'} color="primary" />
-        </Grid>
       </Grid>
     </Box>
   );
 };
 
-export default PopularArticles;
+export default SimilarStories;
