@@ -8,6 +8,7 @@ import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import Button from '@mui/material/Button';
 
+// 우측 그림 이미지 및 디스크립션 = selectAll 랜덤으로 데이터 추출
 const mock = [
   {
     image: 'https://assets.maccarianagency.com/backgrounds/img13.jpg',
@@ -60,10 +61,10 @@ const SidebarArticles = () => {
         data-aos={'fade-up'}
         sx={{
           fontWeight: 700,
-          marginBottom: 2,
+          marginBottom: 5,
         }}
       >
-        Upcoming updates
+        그 외 관련 식물
       </Typography>
       <Grid container spacing={2}>
         {mock.map((item, i) => (

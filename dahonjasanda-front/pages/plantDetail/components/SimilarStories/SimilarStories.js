@@ -57,7 +57,7 @@ const SimilarStories = () => {
       >
         <Box>
           <Typography fontWeight={700} variant={'h6'} gutterBottom>
-            Similar stories
+            게시판 글 가져오기
           </Typography>
           <Typography color={'text.secondary'}>
             Here’s what we’ve been up to recently.
