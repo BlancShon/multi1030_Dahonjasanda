@@ -5,11 +5,11 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
+import com.multi.dahon.finance.dto.CreditOptionAndProdDTO;
 import com.multi.dahon.finance.vo.CreditLoanOption;
 
 public interface CreditRepository extends JpaRepository<CreditLoanOption, Long>{
 
-	// TODO 쿼리 바꿔야한다.
-	@Query("select new com.multi.dahon.finance.dto.MortgageOptionAndProdDTO(mo, m) from MortgageLoanOption mo join fetch mo.mortgageLoan m")
-	Page<CreditLoanOption> findAllforList(Pageable pageable);
+	@Query("select new com.multi.dahon.finance.dto.CreditOptionAndProdDTO(co, c) from CreditLoanOption co join fetch co.creditLoan c")
+	Page<CreditOptionAndProdDTO> findCreditList(Pageable pageable);
 }

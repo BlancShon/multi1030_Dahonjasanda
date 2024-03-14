@@ -57,13 +57,6 @@ const LoansPage = () => {
             try {
                 const response = await findLoanList(param);
 
-                // if (selectedCategory === '주택담보대출') {
-                //     response = await findMortgageList(param); // searchForm을 API 요청에 함께 전달합니다.
-                // } else if (selectedCategory === '전세자금대출') {
-                //     response = await findRentHouseList(param);
-                // } else if (selectedCategory === '개인신용대출') {
-                //     response = await findCreditList(param);
-                // }
                 console.log("여기가 응답이다!!!",response.data);
                 const { content, pageable} = response.data;
                 setResultList(content);
@@ -98,7 +91,7 @@ const LoansPage = () => {
                 </Container>
                 <hr style={{ borderTop: '1px solid black' }} />
                 <Container className="mt-3">
-                    <ResultList resultList={resultList} onChangePageHandler={setPage} pageable={pageable} />
+                    <ResultList resultList={resultList} onChangePageHandler={setPage} pageable={pageable} category={selectedCategory} />
                 </Container>
             </Main>
         </>

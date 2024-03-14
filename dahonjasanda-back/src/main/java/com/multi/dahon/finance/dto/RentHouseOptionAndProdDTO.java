@@ -4,6 +4,7 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
+import com.multi.dahon.finance.vo.FinancialCompany;
 import com.multi.dahon.finance.vo.MortgageLoan;
 import com.multi.dahon.finance.vo.MortgageLoanOption;
 import com.multi.dahon.finance.vo.RentHouseLoan;
@@ -37,6 +38,9 @@ public class RentHouseOptionAndProdDTO {
     private LocalDate dclsEndDay;
     private LocalDateTime finCoSubmDay;
     
+    private String dclsChrgMan;
+	private String homeUrl;
+	private String calTel;
     
 	public RentHouseOptionAndProdDTO(RentHouseLoanOption rho, RentHouseLoan rh) {
 		super();
@@ -62,6 +66,36 @@ public class RentHouseOptionAndProdDTO {
 		this.dclsStrtDay = rh.getDclsStrtDay();
 		this.dclsEndDay = rh.getDclsEndDay();
 		this.finCoSubmDay = rh.getFinCoSubmDay();
+	}
+	
+	public RentHouseOptionAndProdDTO(RentHouseLoanOption rho, RentHouseLoan rh, FinancialCompany fc) {
+		super();
+		this.id = rho.getId();
+		this.dclsMonth = rho.getDclsMonth();
+		this.finCoNo = rho.getFinCoNo();
+		this.finPrdtCd = rho.getFinPrdtCd();
+		this.rpayType = rho.getRpayType();
+		this.rpayTypeNm = rho.getRpayTypeNm();
+		this.lendRateType = rho.getLendRateType();
+		this.lendRateTypeNm = rho.getLendRateTypeNm();
+		this.lendRateMin = rho.getLendRateMin();
+		this.lendRateMax = rho.getLendRateMax();
+		this.lendRateAvg = rho.getLendRateAvg();
+		
+		this.korCoNm = rh.getKorCoNm();
+		this.finPrdtNm = rh.getFinPrdtNm();
+		this.joinWay = rh.getJoinWay();
+		this.loanInciExpn = rh.getLoanInciExpn();
+		this.erlyRpayFee = rh.getErlyRpayFee();
+		this.dlyRate = rh.getDlyRate();
+		this.loanLmt = rh.getLoanLmt();
+		this.dclsStrtDay = rh.getDclsStrtDay();
+		this.dclsEndDay = rh.getDclsEndDay();
+		this.finCoSubmDay = rh.getFinCoSubmDay();
+		
+		this.dclsChrgMan = fc.getDclsChrgMan();
+		this.homeUrl = fc.getHomeUrl();
+		this.calTel = fc.getCalTel();
 	}
 	
     

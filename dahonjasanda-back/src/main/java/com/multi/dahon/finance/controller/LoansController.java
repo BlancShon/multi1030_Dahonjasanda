@@ -2,6 +2,7 @@ package com.multi.dahon.finance.controller;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.Vector;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -10,9 +11,11 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.multi.dahon.finance.dto.CreditOptionAndProdDTO;
 import com.multi.dahon.finance.dto.FinanceCompanyDTO;
 import com.multi.dahon.finance.dto.MortgageOptionAndProdDTO;
 import com.multi.dahon.finance.dto.RentHouseOptionAndProdDTO;
@@ -48,28 +51,26 @@ public class LoansController {
 	
     @GetMapping(value = "/mortgages")
     public ResponseEntity<Page<MortgageOptionAndProdDTO>> mortgageLoanList(Pageable pageable){
-    	Page<MortgageOptionAndProdDTO> findMortgages = service.findMortgageList(pageable);
-        return ResponseEntity.ok(findMortgages);
+        return ResponseEntity.ok(service.findMortgageList(pageable));
     }
     
-//    @GetMapping(value = "/credits")
-//    public ResponseEntity<Page<MortgageOptionAndProdDTO>> creditLoanList(Pageable pageable){
-//    	Page<MortgageOptionAndProdDTO> findAllMortgage = service.findAllMortgage(pageable);
-//    	return ResponseEntity.ok(findAllMortgage);
-//    }
+    @GetMapping(value = "/credits")
+    public ResponseEntity<Page<CreditOptionAndProdDTO>> creditLoanList(Pageable pageable){
+    	return ResponseEntity.ok(service.findCreditList(pageable));
+    }
     
     @GetMapping(value = "/rent-houses")
     public ResponseEntity<Page<RentHouseOptionAndProdDTO>> rentHouseLoanList(Pageable pageable){
-    	Page<RentHouseOptionAndProdDTO> findRentHouses = service.findRentHouseList(pageable);
-    	return ResponseEntity.ok(findRentHouses);
+    	return ResponseEntity.ok(service.findRentHouseList(pageable));
     }
     
-    @GetMapping("/")
-    public ResponseEntity<String> response(){
-        return ResponseEntity.ok("아아아아");
+    @GetMapping(value = "mortgages/{mortgageId}")
+    public ResponseEntity<Object> mortgageDetail(@PathVariable("mortgageId") Long id){
+//    	try {
+			return ResponseEntity.ok(service.getMortgageDetail(id).orElseThrow());
+//		} catch (NoSuchElementException e) {
+//			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("요청 값을 다시 확인해주세요");
+//		}
     }
-   
-
-	
 
 }

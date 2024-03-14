@@ -1,14 +1,20 @@
+import Main from "layouts/Main";
 import { Button, Card, Col, Form, Row} from "react-bootstrap";
 import { useRouter } from 'next/router';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'recharts';
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import dynamic from "next/dynamic";
+import Link from "next/link";
+import { findLoanDetail } from './LoansApiService'
 
-
-const ResultCard = dynamic(() => import("../components/Result"), { ssr: false });
+const ResultCard = dynamic(() => import("./components/Result"), { ssr: false });
 
 const LoansDetail = ({rendRateMin = 4.56, rendRateMax = 5.76}) =>{
-    // const router = useRouter();
+    const router = useRouter();
+
+    const [category, setCategory] = useState();
+    const [id, setId] = useState();
+    const [detailInfo, setDetailInfo] = useState();
 
     const [loanAmount, setLoanAmount] = useState('');
     const [loanTerm, setLoanTerm] = useState('');
@@ -17,6 +23,88 @@ const LoansDetail = ({rendRateMin = 4.56, rendRateMax = 5.76}) =>{
     const [minMonthlyInterest, setMinMonthlyInterest] = useState(0);
     const [maxMonthlyInterest, setMaxMonthlyInterest] = useState(0);
 
+    const getLoginInfo = async () => {
+        try {
+            var response = await axios.get('http://localhost/memberRest/loginInfo', { withCredentials: true });
+            console.log(response)
+            if (response.data.result === true) {
+                setLoginInfo(response.data.member);
+            }
+        } catch (e) {
+            console.log(e);
+        }
+    }
+
+    const handleGetDetail = async (category, id) => {
+        try {
+            const response = await findLoanDetail(category, id);
+            const { data } = response;
+            setDetailInfo(data);
+        } catch (error) {
+            console.error("Error fetching loan detail:", error);
+        }
+    };
+
+    useEffect(() => {
+        if (!router.isReady) {
+            return;
+        }
+
+        console.log('router.query');
+        console.log(router.query.categoryAndId);
+        
+        const catAndId = router.query.categoryAndId;
+        
+        console.log('동적 디테일 페이지 catAndId', catAndId)
+        const [category, id] =catAndId.split('-');
+        
+        setCategory(category)
+        setId(id)
+
+        console.log("동적 디테일 페이지의 카테고리와 카테고리",category)
+        console.log("동적 디테일 페이지의 카테고리와 아이디",id)
+
+        getLoginInfo();
+        handleGetDetail(category, id);
+    }, [router.isReady]);
+
+    if (!detailInfo) {
+        return <div>Loading...</div>;
+    }
+
+
+    
+    // useEffect(() => {
+    //     if (!router.isReady) {
+    //         return;
+    //     }
+    //     const handleGetDetail = async () => {
+    //         try {
+    //             const response = await findLoanDetail(category, id);
+                
+    //             console.log('여기 디테일 정보다!!!', response);
+    //             const {data}  = response;
+    //             setDetailInfo(data);
+
+    //         } catch (error) {
+    //             console.error("요청 잘못받은듯??. Link 로 홈으로 돌아가던지 하자 얼럿 띄우던가", error)
+    //         }
+    //     }
+    //     console.log("디테일 여기까진 찍힌다 111")
+    //     console.log(category)
+    //     console.log(id)
+
+    //     if (category && id) {
+    //         handleGetDetail();
+    //     }
+    // }, [category, id, router.query.categoryAndId])
+
+
+   
+
+
+    
+    
 
     const samePrdtList = [
         {id:1,
@@ -66,9 +154,6 @@ const LoansDetail = ({rendRateMin = 4.56, rendRateMax = 5.76}) =>{
 
         const calculateInterest = (loanAmount, annualInterestRate, loanPeriodYears) => {
 
-            if(rpayType === 'S') {
-
-            }
             // 연 이자율 계산
             const monthlyInterestRate = annualInterestRate / 100 / 12;
 
@@ -92,10 +177,14 @@ const LoansDetail = ({rendRateMin = 4.56, rendRateMax = 5.76}) =>{
 
 
     return (
+        <Main>
+            {console.log("디테일 인포",detailInfo)}
+            {console.log("디테일 인포",typeof detailInfo)}
+            <Link href={'/loan'}><Button>이전으로</Button></Link>
         <div className="m-5 p-3">
                 <div className="px-5">
                 <Card className="p-5 m-5" style={{border: '3px solid #000'}}>
-                <Card.Header><h1>우리은행</h1></Card.Header>
+                <Card.Header><h1>{detailInfo.korCoNm}</h1></Card.Header>
                 <Card.Body>
                     <Row className="mt-4">
                         
@@ -215,6 +304,7 @@ const LoansDetail = ({rendRateMin = 4.56, rendRateMax = 5.76}) =>{
                 </Row>
 
             </div>
+            </Main>
     )
 }
 

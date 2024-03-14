@@ -4,9 +4,11 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
+import com.multi.dahon.finance.vo.FinancialCompany;
 import com.multi.dahon.finance.vo.MortgageLoan;
 import com.multi.dahon.finance.vo.MortgageLoanOption;
 
+import jakarta.persistence.Column;
 import lombok.Data;
 
 @Data
@@ -37,6 +39,10 @@ public class MortgageOptionAndProdDTO {
     private LocalDate dclsEndDay;
     private LocalDateTime finCoSubmDay;
     
+	private String dclsChrgMan;
+	private String homeUrl;
+	private String calTel;
+    
     
 	public MortgageOptionAndProdDTO(MortgageLoanOption mo, MortgageLoan m) {
 		super();
@@ -64,6 +70,38 @@ public class MortgageOptionAndProdDTO {
 		this.dclsStrtDay = m.getDclsStrtDay();
 		this.dclsEndDay = m.getDclsEndDay();
 		this.finCoSubmDay = m.getFinCoSubmDay();
+	}
+	
+	public MortgageOptionAndProdDTO(MortgageLoanOption mo, MortgageLoan m, FinancialCompany fc) {
+		super();
+		this.id = mo.getId();
+		this.dclsMonth = mo.getDclsMonth();
+		this.finCoNo = mo.getFinCoNo();
+		this.finPrdtCd = mo.getFinPrdtCd();
+		this.mrtgType = mo.getMrtgType();
+		this.mrtgTypeNm = mo.getMrtgTypeNm();
+		this.rpayType = mo.getRpayType();
+		this.rpayTypeNm = mo.getRpayTypeNm();
+		this.lendRateType = mo.getLendRateType();
+		this.lendRateTypeNm = mo.getLendRateTypeNm();
+		this.lendRateMin = mo.getLendRateMin();
+		this.lendRateMax = mo.getLendRateMax();
+		this.lendRateAvg = mo.getLendRateAvg();
+		
+		this.korCoNm = m.getKorCoNm();
+		this.finPrdtNm = m.getFinPrdtNm();
+		this.joinWay = m.getJoinWay();
+		this.loanInciExpn = m.getLoanInciExpn();
+		this.erlyRpayFee = m.getErlyRpayFee();
+		this.dlyRate = m.getDlyRate();
+		this.loanLmt = m.getLoanLmt();
+		this.dclsStrtDay = m.getDclsStrtDay();
+		this.dclsEndDay = m.getDclsEndDay();
+		this.finCoSubmDay = m.getFinCoSubmDay();
+		
+		this.dclsChrgMan = fc.getDclsChrgMan();
+		this.homeUrl = fc.getHomeUrl();
+		this.calTel = fc.getCalTel();
 	}
 	
     

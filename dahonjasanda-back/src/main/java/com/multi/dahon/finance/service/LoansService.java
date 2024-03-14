@@ -1,5 +1,6 @@
 package com.multi.dahon.finance.service;
 
+import java.util.Optional;
 import java.util.Vector;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +9,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.multi.dahon.finance.dto.CreditOptionAndProdDTO;
 import com.multi.dahon.finance.dto.FinanceCompanyDTO;
 import com.multi.dahon.finance.dto.MortgageOptionAndProdDTO;
 import com.multi.dahon.finance.dto.RentHouseOptionAndProdDTO;
@@ -42,6 +44,10 @@ public class LoansService {
 		this.rentHouseRepository = rentHouseRepository;
 		this.financialCompanyRepository = financialCompanyRepository;
 	}
+    
+    public Vector<FinanceCompanyDTO> getFinanceCompanyList(String companyType){
+    	return financialCompanyRepository.findByType(companyType);
+    }
 
 	public Page<MortgageOptionAndProdDTO> findMortgageList(Pageable pageable){
 		return mortgageRepository.findMortgageList(pageable);
@@ -51,8 +57,12 @@ public class LoansService {
 		return rentHouseRepository.findRentHouseList(pageable);
 	}
 	
-	public Vector<FinanceCompanyDTO> getFinanceCompanyList(String companyType){
-		return financialCompanyRepository.findByType(companyType);
+	public Page<CreditOptionAndProdDTO> findCreditList(Pageable pageable){
+		return creditRepository.findCreditList(pageable);
+	}
+	
+	public Optional<MortgageOptionAndProdDTO> getMortgageDetail(Long id){
+		return mortgageRepository.findMortgageForDetail(id);
 	}
 	
 	

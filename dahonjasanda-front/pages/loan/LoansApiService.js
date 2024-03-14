@@ -8,6 +8,4 @@ const loansApiClient = axios.create(
 
 export const findLoanList = (param) => loansApiClient.get(param)
 export const findCompanyList = () => loansApiClient.get('/companies')
-// export const findMortgageList = (param) => loansApiClient.get('/mortgages' + param)
-// export const findRentHouseList = (param) => loansApiClient.get('/rent-houses'+ param)
-// export const findCreditList = (param) => loansApiClient.get('/credits'+ param)
+export const findLoanDetail = (category, id) => loansApiClient.get(`${category}/${id}`)

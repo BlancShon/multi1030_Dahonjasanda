@@ -10,6 +10,7 @@ import com.multi.dahon.finance.dto.FinanceCompanyDTO;
 import com.multi.dahon.finance.vo.FinancialCompany;
 
 public interface FinancialCompanyRepository extends JpaRepository<FinancialCompany, Long>{
+	
 	@Query("select new com.multi.dahon.finance.dto.FinanceCompanyDTO(fc) from FinancialCompany fc where fc.companyType = :companyType")
 	Vector<FinanceCompanyDTO> findByType(@Param("companyType") String companyType);
 }
