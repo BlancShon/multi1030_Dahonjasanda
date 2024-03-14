@@ -3,18 +3,19 @@ import HeroAndSearchForm from "./components/HeroAndSearchForm";
 import { Container } from "react-bootstrap";
 import ResultList from "./components/ResultList";
 import { useEffect, useState } from "react";
-import { findMortgageList, findRentHouseList, findCreditList } from "./LoansApiService";
+import {findLoanList, findCompanyList} from "./LoansApiService";
 
 const LoansPage = () => {
-    const [selectedCategory, setSelectedCategory] = useState('주택담보대출')
+    const [companies, setCompanies] = useState({});
+    const [selectedCategory, setSelectedCategory] = useState('mortgages')
     const [searchForm, setSearchForm] = useState({})
     const [resultList, setResultList] = useState([])
     const [pageable, setPageable] = useState({})
-    const [page, setPage] = useState()
+    const [page, setPage] = useState('')
 
     const handleChangeCategory = (category) => {
         setSearchForm({})
-        setPage()
+        setPage('')
         setSelectedCategory(category)
         console.log("론페이지에서 왔다 ",selectedCategory)
     }
@@ -26,22 +27,44 @@ const LoansPage = () => {
     }
     
     const searchParamResolver = () => {
-        return (page? '?page=' + page : '?page=0');
+        let searchParam = '/' + selectedCategory
+        searchParam += (page? '?page=' + page : '?page=0');
+        return searchParam
     }
 
     useEffect(() => {
-        const handleFetchData = async () => {
-            const param = searchParamResolver()
+        const handleGetCompany = async () => {
             try {
-                let response;
-                if (selectedCategory === '주택담보대출') {
-                    response = await findMortgageList(param); // searchForm을 API 요청에 함께 전달합니다.
-                } else if (selectedCategory === '전세자금대출') {
-                    response = await findRentHouseList(param);
-                } else if (selectedCategory === '신용대출') {
-                    response = await findCreditList(param);
-                }
-                console.log(response.data);
+                const response = await findCompanyList();
+                
+                console.log("여기 회사 정보봐라!!!", response);
+                const {data}  = response;
+                setCompanies(data)
+
+            } catch (error) {
+                console.error("컴파니 못받아왔다 큰일났다.", error)
+            }
+        }
+        console.log("한번에 안찍히겠지만 ",companies)
+        handleGetCompany();
+    }, [selectedCategory])
+
+    useEffect(() => {
+        const param = searchParamResolver()
+        console.log("파람을 보거라ㅇㅁㄴㅇㅁㄴㅇㄹㄴ",param);
+        
+        const handleFetchData = async () => {
+            try {
+                const response = await findLoanList(param);
+
+                // if (selectedCategory === '주택담보대출') {
+                //     response = await findMortgageList(param); // searchForm을 API 요청에 함께 전달합니다.
+                // } else if (selectedCategory === '전세자금대출') {
+                //     response = await findRentHouseList(param);
+                // } else if (selectedCategory === '개인신용대출') {
+                //     response = await findCreditList(param);
+                // }
+                console.log("여기가 응답이다!!!",response.data);
                 const { content, pageable} = response.data;
                 setResultList(content);
                 setPageable({
@@ -50,18 +73,28 @@ const LoansPage = () => {
                     totalElements : response.data.totalElements
                 });
             } catch (error) {
-                console.error('Error fetching data:', error);
+                setResultList();
+                console.error('오류떴다 Error fetching data:', error);
             }
         };
         console.log("페이지를 보라!!!!", page)
+        console.log("셀렉트카테고리를 보라!!!!", selectedCategory)
+        console.log("서치폼을 보라!!!!", searchForm)
         handleFetchData();
+
+        // router.push('loan'+param); // 나중에 url 처리할때 이용하기 에휴 모르겠다.
+
     }, [selectedCategory, searchForm, page]); 
 
     return (
         <>
             <Main>
                 <Container>
-                    <HeroAndSearchForm selectedCategory={selectedCategory} onChangeCategoryHandler={handleChangeCategory} onChangeSearchFormHandler={handleChangeSearchForm} />
+                    <HeroAndSearchForm 
+                    selectedCategory={selectedCategory} 
+                    onChangeCategoryHandler={handleChangeCategory} 
+                    onChangeSearchFormHandler={handleChangeSearchForm} 
+                    bankFin={companies}/>
                 </Container>
                 <hr style={{ borderTop: '1px solid black' }} />
                 <Container className="mt-3">

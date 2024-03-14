@@ -13,8 +13,8 @@ const ResultList = ({resultList, onChangePageHandler, pageable}) => {
     const { pageNumber, totalPages, totalElements } = pageable;
 
     return (
-
-        <Container>
+        (resultList) ?
+            (<Container>
             <Row>
                 <Col>
                 <Row>
@@ -45,22 +45,8 @@ const ResultList = ({resultList, onChangePageHandler, pageable}) => {
                     </Row>
 
                     <Container className="my-5" style={{ display: 'flex', justifyContent: 'center' }}>
-                        {/* <Pagination>
-                            <Pagination.Item disabled={pageNumber === 0}>
-                                <i className='fi-chevron-left me-sm-2'></i>
-                                <span className='d-none d-sm-inline'>Prev</span>
-                            </Pagination.Item>
-                            {pageNumbers.map((page, index) => (
-                                <Pagination.Item onClick={()=>onChangePageHandler({index})} key={index} active={pageNumber === index}>{page}</Pagination.Item>
-                            ))}
-                            <Pagination.Item disabled={pageNumber === totalPages - 1}>
-                                <span className='d-none d-sm-inline'>Next</span>
-                                <i className='fi-chevron-right ms-sm-2'></i>
-                            </Pagination.Item>
-                        </Pagination> */}
                         <PageComponent totalPages={totalPages} currentPage={pageNumber} onPageChange={onChangePageHandler} />
                     </Container>
-
 
                 </Col>
 
@@ -87,7 +73,11 @@ const ResultList = ({resultList, onChangePageHandler, pageable}) => {
                     </Container>
                 </Col> */}
             </Row>
-        </Container>
+        </Container>)
+    :
+    <div className="text-center">
+        <h1>검색결과가 없습니다</h1>
+    </div>
 
     )
 }

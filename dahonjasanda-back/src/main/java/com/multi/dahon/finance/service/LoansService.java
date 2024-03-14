@@ -1,13 +1,20 @@
 package com.multi.dahon.finance.service;
 
+import java.util.Vector;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.multi.dahon.finance.dto.FinanceCompanyDTO;
 import com.multi.dahon.finance.dto.MortgageOptionAndProdDTO;
+import com.multi.dahon.finance.dto.RentHouseOptionAndProdDTO;
+import com.multi.dahon.finance.repository.CreditRepository;
+import com.multi.dahon.finance.repository.FinancialCompanyRepository;
 import com.multi.dahon.finance.repository.MortgageRepository;
+import com.multi.dahon.finance.repository.RentHouseRepository;
 
 /**
  * JPA 에서 엔티티에 뭔가 변경하거나 할떄는
@@ -22,24 +29,30 @@ import com.multi.dahon.finance.repository.MortgageRepository;
 public class LoansService {
 	
 	private final MortgageRepository mortgageRepository;
-//	private final CreditRepository creditRepository;
-//    private final RentHouseRepository rentHouseRepository;
+	private final CreditRepository creditRepository;
+    private final RentHouseRepository rentHouseRepository;
+    private final FinancialCompanyRepository financialCompanyRepository;
 
-	@Autowired
-	public LoansService(MortgageRepository mortgageRepository) {
+    @Autowired
+	public LoansService(MortgageRepository mortgageRepository, CreditRepository creditRepository,
+			RentHouseRepository rentHouseRepository, FinancialCompanyRepository financialCompanyRepository) {
 		super();
 		this.mortgageRepository = mortgageRepository;
+		this.creditRepository = creditRepository;
+		this.rentHouseRepository = rentHouseRepository;
+		this.financialCompanyRepository = financialCompanyRepository;
+	}
+
+	public Page<MortgageOptionAndProdDTO> findMortgageList(Pageable pageable){
+		return mortgageRepository.findMortgageList(pageable);
 	}
 	
-//	@Autowired
-//    public LoansService(MortgageRepository mortgageRepository, CreditRepository creditRepository, RentHouseRepository rentHouseRepository) {
-//        this.mortgageRepository = mortgageRepository;
-//        this.creditRepository = creditRepository;
-//        this.rentHouseRepository = rentHouseRepository;
-//    }
+	public Page<RentHouseOptionAndProdDTO> findRentHouseList(Pageable pageable){
+		return rentHouseRepository.findRentHouseList(pageable);
+	}
 	
-	public Page<MortgageOptionAndProdDTO> findAllMortgage(Pageable pageable){
-		return mortgageRepository.findAllforList(pageable);
+	public Vector<FinanceCompanyDTO> getFinanceCompanyList(String companyType){
+		return financialCompanyRepository.findByType(companyType);
 	}
 	
 	

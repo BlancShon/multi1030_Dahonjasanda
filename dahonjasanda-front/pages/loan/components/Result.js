@@ -1,5 +1,5 @@
 import { Card, Col } from "react-bootstrap";
-import classes from './Result.module.css'
+// import classes from './Result.module.css'
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'recharts';
 
 const ResultCard = ({finName, prdtName, prdtInfo1, prdtInfo2, prdtInfo3, prdtInfo4}) => {
@@ -9,10 +9,18 @@ const ResultCard = ({finName, prdtName, prdtInfo1, prdtInfo2, prdtInfo3, prdtInf
         { name: prdtInfo4, 금리: prdtInfo4 }
       ];
 
+    const cardStyle = {
+        width: '13rem',
+        height: '23rem',
+        border: '2px solid black',
+        cursor: 'pointer'
+    };
+
+
     return (
         <Col>
             {/* <Card bg='secondary' style={{width:'13rem', height : '16rem'}}> */}
-            <Card bg='light' className={`${classes.card}`} elevation={3}>
+            <Card bg='light' style={cardStyle} elevation={3}>
                 <Card.Header className='bg-warning text-white fw-bold'>{finName}</Card.Header>
                 <Card.Body>
                     <Card.Title as='h5'>{prdtName}</Card.Title>
