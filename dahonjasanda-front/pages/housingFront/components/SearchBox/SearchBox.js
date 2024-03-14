@@ -1,18 +1,18 @@
-import React from 'react';
-import Card from '@mui/material/Card';
-import Box from '@mui/material/Box';
-import Button from '@mui/material/Button';
-import TextField from '@mui/material/TextField';
-import InputAdornment from '@mui/material/InputAdornment';
-import Chip from '@mui/material/Chip';
+import React from "react";
+import Card from "@mui/material/Card";
+import Box from "@mui/material/Box";
+import Button from "@mui/material/Button";
+import TextField from "@mui/material/TextField";
+import InputAdornment from "@mui/material/InputAdornment";
+import Chip from "@mui/material/Chip";
 
 const mock = [
-  'Business',
-  'Strategy',
-  'Health',
-  'Creative',
-  'Environment',
-  'Stories',
+  "Business",
+  "Strategy",
+  "Health",
+  "Creative",
+  "Environment",
+  "Stories",
 ];
 
 const SearchBox = () => {
@@ -26,32 +26,32 @@ const SearchBox = () => {
         marginBottom={4}
       >
         <form noValidate autoComplete="off">
-          <Box display="flex" alignItems={'center'}>
+          <Box display="flex" alignItems={"center"}>
             <Box width={1} marginRight={1}>
               <TextField
                 sx={{
                   height: 54,
-                  '& .MuiOutlinedInput-notchedOutline': {
-                    border: '0 !important',
+                  "& .MuiOutlinedInput-notchedOutline": {
+                    border: "0 !important",
                   },
                 }}
                 variant="outlined"
                 color="primary"
                 size="medium"
-                placeholder="Search an article"
+                placeholder="청약공고,관심지역을 검색해보세요"
                 fullWidth
                 InputProps={{
                   startAdornment: (
                     <InputAdornment position="start">
                       <Box
-                        component={'svg'}
+                        component={"svg"}
                         xmlns="http://www.w3.org/2000/svg"
                         fill="none"
                         viewBox="0 0 24 24"
                         stroke="currentColor"
                         width={24}
                         height={24}
-                        color={'primary.main'}
+                        color={"primary.main"}
                       >
                         <path
                           strokeLinecap="round"
@@ -67,29 +67,17 @@ const SearchBox = () => {
             </Box>
             <Box>
               <Button
-                sx={{ height: 54, minWidth: 100, whiteSpace: 'nowrap' }}
+                sx={{ height: 54, minWidth: 100, whiteSpace: "nowrap" }}
                 variant="contained"
                 color="primary"
                 size="medium"
                 fullWidth
               >
-                Search
+                검색
               </Button>
             </Box>
           </Box>
         </form>
-      </Box>
-      <Box>
-        {mock.map((item) => (
-          <Chip
-            key={item}
-            label={item}
-            component="a"
-            href=""
-            clickable
-            sx={{ margin: 0.5 }}
-          />
-        ))}
       </Box>
     </Box>
   );
