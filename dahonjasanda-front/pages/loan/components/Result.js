@@ -2,18 +2,12 @@ import { Card, Col } from "react-bootstrap";
 // import classes from './Result.module.css'
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 
-const ResultCard = ({finName, prdtName, prdtInfo1, prdtInfo2, prdtInfo3, prdtInfo4}) => {
+const ResultCard = ({key, finName, prdtName, prdtInfo1, prdtInfo2, prdtInfo3, prdtInfo4, prdtInfo5}) => {
     const maxValue = 20; // 최대값 지정
     const data = [
         { name: prdtInfo3, 금리: prdtInfo3 },
         { name: prdtInfo4, 금리: prdtInfo4 }
       ];
-
-    const cardStyle = {
-        // width: '13rem',
-        // height: '23rem',
-        
-    };
 
 
     return (
@@ -25,6 +19,8 @@ const ResultCard = ({finName, prdtName, prdtInfo1, prdtInfo2, prdtInfo3, prdtInf
                         <ul>
                             <li>{prdtInfo1}</li><hr></hr>
                             <li>{prdtInfo2}</li><hr></hr>
+                            {prdtInfo5 &&<li>{prdtInfo5 === 'E' && '고정 이자율'}
+                            {prdtInfo5 === 'A' && '조정 이자율'}</li>}
                         </ul>
                         <div style={{ marginLeft: '-40px' }}>
                         <ResponsiveContainer width="100%" height='100%' aspect={1.7}>

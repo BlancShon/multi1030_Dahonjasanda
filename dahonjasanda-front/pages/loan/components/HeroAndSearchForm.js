@@ -11,7 +11,7 @@ import CheckBoxList from "./CheckBoxList";
 const BgParallax = dynamic(() => import('../../../components/BgParallax'), { ssr: false })
 
 const HeroAndSearchForm = ({selectedCategory, onChangeCategoryHandler, onChangeSearchFormHandler, bankFin}) => {
-    const [selectOptions, setSelectOptions] = useState(searchCondition[selectedCategory])
+    const [selectOptions, setSelectOptions] = useState(searchCondition[selectedCategory]) // 카테고리
     const [selectedValues, setSelectedValues] = useState({});
     const [selectedCompanies, setSelectedCompanies] = useState([]);
     const [keyword, setKeyword] = useState('');
@@ -33,13 +33,14 @@ const HeroAndSearchForm = ({selectedCategory, onChangeCategoryHandler, onChangeS
 
         console.log("컨디션 뭐 넘어왔지",condition)
         console.log("벨류는 뭐 넘어왔지",value)
-        console.log("셀렉티드벨류는 뭐있지",selectedValues)
-        console.log('키워드는 뭐지~', keyword)
     };
 
-    // 나중에 검색누르면 파라미터들 다 보내기
     const handleSearch = () => {
-      onChangeSearchFormHandler();
+   
+        // console.log("셀렉티드벨류는 뭐있지",selectedValues)
+        // console.log('키워드는 뭐지~', keyword)
+        // console.log('셀렉티드컴퍼니는 뭐지는 뭐지~', selectedCompanies)
+      onChangeSearchFormHandler(selectedValues, keyword, selectedCompanies);
     }
 
     return (
@@ -86,7 +87,7 @@ const HeroAndSearchForm = ({selectedCategory, onChangeCategoryHandler, onChangeS
                                 <hr className='d-md-none my-2' />
                                 <div className='d-sm-flex'>
                                 
-                                    <Button size='lg' className='rounded-pill w-100 w-md-auto ms-sm-3'>Search</Button>
+                                    <Button size='lg' className='rounded-pill w-100 w-md-auto ms-sm-3' onClick={handleSearch}>Search</Button>
                                 </div>
                             </FormGroup>
                         </Col>

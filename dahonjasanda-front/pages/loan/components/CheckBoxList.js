@@ -14,14 +14,14 @@ const CheckBoxList = ({listName, list, indx, selectedCompanies, setSelectedCompa
   }
 
   const handleSelectAll = () => {
-    const allCompanyIds = list.map(item => item.id);
+    const allCompanyIds = list.map(item => item.finCoNo);
     const uniqueSelectedCompanies = Array.from(new Set([...selectedCompanies , ...allCompanyIds]))
     setSelectedCompanies(uniqueSelectedCompanies);
     console.log("체크박스속 컴퍼니즈",selectedCompanies)
   }
 
   const handleClearSelection = () => {
-    const companyIdsToRemove = list.map(item => item.id);
+    const companyIdsToRemove = list.map(item => item.finCoNo);
     const filteredCompanyIds = selectedCompanies.filter(item => !companyIdsToRemove.includes(item))
     setSelectedCompanies(filteredCompanyIds);
     console.log("체크박스속 컴퍼니즈",selectedCompanies)
@@ -35,14 +35,14 @@ const CheckBoxList = ({listName, list, indx, selectedCompanies, setSelectedCompa
             {Array.isArray(list) && list.length > 0 ? (
               list.map((item, index) => (
                   <Form.Check
-                     key={item.id}
+                     key={item.finCoNo}
                      inline
                      label={item.korCoNm}
-                     name={item.id}
+                     name={item.finCoNo}
                      type='checkbox'
-                     id={item.id}
-                     checked={selectedCompanies.includes(item.id)}
-                     onChange={(event) => handleCheckboxChange(event, item.id)}
+                     id={item.finCoNo}
+                     checked={selectedCompanies.includes(item.finCoNo)}
+                     onChange={(event) => handleCheckboxChange(event, item.finCoNo)}
                  />
                 // </div>
               ))

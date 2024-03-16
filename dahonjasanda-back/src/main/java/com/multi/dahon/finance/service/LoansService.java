@@ -15,8 +15,12 @@ import com.multi.dahon.finance.dto.MortgageOptionAndProdDTO;
 import com.multi.dahon.finance.dto.RentHouseOptionAndProdDTO;
 import com.multi.dahon.finance.repository.CreditRepository;
 import com.multi.dahon.finance.repository.FinancialCompanyRepository;
+import com.multi.dahon.finance.repository.LoanSpec;
 import com.multi.dahon.finance.repository.MortgageRepository;
 import com.multi.dahon.finance.repository.RentHouseRepository;
+import com.multi.dahon.finance.vo.LoansParam;
+
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * JPA 에서 엔티티에 뭔가 변경하거나 할떄는
@@ -26,6 +30,7 @@ import com.multi.dahon.finance.repository.RentHouseRepository;
  * 예) @Transactional 밖 Controller 쪽에서 엔티티에 값을 바꿔도
  * 아무 일도 일어나지 않습니다.
  */
+@Slf4j
 @Service
 @Transactional(readOnly=true)
 public class LoansService {
@@ -49,21 +54,36 @@ public class LoansService {
     	return financialCompanyRepository.findByType(companyType);
     }
 
-	public Page<MortgageOptionAndProdDTO> findMortgageList(Pageable pageable){
-		return mortgageRepository.findMortgageList(pageable);
+	public Page<MortgageOptionAndProdDTO> findMortgageList(LoansParam param, Pageable pageable){
+//		if(param.isEmpty()) {
+//			log.info("파람 없는 값제대로 검색했다.");
+//			return mortgageRepository.findMortgageList(pageable);
+//		}
+		return mortgageRepository.findAll(LoanSpec.conditionalMortgages(param), pageable).map(MortgageOptionAndProdDTO::new);
+//		return mortgageRepository.selectAll(LoanSpec.conditionalMortgages(param), pageable);
 	}
 	
-	public Page<RentHouseOptionAndProdDTO> findRentHouseList(Pageable pageable){
-		return rentHouseRepository.findRentHouseList(pageable);
+	public Page<RentHouseOptionAndProdDTO> findRentHouseList(LoansParam param, Pageable pageable){
+//		return rentHouseRepository.findRentHouseList(pageable);
+		return rentHouseRepository.findAll(LoanSpec.conditionalRentHouses(param), pageable).map(RentHouseOptionAndProdDTO::new);
 	}
 	
-	public Page<CreditOptionAndProdDTO> findCreditList(Pageable pageable){
-		return creditRepository.findCreditList(pageable);
+	public Page<CreditOptionAndProdDTO> findCreditList(LoansParam param, Pageable pageable){
+		return creditRepository.findAll(LoanSpec.conditionalCredits(param), pageable).map(CreditOptionAndProdDTO::new);
 	}
 	
 	public Optional<MortgageOptionAndProdDTO> getMortgageDetail(Long id){
-		return mortgageRepository.findMortgageForDetail(id);
+		return mortgageRepository.findMortgageWithDetail(id);
 	}
+	
+	public Optional<RentHouseOptionAndProdDTO> getRentHouseDetail(Long id){
+		return rentHouseRepository.findRentHouseWithDetail(id);
+	}
+	
+	public Optional<CreditOptionAndProdDTO> getCreditDetail(Long id){
+		return creditRepository.findCreditWithDetail(id);
+	}
+	
 	
 	
 

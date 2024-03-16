@@ -17,6 +17,8 @@ public class FinanceCompanyDTO {
 	private String calTel;
 	
 	private String companyType;
+	
+	private String finCoNo;
 
 	
 	public FinanceCompanyDTO(FinancialCompany company) {
@@ -27,6 +29,7 @@ public class FinanceCompanyDTO {
 		this.homeUrl = company.getHomeUrl();
 		this.calTel = company.getCalTel();
 		this.companyType = company.getCompanyType();
+		this.finCoNo = company.getFinCoNo();
 	}
 	
 	

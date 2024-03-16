@@ -7,28 +7,43 @@ import {findLoanList, findCompanyList} from "./LoansApiService";
 
 const LoansPage = () => {
     const [companies, setCompanies] = useState({});
+    
     const [selectedCategory, setSelectedCategory] = useState('mortgages')
-    const [searchForm, setSearchForm] = useState({})
+    const [searchForm, setSearchForm] = useState()
+    const [searchCompanies, setSearchCompaines] = useState();
+    const [keyword, setKeyword] = useState()
+
     const [resultList, setResultList] = useState([])
     const [pageable, setPageable] = useState({})
     const [page, setPage] = useState('')
 
     const handleChangeCategory = (category) => {
-        setSearchForm({})
+        setSearchForm()
         setPage('')
         setSelectedCategory(category)
         console.log("론페이지에서 왔다 ",selectedCategory)
     }
 
-    const handleChangeSearchForm = (updatedForm) => {
+    const handleChangeSearchForm = (selectedValues, keyword, selectedCompanies) => {
         setSearchForm((prevForm) => ({
-            ...prevForm, ...updatedForm
+            ...prevForm, ...selectedValues
         }))
+        setPage('')
+        setKeyword(keyword)
+        setSearchCompaines(selectedCompanies);
     }
     
     const searchParamResolver = () => {
         let searchParam = '/' + selectedCategory
         searchParam += (page? '?page=' + page : '?page=0');
+
+        {searchForm && Object.keys(searchForm).map((key) => {
+            {searchForm[key] && (searchParam += ('&' +key + '=' + searchForm[key]))}
+        })}
+        {searchCompanies && searchCompanies.map((company) => {
+            searchParam += ('&companies=' + company)
+        })}
+        {keyword && `${searchParam += ('&keyword='+keyword)}`}
         return searchParam
     }
 
@@ -45,7 +60,6 @@ const LoansPage = () => {
                 console.error("컴파니 못받아왔다 큰일났다.", error)
             }
         }
-        console.log("한번에 안찍히겠지만 ",companies)
         handleGetCompany();
     }, [selectedCategory])
 
@@ -70,9 +84,6 @@ const LoansPage = () => {
                 console.error('오류떴다 Error fetching data:', error);
             }
         };
-        console.log("페이지를 보라!!!!", page)
-        console.log("셀렉트카테고리를 보라!!!!", selectedCategory)
-        console.log("서치폼을 보라!!!!", searchForm)
         handleFetchData();
 
         // router.push('loan'+param); // 나중에 url 처리할때 이용하기 에휴 모르겠다.

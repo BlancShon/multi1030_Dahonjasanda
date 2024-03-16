@@ -45,16 +45,17 @@ const ResultList = ({resultList, onChangePageHandler, pageable, category}) => {
                             const typeInfo = (category==='credits'? result.crdtPrdtTypeNm : result.rpayTypeNm)
                             const lendRateMin = (category==='credits'? getMinValue(result) : result.lendRateMin)
                             const lendRateMax = (category==='credits'? getMaxValue(result) : result.lendRateMax)
+                            const mrtgTypeInfo = (category === 'mortgages' ? result.mrtgType : '')
                             return     (
-                                <Link href={`/loan/${category}-${result.id}`} style={{ textDecoration: 'none' }}>
+                                <Link key={result.id} href={`/loan/${category}_${result.id}`} style={{ textDecoration: 'none' }}>
                                     <ResultCard 
-                                        key={result.id}
                                         finName={result.korCoNm} 
                                         prdtName={result.finPrdtNm} 
                                         prdtInfo1={lendRateTypeNm} 
                                         prdtInfo2={typeInfo} 
                                         prdtInfo3={lendRateMin} 
-                                        prdtInfo4={lendRateMax}>
+                                        prdtInfo4={lendRateMax}
+                                        prdtInfo5={mrtgTypeInfo}>
                                     </ResultCard>
                                 </Link>
                             )
