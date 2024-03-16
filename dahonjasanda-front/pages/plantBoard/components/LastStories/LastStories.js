@@ -10,21 +10,6 @@ import CardMedia from '@mui/material/CardMedia';
 import Grid from '@mui/material/Grid';
 import Avatar from '@mui/material/Avatar';
 
-const youtube = [
-  {
-    src: 'https://youtu.be/IidCV3v1orQ?si=IIP3R1wM9YUfYnDQ',
-    title: 'Eiusmod tempor incididunt',
-  },
-  {
-    image: 'https://assets.maccarianagency.com/backgrounds/img24.jpg',
-    title: 'Sed ut perspiciatis',
-  },
-  {
-    image: 'https://assets.maccarianagency.com/backgrounds/img25.jpg',
-    title: 'Unde omnis iste natus',
-  },
-];
-
 const mock = [
   {
     image: 'https://assets.maccarianagency.com/backgrounds/img23.jpg',
@@ -59,55 +44,10 @@ const mock = [
   },
 ];
 
-const SimilarStories = () => {
+const LastStories = () => {
   const theme = useTheme();
   return (
-    <Box >
-      <Grid container spacing={4}>
-        <Grid item lg={4} md={4} sm={6} xs={12}>
-          <Typography variant={'h6'} gutterBottom>
-            감성 식물
-          </Typography>
-          <Box
-            component={'a'}
-            href={''}
-            width={1}
-            height={1}
-            sx={{
-              textDecoration: 'none',
-              transition: 'all .2s ease-in-out',
-              '&:hover': {
-                transform: `translateY(-${theme.spacing(1 / 2)})`,
-              },
-            }}
-          >
-            <iframe width="560" height="315" src="https://www.youtube.com/embed/IidCV3v1orQ?si=aVDtblR_htAn4e8b" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-          </Box>
-          <Typography variant={'h6'} gutterBottom>
-            감성 식물
-          </Typography>
-          <Box
-            component={'a'}
-            href={''}
-            display={'block'}
-            width={1}
-            height={1}
-            sx={{
-              textDecoration: 'none',
-              transition: 'all .2s ease-in-out',
-              '&:hover': {
-                transform: `translateY(-${theme.spacing(1 / 2)})`,
-              },
-            }}
-          >
-            <iframe width="560" height="315" src="https://www.youtube.com/embed/IidCV3v1orQ?si=aVDtblR_htAn4e8b" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-          </Box>
-        </Grid>
-      </Grid>
-      <br></br>
-      <br></br>
-      <br></br>
-      <br></br>
+    <Box>
       <Box
         display={'flex'}
         justifyContent={'space-between'}
@@ -115,10 +55,9 @@ const SimilarStories = () => {
         flexDirection={{ xs: 'column', sm: 'row' }}
         marginBottom={4}
       >
-
         <Box>
           <Typography fontWeight={700} variant={'h6'} gutterBottom>
-            게시판 글 가져오기
+            Latest stories
           </Typography>
           <Typography color={'text.secondary'}>
             Here’s what we’ve been up to recently.
@@ -138,7 +77,7 @@ const SimilarStories = () => {
       </Box>
       <Grid container spacing={4}>
         {mock.map((item, i) => (
-          <Grid item xs={12} md={4} key={i}>
+          <Grid item xs={12} sm={6} md={4} key={i}>
             <Box
               component={'a'}
               href={''}
@@ -234,4 +173,4 @@ const SimilarStories = () => {
   );
 };
 
-export default SimilarStories;
+export default LastStories;

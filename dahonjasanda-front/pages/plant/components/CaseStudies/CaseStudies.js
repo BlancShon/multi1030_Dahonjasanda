@@ -12,6 +12,7 @@ import Avatar from '@mui/material/Avatar';
 // 하단 popular
 const mock = [
   {
+    //https://agro.seoul.go.kr/archives/46439 치료센터 링크;
     image: 'https://images.chosun.com/resizer/5E4C922dJtUIZOBr1krGW0DTDsY=/616x0/smart/cloudfront-ap-northeast-1.images.arcpublishing.com/chosun/3FG6AZSKYRWAEHRSJVL62NAJ2Q.jpg',
     description:
       '반려 식물 전문 치료 센터에서 치료받으세요! ',

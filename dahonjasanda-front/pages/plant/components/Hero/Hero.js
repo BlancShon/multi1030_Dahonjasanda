@@ -2,10 +2,29 @@ import React from 'react';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import { useTheme } from '@mui/material/styles';
-
+import { ReactTyped } from "react-typed";
 import Container from 'components/Container';
+import { MergeTypeRounded } from '@mui/icons-material';
+import Typed from "react-typed";
+// import React, { useState, useEffect } from 'react';
+
+// const strings=["초로색 힐링", "따뜻한 가족", "향긋한 힐링"]
+// const [text, setText] = useState('');
+// const [count, setCount] = useState(0);
+
+// useEffect(() =>{
+//   const interval = setInterval(()=>{
+//     setText(text + txt[count]);
+//     setCount(count + 1);
+//   }, 100);
+//   if(count === txt.length){
+//     clearInterval(interval);
+//   }
+//   return () => clearInterval(interval);
+// })
 
 const Hero = () => {
+  
   const theme = useTheme();
   return (
     <Box
@@ -50,8 +69,32 @@ const Hero = () => {
                 fontWeight: 700,
                 color: theme.palette.common.white,
               }}
-            >
-              지친 몸과 마음에게 초록색 힐링을, 
+            > 
+            <Typography
+              variant="h2"
+              align={'center'}
+              sx={{
+                fontWeight: 700,
+                color: theme.palette.common.white,
+              }}
+            >지친 몸과 마음에게,
+            </Typography>
+                {/* <ReactTyped strings={["지친 몸과 마음에게"]} typeSpeed={40} type />
+                <br /> */}
+
+                <ReactTyped 
+                  strings={[
+                    "초록색 즐거움", "향긋한 힐링", "따뜻한 가족", 
+                  ]}
+                  typeSpeed={100}
+                  backSpeed={50}
+                  attr="placeholder"
+                  
+                  loop
+                >
+                  <input type="text" style={{ width: '340px', height: '77px', textAlign: 'center', fontWeight: 'bold' }} />
+                </ReactTyped>
+            을 선물하다
             </Typography>
           </Box>
           <Box>
@@ -62,7 +105,29 @@ const Hero = () => {
                 color: theme.palette.common.white,
               }}
             >
-              1인 가구, 새로운 가족 [반려 식물]을 만나다.
+              1인 가구, 새로운 가족 [
+            
+            <ReactTyped 
+                  strings={[
+                    "반려식물", 
+                  ]}
+                  typeSpeed={200}
+                  backSpeed={50}
+                  attr="placeholder"
+                  
+                  loop
+                >
+                  <input type="text" style={{ width: '80px', height: '25px', textAlign: 'center', fontWeight: 'bold', background: 'none', border:'none', WebkitTextFillColor: 'white' }}/>
+                </ReactTyped>
+              ]을 만나다.
+                </Typography>
+                <Typography
+              variant="h6"
+              align={'center'}
+              sx={{
+                color: theme.palette.common.white,
+              }}
+            >
             </Typography>
           </Box>
         </Box>

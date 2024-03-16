@@ -9,25 +9,31 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Grid from '@mui/material/Grid';
 import Avatar from '@mui/material/Avatar';
-
-const youtube = [
-  {
-    src: 'https://youtu.be/IidCV3v1orQ?si=IIP3R1wM9YUfYnDQ',
-    title: 'Eiusmod tempor incididunt',
-  },
-  {
-    image: 'https://assets.maccarianagency.com/backgrounds/img24.jpg',
-    title: 'Sed ut perspiciatis',
-  },
-  {
-    image: 'https://assets.maccarianagency.com/backgrounds/img25.jpg',
-    title: 'Unde omnis iste natus',
-  },
-];
+import Pagination from '@mui/material/Pagination';
 
 const mock = [
   {
-    image: 'https://assets.maccarianagency.com/backgrounds/img23.jpg',
+    image: 'https://assets.maccarianagency.com/backgrounds/img16.jpg',
+    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
+    title: 'Lorem ipsum dolor sit amet,',
+    author: {
+      name: 'Clara Bertoletti',
+      avatar: 'https://assets.maccarianagency.com/avatars/img4.jpg',
+    },
+    date: '04 Aug',
+  },
+  {
+    image: 'https://assets.maccarianagency.com/backgrounds/img18.jpg',
+    description: 'Excepteur sint occaecat cupidatat non proident',
+    title: 'Consectetur adipiscing elit',
+    author: {
+      name: 'Jhon Anderson',
+      avatar: 'https://assets.maccarianagency.com/avatars/img5.jpg',
+    },
+    date: '12 Sep',
+  },
+  {
+    image: 'https://assets.maccarianagency.com/backgrounds/img17.jpg',
     description:
       'Sed ut perspiciatis unde omnis iste natus error sit voluptatem',
     title: 'Eiusmod tempor incididunt',
@@ -37,7 +43,7 @@ const mock = [
     },
   },
   {
-    image: 'https://assets.maccarianagency.com/backgrounds/img24.jpg',
+    image: 'https://assets.maccarianagency.com/backgrounds/img13.jpg',
     description: 'At vero eos et accusamus et iusto odio dignissimos ducimus',
     title: 'Sed ut perspiciatis',
     author: {
@@ -47,7 +53,7 @@ const mock = [
     date: '02 Aug',
   },
   {
-    image: 'https://assets.maccarianagency.com/backgrounds/img25.jpg',
+    image: 'https://assets.maccarianagency.com/backgrounds/img14.jpg',
     description:
       'Qui blanditiis praesentium voluptatum deleniti atque corrupti',
     title: 'Unde omnis iste natus',
@@ -59,55 +65,10 @@ const mock = [
   },
 ];
 
-const SimilarStories = () => {
+const PopularArticles = () => {
   const theme = useTheme();
   return (
-    <Box >
-      <Grid container spacing={4}>
-        <Grid item lg={4} md={4} sm={6} xs={12}>
-          <Typography variant={'h6'} gutterBottom>
-            감성 식물
-          </Typography>
-          <Box
-            component={'a'}
-            href={''}
-            width={1}
-            height={1}
-            sx={{
-              textDecoration: 'none',
-              transition: 'all .2s ease-in-out',
-              '&:hover': {
-                transform: `translateY(-${theme.spacing(1 / 2)})`,
-              },
-            }}
-          >
-            <iframe width="560" height="315" src="https://www.youtube.com/embed/IidCV3v1orQ?si=aVDtblR_htAn4e8b" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-          </Box>
-          <Typography variant={'h6'} gutterBottom>
-            감성 식물
-          </Typography>
-          <Box
-            component={'a'}
-            href={''}
-            display={'block'}
-            width={1}
-            height={1}
-            sx={{
-              textDecoration: 'none',
-              transition: 'all .2s ease-in-out',
-              '&:hover': {
-                transform: `translateY(-${theme.spacing(1 / 2)})`,
-              },
-            }}
-          >
-            <iframe width="560" height="315" src="https://www.youtube.com/embed/IidCV3v1orQ?si=aVDtblR_htAn4e8b" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-          </Box>
-        </Grid>
-      </Grid>
-      <br></br>
-      <br></br>
-      <br></br>
-      <br></br>
+    <Box>
       <Box
         display={'flex'}
         justifyContent={'space-between'}
@@ -115,10 +76,9 @@ const SimilarStories = () => {
         flexDirection={{ xs: 'column', sm: 'row' }}
         marginBottom={4}
       >
-
         <Box>
           <Typography fontWeight={700} variant={'h6'} gutterBottom>
-            게시판 글 가져오기
+            Popular articles
           </Typography>
           <Typography color={'text.secondary'}>
             Here’s what we’ve been up to recently.
@@ -138,7 +98,7 @@ const SimilarStories = () => {
       </Box>
       <Grid container spacing={4}>
         {mock.map((item, i) => (
-          <Grid item xs={12} md={4} key={i}>
+          <Grid item xs={12} sm={i === 0 ? 12 : 6} md={i < 2 ? 6 : 4} key={i}>
             <Box
               component={'a'}
               href={''}
@@ -229,9 +189,12 @@ const SimilarStories = () => {
             </Box>
           </Grid>
         ))}
+        <Grid item container justifyContent={'center'} xs={12}>
+          <Pagination count={10} size={'large'} color="primary" />
+        </Grid>
       </Grid>
     </Box>
   );
 };
 
-export default SimilarStories;
+export default PopularArticles;

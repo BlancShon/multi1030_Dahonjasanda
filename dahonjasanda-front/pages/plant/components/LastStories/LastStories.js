@@ -11,6 +11,7 @@ import Grid from '@mui/material/Grid';
 import Avatar from '@mui/material/Avatar';
 
 // 박스에 사진 및 텍스트 추가
+
 const mock = [
   {
     image: 'https://www.nongsaro.go.kr/cms_contents/301/19715_MF_REPR_ATTACH_01.jpg',
@@ -96,6 +97,7 @@ const mock = [
 const LastStories = () => {
   const theme = useTheme();
   return (
+    
     <Box>
       <Box
         display={'flex'}
