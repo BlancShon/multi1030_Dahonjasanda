@@ -60,7 +60,6 @@ const BlogArticle = () => {
             d="M0,0c0,0,934.4,93.4,1920,0v100.1H0L0,0z"
           ></path>
         </Box> */}
-      </Box>
       <Box bgcolor={'alternate.main'}>
         <Container>
           <SimilarStories />
@@ -82,6 +81,7 @@ const BlogArticle = () => {
             d="M0,0c0,0,934.4,93.4,1920,0v100.1H0L0,0z"
           ></path>
         </Box>
+      </Box>
       </Box>
     </Main>
   );

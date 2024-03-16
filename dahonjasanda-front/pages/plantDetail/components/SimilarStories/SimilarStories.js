@@ -10,21 +10,6 @@ import CardMedia from '@mui/material/CardMedia';
 import Grid from '@mui/material/Grid';
 import Avatar from '@mui/material/Avatar';
 
-const youtube = [
-  {
-    src: 'https://youtu.be/IidCV3v1orQ?si=IIP3R1wM9YUfYnDQ',
-    title: 'Eiusmod tempor incididunt',
-  },
-  {
-    image: 'https://assets.maccarianagency.com/backgrounds/img24.jpg',
-    title: 'Sed ut perspiciatis',
-  },
-  {
-    image: 'https://assets.maccarianagency.com/backgrounds/img25.jpg',
-    title: 'Unde omnis iste natus',
-  },
-];
-
 const mock = [
   {
     image: 'https://assets.maccarianagency.com/backgrounds/img23.jpg',
@@ -64,9 +49,29 @@ const SimilarStories = () => {
   return (
     <Box >
       <Grid container spacing={4}>
-        <Grid item lg={4} md={4} sm={6} xs={12}>
+        <Grid item lg={4} md={4} sm={6} xs={4}>
           <Typography variant={'h6'} gutterBottom>
-            감성 식물
+            #트렌디한 감성 식물 7가지
+          </Typography>
+          <Box
+            component={'a'}
+            href={''}
+            width={1}
+            height={1}
+            sx={{
+              textDecoration: 'none',
+              transition: 'all .2s ease-in-out',
+              '&:hover': {
+                transform: `translateY(-${theme.spacing(1 / 2)})`,
+              },
+            }}
+          >
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/N09OKqRr0t0?si=e5ZXG-T3S9RNkx7M" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+          </Box>
+        </Grid>
+        <Grid item lg={4} md={4} sm={6} xs={4}>
+          <Typography variant={'h6'} gutterBottom>
+            #식물초보 #식물키우기 꿀팁!
           </Typography>
           <Box
             component={'a'}
@@ -83,13 +88,14 @@ const SimilarStories = () => {
           >
             <iframe width="560" height="315" src="https://www.youtube.com/embed/IidCV3v1orQ?si=aVDtblR_htAn4e8b" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
           </Box>
+        </Grid>
+        <Grid item lg={4} md={4} sm={6} xs={4}>
           <Typography variant={'h6'} gutterBottom>
-            감성 식물
+            #식물키우기 #주의사항
           </Typography>
           <Box
             component={'a'}
             href={''}
-            display={'block'}
             width={1}
             height={1}
             sx={{
@@ -100,7 +106,7 @@ const SimilarStories = () => {
               },
             }}
           >
-            <iframe width="560" height="315" src="https://www.youtube.com/embed/IidCV3v1orQ?si=aVDtblR_htAn4e8b" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/4H8FfhNgYIs?si=x2Fh5m59m_A72eU4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
           </Box>
         </Grid>
       </Grid>
