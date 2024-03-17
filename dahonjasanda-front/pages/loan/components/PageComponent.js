@@ -15,7 +15,7 @@ const PageComponent = ({ totalPages, currentPage, onPageChange }) => {
         if (startPage > 0) {
             items.push(
                 <Pagination.Item key="prev10" onClick={() => handlePageClick(startPage - 1)}>
-                    이전 10개
+                    이전
                 </Pagination.Item>
             );
         }
@@ -32,7 +32,7 @@ const PageComponent = ({ totalPages, currentPage, onPageChange }) => {
         if (endPage < totalPages) {
             items.push(
                 <Pagination.Item key="next10" onClick={() => handlePageClick(endPage)}>
-                    다음 10개
+                    다음
                 </Pagination.Item>
             );
         }

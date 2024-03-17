@@ -15,6 +15,7 @@ import {
 } from "./components";
 import WithLeftAlignedDescriptionBox from "./components/WithLeftAlignedDescriptionBox";
 import MiniBulletinBoard from "./components/MiniBulletinBoard/MiniBulletinBoard";
+import Contact from "./components/koreaMap/Contact";
 
 const mainPage = () => {
   const theme = useTheme();
@@ -36,9 +37,7 @@ const mainPage = () => {
         <Container paddingTop={"0 !important"}>
           <LastStories />
         </Container>
-        <Container paddingTop={"0 !important"}>
-          <CaseStudies />
-        </Container>
+
         <Box paddingBottom={{ xs: 2, sm: 3, md: 4 }}>
           <Container paddingTop={"0 !important"}>
             <PopularArticles />
@@ -68,9 +67,9 @@ const mainPage = () => {
         </Box>
       </Box>
 
-      <Container>
-        <MiniBulletinBoard />
-      </Container>
+      <Contact />
+
+      <Container></Container>
       <Container>
         <WithLeftAlignedDescriptionBox />
       </Container>

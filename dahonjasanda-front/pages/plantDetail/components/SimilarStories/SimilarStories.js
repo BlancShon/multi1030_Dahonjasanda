@@ -47,7 +47,73 @@ const mock = [
 const SimilarStories = () => {
   const theme = useTheme();
   return (
-    <Box>
+    <Box >
+      <Grid container spacing={4}>
+        <Grid item lg={4} md={4} sm={6} xs={4}>
+          <Typography variant={'h6'} gutterBottom>
+            #트렌디한 감성 식물 7가지
+          </Typography>
+          <Box
+            component={'a'}
+            href={''}
+            width={1}
+            height={1}
+            sx={{
+              textDecoration: 'none',
+              transition: 'all .2s ease-in-out',
+              '&:hover': {
+                transform: `translateY(-${theme.spacing(1 / 2)})`,
+              },
+            }}
+          >
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/N09OKqRr0t0?si=e5ZXG-T3S9RNkx7M" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+          </Box>
+        </Grid>
+        <Grid item lg={4} md={4} sm={6} xs={4}>
+          <Typography variant={'h6'} gutterBottom>
+            #식물초보 #식물키우기 꿀팁!
+          </Typography>
+          <Box
+            component={'a'}
+            href={''}
+            width={1}
+            height={1}
+            sx={{
+              textDecoration: 'none',
+              transition: 'all .2s ease-in-out',
+              '&:hover': {
+                transform: `translateY(-${theme.spacing(1 / 2)})`,
+              },
+            }}
+          >
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/IidCV3v1orQ?si=aVDtblR_htAn4e8b" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+          </Box>
+        </Grid>
+        <Grid item lg={4} md={4} sm={6} xs={4}>
+          <Typography variant={'h6'} gutterBottom>
+            #식물키우기 #주의사항
+          </Typography>
+          <Box
+            component={'a'}
+            href={''}
+            width={1}
+            height={1}
+            sx={{
+              textDecoration: 'none',
+              transition: 'all .2s ease-in-out',
+              '&:hover': {
+                transform: `translateY(-${theme.spacing(1 / 2)})`,
+              },
+            }}
+          >
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/4H8FfhNgYIs?si=x2Fh5m59m_A72eU4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+          </Box>
+        </Grid>
+      </Grid>
+      <br></br>
+      <br></br>
+      <br></br>
+      <br></br>
       <Box
         display={'flex'}
         justifyContent={'space-between'}
@@ -55,9 +121,10 @@ const SimilarStories = () => {
         flexDirection={{ xs: 'column', sm: 'row' }}
         marginBottom={4}
       >
+
         <Box>
           <Typography fontWeight={700} variant={'h6'} gutterBottom>
-            Similar stories
+            게시판 글 가져오기
           </Typography>
           <Typography color={'text.secondary'}>
             Here’s what we’ve been up to recently.

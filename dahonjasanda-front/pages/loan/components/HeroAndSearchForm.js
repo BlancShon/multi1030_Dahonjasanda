@@ -1,6 +1,7 @@
 import { Button, Col, Container, Form, FormControl, FormGroup, InputGroup, Row } from "react-bootstrap";
 import MyIconBox from "./MyIconBox";
 import dynamic from 'next/dynamic'
+import { searchCondition, categories } from "../searchCondition";
 
 import 'swiper/css/navigation'
 import 'swiper/css/pagination'
@@ -9,113 +10,13 @@ import CheckBoxList from "./CheckBoxList";
 
 const BgParallax = dynamic(() => import('../../../components/BgParallax'), { ssr: false })
 
-const searchCondition = {
-  주택담보대출: {
-    lendrateType: {
-      "": "금리유형",
-      F: "고정금리F",
-      C: "변동금리C",
-    },
-    rpayType: {
-      "": "상환유형",
-      S: "만기일시상환방식S",
-      D: "분활상환방식D",
-    },
-    sort: {
-      "": "정렬조건",
-      asc: "금리낮은순",
-      desc: "금리높은순",
-    },
-  },
-  개인신용대출: {
-    crdtprdtType: {
-      "": "crdtprdtType상품유형",
-      "1": "일반신용대출1",
-      "2": "마이너스한도대출2",
-      "3": "장기카드대출(카드론)3",
-    },
-    crdtlendrateType금리타입: {
-      "": "crdtlendrateType금리타입",
-      A: "대출금리A",
-      B: "기준금리B",
-      C: "가산금리C",
-      D: "가감조정금리D",
-    },
-    sort: {
-      "": "정렬조건",
-      asc: "금리낮은순",
-      desc: "금리높은순",
-    },
-  },
-  전세대출: {
-    lendrateType금리유형: {
-      "": "lendrateType금리유형",
-      F: "고정금리F",
-      C: "변동금리C",
-    },
-    rpayType상환유형: {
-      "": "rpayType상환유형",
-      S: "만기일시상환방식S",
-      D: "분활상환방식D",
-    },
-    sort: {
-      "": "정렬조건",
-      asc: "금리낮은순",
-      desc: "금리높은순",
-    },
-  },
-};
-
-const bankFin = {
-    은행 : ['우린은행', '국민은행', '신한은행', '하나은행', '넘흐옙흐네', '넘흐옙흐네', '넘흐옙흐네', '넘흐옙흐네', '넘흐옙흐네', '넘흐옙흐네', '넘흐옙흐네', '넘흐옙흐네'],
-    여신전문 : ['여신전문1', '여신전문2', '여신전문2', '여신전문2', '여신전문2', '여신전문2', '여신전문2', '여신전문2'],
-    저축은행 : ['저축은행', '저축은행', '저축은행', '저축은행', '저축은행', '저축은행', '저축은행', '저축은행'],
-    보험 : ['보험어쩌구', '보험어쩌구', '보험어쩌구', '보험어쩌구', '보험어쩌구', '보험어쩌구', '보험어쩌구', '보험어쩌구', '보험어쩌구', '보험어쩌구'],
-    금융투자 : ['금융투자', '금융투자', '금융투자', '금융투자', '금융투자', '금융투자', '금융투자', '금융투자']
-}
-
-const categories = [
-    //   {
-    //     href: '/city-guide/catalog',
-    //     media: 'fi-bed',
-    //     color: 'accent',
-    //     title: '예금'
-    //   },
-    //   {
-    //     href: '/city-guide/catalog',
-    //     media: 'fi-cafe',
-    //     color: 'warning',
-    //     title: '적금'
-    //   },
-    //   {
-    //     href: '/city-guide/catalog',
-    //     media: 'fi-shopping-bag',
-    //     color: 'primary',
-    //     title: '연금'
-    //   },
-      {
-        media: 'fi-museum',
-        color: 'success',
-        title: '주택담보대출'
-      },
-      {
-        media: 'fi-credit-card',
-        color: 'accent',
-        title: '개인신용대출'
-      },
-      {
-        media: 'fi-building',
-        color: 'danger',
-        title: '전세대출'
-      },
-  ]  
-const HeroAndSearchForm = ({selectedCategory, onChangeCategoryHandler, onChangeSearchFormHandler}) => {
-    const [selectOptions, setSelectOptions] = useState(searchCondition['주택담보대출'])
+const HeroAndSearchForm = ({selectedCategory, onChangeCategoryHandler, onChangeSearchFormHandler, bankFin}) => {
+    const [selectOptions, setSelectOptions] = useState(searchCondition[selectedCategory]) // 카테고리
     const [selectedValues, setSelectedValues] = useState({});
-
+    const [selectedCompanies, setSelectedCompanies] = useState([]);
+    const [keyword, setKeyword] = useState('');
     
     useEffect(() => {
-        // selectCategory가 변경될 때마다 선택된 옵션을 초기화
         setSelectOptions(searchCondition[selectedCategory]);
         setSelectedValues({}); // 선택된 값 초기화
     }, [selectedCategory]);
@@ -132,8 +33,15 @@ const HeroAndSearchForm = ({selectedCategory, onChangeCategoryHandler, onChangeS
 
         console.log("컨디션 뭐 넘어왔지",condition)
         console.log("벨류는 뭐 넘어왔지",value)
-        console.log("셀렉티드벨류는 뭐있지",selectedValues)
     };
+
+    const handleSearch = () => {
+   
+        // console.log("셀렉티드벨류는 뭐있지",selectedValues)
+        // console.log('키워드는 뭐지~', keyword)
+        // console.log('셀렉티드컴퍼니는 뭐지는 뭐지~', selectedCompanies)
+      onChangeSearchFormHandler(selectedValues, keyword, selectedCompanies);
+    }
 
     return (
         <div>
@@ -151,7 +59,7 @@ const HeroAndSearchForm = ({selectedCategory, onChangeCategoryHandler, onChangeS
                             <Row className='g-3 g-xl-4'>
                             {categories.map((category, indx) => (
                                 <Col key={indx} className="text-center">
-                                    <div onClick={()=>onCategoryHandler(category.title)}>
+                                    <div onClick={()=>onCategoryHandler(category.value)}>
                                         <MyIconBox
                                             type='card-shadow'
                                             media={category.media}
@@ -159,7 +67,7 @@ const HeroAndSearchForm = ({selectedCategory, onChangeCategoryHandler, onChangeS
                                             mediaShape='circle'
                                             title={category.title}
                                             align='center'
-                                            isSelected={selectedCategory === category.title}
+                                            isSelected={selectedCategory === category.value}
                                         />
                                     </div>
                                 </Col>
@@ -174,12 +82,12 @@ const HeroAndSearchForm = ({selectedCategory, onChangeCategoryHandler, onChangeS
                                 <InputGroup.Text className='text-muted ps-3'>
                                     <i className='fi-search'></i>
                                 </InputGroup.Text>
-                                <FormControl aria-label='Search field' placeholder='What are you looking for?' />
+                                <FormControl aria-label='Search field' placeholder='What are you looking for?' value={keyword} onChange={(e)=> setKeyword(e.target.value)} />
                                 </InputGroup>
                                 <hr className='d-md-none my-2' />
                                 <div className='d-sm-flex'>
                                 
-                                    <Button size='lg' className='rounded-pill w-100 w-md-auto ms-sm-3'>Search</Button>
+                                    <Button size='lg' className='rounded-pill w-100 w-md-auto ms-sm-3' onClick={handleSearch}>Search</Button>
                                 </div>
                             </FormGroup>
                         </Col>
@@ -187,23 +95,6 @@ const HeroAndSearchForm = ({selectedCategory, onChangeCategoryHandler, onChangeS
                         <div className="px-5 mt-3">
                             <Container className='pb-3 d-flex justify-content-center'>
 
-                           
-                            {/* {
-                                lendrateType: {
-                                "": "lendrateType금리유형",
-                                F: "고정금리F",
-                                C: "변동금리C",
-                                },
-
-                                rpayType: {
-                                "": "rpayType상환유형",
-                                S: "만기일시상환방식S",
-                                D: "분활상환방식D",
-                                },
-                                정렬: { 
-                                "": "정렬조건", 
-                                asc: "금리낮은순", 
-                                desc: "금리높은순" },  */}
                                  {Object.keys(selectOptions).map((condition, index) => {
                                     return (
                                         <Form.Select
@@ -235,41 +126,6 @@ const HeroAndSearchForm = ({selectedCategory, onChangeCategoryHandler, onChangeS
                                     )
                                 })}
 
-                                {/* {Object.keys(selectOptions).map((condition, index) => {
-                                    return (
-                                        Object.keys(selectOptions[condition]).map((innerCond, innerIndex) => {
-                                            return (
-                                                <Form.Select
-                                                    key={innerCond + innerIndex}
-                                                    aria-label="Default select example"
-                                                    className="mx-5"
-                                                    value={selectedValues[innerCond] || ""}
-                                                    name={innerCond}
-                                                    onChange={(e) =>
-                                                        onChangeOptionHandler(
-                                                            innerCond,
-                                                            e.target.value
-                                                        )
-                                                    }
-                                                >
-                                               {Object.keys(selectOptions[condition][innerCond]).map((finKey) => {
-                                                    const finValue =  selectOptions[condition][innerCond][finKey];
-                                                        return (
-                                                            <option
-                                                                key={finKey}
-                                                                value={`${finKey}`}
-                                                            >
-                                                                {finValue}
-                                                            </option>
-                                                        );
-                                                })}
-                                                </Form.Select>
-                                            )
-
-                                        })
-                                    )
-                                })} */}
-
                             </Container>
                         </div>
 
@@ -283,11 +139,13 @@ const HeroAndSearchForm = ({selectedCategory, onChangeCategoryHandler, onChangeS
                             <Col xs={1} className='text-center'>은행별</Col>
                             <Col xs={10}>
                                 {
-                                    Object.keys(bankFin).map((type, index) => {
-                                        const list = bankFin[type];
-                                        return (
-                                        <CheckBoxList key={type+index} listName={type} list={list} indx={index} />
-                                    )})
+                                  <div>
+                                    <CheckBoxList  listName={'은행'} list={bankFin["020000"]} indx='020000' selectedCompanies={selectedCompanies} setSelectedCompanies={setSelectedCompanies} />
+                                    <CheckBoxList listName={'여신전문'} list={bankFin["030200"]} indx='030200' selectedCompanies={selectedCompanies} setSelectedCompanies={setSelectedCompanies}  />
+                                    <CheckBoxList listName={'저축은행'} list={bankFin["030300"]} indx='030300' selectedCompanies={selectedCompanies} setSelectedCompanies={setSelectedCompanies}  />
+                                    <CheckBoxList listName={'보험'} list={bankFin["050000"]} indx='050000' selectedCompanies={selectedCompanies} setSelectedCompanies={setSelectedCompanies}  />
+                                    <CheckBoxList listName={'금융투자'} list={bankFin["060000"]} indx='060000' selectedCompanies={selectedCompanies} setSelectedCompanies={setSelectedCompanies}  />
+                                  </div>
                                 }
                             </Col>
                         </Row>

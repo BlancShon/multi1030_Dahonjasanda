@@ -1,4 +1,13 @@
 /* eslint-disable react/no-unescaped-entities */
+import LocalFloristIcon from '@mui/icons-material/LocalFlorist';
+import BadgeIcon from '@mui/icons-material/Badge';
+import SpaIcon from '@mui/icons-material/Spa';
+import EmojiNatureIcon from '@mui/icons-material/EmojiNature';
+import FilterVintageIcon from '@mui/icons-material/FilterVintage';
+import YardIcon from '@mui/icons-material/Yard';
+import GrassIcon from '@mui/icons-material/Grass';
+import ForestIcon from '@mui/icons-material/Forest';
+import DescriptionIcon from '@mui/icons-material/Description';
 import React from 'react';
 import { useTheme } from '@mui/material/styles';
 import useMediaQuery from '@mui/material/useMediaQuery';
@@ -60,31 +69,156 @@ const Content = () => {
       cols: 2,
     },
   ];
+  <svg data-testid="LocalFloristIcon"></svg>
 
   return (
-    
     <Box>
-      <Typography
-          variant={'h4'}
-          color={'primary'}
-          align={'center'}
-          fontWeight={'normal'}
+       <SpaIcon fontSize='large'>
+          {/* credit: plus icon from https://heroicons.com/ */}
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            strokeWidth={1.5}
+            stroke="currentColor"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              d="M4.5 12a7.5 7.5 0 0015 0m-15 0a7.5 7.5 0 1115 0m-15 0H3m16.5 0H21m-1.5 0H12m-8.457 3.077l1.41-.513m14.095-5.13l1.41-.513M5.106 17.785l1.15-.964m11.49-9.642l1.149-.964M7.501 19.795l.75-1.3m7.5-12.99l.75-1.3m-6.063 16.658l.26-1.477m2.605-14.772l.26-1.477m0 17.726l-.26-1.477M10.698 4.614l-.26-1.477M16.5 19.794l-.75-1.299M7.5 4.205L12 12m6.894 5.785l-1.149-.964M6.256 7.178l-1.15-.964m15.352 8.864l-1.41-.513M4.954 9.435l-1.41-.514M12.002 12l-3.75 6.495"
+            />
+          </svg>
+        </SpaIcon>
+      
+
+      <EmojiNatureIcon fontSize='large'>
+        {/* credit: plus icon from https://heroicons.com/ */}
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          strokeWidth={1.5}
+          stroke="currentColor"
         >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            d="M4.5 12a7.5 7.5 0 0015 0m-15 0a7.5 7.5 0 1115 0m-15 0H3m16.5 0H21m-1.5 0H12m-8.457 3.077l1.41-.513m14.095-5.13l1.41-.513M5.106 17.785l1.15-.964m11.49-9.642l1.149-.964M7.501 19.795l.75-1.3m7.5-12.99l.75-1.3m-6.063 16.658l.26-1.477m2.605-14.772l.26-1.477m0 17.726l-.26-1.477M10.698 4.614l-.26-1.477M16.5 19.794l-.75-1.299M7.5 4.205L12 12m6.894 5.785l-1.149-.964M6.256 7.178l-1.15-.964m15.352 8.864l-1.41-.513M4.954 9.435l-1.41-.514M12.002 12l-3.75 6.495"
+          />
+        </svg>
+      </EmojiNatureIcon>
+      <FilterVintageIcon fontSize='large'>
+        {/* credit: plus icon from https://heroicons.com/ */}
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          strokeWidth={1.5}
+          stroke="currentColor"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            d="M4.5 12a7.5 7.5 0 0015 0m-15 0a7.5 7.5 0 1115 0m-15 0H3m16.5 0H21m-1.5 0H12m-8.457 3.077l1.41-.513m14.095-5.13l1.41-.513M5.106 17.785l1.15-.964m11.49-9.642l1.149-.964M7.501 19.795l.75-1.3m7.5-12.99l.75-1.3m-6.063 16.658l.26-1.477m2.605-14.772l.26-1.477m0 17.726l-.26-1.477M10.698 4.614l-.26-1.477M16.5 19.794l-.75-1.299M7.5 4.205L12 12m6.894 5.785l-1.149-.964M6.256 7.178l-1.15-.964m15.352 8.864l-1.41-.513M4.954 9.435l-1.41-.514M12.002 12l-3.75 6.495"
+          />
+        </svg>
+      </FilterVintageIcon>
+      <YardIcon fontSize='large'>
+        {/* credit: plus icon from https://heroicons.com/ */}
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          strokeWidth={1.5}
+          stroke="currentColor"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            d="M4.5 12a7.5 7.5 0 0015 0m-15 0a7.5 7.5 0 1115 0m-15 0H3m16.5 0H21m-1.5 0H12m-8.457 3.077l1.41-.513m14.095-5.13l1.41-.513M5.106 17.785l1.15-.964m11.49-9.642l1.149-.964M7.501 19.795l.75-1.3m7.5-12.99l.75-1.3m-6.063 16.658l.26-1.477m2.605-14.772l.26-1.477m0 17.726l-.26-1.477M10.698 4.614l-.26-1.477M16.5 19.794l-.75-1.299M7.5 4.205L12 12m6.894 5.785l-1.149-.964M6.256 7.178l-1.15-.964m15.352 8.864l-1.41-.513M4.954 9.435l-1.41-.514M12.002 12l-3.75 6.495"
+          />
+        </svg>
+      </YardIcon>
+      <GrassIcon fontSize='large'>
+        {/* credit: plus icon from https://heroicons.com/ */}
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          strokeWidth={1.5}
+          stroke="currentColor"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            d="M4.5 12a7.5 7.5 0 0015 0m-15 0a7.5 7.5 0 1115 0m-15 0H3m16.5 0H21m-1.5 0H12m-8.457 3.077l1.41-.513m14.095-5.13l1.41-.513M5.106 17.785l1.15-.964m11.49-9.642l1.149-.964M7.501 19.795l.75-1.3m7.5-12.99l.75-1.3m-6.063 16.658l.26-1.477m2.605-14.772l.26-1.477m0 17.726l-.26-1.477M10.698 4.614l-.26-1.477M16.5 19.794l-.75-1.299M7.5 4.205L12 12m6.894 5.785l-1.149-.964M6.256 7.178l-1.15-.964m15.352 8.864l-1.41-.513M4.954 9.435l-1.41-.514M12.002 12l-3.75 6.495"
+          />
+        </svg>
+      </GrassIcon>
+      <ForestIcon fontSize='large'>
+        {/* credit: plus icon from https://heroicons.com/ */}
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          strokeWidth={1.5}
+          stroke="currentColor"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            d="M4.5 12a7.5 7.5 0 0015 0m-15 0a7.5 7.5 0 1115 0m-15 0H3m16.5 0H21m-1.5 0H12m-8.457 3.077l1.41-.513m14.095-5.13l1.41-.513M5.106 17.785l1.15-.964m11.49-9.642l1.149-.964M7.501 19.795l.75-1.3m7.5-12.99l.75-1.3m-6.063 16.658l.26-1.477m2.605-14.772l.26-1.477m0 17.726l-.26-1.477M10.698 4.614l-.26-1.477M16.5 19.794l-.75-1.299M7.5 4.205L12 12m6.894 5.785l-1.149-.964M6.256 7.178l-1.15-.964m15.352 8.864l-1.41-.513M4.954 9.435l-1.41-.514M12.002 12l-3.75 6.495"
+          />
+        </svg>
+      </ForestIcon>
 
-{/* 이렇게 활용해서 끌고올수 있나?>?? */}
+      <Typography
+        variant={'h5'}
+        color={'rosybrown'}
+        align={'left'}
+        fontWeight={'bold'}
+      >
 
-          “몸과 마음을 위한 힐링 파트너로써 이 식물은 어떨까요?”
-        </Typography>
-        <Typography variant={'h5'} gutterBottom >
+        {/* 이렇게 활용해서 끌고올수 있나?>?? */}
+
+        {/* 몸과 마음을 위한 힐링 파트너로써 이 식물은 어떨까요? */}
+      </Typography>
+      {/* <Typography variant={'h5'} gutterBottom >
            
-        </Typography>
-       
-        <Box width={1} height={1} marginY={4}>
-          <img
+        </Typography> */}
+      <br></br>
+      <br></br>
+      <Typography
+        variant={'h5'}
+        color={'black'}
+        align={'left'}
+        fontWeight={'bold'}
+      >
+       <LocalFloristIcon fontSize='large'>
+        {/* credit: plus icon from https://heroicons.com/ */}
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          strokeWidth={1.5}
+          stroke="currentColor"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            d="M4.5 12a7.5 7.5 0 0015 0m-15 0a7.5 7.5 0 1115 0m-15 0H3m16.5 0H21m-1.5 0H12m-8.457 3.077l1.41-.513m14.095-5.13l1.41-.513M5.106 17.785l1.15-.964m11.49-9.642l1.149-.964M7.501 19.795l.75-1.3m7.5-12.99l.75-1.3m-6.063 16.658l.26-1.477m2.605-14.772l.26-1.477m0 17.726l-.26-1.477M10.698 4.614l-.26-1.477M16.5 19.794l-.75-1.299M7.5 4.205L12 12m6.894 5.785l-1.149-.964M6.256 7.178l-1.15-.964m15.352 8.864l-1.41-.513M4.954 9.435l-1.41-.514M12.002 12l-3.75 6.495"
+          />
+        </svg>
+      </LocalFloristIcon>
+        {/* 이렇게 활용해서 끌고올수 있나?>?? */}
+        &nbsp;식물 상세 정보
+      </Typography>
+      <Box width={1} height={1} marginY={4}>
+        {/* <img
             height={'100%'}
             width={'100%'}
             // 오버뷰 아래 메인 이미지
-            src={'https://www.nongsaro.go.kr/portal/imgView.do?ep=a5gb/CMEYLclIUPoWw9/DbB57gkFsTGen/BoRw@@FvI1y0fGLKb5X4NQ2uaoJr/oVJfVLXCV1eYyTFHg31nAnw!!'}
+            // src={'https://www.nongsaro.go.kr/portal/imgView.do?ep=a5gb/CMEYLclIUPoWw9/DbB57gkFsTGen/BoRw@@FvI1y0fGLKb5X4NQ2uaoJr/oVJfVLXCV1eYyTFHg31nAnw!!'}
             alt="Remote working"
             loading="lazy"
             style={{
@@ -96,40 +230,117 @@ const Content = () => {
               height: '100%',
               maxHeight: 400,
             }}
-          />
-           {mock.map((item, i) => (
+          /> */}
+        <Box marginY={-2}>
+          <ImageList
+            variant="quilted"
+            cols={3}
+            rowHeight={isMd ? 300 : 220}
+            gap={isMd ? 16 : 8}
+          >
+            {photos.map((item, i) => (
+              <ImageListItem key={i} cols={item.cols || 2} rows={item.rows || 1}>
+                <img
+                  height={'100%'}
+                  width={'100%'}
+                  src={item.src}
+                  alt="..."
+                  loading="lazy"
+                  style={{
+                    objectFit: 'cover',
+                    cursor: 'poiner',
+                    borderRadius: 8,
+                    filter:
+                      theme.palette.mode === 'dark' ? 'brightness(0.7)' : 'none',
+                  }}
+                />
+              </ImageListItem>
+            ))}
+          </ImageList>
+        </Box>
+        {mock.map((item, i) => (
           <Grid item xs={12} key={i}>
-          <Box>
-             {/* 글 */}
-             <Typography
-               variant={'h5'}
-               margin={2}
-               gutterBottom
-               sx={{ color: 'common.black' }}
-                >
-              {/* 제목 */}
-             [식물명] <br>
-             </br>   {item.title}
-             </Typography>
-             <Typography
-                      color="text.secondary"
-                      margin={2}
-                      sx={{ color: 'common.black', opacity: .8 }}
-                    >
-                      {item.description}
-                    </Typography>
-            </Box>
-            </Grid>
+            <Box>
+              <br></br>
+              {/* 글 */}
+              <Typography
+                variant={'h5'}
+                margin={0}
+                gutterBottom
+                sx={{ color: 'common.black' }}
+                fontWeight={'bold'}
+                
+              ><BadgeIcon fontSize='large'>
+              {/* credit: plus icon from https://heroicons.com/ */}
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                strokeWidth={1.5}
+                stroke="currentColor"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M4.5 12a7.5 7.5 0 0015 0m-15 0a7.5 7.5 0 1115 0m-15 0H3m16.5 0H21m-1.5 0H12m-8.457 3.077l1.41-.513m14.095-5.13l1.41-.513M5.106 17.785l1.15-.964m11.49-9.642l1.149-.964M7.501 19.795l.75-1.3m7.5-12.99l.75-1.3m-6.063 16.658l.26-1.477m2.605-14.772l.26-1.477m0 17.726l-.26-1.477M10.698 4.614l-.26-1.477M16.5 19.794l-.75-1.299M7.5 4.205L12 12m6.894 5.785l-1.149-.964M6.256 7.178l-1.15-.964m15.352 8.864l-1.41-.513M4.954 9.435l-1.41-.514M12.002 12l-3.75 6.495"
+                />
+              </svg>
+            </BadgeIcon>
+                {/* 제목 */}
+                &nbsp;식물명 <br></br>
 
-          ))}
-          {/* 오버뷰 끌고오면 아래는 삭제 */}
-      <Box paddingX={{ xs: 0, sm: 4, md: 6 }}>
+              </Typography>
+              <Typography 
+              marginY={2}
+              fontSize={23}
+              fontWeight={'bold'}
+              >
+                {item.title}
+                </Typography>
+              <br></br>
+              <Typography
+                fontWeight={'bold'}
+                variant={'h5'}
+                color="text.secondary"
+                margin={0}
+                marginY={1}
+                sx={{ color: 'common.black', opacity: .8 }}
+              > <DescriptionIcon fontSize='large'>
+              {/* credit: plus icon from https://heroicons.com/ */}
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                strokeWidth={1.5}
+                stroke="currentColor"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M4.5 12a7.5 7.5 0 0015 0m-15 0a7.5 7.5 0 1115 0m-15 0H3m16.5 0H21m-1.5 0H12m-8.457 3.077l1.41-.513m14.095-5.13l1.41-.513M5.106 17.785l1.15-.964m11.49-9.642l1.149-.964M7.501 19.795l.75-1.3m7.5-12.99l.75-1.3m-6.063 16.658l.26-1.477m2.605-14.772l.26-1.477m0 17.726l-.26-1.477M10.698 4.614l-.26-1.477M16.5 19.794l-.75-1.299M7.5 4.205L12 12m6.894 5.785l-1.149-.964M6.256 7.178l-1.15-.964m15.352 8.864l-1.41-.513M4.954 9.435l-1.41-.514M12.002 12l-3.75 6.495"
+                />
+              </svg>
+            </DescriptionIcon>
+            &nbsp;상세 설명
+              </Typography>
+              <Typography 
+              marginY={2}
+              fontSize={15}
+              fontWeight={'bold'}>
+              {item.description}
+              </Typography>
+            </Box>
+          </Grid>
+
+        ))}
+        {/* 오버뷰 끌고오면 아래는 삭제 */}
+        {/* <Box paddingX={{ xs: 0, sm: 4, md: 6 }}>
         <Typography variant={'subtitle1'}>
           여기는 식물 overview가 들어가야하는데 말이죠
         </Typography>
-        </Box>
+        </Box> */}
 
-        <Box marginY={4}>
+        {/* <Box marginY={4}>
           <Typography variant={'h5'} gutterBottom>
             Big heading for a new topic
           </Typography>
@@ -159,33 +370,7 @@ const Content = () => {
           </Box>
         </Box>
       </Box>
-      <Box marginY={4}>
-        <ImageList
-          variant="quilted"
-          cols={3}
-          rowHeight={isMd ? 300 : 220}
-          gap={isMd ? 16 : 8}
-        >
-          {photos.map((item, i) => (
-            <ImageListItem key={i} cols={item.cols || 2} rows={item.rows || 1}>
-              <img
-                height={'100%'}
-                width={'100%'}
-                src={item.src}
-                alt="..."
-                loading="lazy"
-                style={{
-                  objectFit: 'cover',
-                  cursor: 'poiner',
-                  borderRadius: 8,
-                  filter:
-                    theme.palette.mode === 'dark' ? 'brightness(0.7)' : 'none',
-                }}
-              />
-            </ImageListItem>
-          ))}
-        </ImageList>
-      </Box>
+      
       <Box paddingX={{ xs: 0, sm: 4, md: 6 }} paddingBottom={4}>
         <Box>
           <Typography variant={'h5'} gutterBottom>
@@ -199,7 +384,7 @@ const Content = () => {
             reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
             pariatur.
           </Typography>
-        </Box>
+        </Box> */}
       </Box>
       {/* <Box
         component={Card}
@@ -302,7 +487,7 @@ const Content = () => {
           </form>
         </CardContent>
       </Box> */}
-      <Box paddingX={{ xs: 0, sm: 4, md: 6 }} paddingY={4}>
+      {/* <Box paddingX={{ xs: 0, sm: 4, md: 6 }} paddingY={4}>
         <Typography color={'text.secondary'}>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
           eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
@@ -311,17 +496,14 @@ const Content = () => {
           reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
           pariatur.
         </Typography>
-      </Box>
-      <Box paddingY={4}>
-        <Divider />
-      </Box>
-      <Box
+      </Box> */}
+      {/* <Box
         display={'flex'}
         alignItems={'center'}
         justifyContent={'space-between'}
         flexWrap={'wrap'}
       >
-      </Box>
+      </Box> */}
     </Box>
   );
 };

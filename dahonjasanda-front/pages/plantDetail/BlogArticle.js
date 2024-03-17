@@ -8,7 +8,7 @@ import Main from 'layouts/Main';
 import Container from 'components/Container';
 import {
   Content,
-  FooterNewsletter,
+  PopularNews,
   Hero,
   SidebarArticles,
   SidebarNewsletter,
@@ -26,8 +26,8 @@ const BlogArticle = () => {
       <Box>
         <Hero />
         <Container>
-          <Grid container spacing={4}>
-            <Grid item xs={12} md={8}>
+          <Grid container spacing={7}>
+            <Grid item xs={2} md={8}>
               <Content />
             </Grid>
             <Grid item xs={12} md={4}>
@@ -36,11 +36,14 @@ const BlogArticle = () => {
                   <SidebarArticles />
                 </Box>
               ) : null}
-              <SidebarNewsletter />
+              {/* <SidebarNewsletter /> */}
             </Grid>
+            {/* <Grid item xs={12} md={8}> */}
+              <PopularNews />
+            {/* </Grid> */}
           </Grid>
         </Container>
-        <Box
+        {/* <Box
           component={'svg'}
           preserveAspectRatio="none"
           xmlns="http://www.w3.org/2000/svg"
@@ -52,18 +55,14 @@ const BlogArticle = () => {
             width: 1,
           }}
         >
-          {/* <path
+          <path
             fill={theme.palette.alternate.main}
             d="M0,0c0,0,934.4,93.4,1920,0v100.1H0L0,0z"
-          ></path> */}
-        </Box>
-      </Box>
+          ></path>
+        </Box> */}
       <Box bgcolor={'alternate.main'}>
         <Container>
           <SimilarStories />
-        </Container>
-        <Container>
-          <FooterNewsletter />
         </Container>
         <Box
           component={'svg'}
@@ -82,6 +81,7 @@ const BlogArticle = () => {
             d="M0,0c0,0,934.4,93.4,1920,0v100.1H0L0,0z"
           ></path>
         </Box>
+      </Box>
       </Box>
     </Main>
   );

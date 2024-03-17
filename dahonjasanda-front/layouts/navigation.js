@@ -33,8 +33,8 @@ const pages = {
       href: "/plant",
     },
     {
-      title: "Security Settings",
-      href: "/account-security",
+      title: "PlantDetail",
+      href: "/plantDetail",
     },
     // {
     //   title: 'Notifications Options',

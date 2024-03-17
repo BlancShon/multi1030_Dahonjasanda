@@ -8,13 +8,24 @@ import Link from "next/link"
 import ResultCard from "./Result"
 import PageComponent from "./PageComponent"
 
-const ResultList = ({resultList, onChangePageHandler, pageable}) => {
+const ResultList = ({resultList, onChangePageHandler, pageable, category}) => {
 
     const { pageNumber, totalPages, totalElements } = pageable;
 
-    return (
+    const getMinValue = (target) => {
+        const values = [target.crdtGrad1, target.crdtGrad4, target.crdtGrad5, target.crdtGrad6, target.crdtGrad10, target.crdtGrad11, target.crdtGrad12, target.crdtGrad13];
+        const nonZeroValues = values.filter(value => value !== 0 && value !== undefined && value !== null);
+        if (nonZeroValues.length === 0) {return 0;} // 모든 값이 0일 경우
+        return Math.min(...nonZeroValues);
+    }
 
-        <Container>
+    const getMaxValue = (target) => {
+        return Math.max(target.crdtGrad1, target.crdtGrad4, target.crdtGrad5, target.crdtGrad6, target.crdtGrad10, target.crdtGrad11, target.crdtGrad12, target.crdtGrad13);
+    }
+
+    return (
+        (resultList) ?
+            (<Container>
             <Row>
                 <Col>
                 <Row>
@@ -30,64 +41,38 @@ const ResultList = ({resultList, onChangePageHandler, pageable}) => {
                     
                     <Row xxs={2} xs={2} md={3} lg={4} className='gy-4 gl-4 gl-xxl-4 py-4 px-5 mx-5'>
                         {resultList.map((result)=> {
+                            const lendRateTypeNm = (category==='credits'? result.crdtLendRateTypeNm : result.lendRateTypeNm)
+                            const typeInfo = (category==='credits'? result.crdtPrdtTypeNm : result.rpayTypeNm)
+                            const lendRateMin = (category==='credits'? getMinValue(result) : result.lendRateMin)
+                            const lendRateMax = (category==='credits'? getMaxValue(result) : result.lendRateMax)
+                            const mrtgTypeInfo = (category === 'mortgages' ? result.mrtgType : '')
                             return     (
-                                <ResultCard 
-                                    key={result.id}
-                                    finName={result.korCoNm} 
-                                    prdtName={result.finPrdtNm} 
-                                    prdtInfo1={result.lendRateTypeNm} 
-                                    prdtInfo2={result.rpayTypeNm} 
-                                    prdtInfo3={result.lendRateMin} 
-                                    prdtInfo4={result.lendRateMax}>
-                                </ResultCard>
+                                <Link key={result.id} href={`/loan/${category}_${result.id}`} style={{ textDecoration: 'none' }}>
+                                    <ResultCard 
+                                        finName={result.korCoNm} 
+                                        prdtName={result.finPrdtNm} 
+                                        prdtInfo1={lendRateTypeNm} 
+                                        prdtInfo2={typeInfo} 
+                                        prdtInfo3={lendRateMin} 
+                                        prdtInfo4={lendRateMax}
+                                        prdtInfo5={mrtgTypeInfo}>
+                                    </ResultCard>
+                                </Link>
                             )
                         })}
                     </Row>
 
                     <Container className="my-5" style={{ display: 'flex', justifyContent: 'center' }}>
-                        {/* <Pagination>
-                            <Pagination.Item disabled={pageNumber === 0}>
-                                <i className='fi-chevron-left me-sm-2'></i>
-                                <span className='d-none d-sm-inline'>Prev</span>
-                            </Pagination.Item>
-                            {pageNumbers.map((page, index) => (
-                                <Pagination.Item onClick={()=>onChangePageHandler({index})} key={index} active={pageNumber === index}>{page}</Pagination.Item>
-                            ))}
-                            <Pagination.Item disabled={pageNumber === totalPages - 1}>
-                                <span className='d-none d-sm-inline'>Next</span>
-                                <i className='fi-chevron-right ms-sm-2'></i>
-                            </Pagination.Item>
-                        </Pagination> */}
                         <PageComponent totalPages={totalPages} currentPage={pageNumber} onPageChange={onChangePageHandler} />
                     </Container>
 
-
                 </Col>
-
-                {/* <Col xxs={3} xs={3}>
-                    <Container className="</div>">
-                        <Container className="position-sticky top-0 end-0 vh-100 p-3" style={{ maxWidth: '300px' }}>   
-                    
-                            <Card style={{maxWidth: '25rem'}}>
-                            <ImageLoader
-                                src='/images/real-estate/catalog/04.jpg'
-                                width={306}
-                                height={500}
-                                layout='responsive'
-                                alt='Card image'
-                                className='card-img-top'
-                            />
-                            <Card.Body>
-                                <Card.Title as='h5'>Card title</Card.Title>
-                                <Card.Text className='fs-sm'>Some quick example text to build on the card title and make up the bulk of the card&apos;s content within card&apos;s body.</Card.Text>
-                                <Button as={Link} href='#' size='sm'>Go somewhere</Button>
-                            </Card.Body>
-                            </Card>
-                        </Container>
-                    </Container>
-                </Col> */}
             </Row>
-        </Container>
+        </Container>)
+    :
+    <div className="text-center">
+        <h1>검색결과가 없습니다</h1>
+    </div>
 
     )
 }
