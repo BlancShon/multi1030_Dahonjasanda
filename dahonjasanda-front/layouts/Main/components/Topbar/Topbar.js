@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
@@ -18,6 +18,32 @@ const Topbar = ({ onSidebarOpen, pages, colorInvert = false }) => {
     party: partyPages,
     shopping: shoppingPages,
   } = pages;
+
+
+  const [loginInfo, setLoginInfo] = useState(null);
+  const [loginName, setLoginName] = useState(null);
+
+  useEffect(() => {
+      getLoginInfo();
+  },[]);
+
+  // async : 비동기식 키워드, 
+  const getLoginInfo = async () => {
+      try {
+          var response = await axios.get('http://localhost/memberRest/loginInfo', 
+                                                          { withCredentials: true });
+          console.log(response)
+          if (response.data.result === true) {
+              setLoginInfo(response.data.member);
+              setLoginName(response.data.member.name)
+          } else {
+              setLoginName('false');
+          }
+      } catch (e) {
+          console.log(e);
+      }
+  }
+
 
   return (
     <Box

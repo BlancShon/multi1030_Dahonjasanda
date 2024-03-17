@@ -70,30 +70,8 @@ const pages = {
     // },
   ],
   party: [
-    {
-      title: "Help Center: Overview",
-      href: "/help-center",
-    },
-    {
-      title: "Help Center: Article",
-      href: "/help-center-article",
-    },
-    {
-      title: "FAQ",
-      href: "/faq",
-    },
-    {
-      title: "Error 404: Simple",
-      href: "/not-found",
-    },
-    {
-      title: "Error 404: Cover",
-      href: "/not-found-cover",
-    },
-    {
-      title: "Career Page Minimal",
-      href: "/career-listing-minimal",
-    },
+      {title: "파티구함",
+      href: "/party2"}
   ],
   shopping: [
     {
