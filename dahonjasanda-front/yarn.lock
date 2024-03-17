@@ -1854,45 +1854,9 @@
     prop-types "^15.8.1"
 
 "@mui/lab@^5.0.0-alpha.167":
-
-  version "5.0.0-alpha.167"
-  resolved "https://registry.npmjs.org/@mui/lab/-/lab-5.0.0-alpha.167.tgz"
-  integrity sha512-BNQJ7fBBvL68WGVnzAhbtTmabSuJDXaILr9dz/3RNK4TgGXPgWCAr7qtJeUdc4p1t7c4Z1ifG8UwgqD+5hzMNg==
-  version "5.0.0-beta.31"
-  resolved "https://registry.npmjs.org/@mui/joy/-/joy-5.0.0-beta.31.tgz"
-  integrity sha512-Cm9jilzjN9ZkVKh8cBEP8frxdTjm7C4z5+jpzLjzRgHdAtrHSB7VL7nUBu1qlj2OXIUjMzqvqdsJvT7uA1LScA==
-  dependencies:
-    "@babel/runtime" "^7.23.9"
-    "@mui/base" "5.0.0-beta.39"
-    "@mui/core-downloads-tracker" "^5.15.13"
-    "@mui/system" "^5.15.13"
-    "@mui/types" "^7.2.13"
-    "@mui/utils" "^5.15.13"
-    clsx "^2.1.0"
-    prop-types "^15.8.1"
-
-"@mui/lab@^5.0.0-alpha.167":
   version "5.0.0-alpha.168"
   resolved "https://registry.npmjs.org/@mui/lab/-/lab-5.0.0-alpha.168.tgz"
   integrity sha512-VKLQP5J/SujylvW3/riMtQYTspTluUkKLW/eu48RwuKby583cFCg8p4fWl4PpC3drwq6g9AeJ7DG4w0K+zFbdA==
-  dependencies:
-    "@babel/runtime" "^7.23.9"
-    "@mui/base" "5.0.0-beta.38"
-    "@mui/system" "^5.15.12"
-    "@mui/types" "^7.2.13"
-    "@mui/utils" "^5.15.13"
-    clsx "^2.1.0"
-    prop-types "^15.8.1"
-
-"@mui/material@^5.0.0", "@mui/material@^5.13.7", "@mui/material@>=5.15.0":
-  version "5.15.12"
-  resolved "https://registry.npmjs.org/@mui/material/-/material-5.15.12.tgz"
-  integrity sha512-vXJGg6KNKucsvbW6l7w9zafnpOp0CWc0Wx4mDykuABTpQ5QQBnZxP7+oB4yAS1hDZQ1WobbeIl0CjxK4EEahkA==
-=======
-  version "5.0.0-alpha.168"
-  resolved "https://registry.npmjs.org/@mui/lab/-/lab-5.0.0-alpha.168.tgz"
-  integrity sha512-VKLQP5J/SujylvW3/riMtQYTspTluUkKLW/eu48RwuKby583cFCg8p4fWl4PpC3drwq6g9AeJ7DG4w0K+zFbdA==
->>>>>>> branch 'master' of https://github.com/BlancShon/multi1030_Dahonjasanda.git
   dependencies:
     "@babel/runtime" "^7.23.9"
     "@mui/base" "5.0.0-beta.39"
@@ -1990,8 +1954,6 @@
     glob "7.1.7"
 
 "@next/swc-darwin-arm64@13.5.6":
-<<<<<<< HEAD
-=======
   version "13.5.6"
   resolved "https://registry.yarnpkg.com/@next/swc-darwin-arm64/-/swc-darwin-arm64-13.5.6.tgz#b15d139d8971360fca29be3bdd703c108c9a45fb"
   integrity sha512-5nvXMzKtZfvcu4BhtV0KH1oGv4XEW+B+jOfmBdpFI3C7FrB/MfujRpWYSBBO64+qbW8pkZiSyQv9eiwnn5VIQA==
@@ -2032,10 +1994,9 @@
   integrity sha512-XqqpHgEIlBHvzwG8sp/JXMFkLAfGLqkbVsyN+/Ih1mR8INb6YCc2x/Mbwi6hsAgUnqQztz8cvEbHJUbSl7RHDg==
 
 "@next/swc-win32-x64-msvc@13.5.6":
->>>>>>> branch 'master' of https://github.com/BlancShon/multi1030_Dahonjasanda.git
   version "13.5.6"
-  resolved "https://registry.npmjs.org/@next/swc-darwin-arm64/-/swc-darwin-arm64-13.5.6.tgz"
-  integrity sha512-5nvXMzKtZfvcu4BhtV0KH1oGv4XEW+B+jOfmBdpFI3C7FrB/MfujRpWYSBBO64+qbW8pkZiSyQv9eiwnn5VIQA==
+  resolved "https://registry.npmjs.org/@next/swc-win32-x64-msvc/-/swc-win32-x64-msvc-13.5.6.tgz"
+  integrity sha512-Cqfe1YmOS7k+5mGu92nl5ULkzpKuxJrP3+4AEuPmrpFZ3BHxTY3TnHmU1On3bFmFFs6FbTcdF58CCUProGpIGQ==
 
 "@nicolo-ribaudo/eslint-scope-5-internals@5.1.1-v1":
   version "5.1.1-v1"
@@ -3357,7 +3318,7 @@ aos@^2.3.4:
     lodash.debounce "^4.0.6"
     lodash.throttle "^4.0.1"
 
-apexcharts@^3.41.0, apexcharts@^3.47.0:
+apexcharts@^3.47.0:
   version "3.47.0"
   resolved "https://registry.npmjs.org/apexcharts/-/apexcharts-3.47.0.tgz"
   integrity sha512-s/fgNCA69b8lJdhI3R7Z+/Df47RPplLyHwuvttecR+aaZ3/Pm6wHYPiAGjqDNbVsMGXhuA9mcOpIYU5ZWeSdeg==
@@ -6051,11 +6012,7 @@ fs.realpath@^1.0.0:
 
 fsevents@^2.3.2, fsevents@~2.3.2:
   version "2.3.3"
-<<<<<<< HEAD
-  resolved "https://registry.npmjs.org/fsevents/-/fsevents-2.3.3.tgz"
-=======
   resolved "https://registry.yarnpkg.com/fsevents/-/fsevents-2.3.3.tgz#cac6407785d03675a2a5e1a5305c697b347d90d6"
->>>>>>> branch 'master' of https://github.com/BlancShon/multi1030_Dahonjasanda.git
   integrity sha512-5xoDfX+fL7faATnagmWPpbFtwh/R77WmMMqqHGS65C3vvB0YHrgF+B1YmZ3441tMj5n63k0212XNoJwzlhffQw==
 
 fullcalendar@^6.1.11:
@@ -9946,7 +9903,7 @@ raw-body@2.5.2:
 
 react-apexcharts@^1.4.1:
   version "1.4.1"
-  resolved "https://registry.npmjs.org/react-apexcharts/-/react-apexcharts-1.4.1.tgz"
+  resolved "https://registry.yarnpkg.com/react-apexcharts/-/react-apexcharts-1.4.1.tgz#95ab31e4d2201308f59f3d2a4b65d10d9d0ea4bb"
   integrity sha512-G14nVaD64Bnbgy8tYxkjuXEUp/7h30Q0U33xc3AwtGFijJB9nHqOt1a6eG0WBn055RgRg+NwqbKGtqPxy15d0Q==
   dependencies:
     prop-types "^15.8.1"
@@ -10037,11 +9994,7 @@ react-dev-utils@^12.0.1:
     strip-ansi "^6.0.1"
     text-table "^0.2.0"
 
-<<<<<<< HEAD
-react-dom@*, "react-dom@^0.14 || ^15.0.0 || ^16.0.0 || ^17.0.0 || ^18.0.0", "react-dom@^0.14.0 || ^15.0.1 || ^16.0.0 || ^17.0.0 || ^18.0.0", "react-dom@^0.14.9 || ^15.3.0 || ^16.0.0-rc || ^16.0 || ^17.0 || ^18.0.0", "react-dom@^15.5.4 || ^16.0.0 || ^17.0.0 || ^18.0.0", "react-dom@^15.5.x || ^16.x || ^17.x || ^18.x", "react-dom@^16.0.0 || ^17.0.0 || ^18.0.0", "react-dom@^16.7.0 || ^17 || ^18", "react-dom@^16.8.0 || ^17 || ^18", "react-dom@^16.8.0 || ^17.0.0 || ^18.0.0", "react-dom@^16.9.0 || ^17 || ^18", "react-dom@^17.0.0 || ^18.0.0", react-dom@^18.0.0, react-dom@^18.2.0, "react-dom@>= 16.8.0", react-dom@>=16.0.0, react-dom@>=16.14.0, react-dom@>=16.6.0, react-dom@>=16.8, react-dom@>=16.8.0, "react-dom@16 - 18", react-dom@18.2.0:
-=======
 react-dom@18.2.0:
->>>>>>> branch 'master' of https://github.com/BlancShon/multi1030_Dahonjasanda.git
   version "18.2.0"
   resolved "https://registry.npmjs.org/react-dom/-/react-dom-18.2.0.tgz"
   integrity sha512-6IMTriUmvsjHUjNtEDudZfuDQUoWXVxKHhlEGSk81n4YFS+r/Kl99wXiwlVXtPBtJenozv2P+hxDsw9eA7Xo6g==
@@ -10278,11 +10231,7 @@ react-visibility-sensor@^5.1.1:
   dependencies:
     prop-types "^15.7.2"
 
-<<<<<<< HEAD
-react@*, "react@^0.14 || ^15.0.0 || ^16.0.0 || ^17.0.0 || ^18.0.0", "react@^0.14.0 || ^15.0.1 || ^16.0.0 || ^17.0.0 || ^18.0.0", "react@^0.14.9 || ^15.3.0 || ^16.0.0-rc || ^16.0 || ^17.0 || ^18.0.0", "react@^15.5.4 || ^16.0.0 || ^17.0.0 || ^18.0.0", "react@^15.5.x || ^16.x || ^17.x || ^18.x", "react@^16 || ^17 || ^18", "react@^16.0.0 || ^17.0.0 || ^18.0.0", "react@^16.7.0 || ^17 || ^18", "react@^16.8.0 || ^17 || ^18", "react@^16.8.0 || ^17.0.0 || ^18.0.0", "react@^16.8.0 || ^17.0.0-rc.1 || ^18.0.0", "react@^16.9.0 || ^17 || ^18", "react@^17.0.0 || ^18.0.0", react@^18.0.0, react@^18.2.0, "react@>= 0.14.0", "react@>= 16", "react@>= 16.3.0", "react@>= 16.8.0", "react@>= 16.8.0 || 17.x.x || ^18.0.0-0", react@>=0.13, react@>=0.14.0, react@>=15.0.0, react@>=16.0.0, react@>=16.14.0, react@>=16.6.0, react@>=16.8, react@>=16.8.0, "react@16 - 18", react@18.2.0:
-=======
 react@18.2.0:
->>>>>>> branch 'master' of https://github.com/BlancShon/multi1030_Dahonjasanda.git
   version "18.2.0"
   resolved "https://registry.npmjs.org/react/-/react-18.2.0.tgz"
   integrity sha512-/3IjMdb2L9QbBdWiW5e3P2/npwMBaU9mHCSCUzNln0ZCYbcfTsGbTJrU/kGemdH2IWmB2ioZ+zkxtmq6g09fGQ==
