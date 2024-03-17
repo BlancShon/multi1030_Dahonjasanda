@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import Link from 'next/link';
 
 import Paging from '../Pagination';
 import IndexGraph from '../IndexGraph';
@@ -20,7 +21,6 @@ import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
 import ListItemAvatar from '@mui/material/ListItemAvatar';
 import Button from '@mui/material/Button';
-
 
 
 
@@ -163,7 +163,9 @@ const WithAvatarsAndMultilineContent = ({list}) => {
                   <List sx={{ p: 0, m: 0 }}>
                     <ListItem sx={{ p: 0, m: 0 }}>
                       <ListItemAvatar>
-                        <Avatar sx={{ width: 70, height: 70}} src={item.symbol} alt={item.name}/>
+                        <Link href="/stock/view" passHref>
+                          <Avatar sx={{ width: 70, height: 70}} src={item.symbol} alt={item.name}/>
+                        </Link>
                       </ListItemAvatar>
                       <ListItemText
                       />
@@ -175,15 +177,16 @@ const WithAvatarsAndMultilineContent = ({list}) => {
                 </TableCell>
                 <TableCell align="center">
                   <Typography>{item.price1}</Typography>
-                  <Typography color={item.price2.startsWith('-') ? 'red' : 'blue'} variant={'subtitle2'}>
+                  <Typography color={item.price2.startsWith('-') ? 'blue' : 'red'} variant={'subtitle2'}>
                     {item.price2}
                   </Typography>
                 </TableCell>
                 <TableCell align="center">
                   <Button
-                    href={`/stockview=${item.no}`}
+                    // href={`/stock/stockview=${item.no}`}
+                    href="/stock/view"
                     style={{ backgroundColor: parseFloat(item.gap.replace('%', ''))
-                       < 0 ? 'red' : 'blue', color: 'white'}}>
+                       < 0 ? 'blue' : 'red', color: 'white'}}>
                         {item.gap}
                   </Button>
                 </TableCell>
@@ -212,7 +215,7 @@ const WithAvatarsAndMultilineContent = ({list}) => {
                   <ImageLinkButton
                     src="/images/stock/icon/wallet.png"
                     alt="Edit"
-                    to="/mystock"
+                    to="/stock/mystock"
                   />
                 </TableCell>
               </TableRow>

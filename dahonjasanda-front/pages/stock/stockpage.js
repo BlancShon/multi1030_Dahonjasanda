@@ -22,7 +22,7 @@ function StockPage() {
     return (
         <Main colorInvert={true}>
             <Box bgcolor={"alternate.main"} position={"relative"}>
-                <HeroSection />
+                <HeroSection imageUrl="https://img.hankyung.com/photo/202308/01.34142085.1.jpg"/>
                 <Container>
                     <Box sx={{
                         borderBottom: '1px solid #ddd',

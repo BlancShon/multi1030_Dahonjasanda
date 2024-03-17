@@ -4,7 +4,7 @@ import Box from '@mui/material/Box';
 import Container from 'components/Container';
 import Typography from '@mui/material/Typography';
 
-function HeroSection() {
+function HeroSection({ imageUrl }) {
     const theme = useTheme();
 
     return(
@@ -12,7 +12,7 @@ function HeroSection() {
             position={'relative'}
             sx={{
                 backgroundImage:
-                'url("https://img.hankyung.com/photo/202308/01.34142085.1.jpg")',
+                `url(${imageUrl})`,
                 backgroundSize: 'cover',
                 backgroundPosition: 'center',
                 marginTop: -13,

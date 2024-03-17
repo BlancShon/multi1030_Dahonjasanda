@@ -14,7 +14,7 @@ const pages = {
     },
     {
       title: "MYSTOCK",
-      href: "/my-stock",
+      href: "stock/mystock",
     },
   ],
   realEstate: [

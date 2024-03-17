@@ -31,8 +31,8 @@ const Footer = () => {
               component={'img'}
               src={
                 mode === 'light'
-                  ? 'https://assets.maccarianagency.com/the-front/logos/logo.svg'
-                  : 'https://assets.maccarianagency.com/the-front/logos/logo-negative.svg'
+                  ? '/images/logo/logo.png'
+                  : 'images/logo/logo.png'
               }
               height={1}
               width={1}

@@ -25,12 +25,14 @@ export const graph1 = [2652, 2625, 2647, 2668, 2664, 2653, 2658, 2680, 2649, 261
 
 const CardWithAddButton = () => {
   const theme = useTheme();
-  const pvalue = 2469.40;
-  const dvalue = 866.37;
-  const pchangeValue = '-1.72% 12.1';
-  const dchangeValue = '+1.72% 12.1';
-  const isNegative = pchangeValue.charAt(0) === '-';
-  const isNegative1 = dchangeValue.charAt(0) === '-';
+  const pvalue = graph1[graph1.length -1];
+  const dvalue = graph[graph.length -1];
+  const pchangeValue = graph1[graph1.length -2] - pvalue;
+  const dchangeValue = graph[graph.length -2] - dvalue;
+  const prate = ((pchangeValue / pvalue) * 100).toFixed(2)
+  const drate = ((dchangeValue / dvalue) * 100).toFixed(2)
+  // const isNegative = pchangeValue.charAt(0) === '-';
+  // const isNegative1 = dchangeValue.charAt(0) === '-';
 
   return (
     <Box bgcolor={'alternate.main'}>
@@ -49,11 +51,11 @@ const CardWithAddButton = () => {
                 <Typography variant={'h3'} fontWeight={400}>
                   코스피
                 </Typography>
-                <Typography variant={'h4'} color={isNegative ? 'red' : 'blue'}>
+                <Typography variant={'h4'} color={pchangeValue >= 0 ? 'red' : 'blue'}>
                   {pvalue}
                 </Typography>
-                <Typography variant={'h6'} color={isNegative ? 'red' : 'blue'}>
-                  {pchangeValue}
+                <Typography variant={'h6'} color={pchangeValue >= 0 ? 'red' : 'blue'}>
+                  {prate}% {pchangeValue}p
                 </Typography>
                 <IndexGraph data={graph}/>
                 <Typography variant={'h6'} fontWeight={100} sx={{ textAlign: 'right' }}>
@@ -76,11 +78,11 @@ const CardWithAddButton = () => {
                 <Typography variant={'h3'} fontWeight={400}>
                   코스닥
                 </Typography>
-                <Typography variant={'h4'} color={isNegative1 ? 'red' : 'blue'}>
+                <Typography variant={'h4'} color={dchangeValue >= 0 ? 'red' : 'blue'}>
                   {dvalue}
                 </Typography>
-                <Typography variant={'h6'} color={isNegative1 ? 'red' : 'blue'}>
-                  {dchangeValue}
+                <Typography variant={'h6'} color={dchangeValue >= 0 ? 'red' : 'blue'}>
+                  {drate}% {dchangeValue}p
                 </Typography>
                 <IndexGraph data={graph1} height={100}/>
                 <Typography variant={'h6'} fontWeight={100} sx={{ textAlign: 'right'}}>
