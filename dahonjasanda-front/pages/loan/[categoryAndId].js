@@ -11,6 +11,21 @@ import { findLoanDetail } from './LoansApiService'
 
 const ResultCard = dynamic(() => import("./components/Result"), { ssr: false });
 
+const getMinValue = (target) => {
+    const values = [target.crdtGrad1, target.crdtGrad4, target.crdtGrad5, target.crdtGrad6, target.crdtGrad10, target.crdtGrad11, target.crdtGrad12, target.crdtGrad13];
+    const nonZeroValues = values.filter(value => value !== 0 && value !== undefined && value !== null);
+    if (nonZeroValues.length === 0) {return 0;} // 모든 값이 0일 경우
+    console.log("가장 작은 값",Math.min(...nonZeroValues))
+    return Math.min(...nonZeroValues);
+}
+
+const getMaxValue = (target) => {
+    console.log("가장 큰 값",Math.max(target.crdtGrad1, target.crdtGrad4, target.crdtGrad5, target.crdtGrad6, target.crdtGrad10, target.crdtGrad11, target.crdtGrad12, target.crdtGrad13))
+    return Math.max(target.crdtGrad1, target.crdtGrad4, target.crdtGrad5, target.crdtGrad6, target.crdtGrad10, target.crdtGrad11, target.crdtGrad12, target.crdtGrad13);
+}
+
+const maxValue =20;
+
 const LoansDetail = () =>{
     const router = useRouter();
 
@@ -18,6 +33,8 @@ const LoansDetail = () =>{
     const [id, setId] = useState();
     const [detailInfo, setDetailInfo] = useState(null);
     const [chartInfo, setChartInfo] = useState();
+    const [lendRateMin, setLendRateMin] = useState();
+    const [lendRateMax, setLendRateMax] = useState();
 
     const [loanAmount, setLoanAmount] = useState('');
     const [loanTerm, setLoanTerm] = useState('');
@@ -43,6 +60,9 @@ const LoansDetail = () =>{
             const response = await findLoanDetail(category, id);
             const { data } = response;
             setDetailInfo(data);
+            console.log("아아아아아아여기다여기",data)
+            setLendRateMin(data.lendRateMin);
+            setLendRateMax(data.lendRateMax);
 
             {if(category === 'credits'){
             const crdtGrad1 = data.crdtGrad1;
@@ -65,6 +85,10 @@ const LoansDetail = () =>{
                     { creditGrade: '301~400점', "평균 이자율": crdtGrad12 },
                     { creditGrade: '300점 이하', "평균 이자율": crdtGrad13 },
                 ]);
+                console.log("%%%%%%%%%%", getMinValue(data));
+                console.log("%%%%%%%%%%", getMaxValue(data));
+                setLendRateMin(getMinValue(data));
+                setLendRateMax(getMaxValue(data));
             }}
 
         } catch (error) {
@@ -109,11 +133,11 @@ const LoansDetail = () =>{
         // 여기에 예상 총 이자액과 예상 월별 이자액을 계산하는 로직을 작성하세요
         // 예상 총 이자액 및 예상 월별 이자액을 상태에 설정하세요
         const realAmount = loanAmount * 10000;
-        const {monthlyInterestAmount : minMoonthlyInterest, totalInterestAmount : minTotalInterest}=calculateInterest(realAmount, rendRateMin, loanTerm)
+        const {monthlyInterestAmount : minMoonthlyInterest, totalInterestAmount : minTotalInterest}=calculateInterest(realAmount, lendRateMin, loanTerm)
         setMinMonthlyInterest(Math.ceil(minMoonthlyInterest));
         setMinTotalInterest(Math.ceil(minTotalInterest));
         
-        const {monthlyInterestAmount : maxMonthlyInterest, totalInterestAmount : maxTotalInterest}=calculateInterest(realAmount, rendRateMax, loanTerm)
+        const {monthlyInterestAmount : maxMonthlyInterest, totalInterestAmount : maxTotalInterest}=calculateInterest(realAmount, lendRateMax, loanTerm)
         setMaxMonthlyInterest(Math.ceil(maxMonthlyInterest));
         setMaxTotalInterest(Math.ceil(maxTotalInterest));
 
@@ -161,18 +185,7 @@ const LoansDetail = () =>{
             };
         };
 
-        const getMinValue = (target) => {
-            const values = [target.crdtGrad1, target.crdtGrad4, target.crdtGrad5, target.crdtGrad6, target.crdtGrad10, target.crdtGrad11, target.crdtGrad12, target.crdtGrad13];
-            const nonZeroValues = values.filter(value => value !== 0 && value !== undefined && value !== null);
-            if (nonZeroValues.length === 0) {return 0;} // 모든 값이 0일 경우
-            return Math.min(...nonZeroValues);
-        }
-    
-        const getMaxValue = (target) => {
-            return Math.max(target.crdtGrad1, target.crdtGrad4, target.crdtGrad5, target.crdtGrad6, target.crdtGrad10, target.crdtGrad11, target.crdtGrad12, target.crdtGrad13);
-        }
-       
-        const maxValue =20;
+        
 
 
 

@@ -7,6 +7,12 @@ import IconBox from '../../components/IconBox';
 import BlogCard from '../../components/BlogCard';
 import ImageLoader from '../../components/ImageLoader';
 
+import { Navigation, Pagination } from 'swiper'
+import { Swiper, SwiperSlide } from 'swiper/react'
+import 'swiper/css'
+import 'swiper/css/navigation'
+import 'swiper/css/pagination'
+
 const Party = () => {
     return (
         <>
@@ -21,7 +27,7 @@ const Party = () => {
             title=''
             // overlay // Optional overlay prop to add contrast to the content against background image
             />
-            <div className='col-9 p-4 mx-auto' style={{backgroundColor: 'dimgray', borderRadius: '10px', top: '50px',left: '20px', position: 'relative', top: '-50px' }}>
+            <div className='col-9 p-4 mx-auto' style={{backgroundColor: 'white', borderRadius: '10px', top: '50px',left: '20px', position: 'relative', top: '-70px', boxShadow: '0px 0px 10px 0px rgba(0,0,0,0.5)' }}>
                 <div>
                     <FormGroup className='d-block d-md-flex rounded-md-pill mb-5 mb-sm-4'>
                         <InputGroup size='lg' className='border-end-md'>
@@ -133,12 +139,15 @@ const Party = () => {
                     </Row>
                 </div>
             </div>
+            <h2 className='text-center my-5'><i className='fi-star-filled'></i> 대충 최고 인기 모임이라는 뜻</h2>
 
             <div className='col-10 mx-auto' style={{backgroundColor: 'rgba(250, 250, 210, 0.2)' ,border: '1px solid gold', borderRadius: '10px' }}>
                 <div className='m-2'>
                         
-                    <h2><i className='fi-star-filled'></i> 대충 최고 인기 모임이라는 뜻</h2>
+                   
                 </div>
+
+      
                 <Row className='m-3'>
                     <Col>
                         <VehicleCard
@@ -250,6 +259,9 @@ const Party = () => {
                     </Col>
                 </Row>
             </div>
+
+
+            
             <div className='col-10 mx-auto mt-4'>
                 <div className='d-flex flex-sm-row flex-column align-items-sm-center align-items-stretch my-2'>
                     <Form.Group controlId='sortby' className='d-flex align-items-center flex-shrink-0'>
