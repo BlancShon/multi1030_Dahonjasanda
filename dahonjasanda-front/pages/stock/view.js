@@ -18,6 +18,7 @@ import Trends from './components/trend/trend';
 import HeroSection from './components/hero/herosection';
 import Candle from './components/candlechart/candlchart';
 import candleData from '../../public/assets/candle.json';
+import real from '../../public/assets/stockreal.json';
 
 var stockdata = 
         {
@@ -101,6 +102,22 @@ var stockdata =
             "valueorgan6": "-683,981"
         };
 
+var stockreal = [
+    
+        74900, 74900, 74800, 74800, 74700, 74900, 74900, 74800, 74700, 74700,
+        74700, 74600, 74700, 74700, 74600, 74700, 74500, 74400, 74500, 74400,
+        74500, 74400, 74300, 74300, 74200, 74200, 74200, 74200, 74200, 74100,
+        74200, 74300, 74300, 74300, 74300, 74200, 74200, 74200, 74200, 74200,
+        74200, 74200, 74200, 74200, 74100, 74200, 74100, 74100, 74200, 74100,
+        74200, 74300, 74200, 74300, 74200, 74200, 74200, 74100, 74100, 74200,
+        74200, 74200, 74200, 74200, 74300, 74300, 74300, 74300, 74400, 74300,
+        74300, 74300, 74300, 74200, 74300, 74200, 74300, 74200, 74300, 74300,
+        74300, 74200, 74100, 74100, 74200, 74200, 74100, 74300, 74300, 74200,
+        74200, 74200, 74300, 74300, 74300, 74300, 74300, 74300, 74300, 74300,
+        74400, 74400, 74300, 74400, 74300, 74400, 74400, 74400, 74400, 74300,
+        74400, 74300, 74400, 74400, 74400, 74500, 74500, 74700, 74700, 74700
+];
+
 export default function View() {
     const theme = useTheme();
 
@@ -108,6 +125,7 @@ export default function View() {
     const [page, setPage] = useState(null);
     const [view, setView] = useState(null);
     const [tim, setTim] = useState(null);
+    const [real, setReal] = useState(null);
     
 
     useEffect(() => {
@@ -144,6 +162,7 @@ export default function View() {
         setPage(page);
 
         setView(stockdata);
+        setReal(stockreal);
 
         if(ti && ti.stocktime && ti.stocktime.length >0) {
             setTim(ti.stocktime[0]);
@@ -166,11 +185,12 @@ export default function View() {
         };
     });
     console.log("viewpage(main)",data);
+    console.log("viewreal",real);
     return (
         <Main colorInvert={true}>
             <Box>
                 <HeroSection imageUrl="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQSArpdqfkhN75nrhWCbHxmvFiY7Ot0SujcbQ&usqp=CAU"/>
-                <ViewTitle list={view} list1={tim}/>
+                <ViewTitle list={view} list1={tim} list2={real}/>
                 <Candle list={data}/>
                 <ViewInfo list={view} />
                 <Consensus list={view} list1={tim}/>
