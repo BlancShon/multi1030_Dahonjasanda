@@ -9,9 +9,6 @@ const ApexChart = dynamic(() => import('react-apexcharts'), { ssr: false });
 function Candle({list}) {
     console.log("candle",list);
     const options = {
-        theme: {
-            mode: "dark",
-        },
         chart: {
             type: 'candlestick',
             height: 350,

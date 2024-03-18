@@ -71,6 +71,7 @@ const Header = () => {
                     <li className="home"><a href="/">Home</a></li>
                     <li className="notice"><a>공지사항</a></li>
                     <li className="board"><a href="/board/list">게시판</a></li>
+                    <li className="board"><a href="/housingFront/index">청약맵</a></li>
                 </ul>
             </nav>
         </header>

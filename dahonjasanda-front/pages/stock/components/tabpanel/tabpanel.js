@@ -5,7 +5,7 @@ import TabContext from '@mui/lab/TabContext';
 import TabList from '@mui/lab/TabList';
 import TabPanel from '@mui/lab/TabPanel';
 
-import StockList from '../stocklist/stocklist';
+import StockList from '../stocklist';
 import InsertStock from '../insertstock/insertstock'
 import NewsPage from '../news/newspage';
 
