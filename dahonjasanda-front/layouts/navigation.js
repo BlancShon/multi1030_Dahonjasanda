@@ -26,6 +26,10 @@ const pages = {
       title: "캘린더",
       href: "/calendar",
     },
+    {
+      title: "청약맵",
+      href: "/housing/housingMap",
+    }
   ],
   animalPlant: [
     {
