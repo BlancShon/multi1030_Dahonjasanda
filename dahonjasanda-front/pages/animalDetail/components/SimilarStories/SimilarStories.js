@@ -48,7 +48,7 @@ const mock = [
 const SimilarStories = () => {
   const theme = useTheme();
   return (
-    <Box >
+    <Box marginY={-5}>
       <Typography variant={'h4'} gutterBottom fontWeight={'bold'} textAlign={'center'}>
       <SmartDisplayIcon   sx={{ fontSize: 55, color: "red" }}>
           {/* credit: plus icon from https://heroicons.com/ */}
@@ -68,14 +68,14 @@ const SimilarStories = () => {
           </svg>
         </SmartDisplayIcon>
       
-        &nbsp; Youtube &nbsp;반려 식물과 더 가까워 질 수 있는 Tip 3
+        &nbsp; Youtube &nbsp;반려 동물과 더 가까워 질 수 있는 Tip 3
           </Typography>
         <br></br>
         <br></br>
       <Grid container spacing={4}>
         <Grid item lg={4} md={4} sm={6} xs={4}>
           <Typography variant={'h6'} gutterBottom>
-            #트렌디한 감성 식물 7가지
+            #반려동물을 위한 백색소음
           </Typography>
           <Box
             component={'a'}
@@ -90,12 +90,12 @@ const SimilarStories = () => {
               },
             }}
           >
-            <iframe width="560" height="315" src="https://www.youtube.com/embed/N09OKqRr0t0?si=e5ZXG-T3S9RNkx7M" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/Ot_ipiWPM6E?si=EHO3SVqd43XZgDr6" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" ></iframe>
           </Box>
         </Grid>
         <Grid item lg={4} md={4} sm={6} xs={4}>
           <Typography variant={'h6'} gutterBottom>
-            #식물초보 #식물키우기 꿀팁!
+            #가성비 좋은 강아지용품 BEST 10
           </Typography>
           <Box
             component={'a'}
@@ -110,12 +110,12 @@ const SimilarStories = () => {
               },
             }}
           >
-            <iframe width="560" height="315" src="https://www.youtube.com/embed/IidCV3v1orQ?si=aVDtblR_htAn4e8b" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/dR9kkMq7WVo?si=P8Ng1rZ74uv-WZFt" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
           </Box>
         </Grid>
         <Grid item lg={4} md={4} sm={6} xs={4}>
           <Typography variant={'h6'} gutterBottom>
-            #식물키우기 #주의사항
+            #유기견 입양, 꼭 알아야 할 꿀팁!!
           </Typography>
           <Box
             component={'a'}
@@ -130,7 +130,7 @@ const SimilarStories = () => {
               },
             }}
           >
-            <iframe width="560" height="315" src="https://www.youtube.com/embed/4H8FfhNgYIs?si=x2Fh5m59m_A72eU4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/7eIi-vyiYDc?si=0CoH9cQ0GXscoH8a" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
           </Box>
         </Grid>
       </Grid>

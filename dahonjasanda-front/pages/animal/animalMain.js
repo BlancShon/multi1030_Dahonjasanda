@@ -11,10 +11,10 @@ import {
   FeaturedArticle,
   CaseStudies,
   PopularArticles,
-  Newsletter,
+  // Newsletter,
 } from './components';
 
-const plantMain = () => {
+const animalMain = () => {
   const theme = useTheme();
   return (
     <Main colorInvert={true}>
@@ -68,8 +68,11 @@ const plantMain = () => {
           ></path>
         </Box>
       </Box>
+      {/* <Container> */}
+        {/* <Newsletter /> */}
+      {/* </Container> */}
     </Main>
   );
 };
 
-export default plantMain;
+export default animalMain;

@@ -40,6 +40,18 @@ const pages = {
       title: "PlantDetail",
       href: "/plantDetail",
     },
+    {
+      title: "Animal",
+      href: "/animal",
+    },
+    {
+      title: "AnimalDetail",
+      href: "/alantDetail",
+    },
+    {
+      title: "PlantBoard",
+      href: "/plantBoard",
+    },
     // {
     //   title: 'Notifications Options',
     //   href: '/account-notifications',

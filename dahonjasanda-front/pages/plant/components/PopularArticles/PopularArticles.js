@@ -169,9 +169,6 @@ const PopularArticles = () => {
             </Box>
           </Grid>
         ))}
-        <Grid item container justifyContent={'center'} xs={12}>
-          <Pagination count={10} size={'large'} color="primary" />
-        </Grid>
       </Grid>
     </Box>
   );
