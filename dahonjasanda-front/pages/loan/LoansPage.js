@@ -100,7 +100,6 @@ const LoansPage = () => {
                     onChangeSearchFormHandler={handleChangeSearchForm} 
                     bankFin={companies}/>
                 </Container>
-                <hr style={{ borderTop: '1px solid black' }} />
                 <Container className="mt-3">
                     <ResultList resultList={resultList} onChangePageHandler={setPage} pageable={pageable} category={selectedCategory} />
                 </Container>

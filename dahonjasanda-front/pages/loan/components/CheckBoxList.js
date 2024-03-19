@@ -10,21 +10,18 @@ const CheckBoxList = ({listName, list, indx, selectedCompanies, setSelectedCompa
       setSelectedCompanies(prev => prev.filter(id => id !== itemId));
     }
 
-    console.log("체크박스속 컴퍼니즈",selectedCompanies)
   }
 
   const handleSelectAll = () => {
     const allCompanyIds = list.map(item => item.finCoNo);
     const uniqueSelectedCompanies = Array.from(new Set([...selectedCompanies , ...allCompanyIds]))
     setSelectedCompanies(uniqueSelectedCompanies);
-    console.log("체크박스속 컴퍼니즈",selectedCompanies)
   }
 
   const handleClearSelection = () => {
     const companyIdsToRemove = list.map(item => item.finCoNo);
     const filteredCompanyIds = selectedCompanies.filter(item => !companyIdsToRemove.includes(item))
     setSelectedCompanies(filteredCompanyIds);
-    console.log("체크박스속 컴퍼니즈",selectedCompanies)
   }
     return (
         <Accordion key={indx} defaultActiveKey=''>
@@ -51,7 +48,7 @@ const CheckBoxList = ({listName, list, indx, selectedCompanies, setSelectedCompa
             )}
             </div>
             <div className="d-flex justify-content-end">
-              <Button className="mx-3" variant="primary" onClick={handleSelectAll}>전부 선택</Button>{' '}
+              <Button className="mx-3" variant="info" onClick={handleSelectAll}>전부 선택</Button>{' '}
               <Button className="mx-3" variant="secondary" onClick={handleClearSelection}>모두 해제</Button>
             </div>
             </Accordion.Body>

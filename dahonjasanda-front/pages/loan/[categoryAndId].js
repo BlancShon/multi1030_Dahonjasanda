@@ -60,7 +60,6 @@ const LoansDetail = () =>{
             const response = await findLoanDetail(category, id);
             const { data } = response;
             setDetailInfo(data);
-            console.log("아아아아아아여기다여기",data)
             setLendRateMin(data.lendRateMin);
             setLendRateMax(data.lendRateMax);
 
@@ -85,8 +84,6 @@ const LoansDetail = () =>{
                     { creditGrade: '301~400점', "평균 이자율": crdtGrad12 },
                     { creditGrade: '300점 이하', "평균 이자율": crdtGrad13 },
                 ]);
-                console.log("%%%%%%%%%%", getMinValue(data));
-                console.log("%%%%%%%%%%", getMaxValue(data));
                 setLendRateMin(getMinValue(data));
                 setLendRateMax(getMaxValue(data));
             }}
@@ -192,7 +189,7 @@ const LoansDetail = () =>{
     return (
         <Main>
             {console.log(detailInfo)}
-            <Link href={'/loan'}><Button>대출 페이지로</Button></Link>
+            <Link href={'/loan'}><Button variant="warning">대출 페이지로</Button></Link>
                 <div className="mx-5 p-x3">
                     <div className="px-5">
                     <Card className="px-5 mx-5" style={{border: '2px solid #000'}}>
@@ -250,7 +247,7 @@ const LoansDetail = () =>{
                                         onChange={handleLoanTermChange}
                                         />
                                     </Form.Group>
-                                    <Button className="mt-2" variant="primary" onClick={handleCalculate}>계산하기</Button>
+                                    <Button className="mt-2" variant="info" onClick={handleCalculate}>계산하기</Button>
                                 </Form>
                                     
                             </Col>
@@ -259,10 +256,11 @@ const LoansDetail = () =>{
                         <div className='mb-3'>
                             <span>{detailInfo.dclsChrgMan}</span>
                             <hr></hr>
-                            <h6 className='mt-3'> * 당신이 원하는 대출금과 기간에 따른 이자를 정확히 계산하고 싶으시다면, 삼담원과 상담하시는 것을 권장합니다. 대출금과 기간에 따른 이자는 다양한 요소에 따라 달라질 수 있으며, 정확한 계산을 위해서는 전문가의 도움이 필요합니다. 따라서 삼담원의 전문가와 상담하여 개인에 맞는 최적의 대출 조건을 찾아보세요.</h6>
+                            <h6 className='mt-3 bg-danger-subtle'> * 당신이 원하는 대출금과 기간에 따른 이자를 정확히 계산하고 싶으시다면, 삼담원과 상담하시는 것을 권장합니다. 대출금과 기간에 따른 이자는 다양한 요소에 따라 달라질 수 있으며, 정확한 계산을 위해서는 전문가의 도움이 필요합니다. 따라서 삼담원의 전문가와 상담하여 개인에 맞는 최적의 대출 조건을 찾아보세요.</h6>
                         </div>
-
-                        <a href={detailInfo.homeUrl}><Button variant='success' className='w-100 my-3'>공식홈에서 더 알아보기</Button></a>
+                        <div className='col-7 mx-auto'>
+                            <a href={detailInfo.homeUrl}><Button variant='success' className='w-100 my-3'>공식홈에서 더 알아보기</Button></a>
+                        </div>
                         {category !== 'credits' ? (
                             <div className="m-5">
                                 <h5>상세정보</h5>
@@ -322,7 +320,6 @@ const LoansDetail = () =>{
                         const lendRateMin = (category==='credits'? getMinValue(result) : result.lendRateMin)
                         const lendRateMax = (category==='credits'? getMaxValue(result) : result.lendRateMax)
                         const mrtgTypeInfo = (category === 'mortgages' ? result.mrtgType : '')
-                        {console.log("이걸 봐라",result)}
                         return     (
                             <Link key={result.optionId} href={`/loan/${category}_${result.optionId}`} style={{ textDecoration: 'none' }}>
                                 <ResultCard 
@@ -342,6 +339,26 @@ const LoansDetail = () =>{
                     
 
                 </div>
+                <div className="col-10 mx-auto" style={{ marginTop: '20px', padding: '20px', backgroundColor: '#f8d7da', borderRadius: '5px' }}>
+                    <div className=''>
+                        <h5 style={{ color: '#721c24' }}>대출에 대한 경고</h5>
+                        <p style={{ color: '#721c24' }}>
+                            대출은 신중하게 결정해야 합니다. 대출금을 상환하는 데 어려움을 겪을 수 있으며, 무모한 대출은 재정적 문제를 야기할 수 있습니다. 
+                            대출을 신청하기 전에 재무 상황을 심사하고, 상환 능력을 확인해야 합니다. 이러한 과정을 거치지 않고 대출을 받는 경우, 
+                            이자 및 연체료 등의 추가 비용이 발생할 수 있습니다.
+                        </p>
+                        <p style={{ color: '#721c24' }}>
+                            또한, 대출 조건을 신중히 검토해야 합니다. 이자율, 상환 기간, 연체 시 부과되는 패널티 등을 반드시 확인하고, 
+                            계약서를 잘 읽어보신 후 서명하셔야 합니다. 이러한 조건을 무시하고 대출을 받는 경우, 
+                            이후에 불이익을 당할 수 있으므로 신중한 결정이 필요합니다.
+                        </p>
+                        <p style={{ color: '#721c24' }}>
+                            대출을 신청하기 전에 관련된 모든 사항을 신중하게 고려하시기 바랍니다. 만약 대출에 대한 자세한 정보가 필요하거나, 
+                            의문 사항이 있으신 경우, 은행이나 금융기관에 문의하시기 바랍니다.
+                        </p>
+                        </div>
+                    </div>
+
             </Main>
     )
 }

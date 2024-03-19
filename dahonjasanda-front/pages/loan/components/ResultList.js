@@ -25,7 +25,8 @@ const ResultList = ({resultList, onChangePageHandler, pageable, category}) => {
 
     return (
         (resultList) ?
-            (<Container>
+        (<Container style={{ marginTop: "-230px" }}>
+                 <hr style={{ borderTop: '1px solid black' }} />
             <Row>
                 <Col>
                 <Row>

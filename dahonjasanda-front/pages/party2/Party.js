@@ -1,4 +1,4 @@
-import { Button, Card, Col, Form, FormControl, FormGroup, InputGroup, Row } from 'react-bootstrap';
+import { Button, Card, Col, Dropdown, Form, FormControl, FormGroup, InputGroup, Row } from 'react-bootstrap';
 import VenueCardOverlay from '../../components/VenueCardOverlay'
 import { Main } from '../../layouts';
 import heroImg from '../../public/images/myImages/partyHero.jpg'
@@ -17,7 +17,9 @@ const Party = () => {
     return (
         <>
         <Main>
+            
         <VenueCardOverlay
+        style={{height:"500px"}}
             img={{
                 src:heroImg,
 
@@ -26,122 +28,120 @@ const Party = () => {
             }}
             title=''
             // overlay // Optional overlay prop to add contrast to the content against background image
-            />
+            > </VenueCardOverlay>
+            <div style={{ position: 'absolute', top: '30%', left: '10%', transform: 'translate(-50%, -50%)' }}>
+                <h1 className='text-white'>모   여   라!!!!</h1>
+            </div>
             <div className='col-9 p-4 mx-auto' style={{backgroundColor: 'white', borderRadius: '10px', top: '50px',left: '20px', position: 'relative', top: '-70px', boxShadow: '0px 0px 10px 0px rgba(0,0,0,0.5)' }}>
                 <div>
                     <FormGroup className='d-block d-md-flex rounded-md-pill mb-5 mb-sm-4'>
                         <InputGroup size='lg' className='border-end-md'>
-                        <InputGroup.Text className='text-muted ps-3'>
-                            <i className='fi-search'></i>
-                        </InputGroup.Text>
+                        <Dropdown id='left-dropdown-addon'>
+                            <Dropdown.Toggle variant='info'>온/오프라인</Dropdown.Toggle>
+                            <Dropdown.Menu className='my-1'>
+                            <Dropdown.Item eventKey='1'>온/오프라인</Dropdown.Item>
+                            <Dropdown.Item eventKey='2'>온라인</Dropdown.Item>
+                            <Dropdown.Divider />
+                            <Dropdown.Item eventKey='3'>오프라인</Dropdown.Item>
+                            </Dropdown.Menu>
+                        </Dropdown>
                         <FormControl aria-label='Search field' placeholder='What are you looking for?'/>
                         </InputGroup>
                         <hr className='d-md-none my-2' />
                         <div className='d-sm-flex'>
                         
-                            <Button size='lg' className='rounded-pill w-100 w-md-auto ms-sm-3'>Search</Button>
+                            <Button size='lg' variant='info' className='rounded-pill w-100 w-md-auto ms-sm-3'>Search</Button>
                         </div>
                     </FormGroup>
                 </div>
-
-                <div>
-                    <Row>
-                        <Col>
-                            <IconBox
-                            href='#'
-                            media='fi-house-chosen'
-                            title='Shadow card'
-                            type='pill-rounded-shadow'
-                            className='mb-4'
-                            />
-                        </Col>
-                        <Col>
-                            <IconBox
-                            href='#'
-                            media='fi-house-chosen'
-                            title='Shadow card'
-                            type='pill-rounded-shadow'
-                            className='mb-4'
-                            />
-                        </Col>
-                        <Col>
-                            <IconBox
-                            href='#'
-                            media='fi-house-chosen'
-                            title='Shadow card'
-                            type='pill-rounded-shadow'
-                            className='mb-4'
-                            />
-                        </Col>
-                        <Col>
-                            <IconBox
-                            href='#'
-                            media='fi-house-chosen'
-                            title='Shadow card'
-                            type='pill-rounded-shadow'
-                            className='mb-4'
-                            />
-                        </Col>
-                        <Col>
-                            <IconBox
-                            href='#'
-                            media='fi-house-chosen'
-                            title='Shadow card'
-                            type='pill-rounded-shadow'
-                            className='mb-4'
-                            />
-                        </Col>
-                        <Col>
-                            <IconBox
-                            href='#'
-                            media='fi-house-chosen'
-                            title='Shadow card'
-                            type='pill-rounded-shadow'
-                            className='mb-4'
-                            />
-                        </Col>
-                        <Col>
-                            <IconBox
-                            href='#'
-                            media='fi-house-chosen'
-                            title='Shadow card'
-                            type='pill-rounded-shadow'
-                            className='mb-4'
-                            />
-                        </Col>
-                        <Col>
-                            <IconBox
-                            href='#'
-                            media='fi-house-chosen'
-                            title='Shadow card'
-                            type='pill-rounded-shadow'
-                            className='mb-4'
-                            />
-                        </Col>
-                        <Col>
-                            <IconBox
-                            href='#'
-                            media='fi-house-chosen'
-                            title='Shadow card'
-                            type='pill-rounded-shadow'
-                            className='mb-4'
-                            />
-                        </Col>
-                        <Col>
-                            <IconBox
-                            href='#'
-                            media='fi-house-chosen'
-                            title='Shadow card'
-                            type='pill-rounded-shadow'
-                            className='mb-4'
-                            />
-                        </Col>
-                    </Row>
-                </div>
             </div>
+
+            <div className='d-flex col-11 mx-auto'>
+
+                <IconBox
+                href='#'
+                media='fi-meds'
+                mediaShape='circle'
+                title='Border card'
+                type='card'
+                align='center'
+                className='mb-4'
+                />
+                <IconBox
+                href='#'
+                media='fi-meds'
+                mediaShape='circle'
+                title='Border card'
+                type='card'
+                align='center'
+                className='mb-4'
+                />
+                <IconBox
+                href='#'
+                media='fi-meds'
+                mediaShape='circle'
+                title='Border card'
+                type='card'
+                align='center'
+                className='mb-4'
+                />
+                <IconBox
+                href='#'
+                media='fi-meds'
+                mediaShape='circle'
+                title='Border card'
+                type='card'
+                align='center'
+                className='mb-4'
+                />
+                <IconBox
+                href='#'
+                media='fi-meds'
+                mediaShape='circle'
+                title='Border card'
+                type='card'
+                align='center'
+                className='mb-4'
+                />
+                <IconBox
+                href='#'
+                media='fi-meds'
+                mediaShape='circle'
+                title='Border card'
+                type='card'
+                align='center'
+                className='mb-4'
+                />
+                <IconBox
+                href='#'
+                media='fi-meds'
+                mediaShape='circle'
+                title='Border card'
+                type='card'
+                align='center'
+                className='mb-4'
+                /><IconBox
+                href='#'
+                media='fi-meds'
+                mediaShape='circle'
+                title='Border card'
+                type='card'
+                align='center'
+                className='mb-4'
+                /><IconBox
+                href='#'
+                media='fi-meds'
+                mediaShape='circle'
+                title='Border card'
+                type='card'
+                align='center'
+                className='mb-4'
+                />
+            </div>
+
             <h2 className='text-center my-5'><i className='fi-star-filled'></i> 대충 최고 인기 모임이라는 뜻</h2>
 
-            <div className='col-10 mx-auto' style={{backgroundColor: 'rgba(250, 250, 210, 0.2)' ,border: '1px solid gold', borderRadius: '10px' }}>
+            <div className='col-10 mx-auto' style={{backgroundColor: '' ,border: '', borderRadius: '10px' }}>
                 <div className='m-2'>
                         
                    
