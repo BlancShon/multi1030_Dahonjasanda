@@ -39,14 +39,15 @@ const Main = ({ children, colorInvert = false, bgcolor = 'transparent' }) => {
   return (
     <Box>
       <Box bgcolor={bgcolor} position={'relative'} zIndex={theme.zIndex.appBar}>
-        <Container paddingTop={'8px !important'} paddingBottom={'0 !important'}>
+        <Container paddingTop={'0px !important'} paddingBottom={'0 !important'}>
         </Container>
       </Box>
       <AppBar
         position={'sticky'}
         sx={{
           top: 0,
-          backgroundColor: trigger ? theme.palette.background.paper : bgcolor,
+          // backgroundColor: trigger ? theme.palette.background.paper : bgcolor,
+          backgroundColor: '#F5F5F5'
         }}
         elevation={trigger ? 1 : 0}
       >
@@ -54,7 +55,7 @@ const Main = ({ children, colorInvert = false, bgcolor = 'transparent' }) => {
           <Topbar
             onSidebarOpen={handleSidebarOpen}
             pages={pages}
-            colorInvert={trigger ? false : colorInvert}
+            // colorInvert={trigger ? false : colorInvert}
           />
         </Container>
       </AppBar>
