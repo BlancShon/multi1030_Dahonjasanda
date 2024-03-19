@@ -7,13 +7,38 @@ import MyCalendarDesign from "./MyCalendarDesign";
 import axios from "axios";
 
 const MyCalendar = () => {
+  const [events, setEvents] = useState([]);
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+  const fetchData = async () => {
+    try {
+      const response = await axios.get("http://localhost/calendar/list", {
+        withCredentials: true,
+      });
+
+      console.log(response.data); // 여기서 데이터 확인
+
+      setEvents(
+        response.data.map((item) => ({
+          title: item.title,
+          date: item.date,
+        }))
+      );
+    } catch (error) {
+      console.error("Error fetching calendar data:", error);
+    }
+  };
+
   return (
     <div>
       <MyCalendarDesign />
       <div
         style={{
           display: "grid",
-          gridTemplateColumns: "1fr 2.5fr 1fr",
+          gridTemplateColumns: "3fr",
         }}
       >
         <div></div>
@@ -29,6 +54,7 @@ const MyCalendar = () => {
           locales={[koLocale]}
           locale="ko"
           className={styles.fullCalendar}
+          events={events}
           style={{ gridColumn: "2" }}
         />
         <div></div>

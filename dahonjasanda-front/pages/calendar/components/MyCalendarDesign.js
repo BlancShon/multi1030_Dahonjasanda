@@ -36,12 +36,16 @@ const MyCalendarDesign = () => {
       <br />
       <div style={buttonContainerStyle}>
         <Button backgroundColor="#04AA6D" label="전체보기" />
-        <Button backgroundColor="#008CBA" label="특별공급" />
-        <Button backgroundColor="#f44336" label="1순위" />
-        <Button backgroundColor="#555555" label="2순위" />
-        <Button backgroundColor="blue" label="무순위" />
-        <Button backgroundColor="indigo" label="오피스텔" />
-        <Button backgroundColor="purple" label="공공민간임대" />
+        <Button backgroundColor="#008CBA" label="아파트(분양)" />
+        <Button backgroundColor="#f44336" label="신혼희망타운(임대)" />
+        <Button backgroundColor="#555555" label="공공지원민간임대" />
+        <Button
+          backgroundColor="blue"
+          label="도시형/오피스텔/생활숙박시설/민간임대"
+        />
+        <Button backgroundColor="indigo" label="계약취소주택" />
+        <Button backgroundColor="purple" label="무순위, 잔여세대" />
+        <Button backgroundColor="green" label="임의공급(임대)" />
       </div>
     </div>
   );

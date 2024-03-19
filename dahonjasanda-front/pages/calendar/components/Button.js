@@ -10,7 +10,8 @@ const Button = ({ backgroundColor, label }) => {
     display: "inline-block",
     fontSize: "16px",
     borderRadius: "20px",
-    margin: "0 5px",
+    margin: "15px 5px 0 10px", // 여기에 margin top 추가
+
     backgroundColor: backgroundColor,
   };
 
