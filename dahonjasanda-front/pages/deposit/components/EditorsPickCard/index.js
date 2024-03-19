@@ -1,1 +1,1 @@
-export { default } from './EditorsPickCard';
+export {default} from './EditorsPickCard';

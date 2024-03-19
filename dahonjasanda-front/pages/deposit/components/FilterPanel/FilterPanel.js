@@ -11,8 +11,8 @@ const FilterPanel = ({ showFilterBox, filterSections, checked, onCheckboxChange 
 
     return (
       <Collapse in={showFilterBox}>
-        <Box marginY={4} marginX={{ xs: -3, sm: -6 }}>
-          <Divider />
+        <Box marginY={1} marginX={{ xs: -3, sm: -6 }}>
+        <Divider />
         </Box>
         {filterSections.map((section, index) => (
           // `checked`와 `onCheckboxChange`를 `FilterSection` 컴포넌트에 전달

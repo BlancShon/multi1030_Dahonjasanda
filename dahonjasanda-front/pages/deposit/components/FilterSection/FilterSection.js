@@ -2,6 +2,7 @@ import React from 'react';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import CheckboxGroup from '../CheckboxGroup';
+import Divider from '@mui/material/Divider';
 
 
 
@@ -19,6 +20,7 @@ const FilterSection = ({ title, groups, checked, onCheckboxChange }) => {
         <Typography variant="h4" gutterBottom>
           {title}
         </Typography>
+        
         {groups.map((group, index) => {
           // console.log(`Group name: ${group.name}, Checked values:`, checked[group.name] || []); // 그룹명과 체크된 값들에 대한 로그 추가
           return (
@@ -31,6 +33,7 @@ const FilterSection = ({ title, groups, checked, onCheckboxChange }) => {
             />
           );
         })}
+        
       </Box>
     );
   };

@@ -52,7 +52,7 @@ const Hero = ({
         <Box sx={{ width: '100%', maxWidth: 1000 }}>
           <Box marginBottom={2}>
             <Typography
-              variant="h2"
+              variant="h3"
               align={'center'}
               sx={{
                 fontWeight: 700,

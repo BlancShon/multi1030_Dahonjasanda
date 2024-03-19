@@ -1,6 +1,6 @@
 import React from "react";
 import { FormControlLabel, Checkbox, Box, Typography } from '@mui/material';
-
+import Divider from '@mui/material/Divider';
 
 
 const CheckboxGroup = ({ groupName, options, checked = [], onCheckboxChange  }) => {
@@ -14,10 +14,11 @@ const CheckboxGroup = ({ groupName, options, checked = [], onCheckboxChange  }) 
   };
   
   return (
-    <Box sx={{ mb: 2 }}>
+    <Box sx={{ p: 2, border: '1px dashed grey' }} borderRadius={2}>
       <Typography variant="subtitle1" gutterBottom>
         {groupName}
       </Typography>
+      <Divider />
       <Box sx={{ display: 'flex', flexDirection: 'row', flexWrap: 'wrap', gap: 2 }}>
         {options.map((option) => (
           <FormControlLabel

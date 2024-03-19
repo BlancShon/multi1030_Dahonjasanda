@@ -1,64 +1,67 @@
 import React, { useState } from 'react';
-import Card from '@mui/material/Card';
-import CardContent from '@mui/material/CardContent';
-import Typography from '@mui/material/Typography';
-import Button from '@mui/material/Button';
+import { Card, CardContent, Typography, Button, ButtonGroup } from '@mui/material';
+import styled from 'styled-components';
+import Poll from 'react-polls';
+
+// StyledCard 컴포넌트를 생성하여 스타일 적용
+const StyledCard = styled(Card)`
+  max-width: 300px; // 최대 너비를 300px로 설정
+  margin: 0 auto; // 중앙 정렬
+`;
 
 const PollCard = () => {
+    const pollQuestion = '금융상품 중 가장 중요한 요소는 무엇입니까?';
+    const [pollAnswers, setPollAnswers] = useState([
+        { option: '이자율', votes: 10 },
+        { option: '세금 혜택', votes: 5 },
+        { option: '자금의 유동성', votes: 2 },
+        { option: '보장성', votes: 3 },
+        { option: '기간의 유연성', votes: 4 },
+        { option: '최소 예치금', votes: 5 },
+        { option: '보너스 혜택', votes: 6 },
+        { option: '자동 재투자 옵션', votes: 8 },
+        { option: '온라인 접근성 및 관리', votes: 1 },
+        { option: '고객 서비스의 질', votes: 0 },
+        // You can add other options as needed
+    ]);
+    const [lastVote, setLastVote] = useState({option: '', voted: false});
+
+    const handleVote = (voteAnswer) => {
+        let newPollAnswers = [...pollAnswers]; // Clone the current state to a new array for manipulation
     
-    // 각 옵션에 대한 투표 수를 저장하기 위한 상태
-    const [votes, setVotes] = useState(new Array(10).fill(0)); // 10개 옵션에 대한 투표 수 초기화
-    const [totalVotes, setTotalVotes] = useState(0);
-    const [lastVoted, setLastVoted] = useState(null); // 마지막으로 투표한 옵션을 추적
-
-
-    // 투표 옵션 목록
-    const options = [
-        "이자율",
-        "세금 혜택",
-        "자금의 유동성",
-        "보장성",
-        "기간의 유연성",
-        "최소 예치금",
-        "보너스 혜택",
-        "자동 재투자 옵션",
-        "온라인 접근성 및 관리",
-        "고객 서비스의 질",
-    ];
-
-    // 특정 옵션에 대해 투표하는 함수
-    const handleVote = (index) => {
-        const newVotes = [...votes]; // 상태 직접 변경을 피하기 위해 복사본 생성
-        newVotes[index] += 1; // 특정 옵션의 투표 수 증가
-        setVotes(newVotes); // 상태 업데이트
-        setTotalVotes(prevTotal => prevTotal + 1); // 총 투표 수 증가
-        setLastVoted(index); // 마지막으로 투표한 옵션 업데이트
+        // Check if there was a previous vote
+        if (lastVote.voted) {
+            // Find and decrement the vote count for the previously voted option
+            newPollAnswers = newPollAnswers.map(answer => {
+                if (answer.option === lastVote.option) {
+                    return { ...answer, votes: answer.votes - 1 };
+                }
+                return answer;
+            });
+        }
+    
+        // Increment the vote count for the newly voted option
+        newPollAnswers = newPollAnswers.map(answer => {
+            if (answer.option === voteAnswer) {
+                return { ...answer, votes: answer.votes + 1 };
+            }
+            return answer;
+        });
+    
+        // Update the state with the new vote counts and set the last voted option
+        setPollAnswers(newPollAnswers);
+        setLastVote({
+            option: voteAnswer,
+            voted: true,
+        });
     };
 
     return (
-        <Card>
+        <StyledCard>
             <CardContent>
-                <Typography variant="h5" component="div">
-                    Poll
-                </Typography>
-                <Typography variant="body1" component="div">
-                    예금, 적금, 연금에 관련된 혜택 중 가장 중요한 요소는 무엇이라고 생각하십니까?
-                </Typography>
-                {/* 투표 옵션 및 버튼 */}
-                {options.map((option, index) => (
-                    <div key={index} style={{ marginTop: '10px' }}>
-                        <Button variant="contained" color="primary" onClick={() => handleVote(index)} style={{ marginLeft: '10px' }}>
-                            {option}
-                        </Button>
-                    </div>
-                ))}
-                {/* 총 투표자 수 */}
-                <Typography variant="body1" component="div" style={{ marginTop: '20px' }}>
-                    총 투표자 수: {totalVotes}
-                </Typography>
-
+                <Poll question={pollQuestion} answers={pollAnswers} onVote={handleVote} />
             </CardContent>
-        </Card>
+        </StyledCard>
     );
 };
 

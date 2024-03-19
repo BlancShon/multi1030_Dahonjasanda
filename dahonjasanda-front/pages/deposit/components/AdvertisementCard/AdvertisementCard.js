@@ -9,7 +9,7 @@ const AdvertisementCard = () => {
     return (
         <Card>
             <CardContent>
-                <img src={adImage.src} alt="Advertisement" style={{ width: '100%', height: '100%' }} />
+                <img src={adImage.src} alt="Advertisement" style={{ width: '300px', height: 'auto',  objectFit: 'contain' }} />
             </CardContent>
         </Card>
     );
