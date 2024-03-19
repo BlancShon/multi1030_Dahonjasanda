@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import { useTheme } from '@mui/material/styles';
@@ -24,7 +24,6 @@ import Typed from "react-typed";
 // })
 
 const Hero = () => {
-  
   const theme = useTheme();
   return (
     <Box
@@ -51,6 +50,7 @@ const Hero = () => {
         },
       }}
     >
+
       <Container
         zIndex={3}
         position={'relative'}
@@ -69,32 +69,33 @@ const Hero = () => {
                 fontWeight: 700,
                 color: theme.palette.common.white,
               }}
-            > 
-            <Typography
+            >
+              {/* <Typography
               variant="h2"
               align={'center'}
               sx={{
                 fontWeight: 700,
                 color: theme.palette.common.white,
-              }}
-            >지친 몸과 마음에게,
-            </Typography>
-                {/* <ReactTyped strings={["지친 몸과 마음에게"]} typeSpeed={40} type />
+              }} */}
+              {/* > */}
+              지친 몸과 마음에게,
+              {/* </Typography> */}
+              {/* <ReactTyped strings={["지친 몸과 마음에게"]} typeSpeed={40} type />
                 <br /> */}
+              <br></br>
+              <ReactTyped
+                strings={[
+                  "초록색 즐거움", "향긋한 힐링", "따뜻한 가족",
+                ]}
+                typeSpeed={100}
+                backSpeed={50}
+                attr="placeholder"
 
-                <ReactTyped 
-                  strings={[
-                    "초록색 즐거움", "향긋한 힐링", "따뜻한 가족", 
-                  ]}
-                  typeSpeed={100}
-                  backSpeed={50}
-                  attr="placeholder"
-                  
-                  loop
-                >
-                  <input type="text" style={{ width: '340px', height: '77px', textAlign: 'center', fontWeight: 'bold' }} />
-                </ReactTyped>
-            을 선물하다
+                loop
+              >
+                <input type="text" style={{ width: '340px', height: '77px', textAlign: 'center', fontWeight: 'bold' }} />
+              </ReactTyped>
+              을 선물하다
             </Typography>
           </Box>
           <Box>
@@ -106,22 +107,22 @@ const Hero = () => {
               }}
             >
               1인 가구, 새로운 가족 [
-            
-            <ReactTyped 
-                  strings={[
-                    "반려식물", 
-                  ]}
-                  typeSpeed={200}
-                  backSpeed={50}
-                  attr="placeholder"
-                  
-                  loop
-                >
-                  <input type="text" style={{ width: '80px', height: '25px', textAlign: 'center', fontWeight: 'bold', background: 'none', border:'none', WebkitTextFillColor: 'white' }}/>
-                </ReactTyped>
+
+              <ReactTyped
+                strings={[
+                  "반려식물",
+                ]}
+                typeSpeed={200}
+                backSpeed={50}
+                attr="placeholder"
+
+                loop
+              >
+                <input type="text" style={{ width: '80px', height: '25px', textAlign: 'center', fontWeight: 'bold', background: 'none', border: 'none', WebkitTextFillColor: 'white' }} />
+              </ReactTyped>
               ]을 만나다.
-                </Typography>
-                <Typography
+            </Typography>
+            <Typography
               variant="h6"
               align={'center'}
               sx={{

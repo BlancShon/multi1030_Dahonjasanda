@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -17,9 +18,12 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+
 import com.multi.dahon.api.apiParsing;
+import com.multi.dahon.housing.model.repository.HousingInfoRespository;
 import com.multi.dahon.housing.model.service.HousingInfoByTypeServiceJPA;
 import com.multi.dahon.housing.model.service.HousingInfoServiceJPA;
+import com.multi.dahon.housing.model.vo.HouseCalendarParam;
 import com.multi.dahon.housing.model.vo.HousingInfoByTypeJPA;
 import com.multi.dahon.housing.model.vo.HousingInfoJPA;
 import com.multi.dahon.housing.model.vo.HousingMapPram;
@@ -39,7 +43,9 @@ public class HousingRestController {
 		
 		@Autowired
 		private HousingInfoByTypeServiceJPA typeService;
-
+		
+		@Autowired
+	    private HousingInfoRespository housingInfoRepository;
 	
 		List<HousingInfoJPA> infoList = apiParsing.allOfInfo();
 		List<HousingInfoByTypeJPA> typeList = apiParsing.allOfInfoByType();
@@ -64,6 +70,17 @@ public class HousingRestController {
 			typeService.save(typeList);
 		}
 		
+		  
+
+		    @GetMapping("/calendar/list")
+		    public List<HouseCalendarParam> getAllHousingInfo() {
+		        return housingInfoRepository.findAllHousingInfo().stream()
+		                .map(data -> new HouseCalendarParam(
+		                        (String) data[0],
+		                        (String) data[1],
+		                        (String) data[2]))
+		                .collect(Collectors.toList());
+		    }
 		
 		
 		@GetMapping(path = "/housingList")
