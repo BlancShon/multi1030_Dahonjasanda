@@ -147,7 +147,7 @@ const CaseStudies = () => {
                     </Typography>
                   </Box>
                   <Box>
-                    
+
                     <Divider
                       sx={{
                         marginX: 2,
@@ -163,7 +163,7 @@ const CaseStudies = () => {
                       justifyContent={'space-between'}
                       alignItems={'center'}
                     >
-                      
+
                       <Box display={'flex'} alignItems={'center'}>
                         <Avatar
                           src={item.author.avatar}

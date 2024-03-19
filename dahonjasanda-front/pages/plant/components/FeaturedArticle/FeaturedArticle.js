@@ -9,7 +9,7 @@ import Avatar from '@mui/material/Avatar';
 import Chip from '@mui/material/Chip';
 
 const mock = {
-  
+
   image: 'https://previews.123rf.com/images/denayunebgt/denayunebgt2110/denayunebgt211000181/175743056-%EC%A4%91%EC%9A%94%ED%95%9C-%EB%AC%B8%EC%A0%9C-%EC%8B%9C%EA%B0%84-%EA%B4%80%EB%A6%AC-%EC%9E%91%EC%97%85-%EC%A1%B0%EC%A7%81-%EB%B0%8F-%EC%83%9D%ED%99%9C-%EC%9D%B4%EB%B2%A4%ED%8A%B8-%EC%95%8C%EB%A6%BC-%EB%98%90%EB%8A%94-%ED%9C%B4%EC%9D%BC%EC%9D%84-%EA%B3%84%ED%9A%8D%ED%95%98%EA%B8%B0-%EC%9C%84%ED%95%9C-%EC%9B%90-%EA%B8%B0%ED%98%B8%EA%B0%80-%EC%9E%88%EB%8A%94-%EB%8B%AC%EB%A0%A5-%EB%B0%B0%EA%B2%BD-%EB%B2%A1%ED%84%B0.jpg',
   description:
     '바쁜 현대 사회에서 필요한 일자를 기억못하는 건 당연하죠! 더욱 의미있는 하루하루가 되도록 반려 식물과의 기념일과 성장 일기를 기록하세요!',
@@ -24,7 +24,7 @@ const mock = {
 const FeaturedArticle = () => {
   const theme = useTheme();
   return (
-    
+
     <Box>
       <Box
         component={'a'}
@@ -40,7 +40,7 @@ const FeaturedArticle = () => {
           },
         }}
       >
-      <Box
+        <Box
           component={Card}
           width={1}
           height={1}
@@ -48,7 +48,7 @@ const FeaturedArticle = () => {
           display={'flex'}
           flexDirection={{ xs: 'column', md: 'row-reverse' }}
           sx={{ backgroundImage: 'none' }}
-      >
+        >
           <Box
             sx={{
               width: { xs: 1, md: '50%' },
@@ -106,19 +106,19 @@ const FeaturedArticle = () => {
           >
             <Box>
               <Typography variant={'h5'} gutterBottom >
-                {mock.title} 
+                {mock.title}
               </Typography><br></br>
               <Typography color="text.secondary" >{mock.description}</Typography>
             </Box>
             <Box>
-              <Divider sx={{ marginY: 2}}/>
+              <Divider sx={{ marginY: 2 }} />
               <Box
                 marginY={3}
                 display={'flex'}
                 justifyContent={'space-between'}
                 alignItems={'center'}
               >
-              <Avatar src={mock.author.avatar} sx={{ marginRight: -39 }} />
+                <Avatar src={mock.author.avatar} sx={{ marginRight: -39 }} />
                 <Box display={'flex'} alignItems={'center'}>
                   <Typography color={'text.secondary'}>
                     {mock.author.name}

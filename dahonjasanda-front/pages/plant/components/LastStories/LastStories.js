@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useTheme } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
@@ -96,6 +96,7 @@ const mock = [
 // 박스 구성
 const LastStories = () => {
   const theme = useTheme();
+  // const [isJsh, setIsJsh] = useState(true);
   return (
     
     <Box>
@@ -106,6 +107,8 @@ const LastStories = () => {
         flexDirection={{ xs: 'column', sm: 'row' }}
         marginBottom={4}
       >
+              {/* {isJsh ? <div>장성희</div> : <div>김남훈</div>}
+      <div onClick={() => setIsJsh((prev) => !prev)}>바꾼다</div> */}
         <Box>
           <Typography fontWeight={700} variant={'h6'} gutterBottom>
             다양한 반려 식물을 만나보세요
