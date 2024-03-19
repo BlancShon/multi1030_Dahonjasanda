@@ -13,9 +13,9 @@ const ResultCard = ({key, finName, prdtName, prdtInfo1, prdtInfo2, prdtInfo3, pr
     return (
         <Col>
             <Card style={{backgroundColor: '#f5f5f5', border: '2px solid black', cursor: 'pointer', minWidth: '180px'}} elevation={3}>
-                <Card.Header className=' text-black fw-bold' >{finName}</Card.Header>
+                <Card.Header className=' text-black fw-bold' as='h5' >{finName}</Card.Header>
                 <Card.Body>
-                    <Card.Title as='h6'><b>{prdtName}</b></Card.Title>
+                    <Card.Title as='h5'><b>{prdtName}</b></Card.Title>
                         <ul>
                             <li>{prdtInfo1}</li><hr></hr>
                             <li>{prdtInfo2}</li><hr></hr>

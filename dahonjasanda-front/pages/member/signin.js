@@ -1,4 +1,5 @@
 'use client';
+import { useEffect, useState } from 'react';
 
 import * as React from 'react';
 import Avatar from '@mui/material/Avatar';
@@ -19,15 +20,17 @@ import axios from 'axios';
 
 const defaultTheme = createTheme();
 
+
+
 export default function SignIn() {
     const handleSubmit = (event) => {
         event.preventDefault();
         const form = new FormData(event.currentTarget);
         login(form);
     };
-    
-    // async : 비동기식 키워드, 
-    const login = async (form) => {
+
+     // async : 비동기식 키워드, 
+     const login = async (form) => {
         try {
             const response = await axios.post('http://localhost/memberRest/login', 
                                                         form,  { withCredentials: true });
@@ -44,9 +47,12 @@ export default function SignIn() {
         }
     }
 
+
     return (
-        <ThemeProvider theme={defaultTheme}>
-            <Container component="main" maxWidth="xs">
+        <ThemeProvider theme={defaultTheme} >
+            <div style={{ height : '100%', backgroundImage: 'url(/images/myImages/loginBG.jpg)', backgroundSize: '140%'}} >
+            <div className='col-5  my-2 mx-auto' style={{ backgroundColor: '#f0f0f0', borderRadius : "30px", height : '80%' }}>
+            <Container component="main" maxWidth="xs" style={{height : '100%'}}>
                 <CssBaseline />
                 <Box
                     sx={{
@@ -59,8 +65,8 @@ export default function SignIn() {
                     <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
                         <LockOutlinedIcon />
                     </Avatar>
-                    <Typography component="h1" variant="h5">
-                        Sign in
+                    <Typography component="h1" variant="h3" className='mt-4'>
+                        로그인
                     </Typography>
                     <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
                         <TextField
@@ -93,23 +99,25 @@ export default function SignIn() {
                             variant="contained"
                             sx={{ mt: 3, mb: 2 }}
                         >
-                            Sign In
+                            로그인 하기
                         </Button>
                         <Grid container>
                             <Grid item xs>
                                 <Link href="#" variant="body2">
-                                    Forgot password?
+                                    비밀번호를 잊으셨나요?
                                 </Link>
                             </Grid>
                             <Grid item>
                                 <Link href="#" variant="body2">
-                                    {"Don't have an account? Sign Up"}
+                                    {"아직 가입하지 않으셨나요?"}
                                 </Link>
                             </Grid>
                         </Grid>
                     </Box>
                 </Box>
             </Container>
+                </div>
+                </div>
         </ThemeProvider>
     );
 }
