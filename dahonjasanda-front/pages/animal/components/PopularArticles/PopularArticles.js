@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useTheme } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
@@ -11,95 +11,43 @@ import Grid from '@mui/material/Grid';
 import Avatar from '@mui/material/Avatar';
 import Pagination from '@mui/material/Pagination';
 
-// 박스에 사진 및 텍스트 추가
-
 const mock = [
   {
-    image: 'https://www.nongsaro.go.kr/cms_contents/301/19715_MF_REPR_ATTACH_01.jpg',
+    image: 'https://assets.maccarianagency.com/backgrounds/img17.jpg',
     description:
-      '농사로 식물 관련 설명',
-    title: '농사로 식물 이름1',
+      'Sed ut perspiciatis unde omnis iste natus error sit voluptatem',
+    title: 'Eiusmod tempor incididunt',
     author: {
-      name: '이름',
+      name: 'Clara Bertoletti',
       avatar: 'https://assets.maccarianagency.com/avatars/img1.jpg',
     },
   },
   {
-    image: 'https://www.nongsaro.go.kr/cms_contents/1122/204870_MF_BIMG_01.jpg',
-    description: '농사로 식물 관련 설명',
-    title: '농사로 식물 이름2',
+    image: 'https://assets.maccarianagency.com/backgrounds/img13.jpg',
+    description: 'At vero eos et accusamus et iusto odio dignissimos ducimus',
+    title: 'Sed ut perspiciatis',
     author: {
-      name: '이름',
+      name: 'Jhon Anderson',
       avatar: 'https://assets.maccarianagency.com/avatars/img2.jpg',
     },
     date: '02 Aug',
   },
   {
-    image: 'https://www.nongsaro.go.kr/cms_contents/1122/204870_MF_BIMG_01.jpg',
-    description: '농사로 식물 관련 설명',
-    title: '농사로 식물 이름3',
+    image: 'https://assets.maccarianagency.com/backgrounds/img14.jpg',
+    description:
+      'Qui blanditiis praesentium voluptatum deleniti atque corrupti',
+    title: 'Unde omnis iste natus',
     author: {
-      name: '이름',
-      avatar: 'https://assets.maccarianagency.com/avatars/img2.jpg',
+      name: 'Chary Smith',
+      avatar: 'https://assets.maccarianagency.com/avatars/img3.jpg',
     },
-    date: '02 Aug',
-  },
-  {
-    image: 'https://www.nongsaro.go.kr/cms_contents/1122/204870_MF_BIMG_01.jpg',
-    description: '농사로 식물 관련 설명',
-    title: '농사로 식물 4',
-    author: {
-      name: '이름',
-      avatar: 'https://assets.maccarianagency.com/avatars/img2.jpg',
-    },
-    date: '02 Aug',
-  },
-  {
-    image: 'https://www.nongsaro.go.kr/cms_contents/1122/204870_MF_BIMG_01.jpg',
-    description: '농사로 식물 관련 설명',
-    title: '농사로 식물 이름5',
-    author: {
-      name: '이름',
-      avatar: 'https://assets.maccarianagency.com/avatars/img2.jpg',
-    },
-    date: '02 Aug',
-  },
-  {
-    image: 'https://www.nongsaro.go.kr/cms_contents/1122/204870_MF_BIMG_01.jpg',
-    description: '농사로 식물 관련 설명',
-    title: '농사로 식물 이름6',
-    author: {
-      name: '이름',
-      avatar: 'https://assets.maccarianagency.com/avatars/img2.jpg',
-    },
-    date: '02 Aug',
-  },
-  {
-    image: 'https://www.nongsaro.go.kr/cms_contents/1122/204870_MF_BIMG_01.jpg',
-    description: '농사로 식물 관련 설명',
-    title: '농사로 식물 이름6',
-    author: {
-      name: '이름',
-      avatar: 'https://assets.maccarianagency.com/avatars/img2.jpg',
-    },
-    date: '02 Aug',
-  },  {
-    image: 'https://www.nongsaro.go.kr/cms_contents/1122/204870_MF_BIMG_01.jpg',
-    description: '농사로 식물 관련 설명',
-    title: '농사로 식물 이름6',
-    author: {
-      name: '이름',
-      avatar: 'https://assets.maccarianagency.com/avatars/img2.jpg',
-    },
-    date: '02 Aug',
+    date: '05 Mar',
   },
 ];
-// 박스 구성
-const LastStories = () => {
+
+const PopularArticles = () => {
   const theme = useTheme();
-  // const [isJsh, setIsJsh] = useState(true);
   return (
-    
     <Box>
       <Box
         display={'flex'}
@@ -108,39 +56,34 @@ const LastStories = () => {
         flexDirection={{ xs: 'column', sm: 'row' }}
         marginBottom={4}
       >
-              {/* {isJsh ? <div>장성희</div> : <div>김남훈</div>}
-      <div onClick={() => setIsJsh((prev) => !prev)}>바꾼다</div> */}
         <Box>
           <Typography fontWeight={700} variant={'h6'} gutterBottom>
-            다양한 반려 식물을 만나보세요
+            인기 게시글
           </Typography>
           <Typography color={'text.secondary'}>
-            식물 종류, 잎의 색상 등 다양하게 검색이 가능합니다.
+            1인 가구 회원들이 올려놓은 반려동물 소개글입니다
           </Typography>
         </Box>
         <Box display="flex" marginTop={{ xs: 2, md: 0 }}>
-
-          {/* viewAll 삭제 */}
-          {/* <Box
+          <Box
             component={Button}
             variant="outlined"
             color="primary"
             size="large"
             marginLeft={2}
           >
-          </Box> */}
+            전체보기
+          </Box>
         </Box>
       </Box>
-      <Grid container spacing={4} >
-        {/* mock 데이터를 갖고옴 */}
+      <Grid container spacing={4}>
         {mock.map((item, i) => (
-          <Grid item xs={12} sm={6} md={3} key={i} sx={{marginBottom:-20}} >
-            
+          <Grid item xs={12} sm={i === 0 ? 12 : 6} md={i < 2 ? 4 : 4} key={i}>
             <Box
               component={'a'}
               href={''}
               display={'block'}
-              width={1}  //? 0.8 이나..1?
+              width={1}
               height={1}
               sx={{
                 textDecoration: 'none',
@@ -150,12 +93,11 @@ const LastStories = () => {
                 },
               }}
             >
-              
               <Box
                 component={Card}
                 width={1}
-                height={0.7}
-                boxShadow={7}
+                height={1}
+                boxShadow={4}
                 display={'flex'}
                 flexDirection={'column'}
                 sx={{ backgroundImage: 'none' }}
@@ -201,31 +143,38 @@ const LastStories = () => {
                 </Box>
                 <Box flexGrow={1} />
                 <Box padding={2} display={'flex'} flexDirection={'column'}>
+                  <Box marginBottom={2}>
+                    <Divider />
+                  </Box>
                   <Box
                     display={'flex'}
                     justifyContent={'space-between'}
                     alignItems={'center'}
                   >
                     <Box display={'flex'} alignItems={'center'}>
+                      <Avatar
+                        src={item.author.avatar}
+                        sx={{ marginRight: 1 }}
+                      />
                       <Typography color={'text.secondary'}>
+                        {item.author.name}
                       </Typography>
                     </Box>
+                    <Typography color={'text.secondary'}>
+                      {item.date}
+                    </Typography>
                   </Box>
-                  
                 </Box>
-                
               </Box>
-              
             </Box>
-            
           </Grid>
         ))}
-      <Grid item container justifyContent={'center'} xs={12}>
-            <Pagination count={10} size={'large'} color="primary" />
-          </Grid>
+        {/* <Grid item container justifyContent={'center'} xs={12}>
+          <Pagination count={10} size={'large'} color="primary" />
+        </Grid> */}
       </Grid>
     </Box>
   );
 };
 
-export default LastStories;
+export default PopularArticles;

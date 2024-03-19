@@ -88,7 +88,7 @@ const PopularNews = () => {
                 {/* 제목 */}
                 {/* [반려식물 관리 방법] <br></br>  */}
                 <br></br>
-                <EventNoteIcon fontSize='large'>
+                <EventNoteIcon fontSize='large' sx={{ color: "brown" }}>
           {/* credit: plus icon from https://heroicons.com/ */}
           <svg
             xmlns="http://www.w3.org/2000/svg"

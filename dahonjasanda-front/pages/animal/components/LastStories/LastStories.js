@@ -14,84 +14,69 @@ import Pagination from '@mui/material/Pagination';
 // 박스에 사진 및 텍스트 추가
 
 const mock = [
-  {
-    image: 'https://www.nongsaro.go.kr/cms_contents/301/19715_MF_REPR_ATTACH_01.jpg',
+  { //popfile ㅣ이미지
+    image: 'http://www.animal.go.kr/files/shelter/2021/12/202201041101258.png',
     description:
-      '농사로 식물 관련 설명',
-    title: '농사로 식물 이름1',
-    author: {
-      name: '이름',
+      '유기견 specialMark 관련 설명',
+    title: '품종',
+    name: '나이',
       avatar: 'https://assets.maccarianagency.com/avatars/img1.jpg',
-    },
   },
-  {
-    image: 'https://www.nongsaro.go.kr/cms_contents/1122/204870_MF_BIMG_01.jpg',
-    description: '농사로 식물 관련 설명',
-    title: '농사로 식물 이름2',
-    author: {
-      name: '이름',
-      avatar: 'https://assets.maccarianagency.com/avatars/img2.jpg',
-    },
-    date: '02 Aug',
+  { //popfile ㅣ이미지
+    image: 'http://www.animal.go.kr/files/shelter/2021/12/202201041101258.png',
+    description:
+      '유기견 specialMark 관련 설명',
+    title: '품종',
+    name: '나이',
+      avatar: 'https://assets.maccarianagency.com/avatars/img1.jpg',
   },
-  {
-    image: 'https://www.nongsaro.go.kr/cms_contents/1122/204870_MF_BIMG_01.jpg',
-    description: '농사로 식물 관련 설명',
-    title: '농사로 식물 이름3',
-    author: {
-      name: '이름',
-      avatar: 'https://assets.maccarianagency.com/avatars/img2.jpg',
-    },
-    date: '02 Aug',
+  { //popfile ㅣ이미지
+    image: 'http://www.animal.go.kr/files/shelter/2021/12/202201041101258.png',
+    description:
+      '유기견 specialMark 관련 설명',
+    title: '품종',
+    name: '나이',
+      avatar: 'https://assets.maccarianagency.com/avatars/img1.jpg',
   },
-  {
-    image: 'https://www.nongsaro.go.kr/cms_contents/1122/204870_MF_BIMG_01.jpg',
-    description: '농사로 식물 관련 설명',
-    title: '농사로 식물 4',
-    author: {
-      name: '이름',
-      avatar: 'https://assets.maccarianagency.com/avatars/img2.jpg',
-    },
-    date: '02 Aug',
+  { //popfile ㅣ이미지
+    image: 'http://www.animal.go.kr/files/shelter/2021/12/202201041101258.png',
+    description:
+      '유기견 specialMark 관련 설명',
+    title: '품종',
+    name: '나이',
+      avatar: 'https://assets.maccarianagency.com/avatars/img1.jpg',
   },
-  {
-    image: 'https://www.nongsaro.go.kr/cms_contents/1122/204870_MF_BIMG_01.jpg',
-    description: '농사로 식물 관련 설명',
-    title: '농사로 식물 이름5',
-    author: {
-      name: '이름',
-      avatar: 'https://assets.maccarianagency.com/avatars/img2.jpg',
-    },
-    date: '02 Aug',
+  { //popfile ㅣ이미지
+    image: 'http://www.animal.go.kr/files/shelter/2021/12/202201041101258.png',
+    description:
+      '유기견 specialMark 관련 설명',
+    title: '품종',
+    name: '나이',
+      avatar: 'https://assets.maccarianagency.com/avatars/img1.jpg',
   },
-  {
-    image: 'https://www.nongsaro.go.kr/cms_contents/1122/204870_MF_BIMG_01.jpg',
-    description: '농사로 식물 관련 설명',
-    title: '농사로 식물 이름6',
-    author: {
-      name: '이름',
-      avatar: 'https://assets.maccarianagency.com/avatars/img2.jpg',
-    },
-    date: '02 Aug',
+  { //popfile ㅣ이미지
+    image: 'http://www.animal.go.kr/files/shelter/2021/12/202201041101258.png',
+    description:
+      '유기견 specialMark 관련 설명',
+    title: '품종',
+    name: '나이',
+      avatar: 'https://assets.maccarianagency.com/avatars/img1.jpg',
   },
-  {
-    image: 'https://www.nongsaro.go.kr/cms_contents/1122/204870_MF_BIMG_01.jpg',
-    description: '농사로 식물 관련 설명',
-    title: '농사로 식물 이름6',
-    author: {
-      name: '이름',
-      avatar: 'https://assets.maccarianagency.com/avatars/img2.jpg',
-    },
-    date: '02 Aug',
-  },  {
-    image: 'https://www.nongsaro.go.kr/cms_contents/1122/204870_MF_BIMG_01.jpg',
-    description: '농사로 식물 관련 설명',
-    title: '농사로 식물 이름6',
-    author: {
-      name: '이름',
-      avatar: 'https://assets.maccarianagency.com/avatars/img2.jpg',
-    },
-    date: '02 Aug',
+  { //popfile ㅣ이미지
+    image: 'http://www.animal.go.kr/files/shelter/2021/12/202201041101258.png',
+    description:
+      '유기견 specialMark 관련 설명',
+    title: '품종',
+    name: '나이',
+      avatar: 'https://assets.maccarianagency.com/avatars/img1.jpg',
+  },
+  { //popfile ㅣ이미지
+    image: 'http://www.animal.go.kr/files/shelter/2021/12/202201041101258.png',
+    description:
+      '유기견 specialMark 관련 설명',
+    title: '품종',
+    name: '나이',
+      avatar: 'https://assets.maccarianagency.com/avatars/img1.jpg',
   },
 ];
 // 박스 구성
@@ -112,10 +97,10 @@ const LastStories = () => {
       <div onClick={() => setIsJsh((prev) => !prev)}>바꾼다</div> */}
         <Box>
           <Typography fontWeight={700} variant={'h6'} gutterBottom>
-            다양한 반려 식물을 만나보세요
+            가족을 기다리는 반려동물들을 만나보세요,
           </Typography>
           <Typography color={'text.secondary'}>
-            식물 종류, 잎의 색상 등 다양하게 검색이 가능합니다.
+            품종, 유기 날짜, 시도 등으로 검색이 가능합니다.
           </Typography>
         </Box>
         <Box display="flex" marginTop={{ xs: 2, md: 0 }}>
@@ -163,6 +148,7 @@ const LastStories = () => {
                 <CardMedia
                   image={item.image}
                   title={item.title}
+                  name={item.name}
                   sx={{
                     height: { xs: 300, md: 360 },
                     position: 'relative',
@@ -193,7 +179,8 @@ const LastStories = () => {
                 </CardMedia>
                 <Box component={CardContent} position={'relative'}>
                   <Typography variant={'h6'} gutterBottom>
-                    {item.title}
+                    품종 : {item.title} <br></br>
+                    나이 : {item.name}
                   </Typography>
                   <Typography color="text.secondary">
                     {item.description}
