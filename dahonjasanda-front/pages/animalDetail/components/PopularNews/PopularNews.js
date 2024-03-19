@@ -230,7 +230,7 @@ const PopularNews = () => {
             order={{ xs: 1, md: 2 }}
           >
             <Container>
-              <LeftSide />
+              <LeftSide/>
             </Container>
           </Box>
           <Box

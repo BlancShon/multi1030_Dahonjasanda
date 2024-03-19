@@ -15,7 +15,7 @@ import {
   SimilarStories,
 } from './components';
 
-const BlogArticle = () => {
+const animalDetailMain = () => {
   const theme = useTheme();
   const isMd = useMediaQuery(theme.breakpoints.up('md'), {
     defaultMatches: true,
@@ -89,4 +89,4 @@ const BlogArticle = () => {
   );
 };
 
-export default BlogArticle;
+export default animalDetailMain;
