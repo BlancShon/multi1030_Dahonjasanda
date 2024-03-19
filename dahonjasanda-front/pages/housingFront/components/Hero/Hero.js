@@ -43,6 +43,7 @@ const Hero = () => {
                         theme.palette.secondary.main,
                         0.3
                       )} 0%)`,
+                      fontSize: "1.13em", // 폰트 크기 키움
                     }}
                   >
                     다-혼자산다 청약홈
@@ -54,9 +55,9 @@ const Hero = () => {
                   variant="h6"
                   component="p"
                   color="text.secondary"
-                  sx={{ fontWeight: 400 }}
+                  sx={{ fontWeight: 400, fontSize: "2em" }}
                 >
-                  오늘의 청약정보를 다혼자산다와 함께 확인해보세요!
+                  청약정보도 다혼자산다와 함께
                 </Typography>
               </Box>
               <Box

@@ -56,10 +56,10 @@ const Contact = () => {
     return (
       <Box>
         <Box marginBottom={2}>
-          <Typography variant={"h4"} sx={{ fontWeight: 700 }} gutterBottom>
+          <Typography variant={"h3"} sx={{ fontWeight: 700 }} gutterBottom>
             청약지도
           </Typography>
-          <Typography color="text.secondary">
+          <Typography variant={"h6"} color="text.secondary">
             청약지도를 통해 분양 상세정보와 공급 일정, 입주자 모집 공고의 주요
             정보를 손쉽게 확인하세요. 지역별로 다양한 부동산 옵션을 비교하고,
             실시간 업데이트로 최신 정보를 놓치지 마세요.

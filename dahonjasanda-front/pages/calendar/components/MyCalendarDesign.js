@@ -35,7 +35,6 @@ const MyCalendarDesign = () => {
       </p>
       <br />
       <div style={buttonContainerStyle}>
-        <Button backgroundColor="#04AA6D" label="전체보기" />
         <Button backgroundColor="#008CBA" label="아파트(분양)" />
         <Button backgroundColor="#f44336" label="신혼희망타운(임대)" />
         <Button backgroundColor="#555555" label="공공지원민간임대" />

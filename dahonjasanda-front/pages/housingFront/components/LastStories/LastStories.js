@@ -42,10 +42,10 @@ const LastStories = () => {
         marginBottom={4}
       >
         <Box>
-          <Typography fontWeight={700} variant={"h6"} gutterBottom>
-            Home-
+          <Typography fontWeight={600} variant={"h4"} gutterBottom>
+            청약홈
           </Typography>
-          <Typography color={"text.secondary"}>
+          <Typography variant={"h5"} color={"text.secondary"}>
             오늘의 청약 정보를 카테고리 별로 확인해보세요!
           </Typography>
         </Box>
@@ -122,10 +122,15 @@ const LastStories = () => {
                   <Typography variant={"h6"} gutterBottom>
                     {item.title}
                   </Typography>
-                  <Typography color="text.secondary">
+                  <Typography
+                    variant={"body1"}
+                    color="text.secondary"
+                    style={{ fontSize: "1.2em", marginBottom: "0.8em" }}
+                  >
                     {item.description}
                   </Typography>
                 </Box>
+
                 <Box flexGrow={1} />
                 <Box padding={2} display={"flex"} flexDirection={"column"}>
                   <Box marginBottom={2}>

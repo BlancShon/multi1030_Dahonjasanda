@@ -46,7 +46,7 @@ const CaseStudies = () => {
         marginBottom={4}
       >
         <Box>
-          <Typography fontWeight={700} variant={"h6"} gutterBottom>
+          <Typography fontWeight={700} variant={"h4"} gutterBottom>
             오늘의 청약 뉴스 확인해보세요!
           </Typography>
         </Box>

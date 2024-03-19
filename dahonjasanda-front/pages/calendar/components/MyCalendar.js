@@ -25,10 +25,33 @@ const MyCalendar = () => {
         response.data.map((item) => ({
           title: item.title,
           date: item.date,
+          color: getCategoryColor(item.category), // 카테고리에 따른 색상 설정
         }))
       );
     } catch (error) {
       console.error("Error fetching calendar data:", error);
+    }
+  };
+
+  // 카테고리에 따라 색상 반환하는 함수
+  const getCategoryColor = (category) => {
+    switch (category) {
+      case "APT":
+        return "#008CBA";
+      case "신혼희망타운":
+        return "#f44336";
+      case "공공지원민간임대":
+        return "#555555";
+      case "도시형/오피스텔/생활숙박시설/민간임대":
+        return "blue";
+      case "계약취소주택":
+        return "indigo";
+      case "무순위/잔여세대":
+        return "purple";
+      case "임의공급":
+        return "green";
+      default:
+        return "black"; // 기본값
     }
   };
 
@@ -55,7 +78,7 @@ const MyCalendar = () => {
           locale="ko"
           className={styles.fullCalendar}
           events={events}
-          style={{ gridColumn: "2" }}
+          style={{ gridColumn: "2", width: "100%" }} // 전체 너비로 설정
         />
         <div></div>
       </div>

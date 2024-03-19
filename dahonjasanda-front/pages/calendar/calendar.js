@@ -7,14 +7,21 @@ import Container from "components/Container";
 import MyCalendar from "./components/MyCalendar";
 import "./components/MyCalendar.module.css";
 
-const calendar = () => {
+const Calendar = () => {
   return (
     <Main>
-      <Container>
-        <MyCalendar />
-      </Container>
+      <Box
+        sx={{
+          backgroundImage: "linear-gradient(#87CEEB, white, white, white)",
+          minHeight: "100vh",
+        }}
+      >
+        <Container>
+          <MyCalendar />
+        </Container>
+      </Box>
     </Main>
   );
 };
 
-export default calendar;
+export default Calendar;

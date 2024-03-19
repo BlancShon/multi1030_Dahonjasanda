@@ -22,11 +22,15 @@ const WithLeftAlignedDescriptionBox = () => {
       <Grid container spacing={4}>
         <Grid item xs={12} md={6}>
           <Box>
-            <Typography variant={"h4"} gutterBottom sx={{ fontWeight: 700 }}>
-              다혼자산다 with 청약
+            <Typography
+              variant={"h4"}
+              gutterBottom
+              sx={{ fontWeight: 700, fontSize: "2.5em" }}
+            >
+              다혼자산다 with 청약 DATA
             </Typography>
             <Typography variant={"h6"} component={"p"} color={"text.secondary"}>
-              실시간으로 업데이트 되는 정보를 확인해보세요
+              실시간으로 업데이트 되는 청약 데이터를 한눈에!
             </Typography>
           </Box>
         </Grid>
