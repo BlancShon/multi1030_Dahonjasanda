@@ -46,7 +46,7 @@ const pages = {
     },
     {
       title: "AnimalDetail",
-      href: "/alantDetail",
+      href: "/animalDetail",
     },
     {
       title: "PlantBoard",
