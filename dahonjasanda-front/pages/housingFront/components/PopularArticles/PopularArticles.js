@@ -7,18 +7,21 @@ import Typography from "@mui/material/Typography";
 const images = [
   {
     url: "https://media.istockphoto.com/id/1398319735/vector/charts-abstract-background.jpg?s=612x612&w=0&k=20&c=mJuLq6DBaiYLsEI60oOXegdfjWX2AcOA0wjZ9Cqr_S0=",
-    title: "청약경쟁률 확인 ",
+    title: "청약 경쟁률 확인 ",
     width: "30%",
+    link: "https://www.applyhome.co.kr/ai/aia/selectAPTLttotPblancListView.do", // 첫 번째 이미지의 링크
   },
   {
     url: "https://www.hapt.co.kr/news/photo/202305/158843_29118_1852.jpg",
     title: "청약 당첨자 확인",
     width: "40%",
+    link: "https://www.applyhome.co.kr/wa/waa/selectAptPrzwinDescList.do", // 두 번째 이미지의 링크
   },
   {
     url: "https://t1.daumcdn.net/thumb/R720x0.fjpg/?fname=http://t1.daumcdn.net/brunch/service/user/4Zii/image/7GxoXiPjDM5dIM67aa_IP0k5KAg.jpg",
     title: "청약-소통방",
     width: "30%",
+    link: "https://www.applyhome.co.kr/cu/cua/selectNoticeListView.do#", // 세 번째 이미지의 링크
   },
 ];
 
@@ -89,7 +92,13 @@ const ImageMarked = styled("span")(({ theme }) => ({
 const PopularArticles = () => {
   return (
     <Box
-      sx={{ display: "flex", flexWrap: "wrap", minWidth: 300, width: "100%" }}
+      sx={{
+        display: "flex",
+        flexWrap: "wrap",
+        minWidth: 300,
+        width: "100%",
+        marginTop: 4,
+      }}
     >
       {images.map((image) => (
         <ImageButton
@@ -98,6 +107,7 @@ const PopularArticles = () => {
           style={{
             width: image.width,
           }}
+          href={image.link} // 이미지를 클릭하여 이동할 링크
         >
           <ImageSrc style={{ backgroundImage: `url(${image.url})` }} />
           <ImageBackdrop className="MuiImageBackdrop-root" />
@@ -111,6 +121,7 @@ const PopularArticles = () => {
                 p: 4,
                 pt: 2,
                 pb: (theme) => `calc(${theme.spacing(1)} + 6px)`,
+                fontSize: "1.2em", // 폰트 크기를 키웁니다
               }}
             >
               {image.title}
