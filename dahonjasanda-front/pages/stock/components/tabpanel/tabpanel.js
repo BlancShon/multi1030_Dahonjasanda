@@ -17,18 +17,19 @@ export default function LabTabs({ list, slist }) {
   };
 
   return (
-    <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', typography: 'body1' }}>
+    <Box sx={{ width: '100%', flexDirection: 'column', alignItems: 'center', typography: 'body1' }}>
       <TabContext value={value}>
         <Box sx={{ borderBottom: 1, borderColor: 'divider', width: '100%' }}>
-          <TabList onChange={handleChange} aria-label="lab API tabs example">
-            <Tab label="자산" value="1" sx={{ width: '50%' }}/>
-            <Tab label="매매 일지" value="2" sx={{ width: '50%' }}/>
-            <Tab label="뉴스" value="3" sx={{ width: '50%' }}/>
+          <TabList onChange={handleChange} aria-label="lab API tabs example" sx={{ display: 'flex', justifyContent: 'space-between' }}>
+            <Tab label="자산" value="1" sx={{ flex: 1, fontSize: '1.5rem', textAlign: 'center' }}/>
+            <Tab label="매매 일지" value="2" sx={{ flex: 1, fontSize: '1.5rem', textAlign: 'center' }}/>
+            <Tab label="뉴스" value="3" sx={{ flex: 1, fontSize: '1.5rem', textAlign: 'center' }}/>
+            <Tab label="경제용어" value="4" sx={{ flex: 1, fontSize: '1.5rem', textAlign: 'center' }}/>
           </TabList>
         </Box>
-        <Box>
+        <Box sx={{ width: '100%' }}>
             <TabPanel value="1">
-              <Box sx={{ width: '100%' }}>
+              <Box>
                 <StockList list={list}/>
               </Box>
             </TabPanel>
@@ -36,12 +37,15 @@ export default function LabTabs({ list, slist }) {
               <Box>
                 <InsertStock slist={slist}/>
               </Box>
-            </TabPanel>
+            </TabPanel >
             <TabPanel value="3">
               <Box>
                 <NewsPage />
               </Box>
-
+            </TabPanel>
+            <TabPanel value="4">
+              <Box>
+              </Box>
             </TabPanel>
         </Box>
       </TabContext>

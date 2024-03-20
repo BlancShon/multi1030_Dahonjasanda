@@ -35,7 +35,7 @@ function HeroSection({ imageUrl }) {
             <Container
                 zIndex={3}
                 position={'relative'}
-                minHeight={{ xs: 300, sm: 400, md: 600 }}
+                minHeight={{ xs: 200, sm: 300, md: 400 }}
                 maxHeight={600}
                 display={'flex'}
                 alignItems={'center'}

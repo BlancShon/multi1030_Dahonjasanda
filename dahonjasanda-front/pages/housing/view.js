@@ -1,98 +1,136 @@
 
 import { useEffect, useState } from 'react';
-import Header from '../../components/header';
+
 import axios from 'axios';
-import Col from 'react-bootstrap/Col';
-import Button from 'react-bootstrap/Button';
-import Row from 'react-bootstrap/Row'
+import { Card, Table } from "react-bootstrap"
 import { useRouter } from 'next/router';
-import Table from './react-table'; 
 
- const housingView = ({ houseManageNo }) => {
-    const router = useRouter();
-    const [housingType, setHousingType] = useState([]);
-    const [showNestedLayout, setShowNestedLayout] = useState(false);
-    
 
-   
 
-    useEffect(() => {
-        if (!router.isReady) {
-            return;
-        }
-        const { houseManageNo } = router.query;
-        getHousingType(houseManageNo);
-       
-    }, [router.isReady]);
 
-    useEffect(() => {
-        if (houseManageNo) {
-            getHousingType(houseManageNo);
-        }
-    }, [houseManageNo]);
+const HousingView = ({ houseManageNo, houseNm, hssplyAdres, cnstrctEntrpsNm, totSuplyHshldco, bsnsMbyNm, houseSecdNm }) => {
 
-    const getHousingType = async (houseManageNo) => {
-        try {
-            var url = 'http://localhost/housingType'
-            if(houseManageNo != null) {
-            url = url + '?houseManageNo=' + houseManageNo;
-            const response = await axios.get(url, { withCredentials: true });
-            console.log(response);
-            setHousingType(response.data.list);
-            //setTypeMap(response.data.listCount);
-        }
-           
-        } catch (e) {
-            console.log(e);
-        }
+
+ // console.log(houseManageNo)
+ // console.log(houseNm);
+  const router = useRouter();
+  const [housingType, setHousingType] = useState([]);
+
+
+  useEffect(() => {
+    if (!router.isReady) {
+      return;
     }
-
-    console.log(housingType);
-
-    const removeNestedLayout = () => {
-        router.back();
-       
-        // setShowNestedLayout(false); // Set showNestedLayout state to false to hide the nested layout
-      };
+    //console.log(houseManageNo);
 
 
-      const handleHouseNmClick = () => {
-        // Assuming 'address.houseNm' is a clickable element
-        // When clicked, toggle the visibility of the nested layout in MapComponent
-        // You can pass any necessary parameters if needed
-        router.push('/housingMap?showNestedLayout=true');
-    }; 
- 
- return (
+    getHousingType(houseManageNo);
+
+  }, [router.isReady]);
 
 
-     <>
-                <div className="main-content">
-            <h1>View Housing Details</h1>
-            {housingType && (
-                <ul>
-                    {housingType.map((type) => (
-                        <li key={type.id}>{type.name}</li>
-                    ))}
-                </ul>
-            )}
-        </div>
-        </>
+
+  const getHousingType = async (houseManageNo) => {
+    try {
+      var url = 'http://localhost/housingType'
+      if (houseManageNo != null) {
+        url = url + '?houseManageNo=' + houseManageNo;
+        console.log(houseManageNo);
+        const response = await axios.get(url, { withCredentials: true });
+        console.log(response.data.list);
+        setHousingType(response.data.list);
+
+      }
+
+    } catch (e) {
+      console.log(e);
+    }
+  }
+
+  const typeList = housingType.map((item) => ({
+    houseNm: item.houseNm, suplyHshldco: item.suplyHshldco, lttotTopAmount: item.lttotTopAmount
+  }))
+
+  //console.log(typeList);
+
+  const housingList = [houseNm, hssplyAdres, cnstrctEntrpsNm, totSuplyHshldco, bsnsMbyNm, houseSecdNm]
+  console.log(housingList);
+  //console.log(typeList)
 
 
-//     <>
-//     <div className="nested-layout left-side" style={{position: 'absolute', top: 0, left: 0, width: '350px', height: '100%', overflow: 'auto', zIndex:'1000', backgroundColor:'#fff', border:"1px solid #ccc", borderColor:"black"}}>
-          
+  return (
 
-         
-// <div style={{marginLeft: '272px'}}><button onClick={removeNestedLayout}>Remove</button></div>
-          
-// <Row>
-//   {/* <Table titles={titles} columns={columns} data={data} /> */}
-// </Row>
-// </div>  
-// </>
-)
+
+    <>
+      <div>
+
+        <Card className="border-0  mb-5" style={{ marginTop: '20px', height: '300px' }}>
+          <Card.Header className="bg-gray-100 py-4 border-0">
+            <div className="d-flex align-items-center justify-content-between">
+              <div>
+
+                <h4 className="mb-0">{houseNm}</h4>
+
+              </div>
+              {/* <Icon
+                          icon="wall-clock-1"
+                          className="svg-icon-light w-3rem h-3rem ms-3 text-muted"
+                        /> */}
+            </div>
+          </Card.Header>
+          <Card.Body>
+            <Table className="text-sm mb-0" style={{ height: '70px' }}>
+              <tbody>
+
+                <tr>
+                  <th className style={{ height: '70px', width: '100px' }}>
+                    공급규모
+                  </th>
+                  <td>
+                    {totSuplyHshldco}
+                  </td>
+                </tr>
+
+                <tr>
+                  <th style={{ height: '70px', width: '100px' }}>
+                    공급위치
+                  </th>
+                  <td>
+                    {hssplyAdres}
+                  </td>
+                </tr>
+
+                <tr>
+                  <th style={{ height: '70px', width: '100px' }}>
+                    시행사
+                  </th>
+                  <td>
+                    {bsnsMbyNm}
+                  </td>
+                </tr>
+
+                <tr>
+                  <th style={{ height: '70px', width: '100px' }}>
+                    주택종류
+                  </th>
+                  <td>
+                    {houseSecdNm}
+                  </td>
+                </tr>
+              </tbody>
+            </Table>
+            <div style={{}}><a href={'/housing/detailView?houseManageNo=' + houseManageNo}>자세히보기</a></div>
+          </Card.Body>
+        </Card>
+
+
+
+
+        {/* Add your view component content here */}
+      </div>
+    </>
+
+  )
 
 }
-export default housingView
+export default HousingView
