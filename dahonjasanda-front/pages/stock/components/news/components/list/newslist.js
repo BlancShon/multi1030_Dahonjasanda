@@ -43,7 +43,7 @@ const NewsList = ({ category }) => {
   const { articles } = response.data;
 
   const groupedArticles = [];
-  for(let i = 0; i < 10; i += 2) {
+  for(let i = 0; i < 6; i += 2) {
     groupedArticles.push(articles.slice(i, i + 2));
   }
 

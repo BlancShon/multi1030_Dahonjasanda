@@ -65,7 +65,7 @@ function MyStock() {
                 <PieChart labels={labels} series={series}/>
               </Box>
             </Box>
-            <Box>
+            <Box sx={{ width: '100%', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
               <LabTabs list={Stocks} slist={stock}/>
             </Box>
           </Container>

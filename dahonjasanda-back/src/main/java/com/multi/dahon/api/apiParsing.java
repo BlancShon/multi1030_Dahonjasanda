@@ -21,11 +21,12 @@ import com.multi.dahon.housing.model.vo.HousingInfoJPA;
 public class apiParsing {
 	
 	public static void main(String[] args) {
-		//allOfInfoByType();
-		//parseHousingInfo();
-		//parseHousingInfoType();
-		//houseNumFromHouseInfo();
-		//parseHousingInfoOfficeTelByType();
+//		allOfInfoByType();
+//		parseHousingInfo();
+//		parseHousingInfoType();
+//		houseNumFromHouseInfo();
+//		parseHousingInfoOfficeTelByType();
+		
 		
 		
 	}
