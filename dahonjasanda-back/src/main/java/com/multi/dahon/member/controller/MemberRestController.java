@@ -118,9 +118,10 @@ public class MemberRestController {
 			return ResponseEntity.status(HttpStatus.OK).body(map);
 		}
 
-		member.setMno(loginMember.getMno());
-		member.setPassword(loginMember.getPassword());
-		Member result = service.save(member);
+//		member.setMno(loginMember.getMno());
+//		member.setPassword(loginMember.getPassword());
+//		Member result = service.save(member);
+		Member result = service.update(member);
 		if (result != null) {
 			map.put("result", true);
 			map.put("member", result);

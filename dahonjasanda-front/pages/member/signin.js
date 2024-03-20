@@ -108,7 +108,7 @@ export default function SignIn() {
                                 </Link>
                             </Grid>
                             <Grid item>
-                                <Link href="#" variant="body2">
+                                <Link href="/member/signup" variant="body2">
                                     {"아직 가입하지 않으셨나요?"}
                                 </Link>
                             </Grid>
