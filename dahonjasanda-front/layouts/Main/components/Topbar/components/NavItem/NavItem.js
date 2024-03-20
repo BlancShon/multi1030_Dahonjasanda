@@ -50,8 +50,8 @@ const NavItem = ({ title, id, items, colorInvert = false }) => {
         <ExpandMoreIcon
           sx={{
             marginLeft: theme.spacing(1 / 4),
-            width: 16,
-            height: 16,
+            width: 20,
+            height: 20,
             transform: openedPopoverId === id ? 'rotate(180deg)' : 'none',
             color: linkColor,
           }}

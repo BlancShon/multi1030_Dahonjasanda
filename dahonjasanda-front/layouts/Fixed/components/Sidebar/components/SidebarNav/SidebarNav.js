@@ -9,6 +9,7 @@ import CloseIcon from '@mui/icons-material/Close';
 const SidebarNav = ({ pages, onClose }) => {
   const theme = useTheme();
   const [activeLink, setActiveLink] = useState('');
+  
   useEffect(() => {
     setActiveLink(window && window.location ? window.location.pathname : '');
   }, []);

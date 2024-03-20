@@ -48,23 +48,14 @@ const CaseStudies = () => {
         marginBottom={4}
       >
         <Box>
-          <Typography fontWeight={700} variant={'h6'} gutterBottom>
-            Case studies
+        <Typography fontWeight={700} variant={'h6'} gutterBottom>
+            새로운 가족을 위한 안내
           </Typography>
           <Typography color={'text.secondary'}>
-            In-depth looks at our work.
+            반려 동물, 치료 센터, 캘린더 등 가족을 위한 기타 안내 사항도 확인하세요!
           </Typography>
         </Box>
         <Box display="flex" marginTop={{ xs: 2, md: 0 }}>
-          <Box
-            component={Button}
-            variant="outlined"
-            color="primary"
-            size="large"
-            marginLeft={2}
-          >
-            View all
-          </Box>
         </Box>
       </Box>
       <Grid container spacing={4}>

@@ -25,7 +25,8 @@ const FeaturedArticle = () => {
   const theme = useTheme();
   return (
 
-    <Box>
+    <Box
+      marginTop={-12}>
       <Box
         component={'a'}
         href={''}

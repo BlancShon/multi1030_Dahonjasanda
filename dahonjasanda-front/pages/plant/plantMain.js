@@ -68,9 +68,6 @@ const plantMain = () => {
           ></path>
         </Box>
       </Box>
-      <Container>
-        <Newsletter />
-      </Container>
     </Main>
   );
 };

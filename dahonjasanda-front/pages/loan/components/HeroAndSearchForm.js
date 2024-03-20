@@ -90,7 +90,7 @@ const HeroAndSearchForm = ({selectedCategory='mortgages', onChangeCategoryHandle
                             <ButtonGroup aria-label='Pill solid button group' style={{ display: 'flex', width: '100%' }}>
                             {categories.map((category, indx) => (
                                     <div key={indx} style={{ display: 'flex', width: '100%' }} >
-                                         <Button style={{width: '100%', height: '70px', borderBottomLeftRadius: 0, borderBottomRightRadius: 0 }} className={indx === 0 ? ' rounded-end-0' : indx === 2 ? ' rounded-start-0' : ' rounded-end-0 rounded-start-0'}
+                                         <Button style={{width: '100%', height: '70px', borderBottomLeftRadius: 0, borderBottomRightRadius: 0, fontSize: '22px' }} className={indx === 0 ? ' rounded-end-0' : indx === 2 ? ' rounded-start-0' : ' rounded-end-0 rounded-start-0'}
                                           onClick={()=>onCategoryHandler(category.value)} variant={selectedCategory === category.value ? 'info': 'secondary' } >{category.title}</Button>
                                     </div>
                             ))}
@@ -106,12 +106,12 @@ const HeroAndSearchForm = ({selectedCategory='mortgages', onChangeCategoryHandle
                                     <InputGroup.Text className='text-muted ps-3'>
                                         <i className='fi-search'></i>
                                     </InputGroup.Text>
-                                    <FormControl aria-label='Search field' placeholder='What are you looking for?' value={keyword} onChange={(e)=> setKeyword(e.target.value)} />
+                                    <FormControl aria-label='Search field' placeholder='찾으시는 대출 키워드를 입력해보세요' value={keyword} onChange={(e)=> setKeyword(e.target.value)} />
                                     </InputGroup>
                                     <hr className='d-md-none my-2' />
                                     <div className='d-sm-flex'>
                                     
-                                        <Button size='lg'  variant='info' className='rounded-pill w-100 w-md-auto ms-sm-3' onClick={handleSearch}>Search</Button>
+                                        <Button size='lg'  variant='info' className='rounded-pill w-100 w-md-auto ms-sm-3' onClick={handleSearch}>검색하기</Button>
                                     </div>
                                 </FormGroup>
 

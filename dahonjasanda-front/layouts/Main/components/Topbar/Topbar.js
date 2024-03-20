@@ -5,6 +5,7 @@ import Button from "@mui/material/Button";
 import { alpha, useTheme } from "@mui/material/styles";
 import MenuIcon from "@mui/icons-material/Menu";
 import Typography from "@mui/material/Typography";
+import CircularProgress from '@mui/material/CircularProgress';
 
 import { NavItem } from "./components";
 import axios from "axios";
@@ -72,8 +73,8 @@ const Topbar = ({ onSidebarOpen, pages, colorInvert = false }) => {
               ? "/favicon/logo.png"
               : "/favicon/logo.png"
           }
-          height={0.5}
-          width={0.5}
+          height={70}
+          // width={0.5}
         />
         <Typography fontWeight={700} marginLeft={1} sx={{ whiteSpace: 'nowrap', fontSize: '1.5rem', color: 'black' }}>
           다혼자산다
@@ -123,16 +124,34 @@ const Topbar = ({ onSidebarOpen, pages, colorInvert = false }) => {
           />
         </Box>
         <Box marginLeft={4}>
-          <Button
-            variant="contained"
-            color="primary"
-            component="a"
-            target="blank"
-            href="https://mui.com/store/items/the-front-landing-page/"
-            size="large"
-          >
-            로그인
-          </Button>
+          {loginName == null && (
+                    <div>
+                        <CircularProgress />
+                    </div>
+                )}
+                {loginName != null && loginName === 'false' &&
+                    (
+                        <div>
+                            <Button className="m-2" variant="contained" onClick={(e) => {
+                                location.href = '/member/signin'
+                            }} >Login</Button> 
+                            <Button variant="contained" onClick={(e) => {
+                                location.href = '/member/signup'
+                            }} >회원가입</Button>
+                        </div>
+                    )
+                }
+                {loginName != null && loginName !== 'false' &&
+                    (<Box className="container align-items-center" sx={{color: 'black'}}>
+                       {loginName}({loginInfo.memberId})님 환영합니다.<br />
+                        <Button className="m-2" variant="contained" onClick={(e) => {
+                            location.href = '/member/logout'
+                        }}>Logout</Button> 
+                        <Button variant="contained" onClick={(e) => {
+                            location.href = '/member/view'
+                        }}>회원정보</Button>
+                    </Box>
+                    )}
         </Box>
       </Box>
       <Box sx={{ display: { xs: "block", md: "none" } }} alignItems={"center"}>

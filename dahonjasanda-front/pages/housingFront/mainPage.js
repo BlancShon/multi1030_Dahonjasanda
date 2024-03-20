@@ -20,7 +20,7 @@ import Contact from "./components/koreaMap/Contact";
 const mainPage = () => {
   const theme = useTheme();
   return (
-    <Main colorInvert={true}>
+    <Main>
       <Box bgcolor={"alternate.main"} position={"relative"}>
         <Hero />
         <Container

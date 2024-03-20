@@ -9,6 +9,7 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Grid from '@mui/material/Grid';
 import Avatar from '@mui/material/Avatar';
+import Pagination from '@mui/material/Pagination';
 
 // 박스에 사진 및 텍스트 추가
 
@@ -200,26 +201,15 @@ const LastStories = () => {
                 </Box>
                 <Box flexGrow={1} />
                 <Box padding={2} display={'flex'} flexDirection={'column'}>
-                  <Box marginBottom={2}>
-                    <Divider />
-                  </Box>
                   <Box
                     display={'flex'}
                     justifyContent={'space-between'}
                     alignItems={'center'}
                   >
                     <Box display={'flex'} alignItems={'center'}>
-                      <Avatar
-                        src={item.author.avatar}
-                        sx={{ marginRight: 1 }}
-                      />
                       <Typography color={'text.secondary'}>
-                        {item.author.name}
                       </Typography>
                     </Box>
-                    <Typography color={'text.secondary'}>
-                      {item.date}
-                    </Typography>
                   </Box>
                   
                 </Box>
@@ -230,6 +220,9 @@ const LastStories = () => {
             
           </Grid>
         ))}
+      <Grid item container justifyContent={'center'} xs={12}>
+            <Pagination count={10} size={'large'} color="primary" />
+          </Grid>
       </Grid>
     </Box>
   );
