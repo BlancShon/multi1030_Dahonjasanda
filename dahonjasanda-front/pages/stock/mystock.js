@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 import Main from "layouts/Main";
 import Container from "components/Container";
 import { useRouter } from 'next/router';
+import axios from 'axios';
 
 import { useTheme } from "@mui/material/styles";
 import Box from "@mui/material/Box";
@@ -29,24 +30,24 @@ const profitIcon = Income >=0 ? "▲" : "▼";
 const profitColor = Income >=0 ? "blue" : "red";
 
 function MyStock() {
-    const theme = useTheme();
-    const labels = Stocks.map(item=>item.name);
-    const series = Stocks.map(item=>item.amount);
+  const theme = useTheme();
+  const labels = Stocks.map(item=>item.name);
+  const series = Stocks.map(item=>item.amount);
 
-    const router = useRouter();
-    const [page, setPage] = useState(null);
+  const router = useRouter();
+  const [page, setPage] = useState(null);
 
-    useEffect(() => {
+  useEffect(() => {
       
-      if (!router.isReady) {
-          return;
-      }
+    if (!router.isReady) {
+      return;
+    }
       
-      const { page } = router.query;
-      setPage(page);
+    const { page } = router.query;
+    setPage(page);
 
   }, [router.isReady]);
-    
+
     return(
         <Main colorInvert={true}>
           <HeroSection imageUrl="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FbVeNAZ%2FbtrOvf3iz2z%2FyWLsUt3j2QKEW6yWzoDlt1%2Fimg.png"/>

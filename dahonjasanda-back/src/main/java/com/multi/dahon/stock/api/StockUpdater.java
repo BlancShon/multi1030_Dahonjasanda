@@ -109,7 +109,6 @@ public class StockUpdater {
         
         for(StockTime st : stList) {
         	System.out.println(st);
-        	map.put(st.getStock().getSno(), st);
         }
         System.out.println("----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------");
         System.out.println("Top 50 기업 단일 1차 data 업데이트 완료! 결과 : " + stList.size() + "개");
@@ -192,12 +191,8 @@ public class StockUpdater {
         	stocktime.setScode(codeText);
         	stocktime.setSname(name);
         	stocktime.setCreateDate(formattedDate);
+        	stocktime.setSno(cod);
         	
-        	
-        	Stock stock = new Stock();
-			stock.setSno(cod);
-			stocktime.setStock(stock);
-			
         	stlist.add(stocktime);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -207,18 +202,17 @@ public class StockUpdater {
     
     private static int Insert(StockTime st) throws SQLException {
     	System.out.println("DB 연동 - Insert 시작");
-    	String sql = "INSERT INTO stock_time(stno, sno, member_mno, sdate, price, scode, sname, create_date) "
-				+ "VALUES(?, ?, ?, ?, ?, ?, ?, ?)";
+    	String sql = "INSERT INTO stock_time(stno, sdate, price, scode, sname, sno, create_date) "
+				+ "VALUES(?, ?, ?, ?, ?, ?, ?)";
     	
     	pstmt = conn.prepareStatement(sql);
     	pstmt.setString(1, null);
-    	pstmt.setInt(2, st.getStock().getSno());
-    	pstmt.setString(3, null);
-    	pstmt.setString(4, st.sdate);
-    	pstmt.setInt(5, st.price);
-    	pstmt.setString(6, st.scode);
-    	pstmt.setString(7, st.sname);
-    	pstmt.setString(8, st.createDate);
+    	pstmt.setString(2, st.sdate);
+    	pstmt.setInt(3, st.price);
+    	pstmt.setString(4, st.scode);
+    	pstmt.setString(5, st.sname);
+    	pstmt.setInt(6, st.sno);
+    	pstmt.setString(7, st.createDate);
     	
     	int result = pstmt.executeUpdate();
     	if(result > 0) {
@@ -235,7 +229,7 @@ public class StockUpdater {
     	String sql = "update stocktime set price = ? where sno = ?";
     	pstmt = conn.prepareStatement(sql);
     	pstmt.setInt(1, st.price);
-    	pstmt.setInt(2, st.getStock().getSno());
+    	pstmt.setInt(2, st.sno);
     	
     	int result = pstmt.executeUpdate();
     	if(result > 0) {

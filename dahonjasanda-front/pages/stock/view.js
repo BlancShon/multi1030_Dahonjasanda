@@ -1,6 +1,7 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
 
+import axios from 'axios';
 import Main from "layouts/Main";
 import Container from "components/Container";
 import { useRouter } from 'next/router';
@@ -122,10 +123,15 @@ export default function View() {
     const theme = useTheme();
 
     const router = useRouter();
+    const [sname, setSname] = useState(null);
     const [page, setPage] = useState(null);
     const [view, setView] = useState(null);
     const [tim, setTim] = useState(null);
     const [real, setReal] = useState(null);
+    const [stockData, setStockData] = useState(null);
+    const [viewData, setViewData] = useState(null);
+    const [loading, setLoading] = useState(false);
+    const [error, setError] = useState(null);
     
 
     useEffect(() => {
@@ -152,8 +158,7 @@ export default function View() {
 
         stockdata['clist'] = clist;
         stockdata['flist'] = flist;
-        console.log("viewpage(main)",stockdata);
-        
+
         if (!router.isReady) {
             return;
         }
@@ -169,6 +174,54 @@ export default function View() {
         }
     }, [router.isReady]);
 
+    useEffect(() => {
+
+        if (!router.isReady) {
+            return;
+        }
+
+        const {searchValue} = router.query;
+        if (searchValue) {
+            setSname(searchValue);
+        }
+    }, [router.isReady]);
+
+    const fetchViewData = async (searchValue) => {
+        setLoading(true);
+        try {
+            var url = 'http://localhost/stock/List'
+            if (!searchValue) {
+                url += '?searchValue=';
+            } else {
+                url += '?searchValue=' + searchValue;
+            }
+            const response = await axios.get(url, {
+                withCredentials: true,
+            });
+            setViewData(response.data);
+        } catch (error) {
+            console.error('Error fetching viewData:', error);
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    useEffect(() => {
+        if (!sname) {
+            return;
+        }
+        fetchViewData(sname);
+    }, [sname]);
+
+    useEffect(()=>{
+        if(!viewData) {
+            return;
+        }
+    })
+
+
+    console.log('viewviewData', viewData);
+    
     const { candle_day_x, candle_day_m, candle_day_h, candle_day_l, candle_day_c } = candleData;
     const data = candleData.candle_day_x.map((dateString, index) =>{
         const year = dateString.substring(0, 4);
@@ -184,15 +237,14 @@ export default function View() {
             c: candleData.candle_day_c[index],
         };
     });
-    console.log("viewpage(main)",data);
-    console.log("viewreal",real);
+
     return (
         <Main colorInvert={true}>
             <Box>
                 <HeroSection imageUrl="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQSArpdqfkhN75nrhWCbHxmvFiY7Ot0SujcbQ&usqp=CAU"/>
-                <ViewTitle list={view} list1={tim} list2={real}/>
+                <ViewTitle list={viewData} list1={tim} list2={real}/>
                 <Candle list={data}/>
-                <ViewInfo list={view} />
+                <ViewInfo list={viewData} />
                 <Consensus list={view} list1={tim}/>
                 <Trends stockdata={stockdata}/>
             </Box>

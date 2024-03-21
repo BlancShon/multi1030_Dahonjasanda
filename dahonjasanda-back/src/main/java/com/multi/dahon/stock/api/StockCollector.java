@@ -7,8 +7,8 @@ public class StockCollector {
 		StockInfoApi stockinfoapi = new StockInfoApi();
 		StockUpdater stockupdater = new StockUpdater();
 		
-		stockindexapi.Index();
-		stockinfoapi.Info();
+//		stockindexapi.Index();
+//		stockinfoapi.Info();
 		stockupdater.Timer();
 		
 	}

@@ -555,6 +555,7 @@ public class StockInfoApi {
 							
 							Stock stock = new Stock();
 							stock.setSno(sNO);
+							
 							price.setStock(stock);
 							
 							plist.add(price);
@@ -571,6 +572,7 @@ public class StockInfoApi {
 		}
 		return plist;
     }
+    
     private static int insert(Stock s) throws SQLException {
     	System.out.println("DB연동 - Insert 시작");
     	String sql = "INSERT INTO stock(sno, sdate, sgap, scode, sname, clpr, mkp, hipr, lopr, code, "
@@ -688,7 +690,7 @@ public class StockInfoApi {
 		pstmt = conn.prepareStatement(sql);
 		
 		pstmt.setString(1, null);
-		pstmt.setInt(2, sp.getStock().getSno());
+		pstmt.setInt(2, sp.getStock().sno);
 		pstmt.setInt(3, sp.sdate);
 		pstmt.setString(4, sp.scode);
 		pstmt.setString(5, sp.sname);

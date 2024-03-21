@@ -3,6 +3,9 @@ package com.multi.dahon.stock.model.vo;
 import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import com.multi.dahon.member.model.vo.Member;
 
 import jakarta.persistence.Column;
@@ -26,35 +29,35 @@ import lombok.Setter;
 @Transactional
 @DynamicInsert
 @DynamicUpdate
+@JsonIdentityInfo(generator = ObjectIdGenerators.IntSequenceGenerator.class)
 public class StockTime {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	public  int stno;
-	
-	@ManyToOne
-	@JoinColumn(name = "sno")
-	public  Stock stock;
-	
-	@ManyToOne
-	public  Member member;
-	
+	public int stno;
+
 	@Column(length = 30)
-	public  String sdate;
+	public String sdate;
+
+	@Column
+	public int price;
+
+	@Column(length = 30)
+	public String scode;
+
+	@Column(length = 30)
+	public String sname;
 	
 	@Column
-	public  int price;
-	
+	public int sno;
+
 	@Column(length = 30)
-	public  String scode;
-	
-	@Column(length = 30)
-	public  String sname;
-	
-	@Column
-	public  int quantity;
-	
-	@Column(length = 30)
-	public  String createDate;
+	public String createDate;
+
+	@Override
+	public String toString() {
+		return "StockTime [stno=" + stno + ", sdate=" + sdate + ", price=" + price + ", scode=" + scode + ", sname="
+				+ sname + ", createDate=" + createDate + "]";
+	}
 
 }

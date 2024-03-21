@@ -3,6 +3,10 @@ package com.multi.dahon.stock.model.vo;
 import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -22,6 +26,7 @@ import lombok.Setter;
 @Entity
 @DynamicInsert
 @DynamicUpdate
+@JsonIdentityInfo(generator = ObjectIdGenerators.IntSequenceGenerator.class)
 public class StockPrice {
 	
 	@Id
@@ -30,6 +35,7 @@ public class StockPrice {
 	
 	@ManyToOne
 	@JoinColumn(name = "sno")
+	@JsonIgnore
 	public  Stock stock;
 	
 	@Column
@@ -55,7 +61,7 @@ public class StockPrice {
 
 	@Override
 	public String toString() {
-		return "StockPrice [spno=" + spno + ", stock=" + stock + ", sdate=" + sdate + ", scode=" + scode + ", sname="
+		return "StockPrice [spno=" + spno + ", sdate=" + sdate + ", scode=" + scode + ", sname="
 				+ sname + ", clpr=" + clpr + ", mkp=" + mkp + ", hipr=" + hipr + ", lopr=" + lopr + "]";
 	}
 

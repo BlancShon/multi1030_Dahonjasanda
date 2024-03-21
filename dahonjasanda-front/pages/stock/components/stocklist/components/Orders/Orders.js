@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useTheme } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
@@ -6,10 +6,15 @@ import Divider from '@mui/material/Divider';
 import Grid from '@mui/material/Grid'; 
 import Stack from '@mui/material/Stack';
 import Avatar from '@mui/material/Avatar';
+import Fab from '@mui/material/Fab';
+import DeleteIcon from '@mui/icons-material/Delete';
 
 
 const Orders = ({ list }) => {
   const theme = useTheme();
+
+  const handleDeleteItem =(index)=>{
+  }
 
 
   return (
@@ -99,7 +104,7 @@ const Orders = ({ list }) => {
               <Stack
                 spacing={2}
                 direction={'column'}
-                style={{ marginLeft: 20}}
+                style={{ marginLeft: 20, marginRight: 30}}
               >
                 <Box>
                   <Typography
@@ -136,6 +141,9 @@ const Orders = ({ list }) => {
                   </Typography>
                 </Box>
               </Stack>
+              <Fab size="small" color="secondary" onClick={()=> handleDeleteItem(i)}>
+                <DeleteIcon />
+              </Fab>
             </Box>
           </Box>
           <Divider

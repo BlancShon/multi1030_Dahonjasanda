@@ -4,7 +4,7 @@ import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
 import Fab from '@mui/material/Fab';
-import EditIcon from '@mui/icons-material/Edit';
+import AddIcon from '@mui/icons-material/Add';
 import CardMedia from '@mui/material/CardMedia';
 import Card from '@mui/material/Card';
 
@@ -35,7 +35,7 @@ const InsertStock = ({slist}) => {
             </Box>
             <Box sx={{ display: 'flex', justifyContent: 'flex-end' }}>
                 <Fab color="primary" aria-label="edit">
-                    <EditIcon />
+                    <AddIcon />
                 </Fab>
             </Box>
         </Container>

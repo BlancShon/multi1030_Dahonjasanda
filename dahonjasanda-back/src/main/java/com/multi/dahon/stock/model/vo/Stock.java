@@ -181,9 +181,7 @@ public class Stock {
 	public String valueorgan6;
 	@OneToMany(mappedBy = "stock")
 	public List<StockPrice> sprice;
-	@OneToMany(mappedBy = "stock")
-	public List<StockTime> stime;
-
+	
 	@Override
 	public String toString() {
 		return "Stock [sno=" + sno + ", sdate=" + sdate + ", sgap=" + sgap + ", scode=" + scode + ", sname=" + sname
@@ -207,7 +205,11 @@ public class Stock {
 				+ valueforeigner4 + ", valueorgan4=" + valueorgan4 + ", valueprice5=" + valueprice5 + ", valuegap5="
 				+ valuegap5 + ", valueforeigner5=" + valueforeigner5 + ", valueorgan5=" + valueorgan5 + ", valueprice6="
 				+ valueprice6 + ", valuegap6=" + valuegap6 + ", valueforeigner6=" + valueforeigner6 + ", valueorgan6="
-				+ valueorgan6 + ", sprice=" + sprice + ", stime=" + stime + "]";
+				+ valueorgan6 + "]";
 	}
+	
+	
+
+	
 
 }

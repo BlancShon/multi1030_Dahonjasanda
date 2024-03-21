@@ -12,9 +12,11 @@ const SearchBox = ({ list, setFilteredList }) => {
     const handleSearch = () => {
         if (searchTerm.trim() !== '') {
             const filtered = list.filter(item =>
-                item.name.toLowerCase().includes(searchTerm.toLowerCase())
+                item.sname.toLowerCase().includes(searchTerm.toLowerCase())
             );
             setFilteredList(filtered);
+        } else {
+          setFilteredList(list);
         }
     };
 
@@ -43,7 +45,7 @@ const SearchBox = ({ list, setFilteredList }) => {
                 variant="outlined"
                 color="primary"
                 size="medium"
-                placeholder="Search a company name"
+                placeholder="종목명"
                 fullWidth
                 value={searchTerm}
                 onChange={(e)=>setSearchTerm(e.target.value)}
