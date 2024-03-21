@@ -31,6 +31,9 @@ const profitColor = Income >=0 ? "blue" : "red";
 
 function MyStock() {
   const theme = useTheme();
+  const [searchValue, setSearchValue] = useState("");
+  const [stockList, setStockList] = useState([]);
+  const [stockListCount, setStockListCount] = useState([]);
   const labels = Stocks.map(item=>item.name);
   const series = Stocks.map(item=>item.amount);
 
@@ -48,30 +51,56 @@ function MyStock() {
 
   }, [router.isReady]);
 
-    return(
-        <Main colorInvert={true}>
-          <HeroSection imageUrl="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FbVeNAZ%2FbtrOvf3iz2z%2FyWLsUt3j2QKEW6yWzoDlt1%2Fimg.png"/>
-          <Container>
-            <Box sx={{ borderBottom: '1px solid #ccc', mb: 2 }}>
-              <Box bgcolor={"alternate.main"} position={"relative"} sx={{ pb: 2 }}>
-                  <Typography variant="h4">나의 총 자산</Typography>
-                  <Typography variant="h2">₩{fmtTPrice}</Typography>
-                  <Typography variant="h5" 
-                              style={{ color: profitColor}}
-                  >평가손익 {fmtIncome}({profitIcon}{profitRate.toFixed(2)}%)</Typography>
-              </Box>
-            </Box>
-            <Box sx={{ borderBottom: '1px solid #ccc', pb: 2, mb: 3 }}>
-              <Box>
-                <PieChart labels={labels} series={series}/>
-              </Box>
-            </Box>
-            <Box sx={{ width: '100%', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-              <LabTabs list={Stocks} slist={stock}/>
-            </Box>
-          </Container>
-        </Main>
-    );
+  useEffect(() => {
+    getStockList(searchValue);
+  }, [searchValue]);
+
+  const getStockList = async (searchValue) => {
+    try {
+        var url = 'http://localhost/stock/List';
+        if (!searchValue) {
+            url += '?searchValue=';
+        } else {
+            url += '?searchValue=' + searchValue;
+        }
+  
+        const response = await axios.get(url, {
+            withCredentials: true,
+        });
+  
+        setStockList(response.data.list);
+        setStockListCount(response.data.listCount);
+    } catch (error) {
+        console.error('Error fetching stock list:', error);
+    }
+  };
+  
+  console.log("mymy", stockList);
+
+  return(
+    <Main colorInvert={true}>
+      <HeroSection imageUrl="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FbVeNAZ%2FbtrOvf3iz2z%2FyWLsUt3j2QKEW6yWzoDlt1%2Fimg.png"/>
+      <Container>
+        <Box sx={{ borderBottom: '1px solid #ccc', mb: 2 }}>
+          <Box bgcolor={"alternate.main"} position={"relative"} sx={{ pb: 2 }}>
+            <Typography variant="h4">나의 총 자산</Typography>
+            <Typography variant="h2">₩{fmtTPrice}</Typography>
+            <Typography variant="h5" 
+              style={{ color: profitColor}}
+            >평가손익 {fmtIncome}({profitIcon}{profitRate.toFixed(2)}%)</Typography>
+          </Box>
+        </Box>
+        <Box sx={{ borderBottom: '1px solid #ccc', pb: 2, mb: 3 }}>
+          <Box>
+            <PieChart labels={labels} series={series}/>
+          </Box>
+        </Box>
+        <Box sx={{ width: '100%', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+          <LabTabs list={Stocks} slist={stock}/>
+        </Box>
+      </Container>
+    </Main>
+  );
 }
 
 export default MyStock;

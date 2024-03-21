@@ -8,7 +8,7 @@ import TabPanel from '@mui/lab/TabPanel';
 import StockList from '../stocklist';
 import InsertStock from '../insertstock/insertstock'
 import NewsPage from '../news/newspage';
-import WordList from '../wordlist/wordlist';
+import WordList from '../wordlist/wordlist';
 
 export default function LabTabs({ list, slist }) {
   const [value, setValue] = React.useState('1');
