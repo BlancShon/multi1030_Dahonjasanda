@@ -72,15 +72,17 @@ public class HousingRestController {
 		
 		  
 
-		    @GetMapping("/calendar/list")
-		    public List<HouseCalendarParam> getAllHousingInfo() {
-		        return housingInfoRepository.findAllHousingInfo().stream()
-		                .map(data -> new HouseCalendarParam(
-		                        (String) data[0],
-		                        (String) data[1],
-		                        (String) data[2]))
-		                .collect(Collectors.toList());
-		    }
+		@GetMapping("/calendar/list")
+		public List<HouseCalendarParam> getAllHousingInfo() {
+		    return housingInfoRepository.findAllHousingInfo().stream()
+		            .map(data -> new HouseCalendarParam(
+		                    (String) data[0],
+		                    (String) data[1],
+		                    (String) data[2],
+		                    (String) data[3])) // Corrected placement of parenthesis
+		            .collect(Collectors.toList());
+		}
+
 		
 		
 		@GetMapping(path = "/housingList")
