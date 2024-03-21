@@ -114,7 +114,7 @@ const AccountProfilePage = () => {
 
     const formData = new FormData();
 
-
+    formData.append('mno', loginInfo.mno)
     formData.append('memberId',loginInfo.memberId)
     formData.append('email', email);
     formData.append('name', name);
@@ -155,11 +155,11 @@ const AccountProfilePage = () => {
     const memberDeleteRequest = async () => {
       try {
           const response = await axios.get('http://localhost/memberRest/delete', { withCredentials: true });
-          console.log(response);
+          console.log("딜리트 응답",response);
           if (response.data.result === true) {
-              alert('회원탈퇴에 성공하였습니다.');
+              alert('회원탈퇴에 성공하였습니다.'+ response);
           } else {
-              alert('회원탈퇴에 실패하였습니다.');
+              alert('회원탈퇴에 실패하였습니다.'+ response);
 
           }
       } catch (e) {

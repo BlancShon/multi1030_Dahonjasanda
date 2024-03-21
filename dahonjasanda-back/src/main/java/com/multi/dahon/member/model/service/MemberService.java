@@ -48,7 +48,7 @@ public class MemberService {
 		}
 		return memberRepo.save(member);
 	}
-	
+	// asdmjkla /----------- ///////// fsadjkfy
 	public boolean validate(String userId) {
 		return this.findById(userId) != null;
 	}
@@ -72,7 +72,22 @@ public class MemberService {
 		String encodePW = pwEncoder.encode(userPW);
 		Member member = memberOption.get();
 		member.setPassword(encodePW);
-		return memberRepo.save(member);
+		return member;
+	}
+	
+	@Transactional
+	public Member update(Member updateFormm) {
+		Optional<Member> memberOption = memberRepo.findById(updateFormm.getMno());
+		if(memberOption.isEmpty()) {
+			return null;
+		}
+		Member member = memberOption.get();
+		member.setName(updateFormm.getName());
+		member.setEmail(updateFormm.getEmail());
+		member.setPhone(updateFormm.getPhone());
+		member.setAddress(updateFormm.getAddress());
+		member.setHobby(updateFormm.getHobby());
+		return member;
 	}
 	
 }
