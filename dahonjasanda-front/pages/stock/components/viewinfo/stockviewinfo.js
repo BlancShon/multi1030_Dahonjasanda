@@ -20,6 +20,7 @@ function ViewInfo({ list }) {
         return null;
     }
 
+    console.log("ViewInfo", list);
     return(
         <Container>
             <Box sx={{ marginBottom: 5 }}>
@@ -36,13 +37,13 @@ function ViewInfo({ list }) {
                             </CardActions>
                             <CardContent>
                                 <Typography variant="h6" fontSize="1rem" gutterBottom>
-                                    전일 : {(list.yprice).toLocaleString()}
+                                    전일 : {list.yprice}
                                 </Typography>
                                 <Typography variant="h6" fontSize="1rem" gutterBottom>
                                     거래량 : {list.volume}
                                 </Typography>
                                 <Typography variant="h6" fontSize="1rem" gutterBottom>
-                                    52주 최고 : {(list.topprice).toLocaleString()}
+                                    52주 최고 : {list.topprice}
                                 </Typography>
                             </CardContent>
                         </Card>
@@ -54,13 +55,13 @@ function ViewInfo({ list }) {
                             </CardActions>
                             <CardContent>
                                 <Typography variant="h6" fontSize="1rem" gutterBottom>
-                                    시가 : {(list.open).toLocaleString()}
+                                    시가 : {list.open}
                                 </Typography>
                                 <Typography variant="h6" fontSize="1rem" gutterBottom>
-                                    대금 : {list.amount}
+                                    대금 : {list.onevolume}
                                 </Typography>
                                 <Typography variant="h6" fontSize="1rem" gutterBottom>
-                                    52주 최저 : {(list.bottomprice).toLocaleString()}
+                                    52주 최저 : {list.bottomprice}
                                 </Typography>
                             </CardContent>
                         </Card>
@@ -72,7 +73,7 @@ function ViewInfo({ list }) {
                             </CardActions>
                             <CardContent>
                                 <Typography variant="h6" fontSize="1rem" gutterBottom>
-                                    고가 : {(list.high).toLocaleString()}
+                                    고가 : {list.high}
                                 </Typography>
                                 <Typography variant="h6" fontSize="1rem" gutterBottom>
                                     시총 : {list.total}
@@ -90,7 +91,7 @@ function ViewInfo({ list }) {
                             </CardActions>
                             <CardContent>
                                 <Typography variant="h6" fontSize="1rem" gutterBottom>
-                                    저가 : {(list.low).toLocaleString()}
+                                    저가 : {list.low}
                                 </Typography>
                                 <Typography variant="h6" fontSize="1rem" gutterBottom>
                                     외인소진율 : {list.foreignapb}
