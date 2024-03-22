@@ -25,7 +25,6 @@ public interface MortgageRepository extends JpaRepository<MortgageLoanOption, Lo
 			+ "where mo.id = :id")
 	Optional<MortgageOptionAndProdDTO> findMortgageWithDetail(@Param("id") Long id);
 	
-//	Page<MortgageLoanOption> findAll(Specification<MortgageLoanOption> spec, Pageable pageable);
 	@EntityGraph(attributePaths = "mortgageLoan")
     Page<MortgageLoanOption> findAll(Specification<MortgageLoanOption> spec, Pageable pageable);
 }
