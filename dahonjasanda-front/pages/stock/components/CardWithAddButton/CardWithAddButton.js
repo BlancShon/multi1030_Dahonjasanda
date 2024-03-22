@@ -1,7 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import IndexGraph from '../IndexGraph';
 
-import axios from 'axios';
 import { useTheme } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
@@ -28,31 +27,19 @@ export const graph2 = [1814.19, 1804.95, 1841.44, 1824.93, 1815.73, 1802.17, 181
                       1812.42, 1785.82, 1767.5, 1769.26, 1793.1, 1773.78, 1770.26, 1746.92, 1777.04, 1717.31,
                       1717.31, 1691.46, 1699.99, 1702.76, 1682.18, 1681.67, 1680.67, 1688.7];
 
-const CardWithAddButton = ({ list }) => {
+const CardWithAddButton = () => {
   const theme = useTheme();
-
-  const kosdaqList = list.filter(item => item.indexname === '코스닥');
-  const kosdaqClprList = kosdaqList.map(item => item.clpr);
-  const kospiList = list.filter(item => item.indexname === '코스피');
-  const kospiClprList = kospiList.map(item => item.clpr);
-  const kospi200List = list.filter(item => item.indexname === '코스피 200 선물지수');
-  const kospi200ClprList = kospi200List.map(item => item.clpr);
-  const kospidateList = kospiList.map(item => item.sdate);
-  const kosdaqdateList = kosdaqList.map(item => item.sdate);
-  const kospi200dateList = kospi200List.map(item => item.sdate);
-  
-  const pvalue = kospiClprList[kospiClprList.length -1];
-  const dvalue = kosdaqClprList[kosdaqClprList.length -1];
-  const prvalue = kospi200ClprList[kospi200ClprList.length -1];
-  const pchangeValue = kospiClprList[kospiClprList.length -2] - pvalue;
-  const dchangeValue = kosdaqClprList[kosdaqClprList.length -2] - dvalue;
-  const prchangeValue = kospi200ClprList[kospi200ClprList.length -2] - prvalue;
+  const pvalue = graph1[graph1.length -1];
+  const dvalue = graph[graph.length -1];
+  const prvalue = graph2[graph.length -1];
+  const pchangeValue = graph1[graph1.length -2] - pvalue;
+  const dchangeValue = graph[graph.length -2] - dvalue;
+  const prchangeValue = graph2[graph.length -2] - prvalue;
   const prate = ((pchangeValue / pvalue) * 100).toFixed(2)
   const drate = ((dchangeValue / dvalue) * 100).toFixed(2)
   const prrate = ((prchangeValue / prvalue) * 100).toFixed(2)
-  const pdate = kospidateList[0];
-  const ddate = kosdaqdateList[0];
-  const prdate = kospi200dateList[0];
+  // const isNegative = pchangeValue.charAt(0) === '-';
+  // const isNegative1 = dchangeValue.charAt(0) === '-';
 
   return (
     <Box bgcolor={'alternate.main'}>
@@ -71,15 +58,15 @@ const CardWithAddButton = ({ list }) => {
                 <Typography variant={'h3'} fontWeight={400}>
                   코스피
                 </Typography>
-                <Typography variant={'h4'} color={pchangeValue <= 0 ? 'red' : 'blue'}>
+                <Typography variant={'h4'} color={pchangeValue >= 0 ? 'red' : 'blue'}>
                   {pvalue}
                 </Typography>
-                <Typography variant={'h6'} color={pchangeValue <= 0 ? 'red' : 'blue'}>
-                  {prate}% {pchangeValue.toFixed(2)}p
+                <Typography variant={'h6'} color={pchangeValue >= 0 ? 'red' : 'blue'}>
+                  {prate}% {pchangeValue}p
                 </Typography>
-                <IndexGraph data={kospiClprList}/>
+                <IndexGraph data={graph}/>
                 <Typography variant={'h6'} fontWeight={100} sx={{ textAlign: 'right' }}>
-                  {pdate}기준
+                  03.06 실시간
                 </Typography>
               </Box>
             </Box>
@@ -98,15 +85,15 @@ const CardWithAddButton = ({ list }) => {
                 <Typography variant={'h3'} fontWeight={400}>
                   코스닥
                 </Typography>
-                <Typography variant={'h4'} color={dchangeValue <= 0 ? 'red' : 'blue'}>
+                <Typography variant={'h4'} color={dchangeValue >= 0 ? 'red' : 'blue'}>
                   {dvalue}
                 </Typography>
-                <Typography variant={'h6'} color={dchangeValue <= 0 ? 'red' : 'blue'}>
-                  {drate}% {dchangeValue.toFixed(2)}p
+                <Typography variant={'h6'} color={dchangeValue >= 0 ? 'red' : 'blue'}>
+                  {drate}% {dchangeValue}p
                 </Typography>
-                <IndexGraph data={kosdaqClprList} height={100}/>
+                <IndexGraph data={graph1} height={100}/>
                 <Typography variant={'h6'} fontWeight={100} sx={{ textAlign: 'right'}}>
-                  {ddate}기준
+                  03.06 실시간
                 </Typography>
               </Box>
             </Box>
@@ -125,15 +112,15 @@ const CardWithAddButton = ({ list }) => {
                 <Typography variant={'h3'} fontWeight={400}>
                   코스피 선물
                 </Typography>
-                <Typography variant={'h4'} color={prchangeValue <= 0 ? 'red' : 'blue'}>
+                <Typography variant={'h4'} color={dchangeValue >= 0 ? 'red' : 'blue'}>
                   {prvalue}
                 </Typography>
-                <Typography variant={'h6'} color={prchangeValue <= 0 ? 'red' : 'blue'}>
-                  {prrate}% {prchangeValue.toFixed(2)}p
+                <Typography variant={'h6'} color={dchangeValue >= 0 ? 'red' : 'blue'}>
+                  {prrate}% {prchangeValue}p
                 </Typography>
-                <IndexGraph data={kospi200ClprList} height={100}/>
+                <IndexGraph data={graph2} height={100}/>
                 <Typography variant={'h6'} fontWeight={100} sx={{ textAlign: 'right'}}>
-                  {prdate}기준
+                  03.06 실시간
                 </Typography>
               </Box>
             </Box>

@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
-import { useRouter } from 'next/router';
 
 import Paging from '../Pagination';
 import IndexGraph from '../IndexGraph';
@@ -23,10 +22,15 @@ import ListItemText from '@mui/material/ListItemText';
 import ListItemAvatar from '@mui/material/ListItemAvatar';
 import Button from '@mui/material/Button';
 
+
+
+const graph = [863, 854, 867, 869, 870, 864, 866, 858, 858, 859,
+  853, 845, 827, 812, 807, 808, 815, 799, 799, 819,
+  819, 837, 824, 836, 840, 840, 843, 840, 833, 855,
+  860, 868, 883, 875, 885, 879];
+
 const WithAvatarsAndMultilineContent = ({list}) => {
   const theme = useTheme();
-
-  const router = useRouter();
 
   const [page, setPage] = useState(1);
   const itemsPerPage = 10;
@@ -34,21 +38,10 @@ const WithAvatarsAndMultilineContent = ({list}) => {
   const First = Last - itemsPerPage;
   const currentItems = list.slice(First, Last);
   const totalPages = Math.ceil(list.length / itemsPerPage);
-  const priceList = list.map(item=>item.sprice);
-  const ClprList = priceList.map(item=>item.clpr);
 
   const handlePageChange = (newPage)=>{
     setPage(newPage);
   };
-
-  const handleClick = (event, value) => {
-    router.push(`/stock/view?searchvalue=${item.sname}`);
-    getStockList(value, searchValue);
-  }
-
-  console.log("listlist", list);
-  console.log("priceList",priceList);
-  console.log("ClprList",ClprList);
 
   return (
     <Container>
@@ -149,29 +142,29 @@ const WithAvatarsAndMultilineContent = ({list}) => {
             </TableRow>
           </TableHead>
           <TableBody>
-            {currentItems.map((item, index) => (
+            {currentItems.map((item) => (
               <TableRow
-                key={index}
+                key={item.no}
                 sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
               >
                 <TableCell component="th" scope="row">
                   <List sx={{ p: 0, m: 0 }}>
                     <ListItem sx={{ p: 0, m: 0 }}>
                       <ListItemText
-                        primary={(page - 1) * itemsPerPage + index + 1}
+                        primary={item.no}
                       />
                     </ListItem>
                   </List>
                 </TableCell>
                 <TableCell align="center">
-                  <Typography>{item.sname}</Typography>
+                  <Typography>{item.name}</Typography>
                 </TableCell>
                 <TableCell>
                   <List sx={{ p: 0, m: 0 }}>
                     <ListItem sx={{ p: 0, m: 0 }}>
                       <ListItemAvatar>
-                        <Link href={`/stock/view?searchValue=${item.sname}`} passHref>
-                          <Avatar sx={{ width: 70, height: 70}} src={`/images/stock/logo/${item.sno}.png`} alt={item.sname}/>
+                        <Link href="/stock/view" passHref>
+                          <Avatar sx={{ width: 70, height: 70}} src={item.symbol} alt={item.name}/>
                         </Link>
                       </ListItemAvatar>
                       <ListItemText
@@ -180,20 +173,21 @@ const WithAvatarsAndMultilineContent = ({list}) => {
                   </List>
                 </TableCell>
                 <TableCell align="center" sx={{ width : '100px', height: '100px' }}>
-                  <IndexGraph data={item.sprice.map((item) => item.clpr)} />
+                  <IndexGraph data={graph} />
                 </TableCell>
                 <TableCell align="center">
-                  <Typography>{parseInt(item.price).toLocaleString()}원</Typography>
-                  <Typography color={String(item.sgap).startsWith('-') ? 'blue' : 'red'} variant={'subtitle2'}>
-                    {parseInt(item.sgap).toLocaleString()}원
+                  <Typography>{item.price1}</Typography>
+                  <Typography color={item.price2.startsWith('-') ? 'blue' : 'red'} variant={'subtitle2'}>
+                    {item.price2}
                   </Typography>
                 </TableCell>
                 <TableCell align="center">
                   <Button
-                    onClick={handleClick}
-                    href={`/stock/view?searchValue=${item.sname}`}
-                    style={{ backgroundColor: item.sgap < 0 ? 'blue' : 'red', color: 'white'}}>
-                        {((parseFloat(item.sgap)/parseFloat(item.yprice))*100).toFixed(2)}%
+                    // href={`/stock/stockview=${item.no}`}
+                    href="/stock/view"
+                    style={{ backgroundColor: parseFloat(item.gap.replace('%', ''))
+                       < 0 ? 'blue' : 'red', color: 'white'}}>
+                        {item.gap}
                   </Button>
                 </TableCell>
                 <TableCell align="center">
@@ -203,18 +197,18 @@ const WithAvatarsAndMultilineContent = ({list}) => {
                     fontWeight={700}
                     sx={{ cursor: 'pointer' }}
                   >
-                    {item.total}
+                    {item.tot}
                   </Typography>
                 </TableCell>
                 <TableCell align="center">
-                <Typography>{item.volume}건</Typography>
+                <Typography>{item.trade}</Typography>
                   <Typography
                     color={'primary'}
                     variant={'subtitle2'}
                     fontWeight={700}
                     sx={{ cursor: 'pointer' }}
                   >
-                    {item.onevolume}
+                    {item.trade2}
                   </Typography>
                 </TableCell>
                 <TableCell align="center" style={{ width: '70px', height: '70px' }} >

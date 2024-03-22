@@ -10,16 +10,8 @@ import Clock from '../clock/clock';
 import IndexGraph from '../IndexGraph';
 import Card from '@mui/material/Card';
 
-function ViewTitle({ list }) {
+function ViewTitle({ list, list1, list2 }) {
 
-    if(!list) {
-        return null;
-    }
-
-    console.log("titititi", list);
-    const graph = list.sprice ? list.sprice.map((item) => item.clpr) : [];
-
-    
     return(
         <Container>
             <Box borderBottom={1} borderColor="divider">
@@ -30,7 +22,7 @@ function ViewTitle({ list }) {
                                 <Grid container spacing={2} alignItems="center">
                                     <Grid item>
                                         <Typography variant="h6" fontSize="1rem">
-                                            &nbsp;{list.code}
+                                            &nbsp;{list && list.scode}
                                         </Typography>
                                     </Grid>
                                     <Grid item>
@@ -45,7 +37,7 @@ function ViewTitle({ list }) {
                             </Box>
                             <Box>
                                 <Typography variant="h3">
-                                    {list && list.price && list.price.toLocaleString()}원
+                                    {list && list.price.toLocaleString()}원
                                 </Typography>
                                 <Grid container spcaing={3} alignItems="center">
                                     <Grid item>
@@ -65,11 +57,11 @@ function ViewTitle({ list }) {
                                 </Grid>
                                 <Grid container spacing={3} alignItems="center" style={{ marginBottom: 10 }}>
                                     <Grid item>
-                                        <AccessAlarmRoundedIcon fontSize="small" color={list && list.sdate && list.sdate.includes('장중') ? 'success' : 'action'}/>
+                                        <AccessAlarmRoundedIcon fontSize="small" color={list1 && list1.sdate.includes('장중') ? 'success' : 'action'}/>
                                     </Grid>
                                     <Grid item>
-                                        <Typography style={{ color: list && list.sdate && list.sdate.includes('장중') ? 'green' : 'orange' }}>
-                                            {list && list.sdate}
+                                        <Typography style={{ color: list1 && list1.sdate.includes('장중') ? 'green' : 'orange' }}>
+                                            {list1 && list1.sdate}
                                         </Typography>
                                     </Grid>
                                     <Grid item>
@@ -80,7 +72,7 @@ function ViewTitle({ list }) {
                         </Grid>
                         <Grid item xs={4}>
                             <Box>
-                                <IndexGraph data={graph} />
+                                <IndexGraph data={list2} />
                             </Box>
                         </Grid>
                     </Grid>

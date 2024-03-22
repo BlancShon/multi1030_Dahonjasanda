@@ -242,10 +242,10 @@ export default function View() {
         <Main colorInvert={true}>
             <Box>
                 <HeroSection imageUrl="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQSArpdqfkhN75nrhWCbHxmvFiY7Ot0SujcbQ&usqp=CAU"/>
-                <ViewTitle list={viewData}/>
+                <ViewTitle list={viewData} list1={tim} list2={real}/>
                 <Candle list={data}/>
                 <ViewInfo list={viewData} />
-                <Consensus list={view}/>
+                <Consensus list={view} list1={tim}/>
                 <Trends stockdata={stockdata}/>
             </Box>
         </Main>

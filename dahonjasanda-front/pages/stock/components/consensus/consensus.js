@@ -13,7 +13,7 @@ import { ProductionQuantityLimitsRounded } from '@mui/icons-material';
 import Tooltip from '@mui/material/Tooltip';
 import styles from './consensus.module.css';
 
-function Consensus({ list }) {
+function Consensus({ list, list1 }) {
     if (!list || !list.investinfo) {
         return null;
     }
@@ -118,7 +118,7 @@ function Consensus({ list }) {
                     {parseInt(list.targetprice).toLocaleString()}원
                 </Typography>
                 <Typography variant="h6" fontWeight="light" textAlign="center" fontSize="0.8rem" sx={{ marginBottom: '20px'}}>
-                    {list.sdate} 기준ㆍ에프엔가이드 제공
+                    {list1.create_date} 기준ㆍ에프엔가이드 제공
                 </Typography>
             </Box>
         </Container>
