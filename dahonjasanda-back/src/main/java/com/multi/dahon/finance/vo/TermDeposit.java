@@ -39,7 +39,7 @@ public class TermDeposit { // 정기예금
     @Column(nullable = false)
     private String finPrdtNm;
     
-    @Column(nullable = false)
+    @Column
     private String joinWay;
     
     @Column(nullable = false)

@@ -15,49 +15,49 @@ public class CreditLoanOption {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     
-    @Column(nullable = false)
+    @Column
     private String dclsMonth;
     
-    @Column(nullable = false)
+    @Column
     private String finCoNo;
     
-    @Column(nullable = false)
+    @Column
     private String finPrdtCd;
     
-    @Column(nullable = false)
+    @Column
     private String crdtPrdtType;
     
-    @Column(nullable = false)
+    @Column
     private String crdtLendRateType;
     
-    @Column(nullable = false)
+    @Column
     private String crdtLendRateTypeNm;
     
-    @Column(nullable = true)
+    @Column
     private BigDecimal crdtGrad1; // Can be null
     
-    @Column(nullable = true)
+    @Column
     private BigDecimal crdtGrad4; // Can be null
     
-    @Column(nullable = true)
+    @Column
     private BigDecimal crdtGrad5; // Can be null
     
-    @Column(nullable = true)
+    @Column
     private BigDecimal crdtGrad6; // Can be null
     
-    @Column(nullable = true)
+    @Column
     private BigDecimal crdtGrad10; // Can be null
     
-    @Column(nullable = true)
+    @Column
     private BigDecimal crdtGrad11; // Can be null
     
-    @Column(nullable = true)
+    @Column
     private BigDecimal crdtGrad12; // Can be null
     
-    @Column(nullable = true)
+    @Column
     private BigDecimal crdtGrad13; // Can be null
     
-    @Column(nullable = true)
+    @Column
     private BigDecimal crdtGradAvg; // Can be null
 
     @JsonIgnore
