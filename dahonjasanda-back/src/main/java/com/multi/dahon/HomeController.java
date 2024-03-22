@@ -2,10 +2,13 @@ package com.multi.dahon;
 
 import java.util.Locale;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+
+import com.multi.dahon.plant.model.service.PlantService;
 
 @Controller
 public class HomeController {
@@ -18,6 +21,12 @@ public class HomeController {
 		return "home";
 	}
 	
-	public void init() {}
+	@Autowired
+ 	PlantService ps;
+	
+	
+	public void init() {
+		ps.save();
+	}
 	
 }
