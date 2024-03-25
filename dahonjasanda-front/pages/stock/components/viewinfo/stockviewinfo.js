@@ -20,7 +20,6 @@ function ViewInfo({ list }) {
         return null;
     }
 
-    console.log("ViewInfo", list);
     return(
         <Container>
             <Box sx={{ marginBottom: 5 }}>
@@ -37,13 +36,13 @@ function ViewInfo({ list }) {
                             </CardActions>
                             <CardContent>
                                 <Typography variant="h6" fontSize="1rem" gutterBottom>
-                                    전일 : {list.yprice}
+                                    전일 : {list.list[0].yprice}
                                 </Typography>
                                 <Typography variant="h6" fontSize="1rem" gutterBottom>
-                                    거래량 : {list.volume}
+                                    거래량 : {list.list[0].volume}
                                 </Typography>
                                 <Typography variant="h6" fontSize="1rem" gutterBottom>
-                                    52주 최고 : {list.topprice}
+                                    52주 최고 : {list.list[0].topprice}
                                 </Typography>
                             </CardContent>
                         </Card>
@@ -55,13 +54,13 @@ function ViewInfo({ list }) {
                             </CardActions>
                             <CardContent>
                                 <Typography variant="h6" fontSize="1rem" gutterBottom>
-                                    시가 : {list.open}
+                                    시가 : {list.list[0].open}
                                 </Typography>
                                 <Typography variant="h6" fontSize="1rem" gutterBottom>
-                                    대금 : {list.onevolume}
+                                    대금 : {list.list[0].onevolume}
                                 </Typography>
                                 <Typography variant="h6" fontSize="1rem" gutterBottom>
-                                    52주 최저 : {list.bottomprice}
+                                    52주 최저 : {list.list[0].bottomprice}
                                 </Typography>
                             </CardContent>
                         </Card>
@@ -73,13 +72,13 @@ function ViewInfo({ list }) {
                             </CardActions>
                             <CardContent>
                                 <Typography variant="h6" fontSize="1rem" gutterBottom>
-                                    고가 : {list.high}
+                                    고가 : {list.list[0].high}
                                 </Typography>
                                 <Typography variant="h6" fontSize="1rem" gutterBottom>
-                                    시총 : {list.total}
+                                    시총 : {list.list[0].total}
                                 </Typography>
                                 <Typography variant="h6" fontSize="1rem" gutterBottom>
-                                    PER : {list.per}
+                                    PER : {list.list[0].per}
                                 </Typography>
                             </CardContent>
                         </Card>
@@ -91,13 +90,13 @@ function ViewInfo({ list }) {
                             </CardActions>
                             <CardContent>
                                 <Typography variant="h6" fontSize="1rem" gutterBottom>
-                                    저가 : {list.low}
+                                    저가 : {list.list[0].low}
                                 </Typography>
                                 <Typography variant="h6" fontSize="1rem" gutterBottom>
-                                    외인소진율 : {list.foreignapb}
+                                    외인소진율 : {list.list[0].foreignapb}
                                 </Typography>
                                 <Typography variant="h6" fontSize="1rem" gutterBottom>
-                                    EPS : {list.eps}
+                                    EPS : {list.list[0].eps}
                                 </Typography>
                             </CardContent>
                         </Card>
@@ -106,7 +105,7 @@ function ViewInfo({ list }) {
             </Box>
             <Box borderBottom={1} borderColor="divider">
                 <Stack sx={{ width: '100%', marginBottom: 2}} spacing={2}>
-                    <Alert severity="info">회사 정보: {list.content}</Alert>
+                    <Alert severity="info">회사 정보: {list.list[0].content}</Alert>
                     <Alert severity="error">제공하는 금융 정보는 콘텐츠 제공업체툴팁 보기로부터 받는 정보로 투자 참고사항이며, 오류가 발생하거나 지연될 수 있습니다. <br/>제공된 정보에 의한 투자결과에 법적책임을 지지 않습니다. 게시된 정보는 무단으로 배포할 수 없습니다.</Alert>
                 </Stack>
             </Box>

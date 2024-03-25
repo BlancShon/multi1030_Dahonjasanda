@@ -9,10 +9,9 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import Typography from '@mui/material/Typography';
 
-function ViewList({ stockdata }) {
+function ViewList({ list }) {
     
-    console.log("viewlist",stockdata);
-    if(!stockdata) {
+    if(!list) {
         return null;
     }
 
@@ -77,31 +76,31 @@ function ViewList({ stockdata }) {
                     </TableRow>
                 </TableHead>
                 <TableBody>
-                    {Array.isArray(stockdata.flist) && stockdata.flist.map((item, i) => (
+                    {list.flist.map((item, i) => (
                         <TableRow key={i} sx={{ '&:last-child td, &:last-child th': { border: 0 } }} >
                             <TableCell align="center">
                                 <Typography>{item.date}</Typography>
                             </TableCell>
                             <TableCell align="center">
-                                <Typography>{parseInt(item.close).toLocaleString()}</Typography>
+                                <Typography>{item.close.toLocaleString()}</Typography>
                             </TableCell>
                             <TableCell align="center">
-                                {stockdata && stockdata.flist && (
-                                    <Typography style={{ color: parseInt(item.gap) >= 0 ? 'red' : 'blue'}}>
-                                        {parseInt(item.gap) >= 0 ? '▲' : '▼'}
-                                        {parseInt(item.gap)}
+                                {list.flist && (
+                                    <Typography style={{ color: item.gap.startsWith('상') ? 'red' : 'blue'}}>
+                                        {item.gap.startsWith('상') ? '▲' : '▼'}
+                                        {item.gap}
                                     </Typography>
                                 )}
                             </TableCell>
                             <TableCell align="center">
-                                {stockdata && stockdata.flist && (
+                                {list.flist && (
                                     <Typography style={{ color: item.foreigner.startsWith('+')  ? 'red' : 'blue'}}>
                                         {item.foreigner}
                                     </Typography>
                                 )}
                             </TableCell>
                             <TableCell align="center">
-                                {stockdata && stockdata.flist && (
+                                {list.flist && (
                                     <Typography style={{ color: item.organ.startsWith('+')  ? 'red' : 'blue'}}>
                                         {item.organ}
                                     </Typography>

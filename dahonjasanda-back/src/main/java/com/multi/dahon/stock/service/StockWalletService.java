@@ -1,9 +1,12 @@
 package com.multi.dahon.stock.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.multi.dahon.stock.model.vo.StockParam;
 import com.multi.dahon.stock.model.vo.StockWallet;
 import com.multi.dahon.stock.repository.StockWalletRepository;
 
@@ -29,8 +32,15 @@ public class StockWalletService {
 	
 	@Transactional(rollbackFor = Exception.class)
 	public void delete(int wno) throws Exception {
-		StockWallet stockwallet = this.findByNo(wno);
-		repo.deleteById(stockwallet.getWno());
+		repo.deleteById(wno);
 	}
-
+	
+	public List<StockWallet> getWalletList(StockParam param) {
+	    return repo.walletSearch("%"+param.getSearchValue()+"%");
+	}
+	  
+	public int getWalletListCount(StockParam param) {
+	    return repo.walletSearchCount("%"+param.getSearchValue()+"%");
+	}
+	
 }

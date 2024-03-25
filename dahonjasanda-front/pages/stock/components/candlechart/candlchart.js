@@ -6,8 +6,9 @@ import Box from "@mui/material/Box";
 const ApexChart = dynamic(() => import('react-apexcharts'), { ssr: false });
 
 
-function Candle({list}) {
-    console.log("candle",list);
+function Candle({list, item}) {
+    console.log("candl!@#!@#",item);
+    // const candle_day_x = item.item[0].sprice.map((item) => item.sdate);
     const options = {
         chart: {
             type: 'candlestick',

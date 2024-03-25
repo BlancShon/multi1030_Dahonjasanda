@@ -10,7 +10,8 @@ import Orders  from './components/Orders';
 
 import Container from 'components/Container';
 
-const StockList = ({ list }) => {
+const StockList = ({ slist, wlist}) => {
+
   return (
     <Container>
       <Box>
@@ -18,13 +19,13 @@ const StockList = ({ list }) => {
             보유 종목
         </Typography>
         <Box
-            bgcolor={'alternate.main'}
-            p={4}
-            borderRadius={2}
-            display={'flex'}
-            justifyContent={'center'}
-            >
-            <Orders list={list}/>
+          bgcolor={'alternate.main'}
+          p={4}
+          borderRadius={2}
+          display={'flex'}
+          justifyContent={'center'}
+        >
+          <Orders slist={slist} wlist={wlist} />
         </Box>
       </Box>
     </Container>

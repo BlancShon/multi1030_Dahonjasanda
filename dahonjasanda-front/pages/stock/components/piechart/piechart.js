@@ -9,15 +9,15 @@ function PieChart({ labels, series}) {
     const [options, setOptions] = useState(null);
 
     useEffect(() => {
-        if (options === null) {
+        if (labels && series) {
             const newOptions = {
                 chart: {
                     width: '100%',
                     height: '600px',
                     type: 'pie',
                 },
-                labels: labels,
-                series: series,
+                labels: labels.length > 0 ? labels : ["매수 등록 하세요"],
+                series: series.length > 0 ? series : [1],
                 responsive: [{
                     breakpoint: 480,
                     options: {
@@ -32,7 +32,7 @@ function PieChart({ labels, series}) {
             };
             setOptions(newOptions);
         }
-    }, []);
+    }, [labels, series]);
 
     return (
         <Box style={{ display: 'flex', justifyContent: 'center' }}>

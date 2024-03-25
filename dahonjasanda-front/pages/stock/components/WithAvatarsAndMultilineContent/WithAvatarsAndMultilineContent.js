@@ -171,7 +171,7 @@ const WithAvatarsAndMultilineContent = ({list}) => {
                     <ListItem sx={{ p: 0, m: 0 }}>
                       <ListItemAvatar>
                         <Link href={`/stock/view?searchValue=${item.sname}`} passHref>
-                          <Avatar sx={{ width: 70, height: 70}} src={`/images/stock/logo/${item.sno}.png`} alt={item.sname}/>
+                          <Avatar sx={{ width: 70, height: 70}} src={`/images/stock/logo/${item.sname}.png`} alt={item.sname}/>
                         </Link>
                       </ListItemAvatar>
                       <ListItemText

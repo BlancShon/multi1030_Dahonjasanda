@@ -37,6 +37,7 @@ export default function SignIn() {
             console.log(response)
             if(response.data.result === true){
                 alert('로그인 성공');
+                sessionStorage.setItem('token', response.data.token);
                 location.href ="/";
             }else{
                 alert('로그인 실패');

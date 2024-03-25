@@ -17,11 +17,13 @@ import com.multi.dahon.stock.model.vo.StockParam;
 import com.multi.dahon.stock.model.vo.StockTime;
 import com.multi.dahon.stock.service.StockTimeService;
 
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @RestController
 @RequestMapping("/stock/time")
+@Tag(name = "StockLiveChart Rest API", description = "개별 종목 주식에 대한 실시간 정보를 제공합니다.")
 public class StockTimeController {
 private final StockTimeService service;
 	

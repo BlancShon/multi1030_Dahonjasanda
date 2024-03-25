@@ -43,10 +43,10 @@ public class Board {
 	private int bno;
 	
 	@Column(length = 1000)
-	private String title;
+	public String title;
 	
 	@Column(columnDefinition = "TEXT") // 컬럼의 속성을 TEXT 바꿔주는 어노테이션, 주의 : DB 호환성 생각 필요 
-	private String content;
+	public String content;
 	private int readCount;
 
 	@Temporal(TemporalType.TIMESTAMP)

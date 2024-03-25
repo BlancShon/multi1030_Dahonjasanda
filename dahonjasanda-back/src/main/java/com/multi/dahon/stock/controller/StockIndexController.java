@@ -16,11 +16,13 @@ import com.multi.dahon.stock.model.vo.StockIndex;
 import com.multi.dahon.stock.model.vo.StockParam;
 import com.multi.dahon.stock.service.StockIndexService;
 
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @RestController
 @RequestMapping("/stock/index")
+@Tag(name = "StockIndex Rest API", description = "지수 정보에 대한 정보를 제공합니다.")
 public class StockIndexController {
 	
 	private final StockIndexService service;

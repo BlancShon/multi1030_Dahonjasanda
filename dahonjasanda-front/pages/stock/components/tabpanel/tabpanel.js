@@ -10,7 +10,7 @@ import InsertStock from '../insertstock/insertstock'
 import NewsPage from '../news/newspage';
 import WordList from '../wordlist/wordlist';
 
-export default function LabTabs({ list, slist }) {
+export default function LabTabs({ slist, wlist, loginInfo }) {
   const [value, setValue] = React.useState('1');
 
   const handleChange = (event, newValue) => {
@@ -23,20 +23,20 @@ export default function LabTabs({ list, slist }) {
         <Box sx={{ borderBottom: 1, borderColor: 'divider', width: '100%' }}>
           <TabList onChange={handleChange} aria-label="lab API tabs example" sx={{ display: 'flex', justifyContent: 'space-between' }}>
             <Tab label="자산" value="1" sx={{ flex: 1, fontSize: '1.5rem', textAlign: 'center' }}/>
-            <Tab label="매매 일지" value="2" sx={{ flex: 1, fontSize: '1.5rem', textAlign: 'center' }}/>
-            <Tab label="뉴스" value="3" sx={{ flex: 1, fontSize: '1.5rem', textAlign: 'center' }}/>
+            <Tab label="매수 등록" value="2" sx={{ flex: 1, fontSize: '1.5rem', textAlign: 'center' }}/>
+            <Tab label="경제뉴스" value="3" sx={{ flex: 1, fontSize: '1.5rem', textAlign: 'center' }}/>
             <Tab label="경제용어" value="4" sx={{ flex: 1, fontSize: '1.5rem', textAlign: 'center' }}/>
           </TabList>
         </Box>
         <Box sx={{ width: '100%' }}>
             <TabPanel value="1">
               <Box>
-                <StockList list={list}/>
+                <StockList slist={slist} wlist={wlist} />
               </Box>
             </TabPanel>
             <TabPanel value="2">
               <Box>
-                <InsertStock slist={slist}/>
+                <InsertStock slist={slist} wlist={wlist}/>
               </Box>
             </TabPanel >
             <TabPanel value="3">
