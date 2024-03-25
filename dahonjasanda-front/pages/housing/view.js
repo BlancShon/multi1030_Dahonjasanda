@@ -4,18 +4,27 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Card, Table } from "react-bootstrap"
 import { useRouter } from 'next/router';
-
+import dynamic from 'next/dynamic';
+import DetailView from './detailView';
+import { Link } from 'react-router-dom';
 
 
 
 const HousingView = ({ houseManageNo, houseNm, hssplyAdres, cnstrctEntrpsNm, totSuplyHshldco, bsnsMbyNm, houseSecdNm }) => {
 
 
+
+  
  // console.log(houseManageNo)
  // console.log(houseNm);
   const router = useRouter();
   const [housingType, setHousingType] = useState([]);
-
+  const [selectedCntrctAr, setSelectedCntrctAr] = useState();
+  const [selectedExcluseAr, setSelectedExcluseAr] = useState();
+  const [selectedHouseTy, setSelectedHouseTy] = useState();
+  const [selectedLttotTopAmount, setSelectedLttotTopAmount] = useState();
+  const [selectedSuplyAr, setSelectedSuplyAr] = useState();
+  const [selectedSuplyHshldco, setSelectedSuplyHshldco] = useState();
 
   useEffect(() => {
     if (!router.isReady) {
@@ -48,16 +57,33 @@ const HousingView = ({ houseManageNo, houseNm, hssplyAdres, cnstrctEntrpsNm, tot
   }
 
   const typeList = housingType.map((item) => ({
-    houseNm: item.houseNm, suplyHshldco: item.suplyHshldco, lttotTopAmount: item.lttotTopAmount
-  }))
+    houseNm: item.houseNm, suplyHshldco: item.suplyHshldco, lttotTopAmount: item.lttotTopAmount,
+    housingType: item.housingType, cntrctAr: item.cntrctAr, excluseAr: item.excluseAr,
+    houseTy: item.houseTy, suplyAr: item.suplyAr
+    
+    
+  })) 
 
-  //console.log(typeList);
+  const setParameterForDetailView = (cntrctAr, excluseAr, houseTy, lttotTopAmount, suplyAr, suplyHshldco) => {
+    console.log(cntrctAr);
+    setSelectedCntrctAr(cntrctAr);
+    setSelectedExcluseAr(excluseAr);
+    setSelectedHouseTy(houseTy)
+    setSelectedLttotTopAmount(lttotTopAmount);
+    setSelectedSuplyAr(suplyAr);
+    setSelectedSuplyHshldco(suplyHshldco);
 
-  const housingList = [houseNm, hssplyAdres, cnstrctEntrpsNm, totSuplyHshldco, bsnsMbyNm, houseSecdNm]
-  console.log(housingList);
-  //console.log(typeList)
+  }
 
 
+
+  console.log(selectedCntrctAr);
+  
+
+
+
+
+ 
   return (
 
 
@@ -119,12 +145,18 @@ const HousingView = ({ houseManageNo, houseNm, hssplyAdres, cnstrctEntrpsNm, tot
                 </tr>
               </tbody>
             </Table>
-            <div style={{}}><a href={'/housing/detailView?houseManageNo=' + houseManageNo}>자세히보기</a></div>
+            
+            
+            <div style={{}}>
+              
+
+                 <a href={'/housing/detailView?houseManageNo=' + houseManageNo}> 자세히보기</a>
+              
+             
+              </div>
           </Card.Body>
         </Card>
-
-
-
+                  
 
         {/* Add your view component content here */}
       </div>
