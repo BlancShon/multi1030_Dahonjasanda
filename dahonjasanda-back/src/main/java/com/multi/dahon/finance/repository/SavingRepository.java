@@ -25,7 +25,6 @@ public interface SavingRepository extends JpaRepository<SavingOption, Long>, Jpa
 			+ "where so.id = :id")
 	Optional<SavingOptionAndProdDTO> findSavingWithDetail(@Param("id") Long id);
 	
-//	Page<MortgageLoanOption> findAll(Specification<MortgageLoanOption> spec, Pageable pageable);
 	@EntityGraph(attributePaths = "saving")
     Page<SavingOption> findAll(Specification<SavingOption> spec, Pageable pageable);
 	

@@ -10,12 +10,11 @@ const Hero = ({
   titleText = "나에게 맞는 금융 상품을 찾아보세요!",
   subtitleText = "한눈에 금융 정보를 확인하고, 나에게 맞는 상품을 찾아보세요.",
   subtitleText2 = "예금, 적금, 연금, 주택담보대출, 개인신용대출, 전세대출 등 다양한 금융 상품을 비교해보세요.",
-  opacity = 0.6
+  opacity = 0.1
 }) => {
   const theme = useTheme();
-  const defaultImage = 'https://assets.maccarianagency.com/backgrounds/img3.jpg';
-  // console.log('Background image URL:', backgroundImage);
-  const imageUrl = backgroundImage || defaultImage;
+  const defaultImage = '/images/img3.jpg'; // 'public/images/backgrounds' 폴더 안의 기본 이미지 경로로 변경
+  const imageUrl = backgroundImage ? `/images/${backgroundImage}` : defaultImage; // backgroundImage prop이 제공되면, 해당 이미지 경로를 사용
 
   return (
     <Box
@@ -23,7 +22,7 @@ const Hero = ({
       height={"auto"}
       position={'relative'}
       sx={{
-        backgroundImage: `url(${imageUrl.src})`,
+        backgroundImage: `url(${imageUrl})`,
         backgroundSize: 'cover',
         backgroundPosition: 'center',
         '&:after': {
@@ -73,6 +72,8 @@ const Hero = ({
               {subtitleText}
               <br />
               {subtitleText2}
+              <br />
+              <br />
             </Typography>
           </Box>
           {children}

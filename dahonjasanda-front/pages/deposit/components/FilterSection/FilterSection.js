@@ -3,22 +3,36 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import CheckboxGroup from '../CheckboxGroup';
 import Divider from '@mui/material/Divider';
+// import SortDropdown from '../SortDropdown/SortDropdown';
 
 
-
-const FilterSection = ({ title, groups, checked, onCheckboxChange }) => {
+const FilterSection = ({ title, groups, checked, setChecked, onCheckboxChange }) => {
   
+  // const safeChecked = checked || {};
+  
+  // title에 따른 한글 텍스트 변환
+  const getTranslatedTitle = (titleKey) => {
+    switch(titleKey) {
+      case 'term-deposits':
+        return '예금';
+      case 'savings':
+        return '적금';
+      case 'annuity-savings':
+        return '연금';
+      default:
+        return titleKey; // 알려지지 않은 key면 기본값을 그대로 사용
+    }
+  };
+
   const handleCheckboxChange = (groupName, newChecked) => {
     // console.log(`Checkbox change in '${groupName}':`, newChecked); // 체크박스 변경 로그 추가
     onCheckboxChange(groupName, newChecked);
   };
 
-  // console.log("Checked state at FilterSection:", checked); // 전체 checked 상태 로그
-
     return (
       <Box>
         <Typography variant="h4" gutterBottom>
-          {title}
+          {getTranslatedTitle(title)}
         </Typography>
         
         {groups.map((group, index) => {
@@ -28,12 +42,18 @@ const FilterSection = ({ title, groups, checked, onCheckboxChange }) => {
               key={index}
               groupName={group.name}
               options={group.options}
-              checked={checked[group.name] || []}
+              // checked={safeChecked[group.name] || []}
+              checked={checked}
+              setChecked={setChecked}
               onCheckboxChange={handleCheckboxChange}
             />
           );
         })}
-        
+        {/* Positioning SortDropdown here applies sorting to the entire section */}
+        {/* <SortDropdown 
+          sortOptions={sortOptions} 
+          onSortChange={onSortChange} 
+        /> */}
       </Box>
     );
   };
