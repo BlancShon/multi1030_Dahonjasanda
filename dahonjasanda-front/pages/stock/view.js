@@ -142,20 +142,10 @@ export default function View() {
         <Main colorInvert={true}>
             <Box>
                 <HeroSection imageUrl="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQSArpdqfkhN75nrhWCbHxmvFiY7Ot0SujcbQ&usqp=CAU"/>
-<<<<<<< HEAD
                 <ViewTitle list={viewData}/>
-=======
-                <ViewTitle list={viewData} list1={tim} list2={real}/>
-                <Candle list={data}/>
->>>>>>> branch 'master' of https://github.com/BlancShon/multi1030_Dahonjasanda.git
                 <ViewInfo list={viewData} />
-<<<<<<< HEAD
                 <Consensus list={viewData}/>
                 <Trends list={viewData}/>
-=======
-                <Consensus list={view} list1={tim}/>
-                <Trends stockdata={stockdata}/>
->>>>>>> branch 'master' of https://github.com/BlancShon/multi1030_Dahonjasanda.git
             </Box>
         </Main>
     );
