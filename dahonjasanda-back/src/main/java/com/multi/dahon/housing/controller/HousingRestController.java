@@ -90,8 +90,8 @@ public class HousingRestController {
 				@RequestParam(required = false) String searchValue,
 				@RequestParam(required = false) String transactionType,
 				@RequestParam(required = false) String location,
-				@RequestParam(required = false) String propertyType)
-		 {
+				@RequestParam(required = false) String propertyType) {
+			
 			HousingMapPram param = new HousingMapPram();
 			param.setSearchValue(searchValue);
 			param.setTransactionType(transactionType);

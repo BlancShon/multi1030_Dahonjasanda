@@ -1,9 +1,11 @@
 import React from 'react';
 import Box from '@mui/material/Box';
 import { useTheme } from '@mui/material/styles';
-
 import Main from 'layouts/Main';
 import Container from 'components/Container';
+import { useState } from 'react';
+
+
 import {
   Hero,
   SearchBox,
@@ -13,8 +15,18 @@ import {
   PopularArticles,
   Newsletter,
 } from './components';
-
 const plantMain = () => {
+  //여기다가 useState
+  // const [AllListView, setAllListView] = useState([]);
+
+  // const handleAllView = (results) => {
+  //   setAllListView(results);
+  // };
+  const [searchResults, setSearchResults] = useState([]); // 사용할 검색 결과 상태
+  
+  const handleSearch = (results) => {
+    setSearchResults(results); // 검색 결과를 상태에 저장
+  };
   const theme = useTheme();
   return (
     <Main colorInvert={true}>
@@ -28,12 +40,12 @@ const plantMain = () => {
             paddingY: '0 !important',
           }}
         >
-          <SearchBox />
+          <SearchBox onSearch={handleSearch} />
           <Container paddingTop={'0 !important'}></Container>
         </Container>
         <Container paddingTop={'0 !important'}>
-          <LastStories />
-        </Container>
+          <LastStories searchResults={searchResults} /> {/*AllListView={AllListView}*/}
+         </Container>
         <Container paddingTop={'0 !important'}>
           <CaseStudies />
         </Container>

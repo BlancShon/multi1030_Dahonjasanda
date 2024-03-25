@@ -11,15 +11,19 @@ import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 
 import org.w3c.dom.Document;
+import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
-import org.w3c.dom.Element;
 
 import com.multi.dahon.plant.model.vo.Plant;
+
+import jakarta.persistence.Column;
 public class apiParsingPlant {
 	
 	public static void main(String[] args) {
 		 parse();
+		 
+//		 saveParsedData(null, null, null);		
 	}
 	public static final String KEY = "20240214FZQ6E16CCREWI7Q97CHBA";
 	public static final String PlantList_XML_URL = "http://api.nongsaro.go.kr/service/garden/gardenList";
@@ -121,19 +125,25 @@ public class apiParsingPlant {
 								 String rtnThumbFileNm  = getStrData(eElement, "rtnThumbFileNm");
 								 String rtnImgSeCode  = getStrData(eElement, "rtnImgSeCode");
 								 String rtnFileUrl = getStrData(eElement, "rtnFileUrl");
+								 String rtnFileUrl1 = getStrData(eElement, "rtnFileUrl1");
+								 String rtnFileUrl2 = getStrData(eElement, "rtnFileUrl2");
 								 String rtnThumbFileUrl = getStrData(eElement, "rtnThumbFileUrl");
+								 String rtnThumbFileUrl1 = getStrData(eElement, "rtnThumbFileUrl1");
+								 String rtnThumbFileUrl2 = getStrData(eElement, "rtnThumbFileUrl2");
 								 String rtnFileSeCodeName = getStrData(eElement, "rtnFileSeCodeName");
-								
-								 Plant plant = new Plant(ptno, cntntsNo, cntntsSj, rtnFileSeCodeName, rtnFileSn, rtnOrginlFileNm, rtnFileSeCodeName, rtnStreFileNm, rtnFileCours, rtnImageDc, rtnThumbFileNm, rtnImgSeCode, rtnImgSeCode, rtnFileUrl, rtnThumbFileUrl, rtnFileSeCodeName, rtnFileSeCodeName, rtnFileSeCodeName, rtnFileSeCodeName, ptno, rtnFileSeCodeName, rtnFileSeCodeName, rtnFileSeCodeName, rtnFileSeCodeName, rtnFileSeCodeName, rtnFileSeCodeName, rtnFileSeCodeName, code, rtnFileSeCodeName, rtnFileSeCodeName, rtnFileSeCodeName, rtnFileSeCodeName, rtnFileSeCodeName, rtnFileSeCodeName, rtnFileSeCodeName, rtnFileSeCodeName, rtnFileSeCodeName, rtnFileSeCodeName, rtnFileSeCodeName, rtnFileSeCodeName, rtnFileSeCodeName, rtnFileSeCodeName, rtnFileSeCodeName, rtnFileSeCodeName, code, rtnFileSeCodeName, code, rtnFileSeCodeName, code, rtnFileSeCodeName, code, rtnFileSeCodeName, rtnFileSeCodeName, rtnFileSeCodeName, rtnFileSeCodeName, i, rtnFileSeCodeName, rtnFileSeCodeName, rtnFileSeCodeName, rtnFileSeCodeName, rtnFileSeCodeName, rtnFileSeCodeName, rtnFileSeCodeName, rtnFileSeCodeName, rtnFileSeCodeName, rtnFileSeCodeName, rtnFileSeCodeName, rtnFileSeCodeName, rtnFileSeCodeName, rtnFileSeCodeName, rtnFileSeCodeName, rtnFileSeCodeName, rtnFileSeCodeName, code, rtnFileSeCodeName, code, rtnFileSeCodeName, code, cntntsNo, code, cntntsSj, code, rtnFileSeCode, code, rtnFileSn, code, rtnOrginlFileNm, code, rtnStreFileNm, code, rtnFileCours, code, rtnImageDc, code, rtnThumbFileNm, code, rtnImgSeCode, code, rtnFileUrl, code, rtnThumbFileUrl, code, rtnFileSeCodeName);
+//											
+								 Plant plant = new Plant(ptno, cntntsNo, cntntsSj, rtnFileSeCodeName, rtnFileSn, rtnOrginlFileNm, rtnFileSeCodeName, rtnStreFileNm, rtnFileCours, rtnImageDc, rtnThumbFileNm, rtnImgSeCode, rtnImgSeCode, rtnFileUrl, rtnFileUrl1, rtnFileUrl2, rtnThumbFileUrl, rtnThumbFileUrl1, rtnThumbFileUrl2, rtnFileSeCodeName, rtnFileSeCodeName, rtnFileSeCodeName, rtnFileSeCodeName, ptno, rtnFileSeCodeName, rtnFileSeCodeName, rtnFileSeCodeName, rtnFileSeCodeName, rtnFileSeCodeName, rtnFileSeCodeName, rtnFileSeCodeName, code, rtnFileSeCodeName, rtnFileSeCodeName, rtnFileSeCodeName, rtnFileSeCodeName, rtnFileSeCodeName, rtnFileSeCodeName, code, rtnFileSeCodeName, code, rtnFileSeCodeName, code, rtnFileSeCodeName, code, rtnFileSeCodeName, rtnFileSeCodeName, rtnFileSeCodeName, code, rtnFileSeCodeName, code, rtnFileSeCodeName, code, rtnFileSeCodeName, code, rtnFileSeCodeName, rtnFileSeCodeName, rtnFileSeCodeName, rtnFileSeCodeName, i, rtnFileSeCodeName, rtnFileSeCodeName, rtnFileSeCodeName, rtnFileSeCodeName, rtnFileSeCodeName, rtnFileSeCodeName, rtnFileSeCodeName, rtnFileSeCodeName, rtnFileSeCodeName, rtnFileSeCodeName, rtnFileSeCodeName, rtnFileSeCodeName, rtnFileSeCodeName, rtnFileSeCodeName, cntntsNo, cntntsSj, rtnFileSeCode, code, rtnFileSn, code, rtnFileSeCodeName, code, rtnOrginlFileNm, code, rtnStreFileNm, code, rtnFileCours, code, rtnImageDc, code, rtnThumbFileNm, code, rtnImgSeCode, code, rtnFileUrl, code, rtnFileUrl1, code, rtnFileUrl2, code, rtnThumbFileUrl, code, rtnThumbFileUrl1, code, rtnThumbFileUrl2, code, rtnFileSeCodeName);
 								 
 								 
-								 //								Food food = new Food(0, contentId, contentTypeId, homePage, tel, title, firstImage, firstImage2, areaCode, siGunGuCode, cat1, cat2, cat3, addr1, addr2, zipCode, mapX, mapY, overView, mlevel, chkcreditcardFood, discountinfoFood, firstMenu, infocenterFood, kidsFacility, opendateFood, opentimeFood, packing, parkingFood, reservationFood, 
+								 //								 (ptno, cntntsNo, cntntsSj, rtnFileSeCode, rtnFileSn, rtnOrginlFileNm, rtnOrginFileNm, rtnStreFileNm, rtnFileCours, rtnImageDc, rtnThumbFileNm, rtnImgSeCode, rtnImgSeCodeName, rtnFileUrl, rtnFileUrl1, rtnFileUrl2, rtnThumbFileUrl, rtnThumbFileUrl1, rtnThumbFileUrl2, rtnFileSeCodeName, plntbneNm, plntzrNm, distbNm, fmlNm, fmlCodeNm, orgplceInfo, adviseInfo, imageEvlLinkCours, growthHgInfo, growthAraInfo, lefStleInfo, smellCode, smellCodeNm, toxctyInfo, prpgtEraInfo, etcEraInfo, managelevelCode, managelevelCodeNm, grwtveCode, grwtveCodeNm, grwhTpCode, grwhTpCodeNm, werLwetTpCode, werLwetTpCodeNm, hdCode, hdCodeNm, frtlzrInfo, soilInfo, watercycleSprngCode, watercycleSprngCodeNm, watercycleSummerCode, watercycleSummerCodeNm, watercycleAutumnCode, watercycleAutumnCodeNm, watercycleWerCode, watercycleWerCodeNm, dlthtsManageInfo, speclmanageInfo, fncltyInfo, flpodmtBigInfo, flpodmtMiddleInfo, flpodmtSmallInfo, widthBigInfo, widthMddlInfo, widthSmallInfo, vrticlBigInfo, vrticlMddlInfo, vrticlSmallInfo, hgBigInfo, hgMddlInfo, hgSmallInfo, volmeBigInfo, volmeMddlInfo, volmeSmallInfo, pcBigInfo, pcMddlInfo, pcSmallInfo, managedemanddoCode, managedemanddoCodeName, clCode, clCodeNm, grwhstleCode, grwhstleCodeNm, indoorpsncpacompositionCode, indoorpsncpacompositionCodeNm, eclgyCode, eclgyCodeNm, lefcolrCode, lefcolrCodeNm, lefmrkCode, lefmrkCodeNm, ignSeasonCode, ignSeasonCodeNm, flclrCode, flclrCodeNm, fmldecolrCode, fmldecolrCodeNm, fmldeSeasonCode, fmldeSeasonCodeNm, prpgtmthCode, prpgtmthCodeNm, lighttdemanddoCode, lighttdemanddoCodeNm, postngplaceCode, postngplaceCodeNm, dlthtsCode, dlthtsCodeNm)
+//								 Plant plant2 = new Plant(0, cntntsNo, cntntsSj, rtnFileSeCode, rtnFileSn, rtnOrginlFileNm, null, rtnStreFileNm, rtnFileCours, rtnImageDc, rtnThumbFileNm, rtnImgSeCode, null, rtnFileUrl, null, null, rtnThumbFileUrl, null, null, rtnFileSeCodeName, null, null, null, null, null, null, null, null, null, null, null, 0, null, null, null, null, 0, null, 0, null, 0, null, 0, null, 0, null, null, null, 0, null, 0, null, 0, null, 0, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null);
 //										restdateFood, scaleFood, seat, smoking, treatMenu, lcnsNo, originImgurl1, originImgurl2, smallImgurl);
 								
 								
 							
 //								System.out.println(food);
 								list.add(plant);
+								System.out.println("@@@@" + plant.getRtnThumbFileUrl());
 							} catch (Exception e) {
 								System.out.println("데이터가 잘못되었습니다!");
 							}
@@ -144,6 +154,46 @@ public class apiParsingPlant {
 				}
 				return list;
 			}
+	
+	// 파이프로 구분된 문자열을 받아서 각각의 필드로 분리하고 데이터베이스에 저장하는 메소드
+	public static Plant saveParsedData(Plant plant) {
+		System.out.println("@@@아직 분리되지 않음" + plant.getRtnThumbFileUrl());
+		System.out.println("@@@아직 분리되지 않음" + plant.getRtnFileUrl());
+	    String[] fields1 = plant.getRtnThumbFileUrl().split("\\|");
+	    String[] fields2 = plant.getRtnFileUrl().split("\\|");
+	    
+	    // 필드가 적절한지 확인하고 필요한 변환 작업 수행
+	    String rtnThumbFileUrl1 = fields1[0].trim(); // 예시: 첫 번째 필드를 그대로 사용
+	    String rtnThumbFileUrl2 = fields1[1].trim(); // 예시: 첫 번째 필드를 그대로 사용
+	    String rtnFileUrl1 = fields2[0].trim(); // 예시: 첫 번째 필드를 그대로 사용
+	    String rtnFileUrl2 = fields2[1].trim(); // 예시: 첫 번째 필드를 그대로 사용
+	    System.out.println("@@@분리 되었음" + rtnThumbFileUrl1);
+	    System.out.println("@@@분리 되었음" + rtnFileUrl1);
+	    
+//	    String rtnThumbFileNm2 = fields1.length > 1 ? fields1[1].trim() : ""; // 예시: 두 번째 필드를 정수로 변환
+//	    System.out.println("@@@@@@@ split : " + rtnThumbFileNm1 );
+	    
+//	    String rtnFileUrl2 = fields2.length > 1 ? fields2[1].trim() : ""; // 예시: 두 번째 필드를 정수로 변환
+	    
+	    
+	    
+//	    String rtnFileUrl1 = fields2[0].trim(); // 예시: 두 번째 필드를 정수로 변환
+//	    String rtnFileUrl2 = fields2[1].trim(); // 예시: 두 번째 필드를 정수로 변환
+	    System.out.println("@@ split나눠짐 : " + rtnThumbFileUrl1 );  // 분명히 나눠지는데...
+	    
+	    System.out.println("@@ split@ : " + rtnThumbFileUrl2 );
+	    System.out.println("@@ split@@ : " + rtnFileUrl1 );
+	    System.out.println("@@ split@@@ : " + rtnFileUrl2 );
+
+	    // 변환된 필드 값들을 사용하여 새로운 엔티티 객체 생성
+//	    YourEntity entity = new YourEntity();
+	    plant.setRtnThumbFileUrl1(rtnThumbFileUrl1);
+	    plant.setRtnThumbFileUrl2(rtnThumbFileUrl2);
+	    plant.setRtnFileUrl1(rtnFileUrl1);
+	    plant.setRtnFileUrl2(rtnFileUrl2);
+
+	    return plant;
+	}
 	
 	public static Plant DetailParse(Plant plant) {
 //		String dateStr = searchDate.format(DateTimeFormatter.ofPattern("yyyyMMdd"));
@@ -303,13 +353,13 @@ public class apiParsingPlant {
 								 String etcEraInfo = getStrData(eElement, "etcEraInfo");
 								 String managelevelCode = getStrData(eElement, "managelevelCode");
 								 String managelevelCodeNm = getStrData(eElement, "managelevelCodeNm");
-								 String grwtveCode = getStrData(eElement, "grwtveCode");
+								 int grwtveCode = getIntData(eElement, "grwtveCode");
 								 String grwtveCodeNm = getStrData(eElement, "grwtveCodeNm");
-								 String grwhTpCode = getStrData(eElement, "grwhTpCode");
+								 int grwhTpCode = getIntData(eElement, "grwhTpCode");
 								 String grwhTpCodeNm = getStrData(eElement, "grwhTpCodeNm");
-								 String winterLwetTpCode = getStrData(eElement, "winterLwetTpCode");
+								 int winterLwetTpCode = getIntData(eElement, "winterLwetTpCode");
 								 String winterLwetTpCodeNm = getStrData(eElement, "winterLwetTpCodeNm");
-								 String hdCode = getStrData(eElement, "hdCode");
+								 int hdCode = getIntData(eElement, "hdCode");
 								 String hdCodeNm = getStrData(eElement, "hdCodeNm");
 								 String frtlzrInfo = getStrData(eElement, "frtlzrInfo");
 								 String soilInfo = getStrData(eElement, "soilInfo");

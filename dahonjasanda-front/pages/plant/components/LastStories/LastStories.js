@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import { useTheme } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
@@ -12,6 +13,7 @@ import Avatar from '@mui/material/Avatar';
 import Pagination from '@mui/material/Pagination';
 
 // 박스에 사진 및 텍스트 추가
+
 
 const mock = [
   {
@@ -95,7 +97,24 @@ const mock = [
   },
 ];
 // 박스 구성
-const LastStories = () => {
+const LastStories = ({searchResults }) => {
+    const [plantList, setPlantList] = useState([]);  // 전체 리스트 가져오기 위한 변수 할당
+    const [plantCount, setPlantCount] = useState(0);
+    const displayList = searchResults.length > 0 ? searchResults : plantList;
+    // 전체리스트가 보여지고있고, 검색 결과를 가져와서 그위에 검색리스트로 변환
+
+    useEffect(() => {
+      axios.get('http://localhost/plant')  // 전체리스트 요청
+          .then(response => {
+              setPlantList(response.data.plantList); // 받아온 데이터로 변환
+              setPlantCount(response.data.plantCount);
+              console.log(response.data.plantList)
+          })
+          .catch(error => {
+              console.error('데이터가 안옴', error);
+          });
+  }, []);
+  
   const theme = useTheme();
   // const [isJsh, setIsJsh] = useState(true);
   return (
@@ -133,8 +152,8 @@ const LastStories = () => {
       </Box>
       <Grid container spacing={4} >
         {/* mock 데이터를 갖고옴 */}
-        {mock.map((item, i) => (
-          <Grid item xs={12} sm={6} md={3} key={i} sx={{marginBottom:-20}} >
+        {displayList && displayList.map((plant, index) => (  // display 활용하여 들어온 값으로 포문
+          <Grid item xs={12} sm={6} md={3} key={index} sx={{marginBottom:-20}} >
             
             <Box
               component={'a'}
@@ -161,8 +180,8 @@ const LastStories = () => {
                 sx={{ backgroundImage: 'none' }}
               >
                 <CardMedia
-                  image={item.image}
-                  title={item.title}
+                  image={plant.rtnThumbUrl}
+                  title={plant.title}
                   sx={{
                     height: { xs: 300, md: 360 },
                     position: 'relative',
@@ -193,10 +212,13 @@ const LastStories = () => {
                 </CardMedia>
                 <Box component={CardContent} position={'relative'}>
                   <Typography variant={'h6'} gutterBottom>
-                    {item.title}
+                    {plant.cntntsSj}
                   </Typography>
                   <Typography color="text.secondary">
-                    {item.description}
+                    {plant.plntbneNm}
+                  </Typography>
+                  <Typography color="text.secondary"><br></br>
+                    {plant.fmlCodeNm}
                   </Typography>
                 </Box>
                 <Box flexGrow={1} />
