@@ -72,17 +72,15 @@ public class HousingRestController {
 		
 		  
 
-		@GetMapping("/calendar/list")
-		public List<HouseCalendarParam> getAllHousingInfo() {
-		    return housingInfoRepository.findAllHousingInfo().stream()
-		            .map(data -> new HouseCalendarParam(
-		                    (String) data[0],
-		                    (String) data[1],
-		                    (String) data[2],
-		                    (String) data[3])) // Corrected placement of parenthesis
-		            .collect(Collectors.toList());
-		}
-
+		    @GetMapping("/calendar/list")
+		    public List<HouseCalendarParam> getAllHousingInfo() {
+		        return housingInfoRepository.findAllHousingInfo().stream()
+		                .map(data -> new HouseCalendarParam(
+		                        (String) data[0],
+		                        (String) data[1],
+		                        (String) data[2]))
+		                .collect(Collectors.toList());
+		    }
 		
 		
 		@GetMapping(path = "/housingList")
@@ -136,6 +134,28 @@ public class HousingRestController {
 			return ResponseEntity.status(HttpStatus.OK).body(map);
 		
  }
+		
+		@GetMapping(path = "/housingListByManageNo") 
+		public ResponseEntity<Map<String, Object>> housingListByManageNo(		
+				@RequestParam(required = false) String houseManageNo)
+		 {
+			
+			
+			List<HousingInfoJPA> list = infoService.getHousingListByManageNo(houseManageNo);
+			int listCount = infoService.getHousingListByManageNoCount(houseManageNo);
+			Map<String, Object> map = new HashMap<>();
+			
+			map.put("list", list);
+			map.put("listCount", listCount);
+			map.put("houseManageNo", houseManageNo);
+			System.out.println("리스트 = " + list);
+			System.out.println("검색 결과 개수 = " + listCount);
+			System.out.println("파라미터 = " + houseManageNo);
+			
+			
+			return ResponseEntity.status(HttpStatus.OK).body(map);
+			
+		}
 
 
 }

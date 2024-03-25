@@ -7,11 +7,21 @@ import Typography from '@mui/material/Typography';
 import TextField from '@mui/material/TextField';
 import InputAdornment from '@mui/material/InputAdornment';
 
-const SearchBox = ({ onSearch }) => {
+const SearchBox = ({ onSearch, checkedItems }) => {
   const [searchTerm, setSearchTerm] = useState('');
+
+  const handleChange = (e) => {
+    const newSearchTerm = e.target.value;
+    setSearchTerm(newSearchTerm);
+    // Log the current search term whenever it changes
+    console.log("Search term updated from SearchBox:", newSearchTerm);
+  };
 
   const handleSubmit = (event) => {
     event.preventDefault(); // Prevent the default form submit action
+    // Log the search term when attempting to search
+    console.log("Submitting search for from SearchBox:", searchTerm);
+    console.log("Checked Items at the time of search from SearchBox:", checkedItems);
     onSearch(searchTerm);
   };
 
@@ -26,9 +36,12 @@ const SearchBox = ({ onSearch }) => {
                 variant="outlined"
                 color="primary"
                 size="medium"
+                placeholder="찾으시는 상품 키워드를 입력해주세요."
                 value={searchTerm}
-                onChange={(e) => setSearchTerm(e.target.value)}
+                onChange={handleChange} // Here, we're using handleChange correctly.
                 sx={{ flexGrow: 3, mr: 2 }}
+
+
                 InputProps={{
                   startAdornment: (
                     <InputAdornment position="start">

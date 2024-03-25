@@ -29,11 +29,7 @@ const pages = {
     {
       title: "청약맵",
       href: "/housing/housingMap",
-    },
-    {
-      title: "청약게시판",
-      href: "/housingBoard",
-    },
+    }
   ],
   animalPlant: [
     {
@@ -90,9 +86,12 @@ const pages = {
     // },
   ],
   party: [
-    { title: "파티구함", href: "/party2" },
-    { title: "파티디테일(임시)", href: "/party2/detail" },
-    { title: "파티채팅", href: "/party2/chat" },
+      {title: "파티구함",
+      href: "/party2"},
+      {title: "파티디테일(임시)",
+      href: "/party2/detail"},
+      {title: "파티채팅",
+      href: "/party2/chat"},
   ],
   shopping: [
     {

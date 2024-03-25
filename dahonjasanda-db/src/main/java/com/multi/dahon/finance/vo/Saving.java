@@ -41,7 +41,7 @@ public class Saving {
     @Column(nullable = false)
     private String spclCnd; // Special conditions for preferential interest
     
-    @Column(nullable = false)
+    @Column
     private String joinDeny;
     
     @Column(nullable = false)

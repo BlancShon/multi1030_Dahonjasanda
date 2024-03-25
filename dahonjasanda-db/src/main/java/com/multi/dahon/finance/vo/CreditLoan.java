@@ -17,40 +17,40 @@ public class CreditLoan {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     
-    @Column(nullable = false)
+    @Column
     private String dclsMonth;
     
-    @Column(nullable = false)
+    @Column
     private String finCoNo;
     
-    @Column(nullable = false)
+    @Column
     private String finPrdtCd;
     
-    @Column(nullable = false)
+    @Column
     private String crdtPrdtType;
     
-    @Column(nullable = false)
+    @Column
     private String korCoNm;
     
-    @Column(nullable = false)
+    @Column
     private String finPrdtNm;
     
-    @Column(nullable = false)
+    @Column
     private String joinWay;
     
-    @Column(nullable = false)
+    @Column
     private String cbName;
     
-    @Column(nullable = false)
+    @Column
     private String crdtPrdtTypeNm;
     
-    @Column(nullable = false)
+    @Column
     private LocalDate dclsStrtDay;
     
-    @Column(nullable = true)
+    @Column
     private LocalDate dclsEndDay; // Can be null
     
-    @Column(nullable = false)
+    @Column
     private LocalDateTime finCoSubmDay;
 
     @ManyToOne(fetch = FetchType.LAZY)

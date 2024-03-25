@@ -22,51 +22,6 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class LoanSpec {
 	
-//	public static Specification<MortgageLoanOption> conditionalMortgages(final LoansParam param) {
-//		String lendRateType = param.getLendRateType();
-//		String rpayType = param.getRpayType();
-//		String keyword = param.getKeyword();
-//		List<String> companies = param.getCompanies();
-//		
-//		return (Specification<MortgageLoanOption>) (mortgageOption, query, builder) -> {
-//			Join<MortgageLoanOption, MortgageLoan> mortgage = mortgageOption.join("mortgageLoan", JoinType.LEFT);
-//			
-//			query.multiselect(builder.construct(
-//			        MortgageOptionAndProdDTO.class,
-//			        mortgageOption,
-//			        mortgage
-//			    ));
-//			
-//			Predicate predicate = builder.conjunction();
-//			
-//			if (!StringUtils.isEmpty(keyword)) {
-//				predicate = builder.or(
-//					builder.like(mortgage.get("dlyRate"), "%"+keyword+"%"),
-//					builder.like(mortgage.get("erlyRpayFee"), "%"+keyword+"%"),
-//					builder.like(mortgage.get("joinWay"), "%"+keyword+"%"),
-//					builder.like(mortgage.get("loanInciExpn"), "%"+keyword+"%"),
-//					builder.like(mortgage.get("loanLmt"), "%"+keyword+"%")
-//					);
-//			}
-//			
-//			if (!StringUtils.isEmpty(lendRateType)) {
-//	            predicate = builder.and(predicate, builder.equal(mortgageOption.get("lendRateType"), lendRateType));
-//	        }
-//
-//	        if (!StringUtils.isEmpty(rpayType)) {
-//	            predicate = builder.and(predicate, builder.equal(mortgageOption.get("rpayType"), rpayType));
-//	        }
-//			
-//			if(companies!=null && !companies.isEmpty()) {
-//				In<String> companyCode = builder.in(mortgage.get("finCoNo"));
-//				companies.forEach((company) -> companyCode.value(company));
-//				predicate = builder.and(companyCode, predicate);
-//			}
-//			return predicate;
-//			
-//		};
-//	}
-	
 	public static Specification<MortgageLoanOption> conditionalMortgages(final LoansParam param) {
 	    String lendRateType = param.getLendRateType();
 	    String rpayType = param.getRpayType();
@@ -76,12 +31,12 @@ public class LoanSpec {
 	    return (Specification<MortgageLoanOption>)(mortgageOption, query, builder) -> {
 	        Join<MortgageLoanOption, MortgageLoan> mortgage = mortgageOption.join("mortgageLoan", JoinType.LEFT);
 	        
-//	       mortgageOption.fetch("mortgageLoan", JoinType.LEFT);
-	       
 	        Predicate predicate = builder.conjunction();
 	        
 	        if (!StringUtils.isEmpty(keyword)) {
 	            predicate = builder.or(
+            		builder.like(mortgage.get("korCoNm"), "%"+keyword+"%"),
+	                builder.like(mortgage.get("finPrdtNm"), "%"+keyword+"%"),
 	                builder.like(mortgage.get("dlyRate"), "%"+keyword+"%"),
 	                builder.like(mortgage.get("erlyRpayFee"), "%"+keyword+"%"),
 	                builder.like(mortgage.get("joinWay"), "%"+keyword+"%"),
@@ -123,6 +78,8 @@ public class LoanSpec {
 			
 			if (!StringUtils.isEmpty(keyword)) {
 				predicate = builder.or(
+						builder.like(rentHouse.get("korCoNm"), "%"+keyword+"%"),
+		                builder.like(rentHouse.get("finPrdtNm"), "%"+keyword+"%"),
 						builder.like(rentHouse.get("dlyRate"), "%"+keyword+"%"),
 						builder.like(rentHouse.get("erlyRpayFee"), "%"+keyword+"%"),
 						builder.like(rentHouse.get("joinWay"), "%"+keyword+"%"),
@@ -162,11 +119,10 @@ public class LoanSpec {
 			
 			if (!StringUtils.isEmpty(keyword)) {
 				predicate = builder.or(
-						builder.like(credit.get("dlyRate"), "%"+keyword+"%"),
-						builder.like(credit.get("erlyRpayFee"), "%"+keyword+"%"),
+						builder.like(credit.get("korCoNm"), "%"+keyword+"%"),
+		                builder.like(credit.get("finPrdtNm"), "%"+keyword+"%"),
 						builder.like(credit.get("joinWay"), "%"+keyword+"%"),
-						builder.like(credit.get("loanInciExpn"), "%"+keyword+"%"),
-						builder.like(credit.get("loanLmt"), "%"+keyword+"%")
+						builder.like(creditOption.get("crdtLendRateTypeNm"), "%"+keyword+"%")
 						);
 			}
 			

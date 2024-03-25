@@ -56,6 +56,15 @@ public class HousingInfoServiceJPA {
 	    }
 	  
 	
+	public List<HousingInfoJPA> getHousingListByManageNo(String houseManageNo) {
+		return repo.housingSearchByManageNo(houseManageNo);
+		
+	}
 	
+
+
+	public int getHousingListByManageNoCount(String houseManageNo) {
+		return repo.housingSearchByManageNoCount(houseManageNo);
+	}
 
 }
