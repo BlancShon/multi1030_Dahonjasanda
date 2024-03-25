@@ -65,10 +65,10 @@ function ViewTitle({ list }) {
                                 </Grid>
                                 <Grid container spacing={3} alignItems="center" style={{ marginBottom: 10 }}>
                                     <Grid item>
-                                        <AccessAlarmRoundedIcon fontSize="small" color={list && list.sdate && list.sdate.includes('장중') ? 'success' : 'action'}/>
+                                        <AccessAlarmRoundedIcon fontSize="small" color={list && list.sdate && list.sdate.toString().includes('장중') ? 'success' : 'action'}/>
                                     </Grid>
                                     <Grid item>
-                                        <Typography style={{ color: list && list.sdate && list.sdate.includes('장중') ? 'green' : 'orange' }}>
+                                        <Typography style={{ color: list && list.sdate && list.sdate.toString().includes('장중') ? 'green' : 'orange' }}>
                                             {list && list.sdate}
                                         </Typography>
                                     </Grid>

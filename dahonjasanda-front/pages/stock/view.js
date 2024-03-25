@@ -132,6 +132,7 @@ export default function View() {
     const [viewData, setViewData] = useState(null);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
+    const [count, setCount] = useState(0);
     
 
     useEffect(() => {
@@ -172,6 +173,7 @@ export default function View() {
         if(ti && ti.stocktime && ti.stocktime.length >0) {
             setTim(ti.stocktime[0]);
         }
+        setCount(prevCount => prevCount + 1);
     }, [router.isReady]);
 
     useEffect(() => {
@@ -184,6 +186,7 @@ export default function View() {
         if (searchValue) {
             setSname(searchValue);
         }
+        setCount(prevCount => prevCount + 1);
     }, [router.isReady]);
 
     const fetchViewData = async (searchValue) => {
@@ -199,6 +202,8 @@ export default function View() {
                 withCredentials: true,
             });
             setViewData(response.data);
+            console.log("뷰에서 리스판스",response.data)
+            console.log("뷰에서 유알엘",url)
         } catch (error) {
             console.error('Error fetching viewData:', error);
         } finally {
@@ -211,12 +216,14 @@ export default function View() {
             return;
         }
         fetchViewData(sname);
+        setCount(prevCount => prevCount + 1);
     }, [sname]);
 
     useEffect(()=>{
         if(!viewData) {
             return;
         }
+        setCount(prevCount => prevCount + 1);
     })
 
 
@@ -237,6 +244,15 @@ export default function View() {
             c: candleData.candle_day_c[index],
         };
     });
+    
+    if(count < 4){
+        {console.log("뭐여")}
+
+        return (
+            
+            <div>로딩중~~~~</div>
+        )
+    }
 
     return (
         <Main colorInvert={true}>

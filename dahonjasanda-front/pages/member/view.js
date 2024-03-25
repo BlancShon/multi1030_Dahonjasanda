@@ -211,7 +211,7 @@ const AccountProfilePage = () => {
                 <div>
                   <div className='d-flex align-items-center justify-content-between'>
                     <div className='pe-2'>
-                      <h2 className='form-label fw-bold'>비밀번호</h2>
+                      <h2 className='form-label fw-bold'>비밀번호 변경하기</h2>
                     </div>
                     <CustomToggle eventKey='password' />
                   </div>

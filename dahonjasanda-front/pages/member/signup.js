@@ -44,12 +44,12 @@ export default function Signup() {
 
   const checkDuplicate = async (memberId) => {
     try {
-      console.log(memberId);
+      console.log("체크 중복 아이디 ",memberId);
       const response = await axios.get(
         "http://localhost/memberRest/idCheck?memberId=" + memberId,
         { withCredentials: true }
       );
-      console.log(response);
+      console.log("응답 보기",response);
       if (response.data.validate === false) {
         alert(memberId + "는 사용 가능합니다.");
       } else {
@@ -94,7 +94,7 @@ export default function Signup() {
       const response = await axios.get("http://localhost/memberRest/logout", {
         withCredentials: true,
       });
-      console.log(response);
+      console.log("로그아웃",response);
     } catch (e) {
       console.log(e);
     }
