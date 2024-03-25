@@ -1074,7 +1074,7 @@ public class apiParsing {
 	private static String getStrDataExceptAptInfo(JSONObject obj , String key){
 		String str = String.valueOf(obj.get(key));
 		if(str == null) {
-			return null;
+			return "-";
 		}else {
 			return str;
 		}

@@ -134,6 +134,28 @@ public class HousingRestController {
 			return ResponseEntity.status(HttpStatus.OK).body(map);
 		
  }
+		
+		@GetMapping(path = "/housingListByManageNo") 
+		public ResponseEntity<Map<String, Object>> housingListByManageNo(		
+				@RequestParam(required = false) String houseManageNo)
+		 {
+			
+			
+			List<HousingInfoJPA> list = infoService.getHousingListByManageNo(houseManageNo);
+			int listCount = infoService.getHousingListByManageNoCount(houseManageNo);
+			Map<String, Object> map = new HashMap<>();
+			
+			map.put("list", list);
+			map.put("listCount", listCount);
+			map.put("houseManageNo", houseManageNo);
+			System.out.println("리스트 = " + list);
+			System.out.println("검색 결과 개수 = " + listCount);
+			System.out.println("파라미터 = " + houseManageNo);
+			
+			
+			return ResponseEntity.status(HttpStatus.OK).body(map);
+			
+		}
 
 
 }

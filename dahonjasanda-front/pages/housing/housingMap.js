@@ -7,17 +7,19 @@ import { useRouter } from 'next/router';
 import Main from "layouts/Main"
 import HousingView from './view';
 import { IoCloseCircleOutline } from "react-icons/io5";
+import DetailView from './detailView';
 const MapComponent = () => {
 
 
+
   const router = useRouter();
+  const [selectedTotSuplyHshldco, setSelectedTotSuplyHshldco] = useState();
   const [selectedBsnsMbyNm, setSelectedBsnsMbyNm] = useState();
   const [selectedHouseManageNo, setSelectedHouseManageNo] = useState();
   const [selectedHouseNm, setSelectedHouseNm] = useState();
   const [selectedHssplyAdres, setSelectedHssplyAdres] = useState();
   const [selectedhouseSecdNm, setSelectedHouseSecdNm] = useState();
   const [selectedCnstrctEntrpsNm, setSelectedCnstrctEntrpsNm] = useState();
-  const [selectedTotSuplyHshldco, setSelectedTotSuplyHshldco] = useState();
   const [nestedRoute, setNestedRoute] = useState(null);
   const [housingList, setHousingList] = useState([])
   const [housingListCount, setHousingListCount] = useState([])
@@ -126,7 +128,8 @@ const MapComponent = () => {
         cnstrctEntrpsNm: item.cnstrctEntrpsNm,
         totSuplyHshldco: item.totSuplyHshldco,
         bsnsMbyNm: item.bsnsMbyNm,
-        houseSecdNm: item.houseSecdNm
+        houseSecdNm: item.houseSecdNm,
+        
 
       }));
       //console.log(addresses)
@@ -156,11 +159,19 @@ const MapComponent = () => {
             link.style.color = 'blue';
             link.style.cursor = 'pointer';
             link.style.color = 'inherit';
-
+            //console.log(address.cntrctCnclsBgnde);
             link.textContent = address.houseNm || 'House Name Unavailable';
-            link.addEventListener('click', () => toggleNestedLayout(address.houseManageNo, address.hssplyAdres, address.houseNm,
-              address.cnstrctEntrpsNm, address.totSuplyHshldco, address.bsnsMbyNm,
-              address.houseSecdNm
+            link.addEventListener('click', () => toggleNestedLayout(
+              address.houseManageNo, 
+              address.hssplyAdres, 
+              address.houseNm,
+              address.cnstrctEntrpsNm, 
+              address.totSuplyHshldco, 
+              address.bsnsMbyNm,
+              address.houseSecdNm,  
+              
+              
+      
             ));
 
             innerDiv.appendChild(link);
@@ -264,7 +275,6 @@ const MapComponent = () => {
   };
 
 
-
   const toggleNestedLayout = (houseManageNo, hssplyAdres, houseNm, cnstrctEntrpsNm, totSuplyHshldco, bsnsMbyNm, houseSecdNm) => {
     setSelectedHouseManageNo(houseManageNo);
     setSelectedHouseNm(houseNm);
@@ -273,6 +283,8 @@ const MapComponent = () => {
     setSelectedTotSuplyHshldco(totSuplyHshldco);
     setSelectedBsnsMbyNm(bsnsMbyNm);
     setSelectedHouseSecdNm(houseSecdNm)
+   
+
     setShowNestedLayout(!showNestedLayout);
 
 
@@ -286,7 +298,7 @@ const MapComponent = () => {
   };
 
 
-
+  
 
 
   const removeNestedLayout = () => {
@@ -298,7 +310,10 @@ const MapComponent = () => {
 
 
 
+   
 
+
+  
 
   return (
     <Main>
@@ -423,7 +438,7 @@ const MapComponent = () => {
           </div>
         )}
 
-
+          
 
       </div>
 
