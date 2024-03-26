@@ -49,15 +49,17 @@ const ResultList = ({resultList, onChangePageHandler, pageable, category}) => {
                             const mrtgTypeInfo = (category === 'mortgages' ? result.mrtgType : '')
                             return     (
                                 <Link key={result.id} href={`/loan/${category}_${result.id}`} style={{ textDecoration: 'none' }}>
-                                    <ResultCard 
-                                        finName={result.korCoNm} 
-                                        prdtName={result.finPrdtNm} 
-                                        prdtInfo1={lendRateTypeNm} 
-                                        prdtInfo2={typeInfo} 
-                                        prdtInfo3={lendRateMin} 
-                                        prdtInfo4={lendRateMax}
-                                        prdtInfo5={mrtgTypeInfo}>
-                                    </ResultCard>
+                                    <Col>
+                                        <ResultCard 
+                                            finName={result.korCoNm} 
+                                            prdtName={result.finPrdtNm} 
+                                            prdtInfo1={lendRateTypeNm} 
+                                            prdtInfo2={typeInfo} 
+                                            prdtInfo3={lendRateMin} 
+                                            prdtInfo4={lendRateMax}
+                                            prdtInfo5={mrtgTypeInfo}>
+                                        </ResultCard>
+                                    </Col>
                                 </Link>
                             )
                         })}
