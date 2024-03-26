@@ -14,20 +14,18 @@ import org.springframework.data.repository.query.Param;
 import com.multi.dahon.finance.dto.SavingOptionAndProdDTO;
 import com.multi.dahon.finance.vo.SavingOption;
 
-public interface SavingRepository extends JpaRepository<SavingOption, Long>, JpaSpecificationExecutor<SavingOption>{
+public interface SavingRepository extends JpaRepository<SavingOption, Long>, JpaSpecificationExecutor<SavingOption> {
 
 	@Query("select new com.multi.dahon.finance.dto.SavingOptionAndProdDTO(so, s) from SavingOption so join fetch so.saving s")
 	Page<SavingOptionAndProdDTO> findSavingList(Pageable pageable);
-	
-	
+
 	@Query("select new com.multi.dahon.finance.dto.SavingOptionAndProdDTO(so, s, fc) "
-			+ "from SavingOption so join fetch so.saving s join fetch s.financialCompany fc "
-			+ "where so.id = :id")
+			+ "from SavingOption so join fetch so.saving s join fetch s.financialCompany fc " + "where so.id = :id")
 	Optional<SavingOptionAndProdDTO> findSavingWithDetail(@Param("id") Long id);
-	
+
 	@EntityGraph(attributePaths = "saving")
-    Page<SavingOption> findAll(Specification<SavingOption> spec, Pageable pageable);
-	
+	Page<SavingOption> findAll(Specification<SavingOption> spec, Pageable pageable);
+
 	@Query("select new com.multi.dahon.finance.dto.SavingOptionAndProdDTO(so, s) from SavingOption so join fetch so.saving s ORDER BY so.intrRate2 DESC")
 	Page<SavingOptionAndProdDTO> findTopInterestRateSavings(Pageable pageable);
 }

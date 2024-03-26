@@ -9,8 +9,8 @@ const CheckboxGroup = ({ groupName, options, checked, setChecked }) => {
     intrRateType: "이자율 유형",
     saveTrm: "저축 기간",
     rsrvType: "적립 유형",
-    pnsnKind: "연금 종류",
-    prdtType: "상품 유형",
+    paymPrd: "납입기간",
+    pnsnRecpTrm: "연금수령기간",
   };
   
   const handleChange = (event) => {

@@ -29,6 +29,7 @@ const DepositsPage = () => {
             <FilterSearchManager 
               activePanel={activePanel}
               setActivePanel={setActivePanel}
+              searchTerm={searchTerm}
               setSearchTerm={setSearchTerm} // 추가
               setChecked={setChecked} // 추가
               checked={checked} // 추가

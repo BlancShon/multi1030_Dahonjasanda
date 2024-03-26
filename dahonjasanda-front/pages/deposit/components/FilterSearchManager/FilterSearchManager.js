@@ -7,12 +7,12 @@ import { sectionsData } from "../../sectionsData";
 
 const FilterSearchManager = ({ activePanel, setActivePanel, setSearchTerm, setChecked, checked, searchTerm }) => {
   const [showFilterBox, setShowFilterBox] = useState(false);
-  
+
   // activePanel 변경에 따른 showFilterBox 상태 업데이트 로직
   const togglePanel = (panelKey) => {
     console.log(`Current activePanel from FilterSearchManager: ${activePanel}, panelKey: ${panelKey}`)
     const isSamePanel = panelKey === activePanel;
-    setActivePanel(isSamePanel ? null : panelKey);
+    setActivePanel(isSamePanel ? 'default' : panelKey);
     setShowFilterBox(!isSamePanel || activePanel === null);
     console.log(`Updated showFilterBox from FilterSearchManager: ${!isSamePanel || activePanel === null}`);
   };

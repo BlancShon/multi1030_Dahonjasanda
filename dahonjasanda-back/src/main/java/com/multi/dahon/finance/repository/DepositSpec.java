@@ -137,8 +137,8 @@ public class DepositSpec {
 	
 	
 	public static Specification<AnnuitySavingOption> conditionalAnnuitySaving(final DepositsParam param) {
-		List<String> pnsnKind = param.getPnsnKind();
-		List<String> prdtType = param.getPrdtType();
+		List<String> paymPrd = param.getPaymPrd();
+		List<String> pnsnRecpTrm = param.getPnsnRecpTrm();
 		String keyword = param.getKeyword();
 		List<String> companies = param.getCompanies();
 		String sortField = param.getSortField();
@@ -159,16 +159,16 @@ public class DepositSpec {
 						);
 			}
 			
-			if (pnsnKind != null && !pnsnKind.isEmpty()) {
-	            In<String> pnsnKindIn = builder.in(annuitySavingOption.get("pnsnKind"));
-	            pnsnKind.forEach(pnsnKindIn::value);
-	            predicate = builder.and(predicate, pnsnKindIn);
+			if (paymPrd != null && !paymPrd.isEmpty()) {
+	            In<String> paymPrdIn = builder.in(annuitySavingOption.get("paymPrd"));
+	            paymPrd.forEach(paymPrdIn::value);
+	            predicate = builder.and(predicate, paymPrdIn);
 	        }
 
-	        if (prdtType != null && !prdtType.isEmpty()) {
-	            In<String> prdtTypeIn = builder.in(annuitySavingOption.get("prdtType"));
-	            prdtType.forEach(prdtTypeIn::value);
-	            predicate = builder.and(predicate, prdtTypeIn);
+	        if (pnsnRecpTrm != null && !pnsnRecpTrm.isEmpty()) {
+	            In<String> pnsnRecpTrmIn = builder.in(annuitySavingOption.get("pnsnRecpTrm"));
+	            pnsnRecpTrm.forEach(pnsnRecpTrmIn::value);
+	            predicate = builder.and(predicate, pnsnRecpTrmIn);
 	        }
 			
 			if(companies!=null && !companies.isEmpty()) {
