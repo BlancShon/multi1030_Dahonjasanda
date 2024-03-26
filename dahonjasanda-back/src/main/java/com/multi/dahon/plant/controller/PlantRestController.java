@@ -4,10 +4,6 @@ package com.multi.dahon.plant.controller;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -42,28 +38,29 @@ public class PlantRestController {
 //		List<HousingInfoByTypeJPA> typeList = apiParsing.allOfInfoByType();
 		
 //		@Transactional
-//		@GetMapping("/plant")
+//		@GetMapping("/housing")
 //		public String home(Locale locale, Model model, @RequestParam(required = false) String command) {
 //			System.out.println(command);
 ////			if(command != null && command.contains("init")) {
 ////				System.out.println(command);
 ////				init();
 ////			}
-//			if(plantService.count() == 0 ) {
+//			if(infoService.count() == 0 && typeService.count() == 0) {
 //				init();
 //			}
 //			
 //			return "home";
 //		}
 		@PostConstruct
-		@GetMapping("/plantList")
 		public void init() {
 			plantService.saveParse();
 		}
 		
+		  
+		  
 
 		
-		@GetMapping(path = "/plant")
+//		@GetMapping(path = "/plant")
 		public ResponseEntity<Map<String, Object>> plant(){
 			List<Plant> list = plantService.findAllSortByPtnoDesc();
 			int listCount = plantService.count();
@@ -77,15 +74,16 @@ public class PlantRestController {
 	        return ResponseEntity.status(HttpStatus.OK).body(response);
 		}
 		
-		@GetMapping(path = "/plantSearch")
+		@GetMapping(path = "/plant")
 		public ResponseEntity<Map<String, Object>> PlantSearList(		
 				@RequestParam(required = false) String searchValue,
-				@RequestParam(required = false) String growthType,
-				@RequestParam(required = false) String floweringSeason,
-				@RequestParam(required = false) String leafPattern,
-				@RequestParam(required = false) String leafColor,
-				@RequestParam(required = false) String growthflowerColorType,
-				@RequestParam(required = false) String managementRequirement) {
+				@RequestParam(required = false) List<String> growthType,
+				@RequestParam(required = false) List<String> floweringSeason,
+				@RequestParam(required = false) List<String> leafPattern,
+				@RequestParam(required = false) List<String> leafColor,
+				@RequestParam(required = false) List<String> flowerColorType,
+				@RequestParam(required = false) List<String> managementRequirement,
+				Pageable pageable){
 			
 			PlantParam param = new PlantParam();
 			param.setSearchValue(searchValue);
@@ -93,25 +91,31 @@ public class PlantRestController {
 			param.setFloweringSeason(floweringSeason);
 			param.setLeafPattern(leafPattern);
 			param.setLeafColor(leafColor);
-			param.setGrowthflowerColorType(growthflowerColorType);
+			param.setFlowerColorType(flowerColorType);
 			param.setManagementRequirement(managementRequirement);
-			
-			log.debug("@@ Plant list 요청 param : " + param);
-
-			List<Plant> Searchlist = plantService.getPlantSearchList(param);
-			int searchCount = plantService.getPlantSearchCount(param);
+			 // findAll 메서드로 데이터를 가져오고, 없으면 findAllSortByPtnoDesc 메서드로 가져옴
+		    Page<Plant> searchAll = plantService.searchAll(param, pageable);
+//			List<Plant> Searchlist = plantService.getPlantSearchList(param);
+//			int searchCount = plantService.getPlantSearchCount(param);
+		    
+		    log.info("파람 정보 확인 { }", growthType);
+		    
 			Map<String, Object> map = new HashMap<>();
 			
-			map.put("list", Searchlist);
-			map.put("listCount", searchCount);
-			map.put("param", param);
-			System.out.println("리스트 = " + Searchlist);
-			System.out.println("검색 결과 개수 = " + searchCount);
+			map.put("list2", searchAll.getContent());
+			map.put("listsearchAll", searchAll);
+			map.put("listCount", searchAll.getTotalElements());
+//			map.put("pageable", pageable);
+			map.put("param2", param);
+			System.out.println("리스트 = " + searchAll);
+//			System.out.println("검색 결과 개수 = " +));
 			System.out.println("파라미터 = " + param);
+			System.out.println("파라미터2 = " + map.get("list2"));
 			
 			
 			return ResponseEntity.status(HttpStatus.OK).body(map);
 		}
-		  
+		
+
 
 }

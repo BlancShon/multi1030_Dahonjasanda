@@ -11,114 +11,33 @@ import CardMedia from '@mui/material/CardMedia';
 import Grid from '@mui/material/Grid';
 import Avatar from '@mui/material/Avatar';
 import Pagination from '@mui/material/Pagination';
-
+import { Container } from 'react-bootstrap';
+import PageComponent from '../PageComponent';
 // 박스에 사진 및 텍스트 추가
 
 
-const mock = [
-  {
-    image: 'https://www.nongsaro.go.kr/cms_contents/301/19715_MF_REPR_ATTACH_01.jpg',
-    description:
-      '농사로 식물 관련 설명',
-    title: '농사로 식물 이름1',
-    author: {
-      name: '이름',
-      avatar: 'https://assets.maccarianagency.com/avatars/img1.jpg',
-    },
-  },
-  {
-    image: 'https://www.nongsaro.go.kr/cms_contents/1122/204870_MF_BIMG_01.jpg',
-    description: '농사로 식물 관련 설명',
-    title: '농사로 식물 이름2',
-    author: {
-      name: '이름',
-      avatar: 'https://assets.maccarianagency.com/avatars/img2.jpg',
-    },
-    date: '02 Aug',
-  },
-  {
-    image: 'https://www.nongsaro.go.kr/cms_contents/1122/204870_MF_BIMG_01.jpg',
-    description: '농사로 식물 관련 설명',
-    title: '농사로 식물 이름3',
-    author: {
-      name: '이름',
-      avatar: 'https://assets.maccarianagency.com/avatars/img2.jpg',
-    },
-    date: '02 Aug',
-  },
-  {
-    image: 'https://www.nongsaro.go.kr/cms_contents/1122/204870_MF_BIMG_01.jpg',
-    description: '농사로 식물 관련 설명',
-    title: '농사로 식물 4',
-    author: {
-      name: '이름',
-      avatar: 'https://assets.maccarianagency.com/avatars/img2.jpg',
-    },
-    date: '02 Aug',
-  },
-  {
-    image: 'https://www.nongsaro.go.kr/cms_contents/1122/204870_MF_BIMG_01.jpg',
-    description: '농사로 식물 관련 설명',
-    title: '농사로 식물 이름5',
-    author: {
-      name: '이름',
-      avatar: 'https://assets.maccarianagency.com/avatars/img2.jpg',
-    },
-    date: '02 Aug',
-  },
-  {
-    image: 'https://www.nongsaro.go.kr/cms_contents/1122/204870_MF_BIMG_01.jpg',
-    description: '농사로 식물 관련 설명',
-    title: '농사로 식물 이름6',
-    author: {
-      name: '이름',
-      avatar: 'https://assets.maccarianagency.com/avatars/img2.jpg',
-    },
-    date: '02 Aug',
-  },
-  {
-    image: 'https://www.nongsaro.go.kr/cms_contents/1122/204870_MF_BIMG_01.jpg',
-    description: '농사로 식물 관련 설명',
-    title: '농사로 식물 이름6',
-    author: {
-      name: '이름',
-      avatar: 'https://assets.maccarianagency.com/avatars/img2.jpg',
-    },
-    date: '02 Aug',
-  },  {
-    image: 'https://www.nongsaro.go.kr/cms_contents/1122/204870_MF_BIMG_01.jpg',
-    description: '농사로 식물 관련 설명',
-    title: '농사로 식물 이름6',
-    author: {
-      name: '이름',
-      avatar: 'https://assets.maccarianagency.com/avatars/img2.jpg',
-    },
-    date: '02 Aug',
-  },
-];
 // 박스 구성
-const LastStories = ({searchResults }) => {
-    const [plantList, setPlantList] = useState([]);  // 전체 리스트 가져오기 위한 변수 할당
-    const [plantCount, setPlantCount] = useState(0);
-    const displayList = searchResults.length > 0 ? searchResults : plantList;
-    // 전체리스트가 보여지고있고, 검색 결과를 가져와서 그위에 검색리스트로 변환
+const LastStories = ({ data, pageable }) => {
+  console.log('data!!!! 시작!!!:', data);
+  console.log(typeof data);
+  // console.log('data 길이', data.length);
 
-    useEffect(() => {
-      axios.get('http://localhost/plant')  // 전체리스트 요청
-          .then(response => {
-              setPlantList(response.data.plantList); // 받아온 데이터로 변환
-              setPlantCount(response.data.plantCount);
-              console.log(response.data.plantList)
-          })
-          .catch(error => {
-              console.error('데이터가 안옴', error);
-          });
-  }, []);
-  
+  // const { pageNumber, totalPages, totalElements } = pageable;
+
   const theme = useTheme();
+  // const [responseData, setResponseData] = useState([]);
+  // console.log('responseData:', responseData);
+
+
+  // useEffect(() => {
+  //   // 데이터를 가져온다는 가정하에, 비동기 함수 호출 대신에 propsData를 사용하여 상태를 설정
+  //   setResponseData(data);
+  // }, [data]); // propsData가 변경될 때마다 useEffect가 실행되도록 설정
+
+
   // const [isJsh, setIsJsh] = useState(true);
   return (
-    
+
     <Box>
       <Box
         display={'flex'}
@@ -127,14 +46,15 @@ const LastStories = ({searchResults }) => {
         flexDirection={{ xs: 'column', sm: 'row' }}
         marginBottom={4}
       >
-              {/* {isJsh ? <div>장성희</div> : <div>김남훈</div>}
+        {/* {isJsh ? <div>장성희</div> : <div>김남훈</div>}
       <div onClick={() => setIsJsh((prev) => !prev)}>바꾼다</div> */}
         <Box>
           <Typography fontWeight={700} variant={'h6'} gutterBottom>
             다양한 반려 식물을 만나보세요
           </Typography>
           <Typography color={'text.secondary'}>
-            식물 종류, 잎의 색상 등 다양하게 검색이 가능합니다.
+            식물 종류, 잎의 색상 등 다양하게 검색이 가능합니다.  
+            {/* {totalElements} 개의 결과 */}
           </Typography>
         </Box>
         <Box display="flex" marginTop={{ xs: 2, md: 0 }}>
@@ -152,9 +72,12 @@ const LastStories = ({searchResults }) => {
       </Box>
       <Grid container spacing={4} >
         {/* mock 데이터를 갖고옴 */}
-        {displayList && displayList.map((plant, index) => (  // display 활용하여 들어온 값으로 포문
-          <Grid item xs={12} sm={6} md={3} key={index} sx={{marginBottom:-20}} >
-            
+
+        {/* {data || '검색결과가 없습니다' } */}
+        {data && Object.keys(data).map((key, index) => (// display 활용하여 들어온 값으로 포문
+          <Grid item xs={12} sm={6} md={3} key={index} sx={{ marginBottom: -10 }} >
+            {data[key].cntntsSj}
+            {console.log('데이터 콘솔 확인@@@@', data[key])}
             <Box
               component={'a'}
               href={''}
@@ -169,7 +92,6 @@ const LastStories = ({searchResults }) => {
                 },
               }}
             >
-              
               <Box
                 component={Card}
                 width={1}
@@ -180,8 +102,8 @@ const LastStories = ({searchResults }) => {
                 sx={{ backgroundImage: 'none' }}
               >
                 <CardMedia
-                  image={plant.rtnThumbUrl}
-                  title={plant.title}
+                  image={'https://helpx.adobe.com/content/dam/help/en/photoshop/using/quick-actions/remove-background-before-qa1.png'}
+                  title={data[key].cntntsSj}
                   sx={{
                     height: { xs: 300, md: 360 },
                     position: 'relative',
@@ -212,13 +134,13 @@ const LastStories = ({searchResults }) => {
                 </CardMedia>
                 <Box component={CardContent} position={'relative'}>
                   <Typography variant={'h6'} gutterBottom>
-                    {plant.cntntsSj}
+                    {data[key].cntntsSj}
                   </Typography>
                   <Typography color="text.secondary">
-                    {plant.plntbneNm}
+                    {data[key].plntbneNm}
                   </Typography>
                   <Typography color="text.secondary"><br></br>
-                    {plant.fmlCodeNm}
+                    {data[key].fmlCodeNm}
                   </Typography>
                 </Box>
                 <Box flexGrow={1} />
@@ -233,21 +155,29 @@ const LastStories = ({searchResults }) => {
                       </Typography>
                     </Box>
                   </Box>
-                  
+
                 </Box>
-                
+
               </Box>
-              
+
             </Box>
-            
+
           </Grid>
         ))}
-      <Grid item container justifyContent={'center'} xs={12}>
-            <Pagination count={10} size={'large'} color="primary" />
-          </Grid>
+        <Grid item container justifyContent={'center'} xs={12}>
+              <Pagination count={10} size={'large'} color="primary" />
+            </Grid>
+          {/* <Container className="my-5" style={{ display: 'flex', justifyContent: 'center' }}>
+    <Pagination
+      count={totalPages}
+      page={pageNumber}
+      onChange={pageable}
+      variant="outlined"
+      shape="rounded"
+    />
+  </Container> */}
       </Grid>
     </Box>
   );
-};
-
+}
 export default LastStories;

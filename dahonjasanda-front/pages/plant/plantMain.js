@@ -1,11 +1,9 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Box from '@mui/material/Box';
 import { useTheme } from '@mui/material/styles';
 import Main from 'layouts/Main';
 import Container from 'components/Container';
 import { useState } from 'react';
-
-
 import {
   Hero,
   SearchBox,
@@ -15,18 +13,76 @@ import {
   PopularArticles,
   Newsletter,
 } from './components';
-const plantMain = () => {
+import axios from 'axios';
+
+const plantMain = ({onData}) => {
+    const [plantList, setPlantList] = useState([]);  // 전체 리스트 가져오기 위한 변수 할당
+
+    const [searchList, setSearchList] = useState();  // 전체 리스트 가져오기 위한 변수 할당
+    
+    const [resultList, setResultList] = useState([])
+    const [pageable, setPageable] = useState({})
+
+    // , pageInfo
+    const handleSearch = (data) => { 
+      setSearchList(data); // 검색 결과를 상태에 저장
+      console.log('검증',data);
+      console.log('검증 setSearch 길이',setSearchList.length);
+      console.log('검증 setSearch 사이즈',setSearchList.size);
+      console.log('검증 search 길이(여기서는 바뀌기 전 데이터 값이다.',Object.keys(searchList).length);
+      console.log('검색 결과 데이터:', data);
+      setSearchList(data);
+      // setPageable(pageInfo); // 페이지 정보 설정
+    };
+      console.log('searchList@@@ :', searchList);
+      console.log('searchList :', searchList);
+    // const displayList = searchResults.length > 0 ? searchResults : plantList;
+    // 전체리스트가 보여지고있고, 검색 결과를 가져와서 그위에 검색리스트로 변환
+    
+
+    
+    useEffect(() => {
+      axios.get('http://localhost/plant')  // 전체리스트 요청
+      .then(map => {
+        console.log('map :', map);
+        console.log('plantList :', plantList);
+          setPlantList(map.data.listsearchAll.content); // 받아온 데이터로 변환
+          setPageable({
+            pageable : map.data.listsearchAll.pageable,
+            totalPages : map.data.listsearchAll.totalPages,
+            totalElements : map.data.listsearchAll.totalElements
+          });
+              console.log('여기 찍힘')
+          })
+          .catch(error => {
+              console.error('데이터가 안옴', error);
+          });
+  }, []);
+
+
+  //   useEffect(() => {
+  //     axios.get('http://localhost/plant')  // 전체리스트 요청
+  //     .then(response => {
+  //           console.log('response :', response);
+  //           console.log('plantList :', plantList);
+  //             setPlantList(response.data.plantList); // 받아온 데이터로 변환
+  //             console.log('여기 찍힘')
+  //         })
+  //         .catch(error => {
+  //             console.error('데이터가 안옴', error);
+  //         });
+  // }, []);
+  
   //여기다가 useState
   // const [AllListView, setAllListView] = useState([]);
 
   // const handleAllView = (results) => {
   //   setAllListView(results);
   // };
-  const [searchResults, setSearchResults] = useState([]); // 사용할 검색 결과 상태
+  // const [searchResults, setSearchResults] = useState([]); // 사용할 검색 결과 상태
   
-  const handleSearch = (results) => {
-    setSearchResults(results); // 검색 결과를 상태에 저장
-  };
+  
+  
   const theme = useTheme();
   return (
     <Main colorInvert={true}>
@@ -40,11 +96,12 @@ const plantMain = () => {
             paddingY: '0 !important',
           }}
         >
-          <SearchBox onSearch={handleSearch} />
+          <SearchBox onSearch={setSearchList} />
           <Container paddingTop={'0 !important'}></Container>
         </Container>
         <Container paddingTop={'0 !important'}>
-          <LastStories searchResults={searchResults} /> {/*AllListView={AllListView}*/}
+           {/* onChangePageHandler={setPage}  pageable={setPageable} */}
+          <LastStories  data={searchList? searchList : plantList}/> {/*AllListView={AllListView}*/}
          </Container>
         <Container paddingTop={'0 !important'}>
           <CaseStudies />
@@ -82,6 +139,6 @@ const plantMain = () => {
       </Box>
     </Main>
   );
-};
+        };
 
 export default plantMain;

@@ -4,10 +4,10 @@ import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 import InputAdornment from '@mui/material/InputAdornment';
 import Chip from '@mui/material/Chip';
-import React, { useState } from 'react';
+import React, { useState, onSearch, response } from 'react';
 import { Checkbox, FormControlLabel} from '@mui/material';
 import { Typography, FormControl, Select, MenuItem } from '@mui/material';
-
+import axios from 'axios';
 
 //생육 형태
 const growthTypeC= [
@@ -36,22 +36,22 @@ const leafPatternC = [
 
 // 잎색
 const leafColorC = [
-  '녹색, 연두색',
-  '금색, 노란색',
-  '흰색, 크림색',
-  '은색, 회색',
-  '빨강, 분홍, 자주색',
-  '여러색 혼합',
+  '녹색,연두색',
+  '금색,노란색',
+  '흰색,크림색',
+  '은색,회색',
+  '빨강,분홍,자주색',
+  '여러색혼합',
   '기타',
 ];
 // 꽃색
 const flowerColorC = [
-  '녹색, 연두색',
-  '금색, 노란색',
-  '흰색, 크림색',
-  '은색, 회색',
-  '빨강, 분홍, 자주색',
-  '여러색 혼합',
+  '녹색,연두색',
+  '금색,노란색',
+  '흰색,크림색',
+  '은색,회색',
+  '빨강,분홍,자주색',
+  '여러색혼합',
   '기타',
 ];
 
@@ -59,18 +59,28 @@ const flowerColorC = [
 const managementRequirementC = [
   '초보자',
   '경험자',
+  '전문가'
 ];
-
-const SearchBox = ({}) => {
+// , onPage
+const SearchBox = ({onSearch}) => {
   // 사용할 변수(조건)들 할당 
-  const [searchValue, setSearchValue] = useState([]);
+  // const [Pageable, setPageable] = useState([]);
+  const [page, setPage] = useState();
+  const [searchValue, setSearchValue] = useState();
   const [growthType, setGrowthType] = useState([]);
   const [floweringSeason, setFloweringSeason] = useState([]);
   const [leafPattern, setLeafPattern] = useState([]);
   const [leafColor, setLeafColor] = useState([]);
-  const [flowerColor, setFlowerColor] = useState([]);
+  const [flowerColorType, setFlowerColorType] = useState([]);
   const [managementRequirement, setManagementRequirement] = useState([]);
- 
+  // const growthTypeString = Array.isArray(growthType) ? growthType.join('&growthType=') : growthType;
+  // const floweringSeasonString = Array.isArray(floweringSeason) ? floweringSeason.join('&floweringSeason=') : floweringSeason;
+  // const leafPatternString = Array.isArray(leafPattern) ? leafPattern.join('&leafPattern=') : leafPattern;
+  // const leafColorString = Array.isArray(leafColor) ? leafColor.join('&leafColor=') : leafColor;
+  // const flowerColorString = Array.isArray(flowerColor) ? flowerColor.join('&flowerColor=') : flowerColor;
+  // const managementRequirementString = Array.isArray(managementRequirement) ? managementRequirement.join('&managementRequirement=') : managementRequirement;
+
+
   // 체크박스 체크 해제 및 중복체크 기능
   const handleGrowthTypeCToggle = (item) => {
     if (growthType.includes(item)) {
@@ -101,10 +111,10 @@ const SearchBox = ({}) => {
     }
   };
   const handleFlowerColorCToggle = (item) => {
-    if (flowerColor.includes(item)) {
-      setFlowerColor(flowerColor.filter((selectedItem) => selectedItem !== item));
+    if (flowerColorType.includes(item)) {
+      setFlowerColorType(flowerColorType.filter((selectedItem) => selectedItem !== item));
     } else {
-      setFlowerColor([...flowerColor, item]);
+      setFlowerColorType([...flowerColorType, item]);
     }
   };
   const handleManagementRequirementCToggle = (item) => {
@@ -116,35 +126,90 @@ const SearchBox = ({}) => {
   };
 
   // 검색 조건
-  const [searchData, setSearchData] = useState({
-    searchValue: '',
-    growthTypeC: '',
-    floweringSeasonC: '',
-    leafPatternC: '',
-    leafColorC: '',
-    flowerColorC: '',
-    managementRequirementC: '',
-    growthType: '',
-    floweringSeason: '',
-    leafPattern: '',
-    leafColor: '',
-    flowerColor: '',
-    managementRequirement: '',
-  });
+  // const [searchData, setSearchData] = useState({
+  //   searchValue,
+  //   growthTypeC,
+  //   floweringSeasonC,
+  //   leafPatternC,
+  //   leafColorC,
+  //   flowerColorC,
+  //   managementRequirementC,
+  //   growthType,
+  //   floweringSeason,
+  //   leafPattern,
+  //   leafColor,
+  //   flowerColor,
+  //   managementRequirement,
+  // });
 
   // 위 검색 조건들로 서버로 요청 보냄 
   const handleSubmit = async () => {
+    let url2 = 'dkdkdkdkdk@@@@@@@@@@';
+    console.log('뭐냐고!!');
     try {
+
+      var url = 'http://localhost/plant'
+      if (page != null) {
+          url = url + '?page=' + page;
+      } else {
+          url = url + '?page=0';
+      }
+      if (searchValue != null) {
+          url = url + '&searchValue=' + searchValue;
+      }
+      if(growthType != null && growthType.length > 0){
+          for(let i = 0; i < growthType.length; i++){
+              url = url + '&growthType=' + growthType[i];
+          }
+      }
+      if(floweringSeason != null && floweringSeason.length > 0){
+          for(let i = 0; i < floweringSeason.length; i++){
+              url = url + '&floweringSeason=' + floweringSeason[i];
+          }
+      }
+      if(leafPattern != null && leafPattern.length > 0){
+          for(let i = 0; i < leafPattern.length; i++){
+              url = url + '&leafPattern=' + leafPattern[i];
+          }
+      }
+      if(leafColor != null && leafColor.length > 0){
+          for(let i = 0; i < leafColor.length; i++){
+              url = url + '&leafColor=' + leafColor[i];
+          }
+      }
+      if(flowerColorType != null && flowerColorType.length > 0){
+          for(let i = 0; i < flowerColorType.length; i++){
+              url = url + '&flowerColorType=' + flowerColorType[i];
+          }
+      }
+      if(managementRequirement != null && managementRequirement.length > 0){
+          for(let i = 0; i < managementRequirement.length; i++){
+              url = url + '&managementRequirement=' + managementRequirement[i];
+          }
+      }
       // 검색 조건을 URL 쿼리 문자열에 포함하여 URL 구성
-      const url = `http://localhost/plantSearch?searchValue=${searchData.searchValue}&growthType=${searchData.growthType}&floweringSeason=${searchData.floweringSeason}&leafPattern=${searchData.leafPattern}&leafColor=${searchData.leafColor}&flowerColorType=${searchData.flowerColorType}&managementRequirement=${searchData.managementRequirement}`;
-      
+      // url = `http://localhost/plantSearch?searchValue=${searchValue}&growthType=${growthTypeString}&floweringSeason=${floweringSeasonString}&leafPattern=${leafPatternString}&leafColor=${leafColorString}&flowerColorType=${flowerColorString}&managementRequirement=${managementRequirementString}`;
+      // url = `http://localhost/plantSearch`;
+         console.log('url@@@@@@@@',url);
       // 서버로 GET 요청 보내기
-      const response = await axios.get(url);
+      // const map = await axios.get(url);
+      const map = await axios.get(url);
+      console.log('map확인 1차', map);
+      onSearch(map.data.listsearchAll.content);
+      pageable({
+        pageable : map.data.listsearchAll.pageable,
+        totalPages : map.data.listsearchAll.totalPages,
+        totalElements : map.data.listsearchAll.totalElements
+      });
       // 서버로부터 받은 응답 처리
-      console.log(response.data); // 받은 데이터 처리
+      console.log(map.data.list2); // 받은 데이터 처리
+      console.log('서치 데이터 온다!!!!');
+      console.log(url);
+      console.log('map 확인 @@@@@@@@',map.data);
+      console.log('page 확인 @@@@@@@@',map.data.listsearchAll.pageable);
     } catch (error) {
-      console.log('@@@@', url);
-      console.error('서치 데이터 안온다!!!!', error);
+      // console.log('@@@@',url);
+      console.log('서치 데이터 안온다!!!!', error);
     }
   };
 
@@ -293,9 +358,9 @@ const SearchBox = ({}) => {
           key={item}
           control={
             <Checkbox
-              checked={flowerColor.includes(item)}
+              checked={flowerColorType.includes(item)}
               onChange={() => handleFlowerColorCToggle(item)}
-              name={flowerColor}
+              name={flowerColorType}
             value={item}
             />
           }

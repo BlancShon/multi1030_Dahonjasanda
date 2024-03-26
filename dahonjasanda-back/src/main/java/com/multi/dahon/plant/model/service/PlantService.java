@@ -6,10 +6,13 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
 import com.multi.dahon.api.apiParsingPlant;
+import com.multi.dahon.plant.model.repository.PlantQuery;
 import com.multi.dahon.plant.model.repository.PlantRespository;
 import com.multi.dahon.plant.model.vo.Plant;
 import com.multi.dahon.plant.model.vo.PlantParam;
@@ -73,15 +76,20 @@ public class PlantService {
 		return repo.findAll(sort);
 	}
 	
-	 public List<Plant> getPlantSearchList(PlantParam param) {
-		 Sort sort = Sort.by("ptno").descending();
-		 return (List<Plant>) repo.plantSearchList(param.getSearchValue(), param.getGrowthType(), param.getFloweringSeason(), param.getLeafPattern(), param.getLeafColor(), param.getFlowerColorC(), param.getManagementRequirement());
-	 }
+	public Page<Plant> searchAll(PlantParam param, Pageable pageable){
+		return repo.findAll(PlantQuery.QuerySearchPlant(param), pageable);
+	}
 
-	 public int getPlantSearchCount(PlantParam param) {
-		 Sort sort = Sort.by("ptno").descending();
-		 return repo.plantSearchCount(param.getSearchValue(), param.getGrowthType(), param.getFloweringSeason(), param.getLeafPattern(), param.getLeafColor(), param.getFlowerColorC(), param.getManagementRequirement());
-	 }
+	
+	
+//	 public List<Plant> getPlantSearchList(PlantParam param) {
+//		 Sort sort = Sort.by("ptno").descending();
+//		 return (List<Plant>) repo.plantSearchList(param.getSearchValue(), param.getGrowthType(), param.getFlowerColorType(), param.getLeafColor(), param.getLeafPattern(), param.getFloweringSeason(), param.getManagementRequirement());
+//	 
+//	 public int getPlantSearchCount(PlantParam param) {
+//		 Sort sort = Sort.by("ptno").descending();
+//		 return repo.plantSearchCount(param.getSearchValue(), param.getGrowthType(), param.getLeafColor(), param.getLeafPattern(), param.getFloweringSeason(), param.getFlowerColorType(), param.getManagementRequirement()); 
+//	 }
 	
 
 }

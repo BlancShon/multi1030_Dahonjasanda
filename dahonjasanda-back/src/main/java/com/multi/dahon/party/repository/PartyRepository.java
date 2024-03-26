@@ -22,7 +22,7 @@ public interface PartyRepository extends JpaRepository<Party, Long>, JpaSpecific
 
     @EntityGraph(attributePaths = "partyMembers")
     Page<Party> findAll(Specification<Party> spec, Pageable pageable);
-
+    
 //    @EntityGraph(attributePaths = "partyMembers")
 //    Page<Party> findAll(Pageable pageable);
 

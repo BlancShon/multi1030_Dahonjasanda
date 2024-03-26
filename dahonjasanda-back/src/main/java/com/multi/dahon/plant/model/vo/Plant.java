@@ -18,7 +18,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Entity(name = "plant") // 객체를 Table로 생성 시켜주는 어노테이션
+@Entity(name = "plant") // 객체를 Table로 생성 시켜주는 어노테이션입니다요 2024.03.25
 @Transactional
 @DynamicInsert
 @DynamicUpdate
@@ -319,10 +319,10 @@ public class Plant {
 	private String fmldecolrCodeNm;// 과일색 코드명
 	
 	@Column(unique = false, nullable = true, length = 100)
-	private int fmldeSeasonCode;// 과일 계절 ;
+	private int fmldeSeasonCode;//  계절 ;
 	
 	@Column(unique = false, nullable = true, length = 100)
-	private String fmldeSeasonCodeNm; // 과일 계절 코드명
+	private String fmldeSeasonCodeNm; // 계절 코드명
 	
 	@Column(unique = false, nullable = true, length = 100)
 	private int prpgtmthCode; // 번식 방법
