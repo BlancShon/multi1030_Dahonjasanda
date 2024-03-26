@@ -19,6 +19,6 @@ class ApplicationTests {
 	
 	@Test
 	public void testname() throws Exception {
-		ps.saveParse();
+		ps.save();
 	}
 }

@@ -9,6 +9,7 @@ import CurrencyExchangeRoundedIcon from '@mui/icons-material/CurrencyExchangeRou
 import Clock from '../clock/clock';
 import IndexGraph from '../IndexGraph';
 import Card from '@mui/material/Card';
+import Candle from '../candlechart/candlchart';
 
 function ViewTitle({ list }) {
 
@@ -16,10 +17,34 @@ function ViewTitle({ list }) {
         return null;
     }
 
-    console.log("titititi", list);
-    const graph = list.sprice ? list.sprice.map((item) => item.clpr) : [];
+    const graph = list.list[0].sprice.map((item) => item.clpr);
+    const graphx = list.list[0].sprice.map((item) => item.sdate);
+    const grapho = list.list[0].sprice.map((item) => item.mkp);
+    const graphh = list.list[0].sprice.map((item) => item.hipr);
+    const graphl = list.list[0].sprice.map((item) => item.lopr);
 
+    console.log("xxxx",graphx);
+    console.log("oooo",grapho);
+    console.log("hhhh",graphh);
+    console.log("llll",graphl);
+
+    const data = graphx.map((dateNumber, index) =>{
+        const dateString = dateNumber.toString();
+        const year = dateString.substring(0, 4);
+        const month = dateString.substring(4, 6);
+        const day = dateString.substring(6, 8);
     
+        const formattedDateString = `${year},${month},${day}`;
+        return {
+            x: formattedDateString,
+            o: grapho[index],
+            h: graphh[index],
+            l: graphl[index],
+            c: graph[index],
+        };
+    });
+
+        
     return(
         <Container>
             <Box borderBottom={1} borderColor="divider">
@@ -30,7 +55,7 @@ function ViewTitle({ list }) {
                                 <Grid container spacing={2} alignItems="center">
                                     <Grid item>
                                         <Typography variant="h6" fontSize="1rem">
-                                            &nbsp;{list.code}
+                                            &nbsp;{list.list[0].code}
                                         </Typography>
                                     </Grid>
                                     <Grid item>
@@ -40,36 +65,36 @@ function ViewTitle({ list }) {
                                     </Grid>
                                 </Grid>
                                 <Typography variant="h4">
-                                    {list && list.sname}
+                                    {list.list[0].sname}
                                 </Typography>
                             </Box>
                             <Box>
                                 <Typography variant="h3">
-                                    {list && list.price && list.price.toLocaleString()}원
+                                    {list.list[0].price.toLocaleString()}원
                                 </Typography>
                                 <Grid container spcaing={3} alignItems="center">
                                     <Grid item>
-                                        <CurrencyExchangeRoundedIcon fontSize="small" color={list && (list.price - list.yprice) >= 0 ? 'primary' : 'secondary'}/>
+                                        <CurrencyExchangeRoundedIcon fontSize="small" color={(list.list[0].price - list.list[0].yprice) >= 0 ? 'primary' : 'secondary'}/>
                                     </Grid>
                                     <Grid item>
-                                        <Typography color={list && (list.price - list.yprice) >= 0 ? 'blue' : 'red'}>
-                                            &nbsp;&nbsp;{list && (list.price - list.yprice) >= 0 ? '▲' : '▼'} {list && (list.price - list.yprice).toLocaleString()}
+                                        <Typography color={(list.list[0].price - list.list[0].yprice) >= 0 ? 'blue' : 'red'}>
+                                            &nbsp;&nbsp;{(list.list[0].price - list.list[0].yprice) >= 0 ? '▲' : '▼'} {(list.list[0].price - list.list[0].yprice).toLocaleString()}
                                         </Typography>
                                     </Grid>
                                     <Grid item>
-                                        <Typography color={list && ((list.price - list.yprice) / list.yprice) * 100 >= 0 ? 'blue' : 'red'}> 
-                                            ({list && ((list.price - list.yprice) / list.yprice) * 100 >= 0 ? '+' : '-'}
-                                            {list && (((list.price - list.yprice) / list.yprice) * 100).toFixed(2)}%)
+                                        <Typography color={((list.list[0].price - list.list[0].yprice) / list.list[0].yprice) * 100 >= 0 ? 'blue' : 'red'}> 
+                                            ({((list.list[0].price - list.list[0].yprice) / list.list[0].yprice) * 100 >= 0 ? '+' : ''}
+                                            {(((list.list[0].price - list.list[0].yprice) / list.list[0].yprice) * 100).toFixed(2)}%)
                                         </Typography>
                                     </Grid>
                                 </Grid>
                                 <Grid container spacing={3} alignItems="center" style={{ marginBottom: 10 }}>
                                     <Grid item>
-                                        <AccessAlarmRoundedIcon fontSize="small" color={list && list.sdate && list.sdate.toString().includes('장중') ? 'success' : 'action'}/>
+                                        <AccessAlarmRoundedIcon fontSize="small" color={list.list[0].sdate.toString().includes('장중') ? 'success' : 'action'}/>
                                     </Grid>
                                     <Grid item>
-                                        <Typography style={{ color: list && list.sdate && list.sdate.toString().includes('장중') ? 'green' : 'orange' }}>
-                                            {list && list.sdate}
+                                        <Typography style={{ color: list.list[0].sdate.toString().includes('장중') ? 'green' : 'orange' }}>
+                                            {list.list[0].sdate}
                                         </Typography>
                                     </Grid>
                                     <Grid item>
@@ -86,6 +111,7 @@ function ViewTitle({ list }) {
                     </Grid>
                 </Box>
             </Box>
+            <Candle list={data}/>
         </Container>
     );
 }

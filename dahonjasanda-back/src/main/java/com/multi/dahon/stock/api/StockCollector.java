@@ -6,10 +6,12 @@ public class StockCollector {
 		StockIndexApi stockindexapi = new StockIndexApi();
 		StockInfoApi stockinfoapi = new StockInfoApi();
 		StockUpdater stockupdater = new StockUpdater();
+		EconomyApi economyapi = new EconomyApi();
 		
-//		stockindexapi.Index();
-//		stockinfoapi.Info();
-		stockupdater.Timer();
+		economyapi.Economy();
+		stockindexapi.Index();
+		stockinfoapi.Info();
+//		stockupdater.Timer();
 		
 	}
 }

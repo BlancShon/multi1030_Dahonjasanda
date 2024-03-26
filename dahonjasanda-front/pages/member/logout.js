@@ -33,6 +33,7 @@ export default function Logout() {
             console.log(response)
             if(response.data.result === true){
                 alert('로그아웃 되었습니다.');
+                sessionStorage.removeItem('token');
                 location.href ="/";
             }else{
                 alert('로그아웃에 실패하였습니다.');

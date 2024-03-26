@@ -39,8 +39,8 @@ const Main = ({ children, colorInvert = false, bgcolor = 'transparent' }) => {
   return (
     <Box>
       <Box bgcolor={bgcolor} position={'relative'} zIndex={theme.zIndex.appBar}>
-        {/* <Container paddingTop={'0px !important'} paddingBottom={'0 !important'}>
-        </Container> */}
+        <Container paddingTop={'0px !important'} paddingBottom={'0 !important'}>
+        </Container>
       </Box>
       <AppBar
         position={'sticky'}
@@ -59,12 +59,12 @@ const Main = ({ children, colorInvert = false, bgcolor = 'transparent' }) => {
           />
         </Container>
       </AppBar>
-      {/* <Sidebar
+      <Sidebar
         onClose={handleSidebarClose}
         open={open}
         variant="temporary"
         pages={pages}
-      /> */}
+      />
       <main>
         {children}
         <Divider />

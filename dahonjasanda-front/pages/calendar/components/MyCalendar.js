@@ -8,7 +8,6 @@ import axios from "axios";
 
 const MyCalendar = () => {
   const [events, setEvents] = useState([]);
-  const [selectedEvent, setSelectedEvent] = useState(null);
 
   useEffect(() => {
     fetchData();
@@ -20,15 +19,13 @@ const MyCalendar = () => {
         withCredentials: true,
       });
 
-      console.log(response.data); // Check data here
+      console.log(response.data); // 여기서 데이터 확인
 
       setEvents(
         response.data.map((item) => ({
           title: item.title,
           date: item.date,
-          category: item.category,
-          info: item.info,
-          color: getCategoryColor(item.category),
+          color: getCategoryColor(item.category), // 카테고리에 따른 색상 설정
         }))
       );
     } catch (error) {
@@ -36,6 +33,7 @@ const MyCalendar = () => {
     }
   };
 
+  // 카테고리에 따라 색상 반환하는 함수
   const getCategoryColor = (category) => {
     switch (category) {
       case "APT":
@@ -53,22 +51,19 @@ const MyCalendar = () => {
       case "임의공급":
         return "green";
       default:
-        return "black";
+        return "black"; // 기본값
     }
-  };
-
-  const handleEventClick = (info) => {
-    setSelectedEvent(info.event.extendedProps);
-  };
-
-  const closeModal = () => {
-    setSelectedEvent(null);
   };
 
   return (
     <div>
       <style>
         {`
+          /* 전체 캘린더 컨테이너 스타일 조정 */
+          .my-calendar-container {
+            margin-top: 10px;
+          }
+
           /* 전체 캘린더 컨테이너 스타일 조정 */
           .my-calendar-container {
             margin-top: 10px;
@@ -162,56 +157,6 @@ const MyCalendar = () => {
           .fc {
             width: 100%;
           }
-          /* CSS 스타일 추가 */
-          /* 모달 스타일 */
-          .modal {
-            display: ${selectedEvent ? "block" : "none"};
-            position: fixed;
-            z-index: 1;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            overflow: auto;
-            background-color: rgba(0, 0, 0, 0.4);
-          }
-
-          .modal-content {
-            background-color: #fefefe;
-            margin: 15% auto;
-            padding: 20px;
-            border: 1px solid #888;
-            width: 80%;
-          }
-
-          .close {
-            color: #aaa;
-            float: right;
-            font-size: 28px;
-            font-weight: bold;
-          }
-
-          .close:hover,
-          .close:focus {
-            color: black;
-            text-decoration: none;
-            cursor: pointer;
-          }
-
-          /* 추가한 스타일 */
-          .iframe-container {
-            position: relative;
-            width: 100%;
-            padding-top: 56.25%; /* 16:9 비율 */
-          }
-
-          .iframe-container iframe {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-          }
         `}
       </style>
 
@@ -224,43 +169,14 @@ const MyCalendar = () => {
             end: "next",
           }}
           height={"150vh"}
-          initialView="dayGridMonth"
+          defaultView="dayGridMonth"
           plugins={[dayGridPlugin]}
           locales={[koLocale]}
           locale="ko"
-          className={styles.fullCalendar}
+          className="full-calendar"
           events={events}
-          eventClick={handleEventClick}
         />
       </div>
-
-      {selectedEvent ? (
-        <div className="modal">
-          <div className="modal-content">
-            <span className="close" onClick={closeModal}>
-              &times;
-            </span>
-            <h2>{selectedEvent.title}</h2>
-            <p>카테고리: {selectedEvent.category}</p>
-            {/* iframe을 이용하여 외부 URL 로드 */}
-            <div className="iframe-container">
-              <iframe
-                src={selectedEvent.info}
-                title="External content"
-              ></iframe>
-            </div>
-          </div>
-        </div>
-      ) : (
-        <div className="modal">
-          <div className="modal-content">
-            <span className="close" onClick={closeModal}>
-              &times;
-            </span>
-            <p>데이터 정보가 없습니다.</p>
-          </div>
-        </div>
-      )}
     </div>
   );
 };

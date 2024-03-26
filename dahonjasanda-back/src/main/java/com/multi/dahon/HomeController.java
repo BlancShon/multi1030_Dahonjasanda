@@ -26,7 +26,7 @@ public class HomeController {
 	
 	
 	public void init() {
-		ps.saveParse();
+		ps.save();
 	}
 	
 }

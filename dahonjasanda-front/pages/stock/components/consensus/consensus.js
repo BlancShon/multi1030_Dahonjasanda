@@ -14,21 +14,21 @@ import Tooltip from '@mui/material/Tooltip';
 import styles from './consensus.module.css';
 
 function Consensus({ list }) {
-    if (!list || !list.investinfo) {
+    if (!list) {
         return null;
     }
     
-    const iNum = Math.round(parseFloat(list.investinfo));
+    const iNum = Math.round(parseFloat(list.list[0].investinfo));
     const buttonColor1 = iNum ===1 ? '#1976d2' : '#9e9e9e';
     const buttonColor2 = iNum ===2 ? '#2196f3' : '#9e9e9e';
     const buttonColor3 = iNum ===3 ? '#4caf50' : '#9e9e9e';
     const buttonColor4 = iNum ===4 ? '#ff9800' : '#9e9e9e';
     const buttonColor5 = iNum ===5 ? '#f44336' : '#9e9e9e';
-    const t1 = iNum ===1 ? list.investinfo.slice(0,4) : '';
-    const t2 = iNum ===2 ? list.investinfo.slice(0,4) : '';
-    const t3 = iNum ===3 ? list.investinfo.slice(0,4) : '';
-    const t4 = iNum ===4 ? list.investinfo.slice(0,4) : '';
-    const t5 = iNum ===5 ? list.investinfo.slice(0,4) : '';
+    const t1 = iNum ===1 ? list.list[0].investinfo.slice(0,4) : '';
+    const t2 = iNum ===2 ? list.list[0].investinfo.slice(0,4) : '';
+    const t3 = iNum ===3 ? list.list[0].investinfo.slice(0,4) : '';
+    const t4 = iNum ===4 ? list.list[0].investinfo.slice(0,4) : '';
+    const t5 = iNum ===5 ? list.list[0].investinfo.slice(0,4) : '';
 
     return(
         <Container>
@@ -115,10 +115,10 @@ function Consensus({ list }) {
                     목표주가
                 </Typography>
                 <Typography variant="h4" textAlign="center">
-                    {parseInt(list.targetprice).toLocaleString()}원
+                    {list.list[0].targetprice.toLocaleString()}원
                 </Typography>
                 <Typography variant="h6" fontWeight="light" textAlign="center" fontSize="0.8rem" sx={{ marginBottom: '20px'}}>
-                    {list.sdate} 기준ㆍ에프엔가이드 제공
+                    {list.list[0].sdate} 기준ㆍ에프엔가이드 제공
                 </Typography>
             </Box>
         </Container>

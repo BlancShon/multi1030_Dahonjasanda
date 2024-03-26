@@ -27,7 +27,6 @@ public interface AnnuitySavingRepository extends JpaRepository<AnnuitySavingOpti
 			+ "where ao.id = :id")
 	Optional<AnnuitySavingOptionAndProdDTO> findAnnuitySavingWithDetail(@Param("id") Long id);
 	
-//	Page<MortgageLoanOption> findAll(Specification<MortgageLoanOption> spec, Pageable pageable);
 	@EntityGraph(attributePaths = "annuitySaving")
     Page<AnnuitySavingOption> findAll(Specification<AnnuitySavingOption> spec, Pageable pageable);
 }

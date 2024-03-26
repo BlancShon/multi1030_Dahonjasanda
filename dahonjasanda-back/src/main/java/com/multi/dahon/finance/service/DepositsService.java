@@ -30,34 +30,33 @@ import com.multi.dahon.finance.vo.DepositsParam;
 @Service
 public class DepositsService {
 
+	private final TermDepositRepository termDepositRepository;
     private final SavingRepository savingRepository;
-    private final TermDepositRepository termDepositRepository;
     private final AnnuitySavingRepository annuitySavingRepository;
     private final FinancialCompanyRepository financialCompanyRepository;
 
     @Autowired
-    public DepositsService(SavingRepository savingRepository, TermDepositRepository termDepositRepository,
+    public DepositsService(TermDepositRepository termDepositRepository, SavingRepository savingRepository,
     		AnnuitySavingRepository annuitySavingRepository, FinancialCompanyRepository financialCompanyRepository) {
         super();
+        this.termDepositRepository = termDepositRepository;
     	this.savingRepository = savingRepository;
-    	this.termDepositRepository = termDepositRepository;
     	this.annuitySavingRepository = annuitySavingRepository;
     	this.financialCompanyRepository = financialCompanyRepository;
     }
 
+    
+    
     public Vector<FinanceCompanyDTO> getFinanceCompanyList(String companyType){
     	return financialCompanyRepository.findByType(companyType);
     }
     
+    public Page<TermDepositOptionAndProdDTO> findTermDepositList(DepositsParam param, Pageable pageable){
+    	return termDepositRepository.findAll(DepositSpec.conditionalTermDeposit(param), pageable).map(TermDepositOptionAndProdDTO::new);
+    }
+    
     public Page<SavingOptionAndProdDTO> findSavingList(DepositsParam param, Pageable pageable){
-//		}
 		return savingRepository.findAll(DepositSpec.conditionalSavings(param), pageable).map(SavingOptionAndProdDTO::new);
-//		return mortgageRepository.selectAll(LoanSpec.conditionalMortgages(param), pageable);
-	}
-	
-	public Page<TermDepositOptionAndProdDTO> findTermDepositList(DepositsParam param, Pageable pageable){
-//		return rentHouseRepository.findRentHouseList(pageable);
-		return termDepositRepository.findAll(DepositSpec.conditionalTermDeposit(param), pageable).map(TermDepositOptionAndProdDTO::new);
 	}
 	
 	public Page<AnnuitySavingOptionAndProdDTO> findAnnuitySavingList(DepositsParam param, Pageable pageable){

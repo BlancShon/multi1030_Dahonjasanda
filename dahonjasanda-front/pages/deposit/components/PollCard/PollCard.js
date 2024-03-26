@@ -57,11 +57,11 @@ const PollCard = () => {
     };
 
     return (
-        <StyledCard>
+        <Card>
             <CardContent>
                 <Poll question={pollQuestion} answers={pollAnswers} onVote={handleVote} />
             </CardContent>
-        </StyledCard>
+        </Card>
     );
 };
 

@@ -9,7 +9,6 @@ import OverlayTrigger from 'react-bootstrap/OverlayTrigger'
 import Tooltip from 'react-bootstrap/Tooltip'
 import Button from 'react-bootstrap/Button'
 import axios from 'axios'
-import { Col, Row } from 'react-bootstrap'
 
 const JobBoardAccountLayout = ({ accountPageTitle, activeAccountNav, children }) => {
 
@@ -56,6 +55,7 @@ const JobBoardAccountLayout = ({ accountPageTitle, activeAccountNav, children })
 
       {/* Page content */}
       <Container as='section' className='content-overlay mt-5 mb-md-4 py-5'>
+
         {/* Page card like wrapper */}
         <div className='bg-light shadow-sm rounded-3 p-4 p-md-5 mb-2'>
 
@@ -104,15 +104,42 @@ const JobBoardAccountLayout = ({ accountPageTitle, activeAccountNav, children })
             <i className='fi-align-justify me-2'></i>
             Account Menu
           </Button>
-         <div>
-       
-  {/* <Row>
-    <Col><Button variant='light' value='update' onClick={(e) => setSelecetedCategory(e.target.value)}><i className='fi-settings mt-n1 me-2 fs-base'>    {selectedCategory}정보 수정</i></Button></Col>
-    <Col><Button variant='light' value='joinedParties' onClick={(e) => setSelecetedCategory(e.target.value)}>  <i className='fi-file mt-n1 me-2 fs-base'> 가입한 파티</i></Button></Col>
-    <Col><Button variant='light' value='interestedParties' onClick={(e) => setSelecetedCategory(e.target.value)}>   <i className='fi-heart mt-n1 me-2 fs-base'> 관심 파티</i></Button></Col>
-    <Col><Button variant='light' value='mySchedule' onClick={(e) => setSelecetedCategory(e.target.value)}>   <i className='fi-file mt-n1 me-2 fs-base'> 나의 스케쥴</i></Button></Col>
-  </Row> */}
-</div>
+          <Collapse in={open}>
+            <div id='account-menu-mobile' className='d-md-block'>
+              <Nav variant='pills' defaultActiveKey={activeAccountNav} className='flex-column flex-md-row pt-3 pt-md-0 pb-md-4 border-bottom-md'>
+                <Nav.Item className='mb-md-0 me-md-2 pe-md-1'>
+                  <Nav.Link as={Link} href='/member/view'>
+                    <i className='fi-settings mt-n1 me-2 fs-base'></i>
+                   버튼누르지마시오
+                  </Nav.Link>
+                </Nav.Item>
+                <Nav.Item className='mb-md-0 me-md-2 pe-md-1'>
+                  <Nav.Link as={Link} href='/member/view'>
+                    <i className='fi-file mt-n1 me-2 fs-base'></i>
+                    버튼누르지마시오
+                  </Nav.Link>
+                </Nav.Item>
+                <Nav.Item className='mb-md-0 me-md-2 pe-md-1'>
+                  <Nav.Link as={Link} href='/member/view'>
+                    <i className='fi-heart mt-n1 me-2 fs-base'></i>
+                    버튼누르지마시오
+                  </Nav.Link>
+                </Nav.Item>
+                <Nav.Item className='mb-md-0 me-md-2 pe-md-1'>
+                  <Nav.Link as={Link} href='/member/view'>
+                    <i className='fi-bell mt-n1 me-2 fs-base'></i>
+                     버튼누르지마시오
+                  </Nav.Link>
+                </Nav.Item>
+                <Nav.Item className='mb-md-0 me-md-2 pe-md-1 d-md-none'>
+                  <Nav.Link as={Link} href='/member/view'>
+                    <i className='fi-logout mt-n1 me-2 fs-base'></i>
+                    Sign Out
+                  </Nav.Link>
+                </Nav.Item>
+              </Nav>
+            </div>
+          </Collapse>
 
           {children}
 

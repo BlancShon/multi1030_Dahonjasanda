@@ -51,31 +51,22 @@ public class DepositsController {
 		return ResponseEntity.status(HttpStatus.OK).body(financeCompanies);
 	}
 	
+	@GetMapping(value = "/term-deposits")
+	public ResponseEntity<Page<TermDepositOptionAndProdDTO>> termDepositList(@ModelAttribute DepositsParam depositsParam, Pageable pageable){
+		log.info("로그 정보 {}",depositsParam);
+		return ResponseEntity.ok(service.findTermDepositList(depositsParam, pageable));
+	}
+	
     @GetMapping(value = "/savings")
     public ResponseEntity<Page<SavingOptionAndProdDTO>> savingList(@ModelAttribute DepositsParam depositsParam, Pageable pageable){
     	log.info("로그 정보 {}",depositsParam);
     		return ResponseEntity.ok(service.findSavingList(depositsParam, pageable));
     }
     
-    @GetMapping(value = "/term-deposits")
-    public ResponseEntity<Page<TermDepositOptionAndProdDTO>> termDepositList(@ModelAttribute DepositsParam depositsParam, Pageable pageable){
-    	log.info("로그 정보 {}",depositsParam);
-    	return ResponseEntity.ok(service.findTermDepositList(depositsParam, pageable));
-    }
-    
     @GetMapping(value = "/annuity-savings")
     public ResponseEntity<Page<AnnuitySavingOptionAndProdDTO>> annuitySavingList(@ModelAttribute DepositsParam depositsParam, Pageable pageable){
     	log.info("로그 정보 {}",depositsParam);
     	return ResponseEntity.ok(service.findAnnuitySavingList(depositsParam, pageable));
-    }
-    
-    @GetMapping(value = "savings/{savingId}")
-    public ResponseEntity<Object> savingDetail(@PathVariable("savingId") Long id){
-    	try {
-			return ResponseEntity.ok(service.getSavingDetail(id).orElseThrow());
-		} catch (NoSuchElementException e) {
-			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("요청 값을 다시 확인해주세요");
-		}
     }
     
     @GetMapping(value = "term-deposits/{termDepositId}")
@@ -85,6 +76,15 @@ public class DepositsController {
     	} catch (NoSuchElementException e) {
     		return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("요청 값을 다시 확인해주세요");
     	}
+    }
+    
+    @GetMapping(value = "savings/{savingId}")
+    public ResponseEntity<Object> savingDetail(@PathVariable("savingId") Long id){
+    	try {
+			return ResponseEntity.ok(service.getSavingDetail(id).orElseThrow());
+		} catch (NoSuchElementException e) {
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("요청 값을 다시 확인해주세요");
+		}
     }
 
     @GetMapping(value = "annuity-savings/{annuitySavingId}")
@@ -96,16 +96,17 @@ public class DepositsController {
     	}
     }
     
+    @GetMapping(value = "/term-deposits/top-interest-rates")
+    public ResponseEntity<Page<TermDepositOptionAndProdDTO>> topInterestRateTermDeposits(Pageable pageable){
+    	log.info("Top interest rate term deposits requested");
+    	return ResponseEntity.ok(service.findTopInterestRateTermDeposits(pageable));
+    }
+    
     @GetMapping(value = "/savings/top-interest-rates")
     public ResponseEntity<Page<SavingOptionAndProdDTO>> topInterestRateSavings(Pageable pageable){
         log.info("Top interest rate savings requested");
         return ResponseEntity.ok(service.findTopInterestRateSavings(pageable));
     }
 
-    @GetMapping(value = "/term-deposits/top-interest-rates")
-    public ResponseEntity<Page<TermDepositOptionAndProdDTO>> topInterestRateTermDeposits(Pageable pageable){
-        log.info("Top interest rate term deposits requested");
-        return ResponseEntity.ok(service.findTopInterestRateTermDeposits(pageable));
-    }
     
 }

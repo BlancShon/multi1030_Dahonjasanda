@@ -46,9 +46,28 @@ public interface HousingInfoRespository extends JpaRepository<HousingInfoJPA, In
 	            @Param("propertyType") String propertyType,
 	            @Param("location") String location,
 	            @Param("searchValue") String searchValue);
-	@Query(value = "SELECT house_nm AS title, house_secd_nm AS category, rcept_endde AS date ,pblanc_url as info "
+	@Query(value = "SELECT house_nm AS title, house_secd_nm AS category, rcept_endde AS date "
             + "FROM housing", nativeQuery = true)
     List<Object[]> findAllHousingInfo();
+    
+    
+    
+    @Query(value = "SELECT * "
+	        + "FROM HOUSING h WHERE "
+	        + "h.house_manage_no = :houseManageNo "
+	        , nativeQuery = true)
+	    List<HousingInfoJPA> housingSearchByManageNo(
+	            @Param("houseManageNo") String houseManageNo);
+	
+	
+	@Query(value = "SELECT count(*) "
+			+ "FROM HOUSING h WHERE "
+	        + "h.house_manage_no = :houseManageNo "
+	        , nativeQuery = true)
+	    int housingSearchByManageNoCount(
+	    		@Param("houseManageNo") String houseManageNo);
+	
+
 	
 }
 

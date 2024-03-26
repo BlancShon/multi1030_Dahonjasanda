@@ -1,5 +1,4 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import React, { useState } from 'react';
 import { useTheme } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
@@ -17,13 +16,7 @@ import PageComponent from '../PageComponent';
 
 
 // 박스 구성
-const LastStories = ({ data, pageable }) => {
-  console.log('data!!!! 시작!!!:', data);
-  console.log(typeof data);
-  // console.log('data 길이', data.length);
-
-  // const { pageNumber, totalPages, totalElements } = pageable;
-
+const LastStories = () => {
   const theme = useTheme();
   // const [responseData, setResponseData] = useState([]);
   // console.log('responseData:', responseData);

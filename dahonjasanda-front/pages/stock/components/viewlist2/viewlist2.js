@@ -9,10 +9,9 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import Typography from '@mui/material/Typography';
 
-function ViewList2({ stockdata }) {
+function ViewList2({ list }) {
     
-    console.log("viewlist2",stockdata);
-    if(!stockdata) {
+    if(!list) {
         return null;
     }
 
@@ -67,7 +66,7 @@ function ViewList2({ stockdata }) {
                     </TableRow>
                 </TableHead>
                 <TableBody>
-                    {Array.isArray(stockdata.clist) && stockdata.clist.map((item, i) => (
+                    {list.clist.map((item, i) => (
                         <TableRow key={i} sx={{ '&:last-child td, &:last-child th': { border: 0 } }} >
                             <TableCell align="center">
                                 <Typography>{item.seller}</Typography>

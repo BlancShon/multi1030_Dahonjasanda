@@ -4,6 +4,10 @@ package com.multi.dahon.plant.controller;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -38,26 +42,25 @@ public class PlantRestController {
 //		List<HousingInfoByTypeJPA> typeList = apiParsing.allOfInfoByType();
 		
 //		@Transactional
-//		@GetMapping("/housing")
+//		@GetMapping("/plant")
 //		public String home(Locale locale, Model model, @RequestParam(required = false) String command) {
 //			System.out.println(command);
 ////			if(command != null && command.contains("init")) {
 ////				System.out.println(command);
 ////				init();
 ////			}
-//			if(infoService.count() == 0 && typeService.count() == 0) {
+//			if(plantService.count() == 0 ) {
 //				init();
 //			}
 //			
 //			return "home";
 //		}
 		@PostConstruct
+		@GetMapping("/plantList")
 		public void init() {
 			plantService.saveParse();
 		}
 		
-		  
-		  
 
 		
 //		@GetMapping(path = "/plant")
@@ -115,7 +118,6 @@ public class PlantRestController {
 			
 			return ResponseEntity.status(HttpStatus.OK).body(map);
 		}
-		
-
+		  
 
 }

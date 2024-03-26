@@ -19,7 +19,7 @@
     "@mui/material": "^5.15.14",
     "@mui/styled-engine-sc": "^5.14.12",
     "aos": "^2.3.4",
-    "apexcharts": "^3.48.0",
+    "apexcharts": "^3.47.0",
     "axios": "^1.6.8",
     "bootstrap": "^5.3.3",
     "card-validator": "^9.1.0",
@@ -75,8 +75,8 @@
     "yup": "^1.4.0"
   },
   "devDependencies": {
-    "@babel/core": "^7.24.3",
-    "autoprefixer": "^10.4.19",
+    "@babel/core": "^7.24.1",
+    "autoprefixer": "^10.4.18",
     "eslint": "8.31.0",
     "eslint-config-next": "13.1.1",
     "eslint-config-prettier": "^8.10.0",

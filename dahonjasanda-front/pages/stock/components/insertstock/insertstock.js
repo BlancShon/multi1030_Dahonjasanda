@@ -11,7 +11,9 @@ import Card from '@mui/material/Card';
 import Container from 'components/Container';
 import InsertForm from './components/form/form';
 
-const InsertStock = ({slist}) => {
+
+const InsertStock = ({slist, wlist}) => {
+
     return(
         <Container>
             <Box marginBottom={5}>
@@ -29,14 +31,9 @@ const InsertStock = ({slist}) => {
                         </Card>
                     </Grid>
                     <Grid item xs={12} md={8}>
-                        <InsertForm slist={slist}/>
+                        <InsertForm slist={slist} wlist={wlist}/>
                     </Grid>
                 </Grid>
-            </Box>
-            <Box sx={{ display: 'flex', justifyContent: 'flex-end' }}>
-                <Fab color="primary" aria-label="edit">
-                    <AddIcon />
-                </Fab>
             </Box>
         </Container>
     );
