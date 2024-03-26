@@ -17,8 +17,4 @@ class ApplicationTests {
 	private PlantService ps;
 	
 	
-	@Test
-	public void testname() throws Exception {
-		ps.save();
-	}
 }

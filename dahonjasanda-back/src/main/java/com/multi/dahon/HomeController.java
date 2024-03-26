@@ -16,17 +16,8 @@ public class HomeController {
 	@GetMapping("/")
 	public String home(Locale locale, Model model, @RequestParam(required = false) String command) {
 		if(command != null && command.contains("init")) {
-			init();
 		}
 		return "home";
-	}
-	
-	@Autowired
- 	PlantService ps;
-	
-	
-	public void init() {
-		ps.save();
 	}
 	
 }
