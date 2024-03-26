@@ -84,9 +84,6 @@ function StockPage() {
         }
     };
 
-    console.log("stockList",stockList);
-    console.log("indexList",indexList);
-    
     return (
         <Main colorInvert={true}>
             <Box bgcolor={"alternate.main"} position={"relative"}>
