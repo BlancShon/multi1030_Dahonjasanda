@@ -1,7 +1,6 @@
 
 import { Button, Card, Col, FormControl, InputGroup, Row, Table } from "react-bootstrap";
 import { Main } from "../../../../layouts";
-import RightBalloon from './rightBalloonStyle';
 import ImageLoader from "../../../../components/ImageLoader";
 import IconBox from "../../../../components/IconBox";
 

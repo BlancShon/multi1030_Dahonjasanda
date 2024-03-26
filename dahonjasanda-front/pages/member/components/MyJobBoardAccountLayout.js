@@ -106,7 +106,7 @@ const JobBoardAccountLayout = ({ accountPageTitle, activeAccountNav, children })
           </Button>
           <Collapse in={open}>
             <div id='account-menu-mobile' className='d-md-block'>
-              <Nav variant='pills' defaultActiveKey={activeAccountNav} className='flex-column flex-md-row pt-3 pt-md-0 pb-md-4 border-bottom-md'>
+              {/* <Nav variant='pills' defaultActiveKey={activeAccountNav} className='flex-column flex-md-row pt-3 pt-md-0 pb-md-4 border-bottom-md'>
                 <Nav.Item className='mb-md-0 me-md-2 pe-md-1'>
                   <Nav.Link as={Link} href='/member/view'>
                     <i className='fi-settings mt-n1 me-2 fs-base'></i>
@@ -137,7 +137,7 @@ const JobBoardAccountLayout = ({ accountPageTitle, activeAccountNav, children })
                     Sign Out
                   </Nav.Link>
                 </Nav.Item>
-              </Nav>
+              </Nav> */}
             </div>
           </Collapse>
 

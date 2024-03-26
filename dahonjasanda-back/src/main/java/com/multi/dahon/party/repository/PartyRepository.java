@@ -10,6 +10,7 @@ import org.springframework.data.jpa.repository.EntityGraph;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 
 import com.multi.dahon.party.vo.Party;
 
@@ -22,7 +23,7 @@ public interface PartyRepository extends JpaRepository<Party, Long>, JpaSpecific
 
     @EntityGraph(attributePaths = "partyMembers")
     Page<Party> findAll(Specification<Party> spec, Pageable pageable);
-    
+
 //    @EntityGraph(attributePaths = "partyMembers")
 //    Page<Party> findAll(Pageable pageable);
 
@@ -30,7 +31,8 @@ public interface PartyRepository extends JpaRepository<Party, Long>, JpaSpecific
             "from Party p " +
             "join p.partyMembers pm " +
             "join pm.member m " +
-            "where m.mno = :memberMno")
-    List<Party> selectByMno(Integer memberMno);
+            "where m.mno = :memberId")
+    List<Party> selectByMno(@Param("memberId") Integer memberId);
+
 
 }

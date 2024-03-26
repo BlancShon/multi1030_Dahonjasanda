@@ -87,7 +87,7 @@ const CatalogPage = () => {
       console.log("나의 파티정보", response)
       setMyParties(response.data.data);
     } catch (e) {
-        console.log(e)
+        console.log("나의 파티 에러",e)
     }
   } 
   
@@ -99,7 +99,7 @@ const CatalogPage = () => {
       setMySchedules(response.data.data);
       setAttendedSchedules(response.data.data.map(item => item.id))
     } catch (e) {
-        console.log(e)
+        console.log("스케쥴 에러 ", e)
     }
   } 
 
@@ -110,7 +110,7 @@ const CatalogPage = () => {
       console.log("나의 관심 정보", response)
       setMyInterestedParties(response.data.data);
     } catch (e) {
-        console.log(e)
+        console.log("나의 관심 에러",e)
     }
   } 
 
@@ -172,7 +172,6 @@ const deleteInterestedParty = async (partyId) => {
 
                 <SwiperSlide
                   className="d-flex"
-                  slidesPerView="auto"
                   scrollbar={{ draggable: true }}
                   style={{ maxWidth: "100%", overflowX: "auto" }}
                 >

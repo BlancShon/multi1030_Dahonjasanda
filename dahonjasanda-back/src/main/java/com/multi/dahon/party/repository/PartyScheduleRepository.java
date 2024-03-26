@@ -7,10 +7,12 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.EntityGraph;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 
 import com.multi.dahon.party.vo.PartySchedule;
 
 public interface PartyScheduleRepository extends JpaRepository<PartySchedule, Long> {
+
 
     @EntityGraph(attributePaths = "partyAttendees")
     public List<PartySchedule> findByPartyIdAndDateAfterOrderByDateDesc(Long partyId, LocalDateTime currentDate);
@@ -24,6 +26,6 @@ public interface PartyScheduleRepository extends JpaRepository<PartySchedule, Lo
             "from PartySchedule ps " +
             "join fetch ps.partyAttendees pa " +
             "join pa.member m " +
-            "where m.mno = :memberMno")
-    public List<PartySchedule> selectByMySchedules(Integer memberMno, Pageable pageable);
+            "where m.mno = :memberId")
+    public List<PartySchedule> selectByMySchedules(@Param("memberId")Integer memberId, Pageable pageable);
 }

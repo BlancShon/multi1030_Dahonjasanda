@@ -1,1 +1,1 @@
-export {default} from './partyPage';
+export {default} from './Party'

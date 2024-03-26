@@ -21,6 +21,8 @@ import NewsItem from './stock/components/news/components/item/newsitem';
 // 금리
 import ResultList from "./loan/components/ResultList";
 import { findLoanList } from "./loan/LoansApiService";
+import LoanListForMain from './loan/components/LoanListForMain';
+import PartyForMain from './party/components/PartyForMain';
 
 const indexPage = () => {
     const [topRateProducts, setTopRateProducts] = useState([]);
@@ -199,14 +201,13 @@ const indexPage = () => {
                 </Box>
                 <Box mt={5}>
                     <h1 style={{ textAlign: 'center' }}>혼자를 위한 대출 정보</h1>
-                    <hr style={{ margin: '20px 0', border: 'none', borderBottom: '1px solid black' }} />
+                    <hr style={{ margin: '0px 0', border: 'none', borderBottom: '1px solid black' }} />
                     <Container>
                         <Box>
-                            <Box>
-                            <Container className="mt-3">
+                            <Box className="my-0">
                                 {/* 최고 금리 상품을 ResultList 컴포넌트로 표시 */}
-                                <ResultList resultList={topRateProducts} onChangePageHandler={setPage} pageable={pageable} category={"mortgages"} />
-                            </Container>
+                                {/* <ResultList resultList={topRateProducts} onChangePageHandler={setPage} pageable={pageable} category={"mortgages"} /> */}
+                                <LoanListForMain />
                             </Box>
                         </Box>
                     </Container>
@@ -292,6 +293,19 @@ const indexPage = () => {
                                 </Card>
                             </Grid>
                         </Grid>
+                    </Box>
+                    
+
+                </Box>
+
+                <Box mt={5} display="flex" justifyContent="space-between">
+                    <Box width="100%">
+                    <h1 style={{ textAlign: 'center' }}>만족도 99% 첫 시작하기 좋은 모임</h1>
+                    <hr style={{ margin: '20px 0', border: 'none', borderBottom: '1px solid black' }} />
+                           <div className='col-11 mx-auto'>
+                            <PartyForMain />
+                            </div>                 
+
                     </Box>
                     
 
