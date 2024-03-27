@@ -25,7 +25,7 @@ function Candle({list, item}) {
         },
         yaxis: {
             tooltip: {
-                enabled: true
+                enabled: false
             }
         },
         plotOptions: {
