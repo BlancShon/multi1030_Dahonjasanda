@@ -19,9 +19,9 @@ const Party = () => {
     const [selectedCategory, setSelectedCategory] = useState([])
     const [keyword, setKeyword] = useState('')
     const [selectedArea, setSelectedArea] = useState('')
-    const [selectedPage, setSelectedPage] = useState(0)
+    // const [selectedPage, setSelectedPage] = useState(0)
     const [selectedSort, setSelectedSort] = useState('sort=createdTime,desc')
-    const [pageNumber, setPageNumber] = useState(0);
+    const [pageNumber, setPageNumber] = useState();
     const [totalPages, setTotalPages] = useState();
 
   useEffect(() => {
@@ -59,7 +59,7 @@ const Party = () => {
      
         let condition = "?";
         {selectedSort && (condition += selectedSort)}
-       condition += ("&page=" + selectedPage)
+       condition += ("&page=" + pageNumber)
         {keyword && (condition += ("&keyword=" + keyword))}
         {selectedArea && (condition += ("&activityArea=" + selectedArea))}
         {selectedCategory && (

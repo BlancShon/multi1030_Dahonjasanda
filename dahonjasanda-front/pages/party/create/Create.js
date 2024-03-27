@@ -57,7 +57,7 @@ const Create = () => {
         const response = await axios.post('http://localhost/parties', form, axiosConfig);
         if (response.data.result === true) {
             console.log(response)
-            alert('모임 만들기 성공'+response.data);
+            alert('모임 만들기 성공');
             // location.href = "/board/view?bno=" + response.data.board.bno;
             location.href = "/party";
             return;
@@ -127,7 +127,7 @@ const Create = () => {
 
                     <Col as={Form.Group} xs={12} controlId='thumbnail' className="w-100">
                       {/* 여기에 섬네일 첨부파일 넣으면 됩니다 */}
-                      <Form.Label>썸네일</Form.Label>
+                      <Form.Label>썸네일 (최대 1MB)</Form.Label>
                          {/* <input name="thumbnail" className="mx-5" type="file" accept="image/*" /> */}
                          <div className="d-flex align-items-center">
                           <Form.Control name="thumbnail" type="file" accept="image/*" />
@@ -163,7 +163,7 @@ const Create = () => {
                     
                     <Col  as={Form.Group} controlId='leaderIntroductionImage' className="w-100">
                           {/* 이 부분에 모임장 프로필오면 좋을듯 */}
-                          <Form.Label>모임장 프로필 이미지</Form.Label>
+                          <Form.Label>모임장 프로필 이미지(최대 1MB)</Form.Label>
                          {/* <input name="leaderIntroductionImage" className="mx-5" type="file" accept="image/*" /> */}
                          <div className="d-flex align-items-center">
                           <Form.Control name="leaderIntroductionImage" type="file" accept="image/*" />
@@ -189,7 +189,7 @@ const Create = () => {
 
                     <Col as={Form.Group} controlId='groupIntroductionImage' className="w-100">
                           {/* 이 부분이 모임 소개 사진 */}
-                          <Form.Label>모임 소개 이미지</Form.Label>
+                          <Form.Label>모임 소개 이미지(최대 1MB)</Form.Label>
                          {/* <input name="groupIntroductionImage" className="mx-5" type="file" accept="image/*" /> */}
                          <div className="d-flex align-items-center">
                           <Form.Control name="groupIntroductionImage" type="file" accept="image/*" />

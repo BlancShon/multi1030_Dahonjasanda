@@ -311,6 +311,7 @@ const PartyDetail = () => {
         try {
             const response = await axios.get(`http://localhost/parties/${router.query.detail}/members/${loginInfo.mno}/schedules`, { withCredentials: true });
             console.log("참가 스케쥴 응답", typeof [response.data.data]);
+            console.log("참가스케쥴 ",response);
             setAttendedSchedules(response.data.data)
         } catch (e) {
             console.log("참가 스케쥴 검색중 에러", e)
@@ -323,9 +324,9 @@ const PartyDetail = () => {
         <>
             <Main>
     
-                <div style={{ position: "fixed", top: "80%", right: "20px", transform: "translateY(-50%)", zIndex:"100"}}>
+                {/* <div style={{ position: "fixed", top: "80%", right: "20px", transform: "translateY(-50%)", zIndex:"100"}}>
                     {areYouJoined && <Button variant='info' style={{ height: "120px", width: "120px" }} onClick={() => location.href = `/party/${pid}/chat`}>채팅방 들어가기</Button>}
-                </div>
+                </div> */}
                     <div className="col-9 mx-auto">
                         <h6 className="text-info"><i className="fi-grid mx-2"></i>카테고리 - {partyInfo && partyInfo.category}</h6>
                         <div className="d-flex justify-content-between">
@@ -341,7 +342,9 @@ const PartyDetail = () => {
                                 ) : (
                                     memberRole === "NORMAL" ? (<div><h4>회원</h4><Button onClick={handleWithdraw} variant='warning'>탈퇴하기</Button></div>
                                     ) : (
-                                    <div><h4>파티 리더</h4><Button onClick={handleDeletePrompt} variant='primary'>파티삭제</Button></div>) 
+                                    <div><h4>파티 리더</h4>
+                                    <Button onClick={()=> location.href=`/party/${pid}/update`} variant='secondary'>수정하기</Button>
+                                    <Button onClick={handleDeletePrompt} variant='primary'>파티삭제</Button></div>) 
                             )
                             )}
                         </div>

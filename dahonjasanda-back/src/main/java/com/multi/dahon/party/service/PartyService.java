@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
+import org.apache.tomcat.util.http.fileupload.FileUtils;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -21,6 +22,7 @@ import com.multi.dahon.member.model.vo.Member;
 import com.multi.dahon.party.form.PartyNewForm;
 import com.multi.dahon.party.form.PartyScheduleForm;
 import com.multi.dahon.party.form.PartySearchCondition;
+import com.multi.dahon.party.form.PartyUpdateForm;
 import com.multi.dahon.party.repository.InterestedPartyRepository;
 import com.multi.dahon.party.repository.PartyAttendeesRepository;
 import com.multi.dahon.party.repository.PartyMemberRepository;
@@ -76,6 +78,55 @@ public class PartyService {
         partyMemberRepository.save(partyMember);
 
         return party.getId();
+    }
+    
+    public Long updateParty(Long partyId ,PartyUpdateForm updateForm, Integer leaderId) throws IOException {
+    	log.info("서비스 찍힘 {}, updateForm");
+    	Member leader = memberRepository.findById(leaderId).orElseThrow();
+    	Party party = partyRepository.findById(partyId).orElseThrow();
+        if (!party.getLeaderId().equals(leaderId)) {
+            throw new AccessDeniedException("권한이 없습니다.");
+        }
+    	MultipartFile updateThumbnail = updateForm.getThumbnail();
+    	MultipartFile updateGroupImage = updateForm.getGroupIntroductionImage();
+    	MultipartFile updateLeaderImage = updateForm.getLeaderIntroductionImage();
+    	
+    	String prevThumbnail = party.getThumbnail();
+    	String prevPartyIntroductionImage = party.getPartyIntroductionImage();	
+    	String prevLeaderProfileImage = party.getLeaderProfileImage();
+    	
+    	if (!updateThumbnail.isEmpty()) {
+    		if(prevThumbnail != null) {
+    			deleteFile(prevThumbnail);
+    		}
+    		party.setThumbnail(fileResolver(updateThumbnail));
+    	}
+    
+    	
+    	if (!updateGroupImage.isEmpty()) {
+    		if(prevPartyIntroductionImage != null) {
+    			deleteFile(prevPartyIntroductionImage);
+    		}
+    		party.setPartyIntroductionImage(fileResolver(updateGroupImage));
+    	}
+    	
+    	if (!updateLeaderImage.isEmpty()) {
+    		if(prevLeaderProfileImage != null) {
+    			deleteFile(prevLeaderProfileImage);
+    		}
+    		party.setLeaderProfileImage(fileResolver(updateLeaderImage));
+    	}
+    	
+    	
+    	
+    	
+    	party.setBriefIntroduction(updateForm.getBriefIntroduction());
+    	party.setLeaderIntroductionTitle(updateForm.getLeaderIntroductionTitle());
+    	party.setLeaderIntroduction(updateForm.getLeaderIntroduction());
+    	party.setPartyIntroductionTitle(updateForm.getGroupIntroductionTitle());
+    	party.setPartyIntroduction(updateForm.getGroupIntroduction());
+    	
+    	return party.getId();
     }
 
     public Party getParty(Long partyId) {
@@ -227,6 +278,37 @@ public class PartyService {
         }
 
         return savePath + filename;
+    }
+    
+    private void deleteFile(String fileName) {
+    	log.info("지우는 파일 찍힘 시작 {}", fileName);
+    	String path = "";
+        String os = System.getProperty("os.name").toLowerCase();
+
+        if (os.contains("windows")) {
+        	path = PartyFileSavepath.FILE_DIR_WINDOWS;
+        } else if (os.contains("linux") || os.contains("mac")) {
+        	path = PartyFileSavepath.FILE_DIR_LINUX;
+        } else {
+            throw new IllegalStateException("지원하지 않는 운영 체제입니다.");
+        }
+        try {
+        	log.info("파일이름 찍기 {}", fileName);
+            File file = new File(path, fileName);
+  
+            if (file.exists()) {
+                if (file.delete()) {
+                    log.info("파일이 성공적으로 삭제되었습니다.");
+                } else {
+                    log.info("파일 삭제 실패");
+                }
+            } else {
+                log.info("파일이 존재하지 않습니다.");
+            }
+        } catch (Exception e) {
+            log.error("파일 삭제 중 오류 발생: " + e.getMessage());
+        }
+        log.info("지우는 파일 찍힘 마지막 {}", fileName);
     }
 
 

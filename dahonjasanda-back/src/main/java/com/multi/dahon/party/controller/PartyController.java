@@ -19,6 +19,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -31,6 +32,7 @@ import com.multi.dahon.member.model.vo.Member;
 import com.multi.dahon.party.form.PartyNewForm;
 import com.multi.dahon.party.form.PartyScheduleForm;
 import com.multi.dahon.party.form.PartySearchCondition;
+import com.multi.dahon.party.form.PartyUpdateForm;
 import com.multi.dahon.party.service.PartyService;
 import com.multi.dahon.party.vo.Party;
 import com.multi.dahon.party.vo.PartyAttendees;
@@ -83,6 +85,33 @@ public class PartyController {
             return new Result<>(null, false, HttpStatus.OK);
         }
     }
+    
+    @PatchMapping("/{partyId}")
+    public Result<String> updateParty(
+    		  @SessionAttribute(name = "loginMember", required = false) Member loginMember,
+    		  @PathVariable("partyId") Long partyId,
+              @ModelAttribute @Valid PartyUpdateForm updateForm,
+              BindingResult bindingResult
+              ) {
+    	log.info("업데이트 폼 보자 {}",updateForm);
+    	  if (bindingResult.hasErrors()) {
+              bindingResult.getAllErrors().forEach(error -> {
+                  log.error("바인딩 에러 : {}", error.getDefaultMessage());
+              });
+              log.info("여기까지는 찍혔음");
+              return new Result<>("검증 실패, 작성 내용을 확인해주세요", false, HttpStatus.BAD_REQUEST);
+          }
+    	  try {
+              Long updatedPartyId = service.updateParty(partyId, updateForm, loginMember.getMno());
+              log.info("업데이트 폼 정보 {}", updateForm);
+              return new Result<>("파티 업데이트 성공"+updatedPartyId, true, HttpStatus.OK);
+          } catch (Exception e) {
+              log.error("업데이트 예외다", e);
+              return new Result<>(null, false, HttpStatus.OK);
+          }
+    	  
+    }
+    
 
     @GetMapping("/{partyId}")
     public Result<PartyDTO> partyInfo(@PathVariable("partyId") Long partyId) {
@@ -94,6 +123,8 @@ public class PartyController {
             return new Result<>(null, false, HttpStatus.OK);
         }
     }
+    
+    
 
     @DeleteMapping("/{partyId}")
     public Result<String> deleteParty(@PathVariable("partyId") Long partyId,

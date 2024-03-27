@@ -20,7 +20,7 @@ public interface PartyScheduleRepository extends JpaRepository<PartySchedule, Lo
     @Query("select ps.id from PartySchedule ps " +
             "join ps.partyAttendees pa join pa.member m " +
             "where m.mno = :memberId")
-    public List<Long> selectByMemberMno(Integer memberId);
+    public List<Long> selectByMemberMno(@Param("memberId")Integer memberId);
 
     @Query("select ps " +
             "from PartySchedule ps " +
