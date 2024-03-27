@@ -221,7 +221,7 @@ const Party = () => {
                                       
                                         subgroupId = {subgroup.id}
                                         images={subgroup.thumbnail ? 
-                                            [[`http://localhost/parties/images/${subgroup.thumbnail}`, 300, 200, 'Image']]
+                                            [[`http://localhost/parties/images/${subgroup.thumbnail}`, 400, 200, 'Image']]
                                             // Add more images to the array to display a carousel
                                          : [["/images/job-board/about/faq.jpg", 300, 200, 'Image']]}
                                         title={subgroup.title}
@@ -247,7 +247,7 @@ const Party = () => {
                                         isLoggedIn = {isLoggedIn}
                                         isInterested= {Object.values(interestedParties).includes(subgroup.id)}
                                         footer={<div style={{overflowY: 'auto', maxHeight: '50px'}}>{subgroup.briefIntroduction}</div>} // 스크롤처리
-                                        style={{maxHeight: '350px', cursor: 'pointer'}}
+                                        style={{ width: '100%', maxHeight: '550px', cursor: 'pointer'}}
                                     />
                             </Col>
                         )
