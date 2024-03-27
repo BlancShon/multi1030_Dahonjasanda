@@ -10,6 +10,7 @@ import { useTheme } from "@mui/material/styles";
 import styles from "./koreaMap.module.css";
 import Container from "components/Container";
 import Button from "@mui/material/Button";
+import Map from "./Map";
 
 const mock = [
   {
@@ -49,9 +50,13 @@ const mock = [
   },
 ];
 
-const Contact = () => {
+const Contact = ({ showMapOnly = false }) => {
   const theme = useTheme();
 
+  if (showMapOnly) {
+    return <Map />;
+  }
+  
   const LeftSide = () => {
     return (
       <Box>
@@ -95,13 +100,9 @@ const Contact = () => {
               <ListItemText primary={item.label} secondary={item.value} />
             </Box>
           ))}
-          {/* 청약지도 버튼 수정 */}
+          {/* 청약지도 버튼 추가 */}
           <Box marginTop={2}>
-            <Button
-              variant="contained"
-              color="primary"
-              href="http://localhost:3000/housing/housingMap"
-            >
+            <Button variant="contained" color="primary">
               청약지도
             </Button>
           </Box>
@@ -109,6 +110,7 @@ const Contact = () => {
       </Box>
     );
   };
+
   const RightSide = () => {
     return (
       <svg
