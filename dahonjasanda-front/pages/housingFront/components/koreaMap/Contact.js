@@ -95,9 +95,13 @@ const Contact = () => {
               <ListItemText primary={item.label} secondary={item.value} />
             </Box>
           ))}
-          {/* 청약지도 버튼 추가 */}
+          {/* 청약지도 버튼 수정 */}
           <Box marginTop={2}>
-            <Button variant="contained" color="primary">
+            <Button
+              variant="contained"
+              color="primary"
+              href="http://localhost:3000/housing/housingMap"
+            >
               청약지도
             </Button>
           </Box>
@@ -105,7 +109,6 @@ const Contact = () => {
       </Box>
     );
   };
-
   const RightSide = () => {
     return (
       <svg

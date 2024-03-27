@@ -4,14 +4,16 @@ public class HouseCalendarParam {
     private String title;
     private String category;
     private String date;
+    private String info;
 
     public HouseCalendarParam() {
     }
 
-    public HouseCalendarParam(String title, String category, String date) {
+    public HouseCalendarParam(String title, String category, String date, String info) {
         this.title = title;
         this.category = category;
         this.date = date;
+        this.info= info;
     }
 
     public String getTitle() {
@@ -20,6 +22,13 @@ public class HouseCalendarParam {
 
     public void setTitle(String title) {
         this.title = title;
+    }
+    public String getInfo() {
+        return info;
+    }
+
+    public void setInfo(String info) {
+        this.info=info;
     }
 
     public String getCategory() {
@@ -44,6 +53,7 @@ public class HouseCalendarParam {
                 "title='" + title + '\'' +
                 ", category='" + category + '\'' +
                 ", date='" + date + '\'' +
+                ", info='"+ info+ '\''+
                 '}';
     }
 }

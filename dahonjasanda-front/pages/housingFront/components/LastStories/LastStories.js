@@ -15,18 +15,21 @@ const mock = [
       "https://cdn.jjan.kr/data2/content/image/2023/03/19/.cache/512/20230319580278.jpg",
     description: "실시간으로 업데이트 되는 청약정보",
     title: "청약 게시판 +",
+    link: "http://localhost:3000/housingBoard",
   },
   {
     image:
       "https://wannathis.co.kr/web/product/medium/202309/bbfa645fbea96422bd10cb8ea5a7d061.jpg",
     description: "이번달의 청약 정보를 확인해보기",
     title: "청약캘린더 +",
+    link: "http://localhost:3000/calendar",
   },
   {
     image:
       "https://www.urbanbrush.net/web/wp-content/uploads/edd/2021/02/urbanbrush-20210220212407818839.jpg",
     description: "지도를 통해 한눈에 보는 지역 별 청약",
     title: "청약지도 +",
+    link: "http://localhost:3000/housing/housingMap",
   },
 ];
 
@@ -66,7 +69,7 @@ const LastStories = () => {
           <Grid item xs={12} sm={6} md={4} key={i}>
             <Box
               component={"a"}
-              href={""}
+              href={item.link} // 수정된 부분
               display={"block"}
               width={1}
               height={1}

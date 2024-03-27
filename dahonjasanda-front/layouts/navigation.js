@@ -19,7 +19,7 @@ const pages = {
   ],
   realEstate: [
     {
-      title: "HOUSING",
+      title: "청약홈",
       href: "/housingFront",
     },
     {
@@ -29,7 +29,11 @@ const pages = {
     {
       title: "청약맵",
       href: "/housing/housingMap",
-    }
+    },
+    {
+      title: "게시판",
+      href: "/housingBoard",
+    },
   ],
   animalPlant: [
     {
@@ -54,10 +58,8 @@ const pages = {
     },
   ],
   party: [
-      {title: '소모임',
-      href: "/party"},
-      {title: "나의 모임",
-      href: "/party/myparty"},
+    { title: "소모임", href: "/party" },
+    { title: "나의 모임", href: "/party/myparty" },
   ],
 };
 

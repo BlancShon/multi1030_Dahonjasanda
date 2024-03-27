@@ -1,21 +1,36 @@
-import React from "react";
+import React, { useState } from "react";
 import Card from "@mui/material/Card";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
 import InputAdornment from "@mui/material/InputAdornment";
-import Chip from "@mui/material/Chip";
-
-const mock = [
-  "Business",
-  "Strategy",
-  "Health",
-  "Creative",
-  "Environment",
-  "Stories",
-];
+import Checkbox from "@mui/material/Checkbox";
+import FormControlLabel from "@mui/material/FormControlLabel";
 
 const SearchBox = () => {
+  const [searchValue, setSearchValue] = useState("");
+  const [selectedCategory, setSelectedCategory] = useState(null);
+
+  const handleSearch = () => {
+    let path = "";
+
+    if (selectedCategory === "housing") {
+      path =
+        "/housing/housingMap?transactionType=&location=&propertyType=&searchValue=";
+    } else if (selectedCategory === "board") {
+      path = "/board/list?page=1&searchType=all&searchValue=";
+    } else {
+      // Default category
+      path = "/default/list?page=1&searchType=all&searchValue=";
+    }
+
+    window.location.href = path + encodeURIComponent(searchValue);
+  };
+
+  const handleCheckboxChange = (event) => {
+    setSelectedCategory(event.target.checked ? event.target.value : null);
+  };
+
   return (
     <Box>
       <Box
@@ -26,7 +41,7 @@ const SearchBox = () => {
         marginBottom={4}
       >
         <form noValidate autoComplete="off">
-          <Box display="flex" alignItems={"center"}>
+          <Box display="flex" alignItems="center">
             <Box width={1} marginRight={1}>
               <TextField
                 sx={{
@@ -40,6 +55,8 @@ const SearchBox = () => {
                 size="medium"
                 placeholder="청약공고,관심지역을 검색해보세요"
                 fullWidth
+                value={searchValue}
+                onChange={(e) => setSearchValue(e.target.value)}
                 InputProps={{
                   startAdornment: (
                     <InputAdornment position="start">
@@ -66,12 +83,40 @@ const SearchBox = () => {
               />
             </Box>
             <Box>
+              <FormControlLabel
+                sx={{ minWidth: 100 }}
+                control={
+                  <Checkbox
+                    checked={selectedCategory === "housing"}
+                    onChange={handleCheckboxChange}
+                    value="housing"
+                  />
+                }
+                label="부동산 "
+              />
+            </Box>
+            <Box>
+              <FormControlLabel
+                sx={{ minWidth: 100 }}
+                control={
+                  <Checkbox
+                    checked={selectedCategory === "board"}
+                    onChange={handleCheckboxChange}
+                    value="board"
+                  />
+                }
+                label="게시판 "
+              />
+            </Box>
+            <Box>
               <Button
                 sx={{ height: 54, minWidth: 100, whiteSpace: "nowrap" }}
                 variant="contained"
                 color="primary"
                 size="medium"
                 fullWidth
+                onClick={handleSearch}
+                disabled={!selectedCategory}
               >
                 검색
               </Button>
