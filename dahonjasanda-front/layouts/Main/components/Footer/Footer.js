@@ -51,7 +51,7 @@ const Footer = () => {
                 <Link href="/deposit" color="text.primary">DEPOSIT</Link>
                 <Link href="/loan" color="text.primary">LOAN</Link>
                 <Link href="/stock" color="text.primary">STOCK</Link>
-                <Link href="/mystock" color="text.primary">MYSTOCK</Link>
+                <Link href="/stock/mystock" color="text.primary">MYSTOCK</Link>
               </Grid>
             </Grid>
             {/* 두 번째 줄 */}

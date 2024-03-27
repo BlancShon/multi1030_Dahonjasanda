@@ -172,16 +172,16 @@ const Party = () => {
 
 
                 <hr></hr>
-                <div className='d-flex flex-wrap'>
+                <div className='d-flex flex-wrap justify-content-start'>
                     {Object.keys(categories).map((key, indx) => {
                         const icon = categories[key];
                         return (
                             <Button key={indx}
                                 variant={selectedCategory.includes(key) ? 'info' : 'light'}
-                                style={{ maxWidth: "100px" }}
+                                style={{ maxWidth: "100px", margin: "10px" }} // 버튼 사이의 간격을 위해 margin 추가
                                 onClick={() => toggleCategory(key)}
                             >
-                                <div className={selectedCategory.includes(key) ? 'bg-info' : 'bg-secondary '+ ' rounded-circle text-center w-300 h-100 text-nowrap p-3 '}>
+                                <div className={`${selectedCategory.includes(key) ? 'bg-info' : 'bg-secondary'} rounded-circle text-center w-300 h-100 text-nowrap p-3`}>
                                     <i className={icon}></i>
                                     <span> {key}</span>
                                 </div>
