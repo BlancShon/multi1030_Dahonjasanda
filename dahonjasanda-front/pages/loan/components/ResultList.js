@@ -40,7 +40,7 @@ const ResultList = ({resultList, onChangePageHandler, pageable, category}) => {
                     </Container>
                     </Row>
                     
-                    <Row xxs={2} xs={2} md={3} lg={4} className='gy-4 gl-4 gl-xxl-4 py-4 px-5 mx-5'>
+                    <Row xs={1} sm={2} md={3} lg={3} xl={4} className='gy-4 gl-4 gl-xxl-4 py-4 px-5 mx-5'>
                         {resultList.map((result)=> {
                             const lendRateTypeNm = (category==='credits'? result.crdtLendRateTypeNm : result.lendRateTypeNm)
                             const typeInfo = (category==='credits'? result.crdtPrdtTypeNm : result.rpayTypeNm)
