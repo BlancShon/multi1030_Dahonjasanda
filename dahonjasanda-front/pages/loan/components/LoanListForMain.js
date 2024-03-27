@@ -1,7 +1,7 @@
 import axios from "axios";
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import { Col, Nav, Tab } from "react-bootstrap";
+import { Button, Col, Nav, Tab } from "react-bootstrap";
 import { SwiperSlide } from "swiper/react";
 import ResultCard from "./Result";
 
@@ -99,22 +99,24 @@ const LoanListForMain = () => {
       }}
     >
       {/* 내용 */}
-      <button
+      <Button
         onClick={() => (window.location.href = "/loan")}
-        style={{
-          position: "absolute",
-          right: "50px",
-          bottom: "440px",
-          padding: "8px 12px",
-          border: "1px solid blue",
-          borderRadius: "4px",
-          backgroundColor: "white",
-          textDecoration: "none",
-          color: "blue",
-        }}
+        className="position-absolute top-0 end-0 mt-3 me-3"
+        variant="secondary"
+        // style={{
+        //   position: "absolute",
+        //   right: "50px",
+        //   bottom: "440px",
+        //   padding: "8px 12px",
+        //   border: "1px solid blue",
+        //   borderRadius: "4px",
+        //   backgroundColor: "white",
+        //   textDecoration: "none",
+        //   color: "blue",
+        // }}
       >
         자세히 알아보기
-      </button>
+      </Button>
       <Tab.Container activeKey={activeKey} onSelect={handleSelect}>
         <Nav variant="tabs">
           <Nav.Item>
@@ -143,7 +145,7 @@ const LoanListForMain = () => {
                   const lendRateMax = result.lendRateMax;
                   const mrtgTypeInfo = result.mrtgType;
                   return (
-                    <Col xs={4} md={3} xl={2} className="mx-2 py-3">
+                    <Col className="mx-2 py-3">
                       <Link
                         key={index}
                         href={`/loan/mortgages_${result.id}`}
@@ -180,7 +182,7 @@ const LoanListForMain = () => {
                   const lendRateMax = getMaxValue(result);
 
                   return (
-                    <Col xs={4} md={3} xl={2} className="mx-2 py-3">
+                    <Col className="mx-2 py-3">
                       <Link
                         key={index}
                         href={`/loan/credits_${result.id}`}
@@ -215,7 +217,7 @@ const LoanListForMain = () => {
                   const lendRateMin = result.lendRateMin;
                   const lendRateMax = result.lendRateMax;
                   return (
-                    <Col xs={4} md={3} xl={2} className="mx-2 py-3">
+                    <Col className="mx-2 py-3">
                       <Link
                         key={index}
                         href={`/loan/rent-houses_${result.id}`}
