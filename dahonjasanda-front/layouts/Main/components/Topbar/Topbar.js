@@ -21,6 +21,7 @@ const Topbar = ({ onSidebarOpen, pages, colorInvert = false }) => {
     animalPlant: animalPlantPages,
     party: partyPages,
     shopping: shoppingPages,
+    community: communityPages,
   } = pages;
 
 
@@ -112,6 +113,14 @@ const Topbar = ({ onSidebarOpen, pages, colorInvert = false }) => {
             title={"파티원"}
             id={"party-pages"}
             items={partyPages}
+            colorInvert={colorInvert}
+          />
+        </Box>
+        <Box marginLeft={4}>
+          <NavItem
+            title={"자유게시판"}
+            id={"community-pages"}
+            items={communityPages}
             colorInvert={colorInvert}
           />
         </Box>

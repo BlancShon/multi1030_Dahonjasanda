@@ -61,6 +61,9 @@ const pages = {
     { title: "소모임", href: "/party" },
     { title: "나의 모임", href: "/party/myparty" },
   ],
+  community: [
+    { title: "커뮤니티", href: "/community" },
+  ],
 };
 
 export default pages;
