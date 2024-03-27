@@ -45,7 +45,11 @@ const mock = [
   },
 ];
 
-const SimilarStories = () => {
+const SimilarStories = (data) => {
+  console.log('데이터 넘어왔나요? 전체 / 랜덤 데이터 확인@@@', data);
+  console.log(typeof data);
+  const dataSet = data || {};
+
   const theme = useTheme();
   return (
     <Box marginY={-5}>
@@ -134,6 +138,11 @@ const SimilarStories = () => {
           </Box>
         </Grid>
       </Grid>
+      <br></br>
+      <br></br>
+      <br></br>
+      <br></br>
+      <hr></hr>
     </Box>
   );
 };

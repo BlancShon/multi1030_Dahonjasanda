@@ -44,16 +44,16 @@ const BlogArticle = ({onDetail}) => {
     getPlantDetail();
     getRandPlant(); 
     
-  }, [router.query.plantDetail])
+  }, [router.query.plantDetail])  // 매개변수가 들어올때 마다 실행 ??? => 다른게 선택 될때 마다.
 
     // router써서, url을 보낸 것이, 
     const getPlantDetail = async() => {
       const url = `http://localhost/plant/${plantDetail}`;
-        console.log('@@@@@@@@@ptno@@@@@@', ptno);
+        console.log('@@@@@@@@@ptno@@@@@@', plantDetail);
         console.log('@@@@@@@@@ptno@@@@@@', url);
       const response = await axios.get(url);
       setDetailData(response.data.plantDetail);
-      // 처음에는 아무것도 없었다가 이쪽을 타면서 setDetail에 상세정보가 담겨서 다시 content로 ㄴ넘어간다
+      // 처음에는 아무것도 없었다가 이쪽을 타면서 setDetail에 상세정보가 담겨서 다시 content로 넘어간다// 그래서 처음엔 빈 것이 찍혔다가 다시 값이 찍힘
       // setSideData(response.data.plantDetail);
 
       // 응답으로 받은 상세 데이터를 이용하여 특정 작업을 수행합니다.

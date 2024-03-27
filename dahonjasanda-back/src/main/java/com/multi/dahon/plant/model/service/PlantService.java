@@ -5,14 +5,11 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
-import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
 import com.multi.dahon.api.apiParsingPlant;
-import com.multi.dahon.party.vo.Party;
 import com.multi.dahon.plant.model.repository.PlantQuery;
 import com.multi.dahon.plant.model.repository.PlantRespository;
 import com.multi.dahon.plant.model.vo.Plant;

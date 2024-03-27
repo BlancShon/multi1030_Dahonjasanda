@@ -7,14 +7,13 @@ import Typography from '@mui/material/Typography';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import Button from '@mui/material/Button';
-import Link from 'next/link';
 import { useRouter } from 'next/router';
+
 // 우측 그림 이미지 및 디스크립션 = selectAll 랜덤으로 데이터 추출
 
-const SidebarArticles = ({rand}) => {
-  const theme = useTheme();
-  console.log('Rand(전체리스트) 받아왔나???여기는 사이드 바 입니다. 데이터 넘겨받은 곳@@@@@@:', rand);
-  console.log(typeof rand); 
+const SidebarArticles = ( { data }) => {
+  console.log('데이터 넘어왔나요? 전체 / 랜덤 데이터 확인@@@', data);
+  console.log(typeof data);
   const router = useRouter();
 
   // 여기서도 클릭하면 주소 이동하게 만들어줌 
@@ -26,6 +25,7 @@ const SidebarArticles = ({rand}) => {
     // getRandPlant(value, number);
   };
 
+  const theme = useTheme();
   return (
     <Box component={Card} variant={'outlined'} padding={2} sx={{ maxHeight: 600, overflowY: 'auto' }}>
       <Typography
@@ -36,15 +36,14 @@ const SidebarArticles = ({rand}) => {
           marginBottom: 5,
         }}
       >
-        그 외 관련 식물
+        그 외 관련 유기동물
       </Typography>
+      
       <Grid container spacing={2}>
-      {rand && Object.keys(rand).slice(0,20).map((key, index) => {
-          const item = rand[key]
-           const imageUrls = item.rtnFileUrl.split('|');
+      {data && Object.keys(data).slice(0,20).map((key, index) => {
+          const item = data[key]
            return (
-          <Grid item xs={12}>
-            {/* key={i}  */}
+          <Grid  item xs={12}>
             <Box
               component={Card}
               width={1}
@@ -65,7 +64,7 @@ const SidebarArticles = ({rand}) => {
                   loading="lazy"
                   height={1}
                   width={1}
-                  src={imageUrls[0]}
+                  src={item.popfile}
                   alt="..."
                   sx={{
                     objectFit: 'cover',
@@ -81,24 +80,22 @@ const SidebarArticles = ({rand}) => {
               <CardContent
                 sx={{ padding: 1, '&:last-child': { paddingBottom: 1 } }}
               >
-                <Typography fontWeight={700}>{item.fmlCodeNm}</Typography>
-                <Box marginY={1 / 4}>
+                <Typography fontWeight={700}>{item.kindCd}</Typography>
+                <Box marginY={1 / 7}>
                   <Typography
                     variant={'caption'}
                     color={'text.secondary'}
                     component={'i'}
                   >
-                    {item.cntntsSj}
+                    발견 일자 - {item.happenDt}<br></br>
+                    발견 장소 - {item.happenPlace}
                   </Typography>
                 </Box>
-                <Button 
-                 onClick={() => handleClick2(item.ptno)}
-                size={'small'} 
-                >자세히 보기</Button>
+                <Button size={'small'}>자세히 보기</Button>
               </CardContent>
             </Box>
-          </Grid>
-        )})}
+            </Grid>
+      )})}
       </Grid>
     </Box>
   );

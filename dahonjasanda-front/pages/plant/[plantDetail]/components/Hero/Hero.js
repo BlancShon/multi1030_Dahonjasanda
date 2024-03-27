@@ -51,7 +51,7 @@ const Hero = () => {
           backgroundSize: 'cover',
           backgroundPosition: 'center center',
           backgroundImage:
-            'url(https://www.shutterstock.com/image-vector/curious-woman-magnifying-glass-spying-260nw-2268252271.jpg)',
+            'url(https://image.utoimage.com/preview/cp872722/2022/07/202207011777_500.jpg)',
         }}
       />
       <Box
@@ -79,8 +79,8 @@ const Hero = () => {
               marginLeft: 20,
             }}
           >
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;이 식물은 어떤 식물일까? <br></br>
-             예비 가족을 위해 조금 더 자세히 알아보아요!
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[이 식물, 어떻게 키워야할까?] <br></br>
+             
           </Typography>
           {/* <Box display={'flex'} alignItems={'center'}>
             <Avatar

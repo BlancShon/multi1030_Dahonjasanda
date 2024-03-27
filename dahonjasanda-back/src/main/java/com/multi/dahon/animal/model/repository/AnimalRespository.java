@@ -1,33 +1,34 @@
-package com.multi.dahon.plant.model.repository;
+package com.multi.dahon.animal.model.repository;
 
 
 
 import java.util.List;
 
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
+import org.springframework.data.jpa.repository.EntityGraph;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
-
-import com.multi.dahon.plant.model.vo.Plant;
+import com.multi.dahon.animal.model.vo.Animal;
 
 
 
 @Repository
-public interface PlantRespository extends JpaRepository<Plant, Integer>, JpaSpecificationExecutor<Plant> {
+public interface AnimalRespository extends JpaRepository<Animal, Integer>, JpaSpecificationExecutor<Animal> {
     
 	
-	List<Plant> findFirstByOrderByPtnoDesc();
-	
-	
-	@Query("select p " +
-            "from plant p " +
-            "where p.ptno = :ptno")
-	Plant selectByPtno(@Param("ptno") Integer ptno);
+	List<Animal> findFirstByOrderByAnnoDesc();
+//	
+//	
+	@Query("select a " +
+            "from Animal a " +
+            "where a.anno = :anno")
+	Animal selectByAnno(@Param("anno") Integer anno);
 	 
 //    @Query("SELECT p FROM Plant p WHERE p.ptno = :ptno")
 //    Plant findByPtno(@Param("ptno") Long ptno);
@@ -68,7 +69,7 @@ public interface PlantRespository extends JpaRepository<Plant, Integer>, JpaSpec
 //	Page<Plant> findBysearchValueContainingOrGrowthTypeContainingOrFloweringSeasonContainingOrLeafPatternContainingOrLeafColorContainingOrFlowerColorContainingManagementRequirement
 //	(String title, String content, Pageable pageable);
 
-	Page<Plant> findAll(Specification<Plant> spec, Pageable pageable);
+	Page<Animal> findAll(Specification<Animal> spec, Pageable pageable);
 
 	
 	// 검색 파라메터, 검색 쿼

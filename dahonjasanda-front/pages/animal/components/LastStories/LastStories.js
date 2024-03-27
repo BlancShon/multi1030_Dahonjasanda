@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useTheme } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
@@ -10,77 +10,41 @@ import CardMedia from '@mui/material/CardMedia';
 import Grid from '@mui/material/Grid';
 import Avatar from '@mui/material/Avatar';
 import Pagination from '@mui/material/Pagination';
-
+import { Container } from 'react-bootstrap';
+import PageComponent from '../../../loan/components/PageComponent';
+import { useRouter } from 'next/router';
+import axios from 'axios';
 // 박스에 사진 및 텍스트 추가
 
-const mock = [
-  { //popfile ㅣ이미지
-    image: 'http://www.animal.go.kr/files/shelter/2021/12/202201041101258.png',
-    description:
-      '유기견 specialMark 관련 설명',
-    title: '품종',
-    name: '나이',
-      avatar: 'https://assets.maccarianagency.com/avatars/img1.jpg',
-  },
-  { //popfile ㅣ이미지
-    image: 'http://www.animal.go.kr/files/shelter/2021/12/202201041101258.png',
-    description:
-      '유기견 specialMark 관련 설명',
-    title: '품종',
-    name: '나이',
-      avatar: 'https://assets.maccarianagency.com/avatars/img1.jpg',
-  },
-  { //popfile ㅣ이미지
-    image: 'http://www.animal.go.kr/files/shelter/2021/12/202201041101258.png',
-    description:
-      '유기견 specialMark 관련 설명',
-    title: '품종',
-    name: '나이',
-      avatar: 'https://assets.maccarianagency.com/avatars/img1.jpg',
-  },
-  { //popfile ㅣ이미지
-    image: 'http://www.animal.go.kr/files/shelter/2021/12/202201041101258.png',
-    description:
-      '유기견 specialMark 관련 설명',
-    title: '품종',
-    name: '나이',
-      avatar: 'https://assets.maccarianagency.com/avatars/img1.jpg',
-  },
-  { //popfile ㅣ이미지
-    image: 'http://www.animal.go.kr/files/shelter/2021/12/202201041101258.png',
-    description:
-      '유기견 specialMark 관련 설명',
-    title: '품종',
-    name: '나이',
-      avatar: 'https://assets.maccarianagency.com/avatars/img1.jpg',
-  },
-  { //popfile ㅣ이미지
-    image: 'http://www.animal.go.kr/files/shelter/2021/12/202201041101258.png',
-    description:
-      '유기견 specialMark 관련 설명',
-    title: '품종',
-    name: '나이',
-      avatar: 'https://assets.maccarianagency.com/avatars/img1.jpg',
-  },
-  { //popfile ㅣ이미지
-    image: 'http://www.animal.go.kr/files/shelter/2021/12/202201041101258.png',
-    description:
-      '유기견 specialMark 관련 설명',
-    title: '품종',
-    name: '나이',
-      avatar: 'https://assets.maccarianagency.com/avatars/img1.jpg',
-  },
-  { //popfile ㅣ이미지
-    image: 'http://www.animal.go.kr/files/shelter/2021/12/202201041101258.png',
-    description:
-      '유기견 specialMark 관련 설명',
-    title: '품종',
-    name: '나이',
-      avatar: 'https://assets.maccarianagency.com/avatars/img1.jpg',
-  },
-];
+
 // 박스 구성
-const LastStories = () => {
+const LastStories = ({ data, totalPages, pageNumber, onChangePageHandler, page,  }) => {
+  console.log('LastStories 동물 전체데이터 data 시작!!!:', data);
+  console.log(typeof data); // 전체데이터 
+const [searchValue, setSearchValue] = useState();
+const router = useRouter();
+
+
+
+
+const handleClick = async (anno) => {
+  try {
+    router.push({
+      pathname: `/animal/${anno}`,  // 클릭을 하면 이런 주소(url)로  보내줄게. 그다음 받는 페이지에서 라우터를 받아야함
+      // query : {jaemokgodja}
+    });
+    const { query } = router;
+
+    console.log('라우터 정보 확인 (여기는 라우터를 설정한 곳)', query);
+    // 받아온 데이터를 표시하거나 다른 작업을 수행할 수 있습니다.
+
+  } catch (error) {
+    console.log('상세 데이터를 불러오는 중 오류가 발생했습니다@@@:', error);
+  }
+};
+
+
+
   const theme = useTheme();
   // const [isJsh, setIsJsh] = useState(true);
   return (
@@ -97,10 +61,10 @@ const LastStories = () => {
       <div onClick={() => setIsJsh((prev) => !prev)}>바꾼다</div> */}
         <Box>
           <Typography fontWeight={700} variant={'h6'} gutterBottom>
-            가족을 기다리는 반려동물들을 만나보세요,
+            가족을 기다리는 유기 동물들을 만나보세요,
           </Typography>
           <Typography color={'text.secondary'}>
-            품종, 유기 날짜, 시도 등으로 검색이 가능합니다.
+            품종, 나이, 보호소명, 발견(실종)장소, 등으로 검색이 가능합니다.
           </Typography>
         </Box>
         <Box display="flex" marginTop={{ xs: 2, md: 0 }}>
@@ -118,12 +82,15 @@ const LastStories = () => {
       </Box>
       <Grid container spacing={4} >
         {/* mock 데이터를 갖고옴 */}
-        {mock.map((item, i) => (
-          <Grid item xs={12} sm={6} md={3} key={i} sx={{marginBottom:-20}} >
+        {data && Object.keys(data).map((key, index) => {
+           const item = data[key];
+           return (
+          <Grid item xs={12} sm={6} md={3} sx={{marginBottom:-15}} >
             
-            <Box
+            <Box 
+              onClick={() => handleClick(data[key].anno)}
               component={'a'}
-              href={''}
+              // href={''}
               display={'block'}
               width={1}  //? 0.8 이나..1?
               height={1}
@@ -146,9 +113,8 @@ const LastStories = () => {
                 sx={{ backgroundImage: 'none' }}
               >
                 <CardMedia
-                  image={item.image}
-                  title={item.title}
-                  name={item.name}
+                  image={item.popfile}
+                
                   sx={{
                     height: { xs: 300, md: 360 },
                     position: 'relative',
@@ -177,39 +143,35 @@ const LastStories = () => {
                     />
                   </Box>
                 </CardMedia>
+                <br></br>
                 <Box component={CardContent} position={'relative'}>
-                  <Typography variant={'h6'} gutterBottom>
-                    품종 : {item.title} <br></br>
-                    나이 : {item.name}
-                  </Typography>
-                  <Typography color="text.secondary">
-                    {item.description}
-                  </Typography>
-                </Box>
-                <Box flexGrow={1} />
-                <Box padding={2} display={'flex'} flexDirection={'column'}>
-                  <Box
-                    display={'flex'}
-                    justifyContent={'space-between'}
-                    alignItems={'center'}
-                  >
-                    <Box display={'flex'} alignItems={'center'}>
-                      <Typography color={'text.secondary'}>
-                      </Typography>
-                    </Box>
-                  </Box>
-                  
+                <Typography variant='h6'  gutterBottom>품종 : {item.kindCd}</Typography>
+                <Typography fontSize={16}  gutterBottom>나이 : {item.age}</Typography>
+                <Typography fontSize={16}  gutterBottom>보호 상태  : {item.processState}</Typography>
+                <Typography fontSize={16}  gutterBottom>보호소 명 : {item.careNm}</Typography>
                 </Box>
                 
               </Box>
               
             </Box>
             
-          </Grid>
-        ))}
-      <Grid item container justifyContent={'center'} xs={12}>
-            <Pagination count={10} size={'large'} color="primary" />
-          </Grid>
+             </Grid>
+            )})}
+        
+        <hr></hr>
+    <hr></hr>
+    <hr></hr>
+    <hr></hr>
+    <hr></hr>
+    <hr></hr>
+    <hr></hr>
+    <hr></hr>
+    <hr></hr>
+    <hr></hr>
+    <hr></hr>
+        <Container className="my-5" style={{ display: 'flex', justifyContent: 'center' }}>
+          <PageComponent totalPages={totalPages} currentPage={pageNumber} onPageChange={onChangePageHandler}/>
+        </Container>
       </Grid>
     </Box>
   );

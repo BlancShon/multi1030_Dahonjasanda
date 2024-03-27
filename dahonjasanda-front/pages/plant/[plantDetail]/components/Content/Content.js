@@ -207,9 +207,9 @@ const Content = ({detail}) => {
               </Typography>
               <Typography  
               marginY={2}
-              fontSize={15}
+              fontSize={16}
               fontWeight={'bold'}
-              >
+              color={'black'}>
                 생육 형태 : {item.description3}   <br></br>
                 {/* // 생육 형태 grwhstleCodeNm */}
                 잎 무늬 : {item.description4}   <br></br>
@@ -259,11 +259,12 @@ const Content = ({detail}) => {
               </Typography>
               <Typography 
               marginY={2}
-              fontSize={15}
-              fontWeight={'bold'}>
-              조언 정보 : {item.description1}<br></br>
-              기능성 정보 : {item.description}<br></br>
-              특별 관리 정보 :  {item.description2}
+              fontSize={16}
+              fontWeight={'bold'}
+              color={'black'}>
+              1. 조언 정보 : {item.description1}<br></br><br></br>
+              2. 기능성 정보 : {item.description}<br></br><br></br>
+              3. 특별 관리 정보 :  {item.description2}
               </Typography>
             </Box>
           </Grid>

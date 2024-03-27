@@ -150,7 +150,8 @@ const SearchBox = ({onSearch, page, setPageable, onChangePageHandler}) => {
     let url2 = 'dkdkdkdkdk@@@@@@@@@@';
     console.log('여기는 서치 박스 들어오는 곳!');
     try {
-      // 체크박스나 검색어를 쳐서, 다시 검색을 눌렀을 때, 페이지 0으로 초기화 
+      // 체크박스나 검색어를 쳐서, 다시 검색을 눌렀을 때, 페이지 0으로 초기화 (돌아가야함, -> 검색해도 현재 페이지(ex. 6)그대로면 랜더링이 안됌
+      
       var url = 'http://localhost/plant'
           url = url + '?page=0';
       if (searchValue != null) {
@@ -197,13 +198,17 @@ const SearchBox = ({onSearch, page, setPageable, onChangePageHandler}) => {
       const map = await axios.get(url);
 
       console.log('map확인 1차', map);
+
       onSearch(map.data.listsearchAll.content);
+
       const pageInfo = map.data.listsearchAll.pageable;
+
       onChangePageHandler(map.data.listsearchAll.pageable.pageNumber);
-      setPageable({...pageInfo,
+      setPageable({...pageInfo, // 
         totalPages : map.data.listsearchAll.totalPages,
         totalElements : map.data.listsearchAll.totalElements
       });
+
       // 서버로부터 받은 응답 처리
       // console.log(map.data.list2); // 받은 데이터 처리
       // console.log('서치 데이터 온다!!!!');

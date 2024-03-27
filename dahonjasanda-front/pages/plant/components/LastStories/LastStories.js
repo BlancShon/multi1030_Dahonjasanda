@@ -133,7 +133,7 @@ const LastStories = ({ data, totalPages, pageNumber, onChangePageHandler, pageab
                   transform: `translateY(-${theme.spacing(1 / 2)})`,
                 },
               }}
-            >dd
+            >
               <Box
                 component={Card}
                 width={1}
@@ -209,17 +209,6 @@ const LastStories = ({ data, totalPages, pageNumber, onChangePageHandler, pageab
     />
   </Container> */}
       </Grid>
-    <hr></hr>
-    <hr></hr>
-    <hr></hr>
-    <hr></hr>
-    <hr></hr>
-    <hr></hr>
-    <hr></hr>
-    <hr></hr>
-    <hr></hr>
-    <hr></hr>
-    <hr></hr>
         <Container className="my-5" style={{ display: 'flex', justifyContent: 'center' }}>
           <PageComponent totalPages={totalPages} currentPage={pageNumber} onPageChange={onChangePageHandler}/>
         </Container>

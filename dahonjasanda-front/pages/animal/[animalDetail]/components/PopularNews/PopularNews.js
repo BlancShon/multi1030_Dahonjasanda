@@ -18,115 +18,21 @@ import Avatar from '@mui/material/Avatar';
 import Container from 'components/Container';
 
 
-const title = [
-  {
-    careNm: '이기영수의과병원',  // 보호수 이름
-    careTel: '02-2202-3131', //보호소 전화번호
-    careaddr: '충청남도 공주시 감영길 7 (반죽동)', //보호소 주소
-  }
-]
 
 
-const mock33 = [
-  {
-    label: 'Phone',
-    careTel: '보호소 전화번호 02-2202-3131',
-  },
-  {
-    label: 'Email',
-    value: 'hi@maccarianagency.com',
-    icon: (
-      <svg
-        width={20}
-        height={20}
-        xmlns="http://www.w3.org/2000/svg"
-        viewBox="0 0 20 20"
-        fill="currentColor"
-      >
-        <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z" />
-        <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z" />
-      </svg>
-    ),
-  },
-  {
-    label: 'Address',
-    value: 'Via Venini 33, 20147',
-    icon: (
-      <svg
-        width={20}
-        height={20}
-        xmlns="http://www.w3.org/2000/svg"
-        viewBox="0 0 20 20"
-        fill="currentColor"
-      >
-        <path
-          fillRule="evenodd"
-          d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z"
-          clipRule="evenodd"
-        />
-      </svg>
-    ),
-  },
-];
+const PopularNews = ( {data} ) => {
+  console.log('데이터 넘어왔나요? 상세데이터 확인@@@', data);
+  console.log(typeof data);
+  const dataSet = data || {};
 
-const mock = [
-  {
-    image: 'https://previews.123rf.com/images/shmakova/shmakova2111/shmakova211100113/178616023-%ED%86%A0%EB%A7%88%ED%86%A0-%EC%84%B1%EC%9E%A5-%EB%8B%A8%EA%B3%84-%EC%A0%95%EC%9B%90-%EC%8B%9D%EB%AC%BC-%EC%9E%AC%EB%B0%B0-%EC%8B%9D%EB%AC%BC-%EA%B4%80%EB%A6%AC-%ED%94%8C%EB%9E%AB-%EC%8A%A4%ED%83%80%EC%9D%BC%EC%9D%98-%EB%B2%A1%ED%84%B0-%EC%9D%BC%EB%9F%AC%EC%8A%A4%ED%8A%B8-%EB%A0%88%EC%9D%B4.jpg',
-    description:
-      '이런 저런 내용',
-    title: '물 관리 주기',
-    // watercycleSummerCode , lighttdemanddoCodeNm, postngplaceCodeNm:, grwhTpCodeNm, winterLwetTpCodeNm, frtlzrInfo등 다양한 데이터 끌고오기
-    tags: ['UX', 'Design', 'Themes', 'Photography'],
-    author: {
-      name: 'Clara Bertoletti',
-      avatar: 'https://assets.maccarianagency.com/avatars/img3.jpg',
-    },
-    date: '04 Aug',
-  },
-  // {
-  //   image: 'https://assets.maccarianagency.com/backgrounds/img25.jpg',
-  //   description:
-  //     'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
-  //   title: '성장 및 관리 정보',
-  //   tags: ['UX', 'Design', 'Themes', 'Photography'],
-  //   author: {
-  //     name: 'Jhon Anderson',
-  //     avatar: 'https://assets.maccarianagency.com/avatars/img5.jpg',
-  //   },
-  //   date: '12 Sep',
-  // },
-];
-
-const mock2 = [
-  {
-    image: 'https://img.freepik.com/premium-vector/flowers-store-and-plants-shop-with-florists-care-organic-natural-products-for-home-garden-green-decoration-in-flat-background-vector-illustration_2175-2809.jpg?w=360',
-    description:
-      'dlfjs wjㅋ.',
-    title: '성장 및 관리 정보',
-    // watercycleSummerCode , lighttdemanddoCodeNm, postngplaceCodeNm:, grwhTpCodeNm, winterLwetTpCodeNm, frtlzrInfo등 다양한 데이터 끌고오기
-    tags: ['UX', 'Design', 'Themes', 'Photography'],
-    author: {
-      name: 'Clara Bertoletti',
-      avatar: 'https://assets.maccarianagency.com/avatars/img3.jpg',
-    },
-    date: '04 Aug',
-  },
-  // {
-  //   image: 'https://assets.maccarianagency.com/backgrounds/img25.jpg',
-  //   description:
-  //     'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
-  //   title: 'Consectetur adipiscing elit',
-  //   tags: ['UX', 'Design', 'Themes', 'Photography'],
-  //   author: {
-  //     name: 'Jhon Anderson',
-  //     avatar: 'https://assets.maccarianagency.com/avatars/img5.jpg',
-  //   },
-  //   date: '12 Sep',
-  // },
-];
-const PopularNews = () => {
+  const title = [
+    {
+      careNm: dataSet.careNm,  // 보호수 이름
+      careTel: dataSet.careTel, //보호소 전화번호
+      careaddr: dataSet.careAddr, //보호소 주소
+    }
+  ]
   const theme = useTheme(
-    
   );
 
   const LeftSide = () => {
@@ -159,7 +65,7 @@ const PopularNews = () => {
                       />
                     </svg>
                   </EventNoteIcon>
-                  {item.careNm}, 위치 안내
+                  {dataSet.careNm}, 위치 안내
                 </Typography>
               <br />
             
@@ -167,8 +73,8 @@ const PopularNews = () => {
 
               </Box>
                 <Typography
-              variant="h6"
-              color={'text.secondary'}
+              fontSize={17.5}
+              color={'black'}
               align={'left'}
               data-aos={'fade-up'}
               fontWeight={'bold'}

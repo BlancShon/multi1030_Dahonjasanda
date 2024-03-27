@@ -71,6 +71,7 @@ const plantMain = ({onData}) => {
     });
     
   }, []);
+  
   //   useEffect(() => {
   //     axios.get('http://localhost/plantDetail')  // 상세리스트 요청
   //     .then(response => {
@@ -125,7 +126,7 @@ const plantMain = ({onData}) => {
             zIndex: 3,
             paddingY: '0 !important',
           }}
-        ><h1>{pageable && pageable.totalPages}</h1>
+        >
           <SearchBox  onSearch={setPlantList} page={page}  onChangePageHandler={setPage} setPageable={setPageable} />
           <Container paddingTop={'0 !important'}></Container>
         </Container>
