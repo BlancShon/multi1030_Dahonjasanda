@@ -31,7 +31,7 @@ import { ViewProducts } from './deposit/components';
 // 부동산
 import ProductTable from './deposit/components/ViewProducts/ProductTable';
 import Contact, { RightSide } from './housingFront/components/koreaMap/Contact';
-
+import PopularArticles from './housingFront/components/PopularArticles/PopularArticles';
 
 const indexPage = () => {
     const [topRateProducts, setTopRateProducts] = useState([]);
@@ -236,24 +236,26 @@ const indexPage = () => {
                     <Container>
                         <Box display="flex" justifyContent="space-between">
                             <Box width="50%">
+                            <h1 style={{ textAlign: 'center' }}>전국 지도 및 부동산 정보</h1>
                                 <Card>
                                     <CardContent>
-                                        <Typography variant="h5" component="h2">
-                                            부동산 관련 이미지 1
-                                        </Typography>
-                                        {/* Add code to display 부동산 관련 이미지 1 */}
+                                        <PopularArticles 
+                                        vertical={true} 
+                                        imageStyle={{ maxWidth: '100%', maxHeight: '500px'}} 
+                                        marginTop={false}
+                                        />
                                     </CardContent>
                                 </Card>
                             </Box>
                             <Box width="50%">
+                            <h1 style={{ textAlign: 'center' }}>전국 지도 및 부동산 정보</h1>
                                 <Card onClick={() => window.location.href = '/housing/housingMap'} style={{ cursor: 'pointer' }}>
-                                    <h1 style={{ textAlign: 'center' }}>전국 지도 및 부동산 정보</h1>
                                     <CardContent sx={
                                         {
                                             display: 'flex',
                                             justifyContent: 'center',
                                             alignItems: 'center',
-                                            maxHeight: '500px'
+                                            maxHeight: '639px'
                                         }
                                     }>
                                         <Contact showMapOnly={true} />

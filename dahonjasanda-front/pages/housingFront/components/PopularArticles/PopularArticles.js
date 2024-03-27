@@ -89,15 +89,16 @@ const ImageMarked = styled("span")(({ theme }) => ({
   transition: theme.transitions.create("opacity"),
 }));
 
-const PopularArticles = () => {
+const PopularArticles = ({ vertical = false, imageStyle = {}, marginTop = true }) => {
   return (
     <Box
       sx={{
         display: "flex",
         flexWrap: "wrap",
+        flexDirection: vertical ? 'column' : 'row',
         minWidth: 300,
         width: "100%",
-        marginTop: 4,
+        marginTop: marginTop ? 4 : 0,
       }}
     >
       {images.map((image) => (
@@ -105,7 +106,8 @@ const PopularArticles = () => {
           focusRipple
           key={image.title}
           style={{
-            width: image.width,
+            width: vertical ? '100%' : image.width, // Full width if vertical
+            ...imageStyle, // Apply additional image styling
           }}
           href={image.link} // 이미지를 클릭하여 이동할 링크
         >
