@@ -102,7 +102,11 @@ const Contact = ({ showMapOnly = false }) => {
           ))}
           {/* 청약지도 버튼 추가 */}
           <Box marginTop={2}>
-            <Button variant="contained" color="primary">
+            <Button
+              variant="contained"
+              color="primary"
+              href="http://localhost:3000/housing/housingMap"
+            >
               청약지도
             </Button>
           </Box>
