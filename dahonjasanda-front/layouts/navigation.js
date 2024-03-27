@@ -33,23 +33,23 @@ const pages = {
   ],
   animalPlant: [
     {
-      title: "Plant",
+      title: "PLANT",
       href: "/plant",
     },
     {
-      title: "PlantDetail",
+      title: "PLANTDETAIL",
       href: "/plantDetail",
     },
     {
-      title: "Animal",
+      title: "ANIMAL",
       href: "/animal",
     },
     {
-      title: "AnimalDetail",
+      title: "ANIMALDETAIL",
       href: "/animalDetail",
     },
     {
-      title: "PlantBoard",
+      title: "PLANTBOARD",
       href: "/plantBoard",
     },
     // {
