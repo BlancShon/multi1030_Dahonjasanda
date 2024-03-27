@@ -90,7 +90,7 @@ public class Plant {
 	@Column(unique = false, nullable = true, length = 100)
 	private String plntbneNm; // 식물학명
 	
-	@Column(unique = false, nullable = true, length = 100)
+	@Column(unique = false, nullable = true, columnDefinition = "TEXT")
 	private String plntzrNm; // 식물영 명
 	
 	@Column(unique = false, nullable = true, length = 100)

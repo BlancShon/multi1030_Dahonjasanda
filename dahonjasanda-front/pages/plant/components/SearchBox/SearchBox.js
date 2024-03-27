@@ -4,7 +4,7 @@ import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 import InputAdornment from '@mui/material/InputAdornment';
 import Chip from '@mui/material/Chip';
-import React, { useState, onSearch, response } from 'react';
+import React, { useState, onSearch, response, useEffect } from 'react';
 import { Checkbox, FormControlLabel} from '@mui/material';
 import { Typography, FormControl, Select, MenuItem } from '@mui/material';
 import axios from 'axios';
@@ -62,10 +62,9 @@ const managementRequirementC = [
   '전문가'
 ];
 // , onPage
-const SearchBox = ({onSearch}) => {
+const SearchBox = ({onSearch, page, setPageable, onChangePageHandler}) => {
   // 사용할 변수(조건)들 할당 
   // const [Pageable, setPageable] = useState([]);
-  const [page, setPage] = useState();
   const [searchValue, setSearchValue] = useState();
   const [growthType, setGrowthType] = useState([]);
   const [floweringSeason, setFloweringSeason] = useState([]);
@@ -73,6 +72,7 @@ const SearchBox = ({onSearch}) => {
   const [leafColor, setLeafColor] = useState([]);
   const [flowerColorType, setFlowerColorType] = useState([]);
   const [managementRequirement, setManagementRequirement] = useState([]);
+
   // const growthTypeString = Array.isArray(growthType) ? growthType.join('&growthType=') : growthType;
   // const floweringSeasonString = Array.isArray(floweringSeason) ? floweringSeason.join('&floweringSeason=') : floweringSeason;
   // const leafPatternString = Array.isArray(leafPattern) ? leafPattern.join('&leafPattern=') : leafPattern;
@@ -80,6 +80,7 @@ const SearchBox = ({onSearch}) => {
   // const flowerColorString = Array.isArray(flowerColor) ? flowerColor.join('&flowerColor=') : flowerColor;
   // const managementRequirementString = Array.isArray(managementRequirement) ? managementRequirement.join('&managementRequirement=') : managementRequirement;
 
+  console.log('@@@@@@@@@@@@@@@@@@@@@@@', typeof onSearch);
 
   // 체크박스 체크 해제 및 중복체크 기능
   const handleGrowthTypeCToggle = (item) => {
@@ -143,11 +144,83 @@ const SearchBox = ({onSearch}) => {
   // });
 
   // 위 검색 조건들로 서버로 요청 보냄 
+  console.log('page@@@@@@@@확인@@@@@SearchBox@@@@', page)
+
   const handleSubmit = async () => {
     let url2 = 'dkdkdkdkdk@@@@@@@@@@';
-    console.log('뭐냐고!!');
+    console.log('여기는 서치 박스 들어오는 곳!');
     try {
+      // 체크박스나 검색어를 쳐서, 다시 검색을 눌렀을 때, 페이지 0으로 초기화 
+      var url = 'http://localhost/plant'
+          url = url + '?page=0';
+      if (searchValue != null) {
+          url = url + '&searchValue=' + searchValue;
+      }
+      if(growthType != null && growthType.length > 0){
+          for(let i = 0; i < growthType.length; i++){
+              url = url + '&growthType=' + growthType[i];
+          }
+      }
+      if(floweringSeason != null && floweringSeason.length > 0){
+          for(let i = 0; i < floweringSeason.length; i++){
+              url = url + '&floweringSeason=' + floweringSeason[i];
+          }
+      }
+      if(leafPattern != null && leafPattern.length > 0){
+          for(let i = 0; i < leafPattern.length; i++){
+              url = url + '&leafPattern=' + leafPattern[i];
+          }
+      }
+      if(leafColor != null && leafColor.length > 0){
+          for(let i = 0; i < leafColor.length; i++){
+              url = url + '&leafColor=' + leafColor[i];
+          }
+      }
+      if(flowerColorType != null && flowerColorType.length > 0){
+          for(let i = 0; i < flowerColorType.length; i++){
+              url = url + '&flowerColorType=' + flowerColorType[i];
+          }
+      }
+      if(managementRequirement != null && managementRequirement.length > 0){
+          for(let i = 0; i < managementRequirement.length; i++){
+              url = url + '&managementRequirement=' + managementRequirement[i];
+          }
+      }
+  
+      
+      // 검색 조건을 URL 쿼리 문자열에 포함하여 URL 구성
+      // url = `http://localhost/plantSearch?searchValue=${searchValue}&growthType=${growthTypeString}&floweringSeason=${floweringSeasonString}&leafPattern=${leafPatternString}&leafColor=${leafColorString}&flowerColorType=${flowerColorString}&managementRequirement=${managementRequirementString}`;
+      // url = `http://localhost/plantSearch`;
+        //  console.log('url@@@@@@@@',url);
+      // 서버로 GET 요청 보내기
+      // const map = await axios.get(url);
+      const map = await axios.get(url);
 
+      console.log('map확인 1차', map);
+      onSearch(map.data.listsearchAll.content);
+      const pageInfo = map.data.listsearchAll.pageable;
+      onChangePageHandler(map.data.listsearchAll.pageable.pageNumber);
+      setPageable({...pageInfo,
+        totalPages : map.data.listsearchAll.totalPages,
+        totalElements : map.data.listsearchAll.totalElements
+      });
+      // 서버로부터 받은 응답 처리
+      // console.log(map.data.list2); // 받은 데이터 처리
+      // console.log('서치 데이터 온다!!!!');
+      console.log('서치 부분 ', url);
+      // console.log('map 확인 @@@@@@@@',map.data);
+      // console.log('page 확인 @@@@@@@@',map.data.listsearchAll.pageable);
+    } catch (error) {
+      // console.log('@@@@',url);
+      console.log('서치 데이터 안온다!!!!', error);
+    }
+  };
+
+  const handleSubmitPage = async () => {
+    let url2 = 'dkdkdkdkdk@@@@@@@@@@';
+    console.log('여기는 서치 박스 들어오는 곳!');
+    try {
+      // 이미 검색은 됐거나 검색이 안됐거나, 페이지를 눌렀을 때 거기에 맞는 페이지 번호로 이동한다!!!
       var url = 'http://localhost/plant'
       if (page != null) {
           url = url + '?page=' + page;
@@ -187,32 +260,38 @@ const SearchBox = ({onSearch}) => {
               url = url + '&managementRequirement=' + managementRequirement[i];
           }
       }
-      // 검색 조건을 URL 쿼리 문자열에 포함하여 URL 구성
+          // 검색 조건을 URL 쿼리 문자열에 포함하여 URL 구성
       // url = `http://localhost/plantSearch?searchValue=${searchValue}&growthType=${growthTypeString}&floweringSeason=${floweringSeasonString}&leafPattern=${leafPatternString}&leafColor=${leafColorString}&flowerColorType=${flowerColorString}&managementRequirement=${managementRequirementString}`;
       // url = `http://localhost/plantSearch`;
-         console.log('url@@@@@@@@',url);
+        //  console.log('url@@@@@@@@',url);
       // 서버로 GET 요청 보내기
       // const map = await axios.get(url);
       const map = await axios.get(url);
+
       console.log('map확인 1차', map);
       onSearch(map.data.listsearchAll.content);
-      pageable({
-        pageable : map.data.listsearchAll.pageable,
+      const pageInfo = map.data.listsearchAll.pageable;
+      onChangePageHandler(map.data.listsearchAll.pageable.pageNumber);
+      setPageable({...pageInfo,
         totalPages : map.data.listsearchAll.totalPages,
         totalElements : map.data.listsearchAll.totalElements
       });
       // 서버로부터 받은 응답 처리
-      console.log(map.data.list2); // 받은 데이터 처리
-      console.log('서치 데이터 온다!!!!');
-      console.log(url);
-      console.log('map 확인 @@@@@@@@',map.data);
-      console.log('page 확인 @@@@@@@@',map.data.listsearchAll.pageable);
+      // console.log(map.data.list2); // 받은 데이터 처리
+      // console.log('서치 데이터 온다!!!!');
+      console.log('서치 부분 ', url);
+      // console.log('map 확인 @@@@@@@@',map.data);
+      // console.log('page 확인 @@@@@@@@',map.data.listsearchAll.pageable);
     } catch (error) {
       // console.log('@@@@',url);
       console.log('서치 데이터 안온다!!!!', error);
     }
   };
 
+  useEffect(()=>{
+    // handleSubmit();
+    handleSubmitPage();
+  },[page]);
 
   return (
     <Box>

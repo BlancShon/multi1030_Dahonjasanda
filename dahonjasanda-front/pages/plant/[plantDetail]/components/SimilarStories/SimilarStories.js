@@ -48,7 +48,7 @@ const mock = [
 const SimilarStories = () => {
   const theme = useTheme();
   return (
-    <Box >
+    <Box marginTop={-10} >
       <Typography variant={'h4'} gutterBottom fontWeight={'bold'} textAlign={'center'}>
       <SmartDisplayIcon   sx={{ fontSize: 55, color: "red" }}>
           {/* credit: plus icon from https://heroicons.com/ */}
@@ -134,6 +134,11 @@ const SimilarStories = () => {
           </Box>
         </Grid>
       </Grid>
+      <br></br>
+      <br></br>
+      <br></br>
+      <br></br>
+      <hr></hr>
     </Box>
   );
 };

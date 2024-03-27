@@ -4,10 +4,6 @@ package com.multi.dahon.plant.controller;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -16,9 +12,11 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.multi.dahon.party.controller.PartyController.PartyDTOForList;
 import com.multi.dahon.plant.model.service.PlantService;
 import com.multi.dahon.plant.model.vo.Plant;
 import com.multi.dahon.plant.model.vo.PlantParam;
@@ -55,7 +53,7 @@ public class PlantRestController {
 //			
 //			return "home";
 //		}
-		@PostConstruct
+//		@PostConstruct   서버올라갈떄마다 실행됌 ㅡㅡ
 		@GetMapping("/plantList")
 		public void init() {
 			plantService.saveParse();
@@ -118,6 +116,25 @@ public class PlantRestController {
 			
 			return ResponseEntity.status(HttpStatus.OK).body(map);
 		}
-		  
+		
+		  @GetMapping("/plant/{ptno}")
+		    public ResponseEntity<Map<String, Object>> PlantDetailList(
+		            @PathVariable("ptno") Integer ptno
+		    ) {
+		        Map<String, Object> map = new HashMap<>();
+
+		        Plant plantDetail = plantService.findDetailPtno(ptno);
+
+		        map.put("plantDetail", plantDetail);
+				System.out.println("리스트 = " + plantDetail);
+//				System.out.println("검색 결과 개수 = " +));
+				System.out.println("파라미터 = " + ptno);
+
+//		        List<PartyDTOForList> myParties = service.getMyParties(memberId).stream()
+//                .map((party) -> new PartyDTOForList(party.getId(), party.getTitle(), party.getCategory(), party.getCategoryDetail(), party.getBriefIntroduction(),
+//                        party.getActivityArea(), party.getThumbnail(), party.getCreatedTime())).toList();
+		        return ResponseEntity.status(HttpStatus.OK).body(map);
+		    }
+					
 
 }

@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import { useTheme } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
@@ -15,8 +16,51 @@ import PageComponent from '../PageComponent';
 // 박스에 사진 및 텍스트 추가
 
 
+import { useRouter } from 'next/router';
+
+
 // 박스 구성
-const LastStories = () => {
+const LastStories = ({ data, totalPages, pageNumber, onChangePageHandler, pageable, onDetail }) => {
+  console.log('LastStories 전체데이터 data 시작!!!:', data);
+  console.log(typeof data); // 전체데이터 
+
+  const router = useRouter();
+
+
+  const handleClick = async (ptno) => {
+    try {
+      // 아래 사용하지 않음 (라우터 받아주는 곳에서 데이터 서버로 요청 하기떄문))
+      // const url = `http://localhost/plant/${ptno}`;
+      // console.log('@@@@@@@@@ptno 번호 확인 @@@@@@', ptno);
+      // console.log('@@@@@@@@@ptno 가져오는 엑스오스 url 입니다.@@@@@@', url);
+
+      // // 백엔드 API에서 상세 데이터를 요청하는 요청을 보냅니다.
+      // const response = await axios.get(url);
+  
+      // // 응답으로 받은 상세 데이터를 이용하여 특정 작업을 수행합니다.
+      // console.log('ptno에 따른 상세 데이터 넘어 왔는데용?1:', response);
+      // console.log('상세 데이터 넘어 왔는데용?2:', response.data.plantDetail);
+      // const jaemokgodja = response.data.plantDetail;
+
+      // 라우터를 활용해, ptno값을 서버에서 받아옴과, 페이지를 /plant/${ptno} 로 이동
+      router.push({
+        pathname: `/plant/${ptno}`,  // 주소 
+        // query : {jaemokgodja}
+      });
+      const {query} = router;
+
+      console.log('라우터 정보 확인 (여기는 라우터를 설정한 곳)', query);
+      // 받아온 데이터를 표시하거나 다른 작업을 수행할 수 있습니다.
+
+    } catch (error) {
+      console.log('상세 데이터를 불러오는 중 오류가 발생했습니다@@@:', error);
+    }
+  };
+ 
+  // console.log('data 길이', data.length);
+
+  // const { pageNumber, totalPages, totalElements } = pageable;
+
   const theme = useTheme();
   // const [responseData, setResponseData] = useState([]);
   // console.log('responseData:', responseData);
@@ -43,7 +87,7 @@ const LastStories = () => {
       <div onClick={() => setIsJsh((prev) => !prev)}>바꾼다</div> */}
         <Box>
           <Typography fontWeight={700} variant={'h6'} gutterBottom>
-            다양한 반려 식물을 만나보세요
+            다양한 반려 식물을 만나보세요 
           </Typography>
           <Typography color={'text.secondary'}>
             식물 종류, 잎의 색상 등 다양하게 검색이 가능합니다.  
@@ -63,17 +107,22 @@ const LastStories = () => {
           </Box> */}
         </Box>
       </Box>
-      <Grid container spacing={4} >
+      <Grid container spacing={4}  >
         {/* mock 데이터를 갖고옴 */}
 
         {/* {data || '검색결과가 없습니다' } */}
-        {data && Object.keys(data).map((key, index) => (// display 활용하여 들어온 값으로 포문
-          <Grid item xs={12} sm={6} md={3} key={index} sx={{ marginBottom: -10 }} >
-            {data[key].cntntsSj}
-            {console.log('데이터 콘솔 확인@@@@', data[key])}
+        {data && Object.keys(data).map((key, index) => {// display 활용하여 들어온 값으로 포문
+          const item = data[key];
+          const imageUrls = item.rtnFileUrl.split('|');
+          return (
+          <Grid item xs={12} sm={6} md={3} key={index} sx={{ marginBottom: -15}} >
+            {/* {data[key].cntntsSj} */}
+            {/* {console.log('데이터 콘솔 확인@@@@', data[key])} */}
             <Box
+              onClick={() => handleClick(data[key].ptno)}
               component={'a'}
-              href={''}
+              // href= {'http://localhost/plantDetail/${data[key].ptno}'}
+              // href={`http://localhost/plantDetail/${item.ptno}`}
               display={'block'}
               width={1}  //? 0.8 이나..1?
               height={1}
@@ -84,7 +133,7 @@ const LastStories = () => {
                   transform: `translateY(-${theme.spacing(1 / 2)})`,
                 },
               }}
-            >
+            >dd
               <Box
                 component={Card}
                 width={1}
@@ -92,15 +141,18 @@ const LastStories = () => {
                 boxShadow={7}
                 display={'flex'}
                 flexDirection={'column'}
-                sx={{ backgroundImage: 'none' }}
-              >
+                sx={{ backgroundImage: 'none', marginY: ''}}
+              > 
+              {console.log('이미지 확인', imageUrls[0])}
                 <CardMedia
-                  image={'https://helpx.adobe.com/content/dam/help/en/photoshop/using/quick-actions/remove-background-before-qa1.png'}
+                  image={imageUrls[0]} 
+                  // image={'https://helpx.adobe.com/content/dam/help/en/photoshop/using/quick-actions/remove-background-before-qa1.png'}
                   title={data[key].cntntsSj}
                   sx={{
                     height: { xs: 300, md: 360 },
                     position: 'relative',
                   }}
+                  // {data[key].rtnThmbUrl}
                 >
                   <Box
                     component={'svg'}
@@ -125,42 +177,29 @@ const LastStories = () => {
                     />
                   </Box>
                 </CardMedia>
-                <Box component={CardContent} position={'relative'}>
+                <Box component={CardContent} position={'relative'} marginY={0}>
                   <Typography variant={'h6'} gutterBottom>
                     {data[key].cntntsSj}
                   </Typography>
                   <Typography color="text.secondary">
                     {data[key].plntbneNm}
                   </Typography>
-                  <Typography color="text.secondary"><br></br>
+                  <Typography color="text.secondary" fontWeight={'bold'} textAlign={'right'}><br></br>
                     {data[key].fmlCodeNm}
                   </Typography>
                 </Box>
                 <Box flexGrow={1} />
-                <Box padding={2} display={'flex'} flexDirection={'column'}>
-                  <Box
-                    display={'flex'}
-                    justifyContent={'space-between'}
-                    alignItems={'center'}
-                  >
-                    <Box display={'flex'} alignItems={'center'}>
-                      <Typography color={'text.secondary'}>
-                      </Typography>
-                    </Box>
-                  </Box>
-
-                </Box>
 
               </Box>
 
             </Box>
 
           </Grid>
-        ))}
-        <Grid item container justifyContent={'center'} xs={12}>
+        )})}
+        {/* <Grid item container justifyContent={'center'} xs={12}>
               <Pagination count={10} size={'large'} color="primary" />
-            </Grid>
-          {/* <Container className="my-5" style={{ display: 'flex', justifyContent: 'center' }}>
+            </Grid> */}
+    {/* <Container className="my-5" style={{ display: 'flex', justifyContent: 'center' }}>
     <Pagination
       count={totalPages}
       page={pageNumber}
@@ -170,6 +209,20 @@ const LastStories = () => {
     />
   </Container> */}
       </Grid>
+    <hr></hr>
+    <hr></hr>
+    <hr></hr>
+    <hr></hr>
+    <hr></hr>
+    <hr></hr>
+    <hr></hr>
+    <hr></hr>
+    <hr></hr>
+    <hr></hr>
+    <hr></hr>
+        <Container className="my-5" style={{ display: 'flex', justifyContent: 'center' }}>
+          <PageComponent totalPages={totalPages} currentPage={pageNumber} onPageChange={onChangePageHandler}/>
+        </Container>
     </Box>
   );
 }

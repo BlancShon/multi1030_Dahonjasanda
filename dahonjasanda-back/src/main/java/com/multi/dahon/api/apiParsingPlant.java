@@ -21,7 +21,10 @@ import jakarta.persistence.Column;
 public class apiParsingPlant {
 	
 	public static void main(String[] args) {
-		 parse();
+		 List<Plant> list1 = parse();
+		 for(int i = 0; i<list1.size(); i++) {
+			 saveParsedData(list1.get(i));
+		 }
 		 
 //		 saveParsedData(null, null, null);		
 	}
@@ -51,8 +54,8 @@ public class apiParsingPlant {
 		urlBuffer.append("&" + "priceType" + "=");  
 		urlBuffer.append("&" + "priceTypeSel" + "=");  
 		urlBuffer.append("&" + "waterCycleSel" + "=");  
-		urlBuffer.append("&" + "pageNo" + "=" + "10");  
-		urlBuffer.append("&" + "numOfRows" + "=");  
+		urlBuffer.append("&" + "pageNo" + "=" + "1");  
+		urlBuffer.append("&" + "numOfRows" + "=217");  
 
 		System.out.println(urlBuffer);
 
@@ -74,7 +77,7 @@ public class apiParsingPlant {
 						System.out.println("페이지가 잘못되었습니다.");
 						return null;
 					}
-					System.out.println("parsing 시작 ");
+					System.out.println("@@@@식물 parsing 시작 ");
 
 					// 3. 페이지 Parsing(해석)
 					DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
@@ -131,8 +134,9 @@ public class apiParsingPlant {
 								 String rtnThumbFileUrl1 = getStrData(eElement, "rtnThumbFileUrl1");
 								 String rtnThumbFileUrl2 = getStrData(eElement, "rtnThumbFileUrl2");
 								 String rtnFileSeCodeName = getStrData(eElement, "rtnFileSeCodeName");
-//											
-								 Plant plant = new Plant(ptno, cntntsNo, cntntsSj, rtnFileSeCodeName, rtnFileSn, rtnOrginlFileNm, rtnFileSeCodeName, rtnStreFileNm, rtnFileCours, rtnImageDc, rtnThumbFileNm, rtnImgSeCode, rtnImgSeCode, rtnFileUrl, rtnFileUrl1, rtnFileUrl2, rtnThumbFileUrl, rtnThumbFileUrl1, rtnThumbFileUrl2, rtnFileSeCodeName, rtnFileSeCodeName, rtnFileSeCodeName, rtnFileSeCodeName, ptno, rtnFileSeCodeName, rtnFileSeCodeName, rtnFileSeCodeName, rtnFileSeCodeName, rtnFileSeCodeName, rtnFileSeCodeName, rtnFileSeCodeName, code, rtnFileSeCodeName, rtnFileSeCodeName, rtnFileSeCodeName, rtnFileSeCodeName, rtnFileSeCodeName, rtnFileSeCodeName, code, rtnFileSeCodeName, code, rtnFileSeCodeName, code, rtnFileSeCodeName, code, rtnFileSeCodeName, rtnFileSeCodeName, rtnFileSeCodeName, code, rtnFileSeCodeName, code, rtnFileSeCodeName, code, rtnFileSeCodeName, code, rtnFileSeCodeName, rtnFileSeCodeName, rtnFileSeCodeName, rtnFileSeCodeName, i, rtnFileSeCodeName, rtnFileSeCodeName, rtnFileSeCodeName, rtnFileSeCodeName, rtnFileSeCodeName, rtnFileSeCodeName, rtnFileSeCodeName, rtnFileSeCodeName, rtnFileSeCodeName, rtnFileSeCodeName, rtnFileSeCodeName, rtnFileSeCodeName, rtnFileSeCodeName, rtnFileSeCodeName, cntntsNo, cntntsSj, rtnFileSeCode, code, rtnFileSn, code, rtnFileSeCodeName, code, rtnOrginlFileNm, code, rtnStreFileNm, code, rtnFileCours, code, rtnImageDc, code, rtnThumbFileNm, code, rtnImgSeCode, code, rtnFileUrl, code, rtnFileUrl1, code, rtnFileUrl2, code, rtnThumbFileUrl, code, rtnThumbFileUrl1, code, rtnThumbFileUrl2, code, rtnFileSeCodeName);
+									
+								 Plant plant = new Plant(ptno, cntntsNo, cntntsSj, rtnFileSeCodeName, rtnFileSn, rtnOrginlFileNm, rtnFileSeCodeName, rtnStreFileNm, rtnFileCours, rtnImageDc, rtnThumbFileNm, rtnImgSeCode, rtnImgSeCode, rtnFileUrl, rtnFileUrl1, rtnFileUrl2, rtnThumbFileUrl, rtnThumbFileUrl1, rtnThumbFileUrl2, rtnFileSeCodeName, rtnFileSeCodeName, rtnFileSeCodeName, rtnFileSeCodeName, ptno, rtnFileSeCodeName, rtnFileSeCodeName, rtnFileSeCodeName, rtnFileSeCodeName, rtnFileSeCodeName, rtnFileSeCodeName, rtnFileSeCodeName, code, rtnFileSeCodeName, rtnFileSeCodeName, rtnFileSeCodeName, rtnFileSeCodeName, rtnFileSeCodeName, rtnFileSeCodeName, code, rtnFileSeCodeName, code, rtnFileSeCodeName, code, rtnFileSeCodeName, code, rtnFileSeCodeName, rtnFileSeCodeName, rtnFileSeCodeName, code, rtnFileSeCodeName, code, rtnFileSeCodeName, code, rtnFileSeCodeName, code, rtnFileSeCodeName, rtnFileSeCodeName, rtnFileSeCodeName, rtnFileSeCodeName, i, rtnFileSeCodeName, rtnFileSeCodeName, rtnFileSeCodeName, rtnFileSeCodeName, rtnFileSeCodeName, rtnFileSeCodeName, rtnFileSeCodeName, rtnFileSeCodeName, rtnFileSeCodeName, rtnFileSeCodeName, rtnFileSeCodeName, rtnFileSeCodeName, rtnFileSeCodeName, rtnFileSeCodeName, cntntsNo, cntntsSj, rtnFileSeCode, code, rtnFileSn, code, rtnFileSeCodeName, code, rtnOrginlFileNm, code, rtnStreFileNm, code, rtnFileCours, code, rtnImageDc, code, rtnThumbFileNm, code, rtnImgSeCode, code, rtnFileUrl, code, rtnFileUrl1, code, rtnFileUrl2, code, rtnThumbFileUrl, code, rtnThumbFileUrl1, code, rtnThumbFileUrl2, code, rtnFileSeCodeName);		
+//								 Plant plant = new Plant(ptno, cntntsNo, cntntsSj, rtnFileSeCodeName, rtnFileSn, rtnOrginlFileNm, rtnFileSeCodeName, rtnStreFileNm, rtnFileCours, rtnImageDc, rtnThumbFileNm, rtnImgSeCode, rtnImgSeCode, rtnFileUrl, rtnFileUrl1, rtnFileUrl2, rtnThumbFileUrl, rtnThumbFileUrl1, rtnThumbFileUrl2, rtnFileSeCodeName);
 								 
 								 
 								 //								 (ptno, cntntsNo, cntntsSj, rtnFileSeCode, rtnFileSn, rtnOrginlFileNm, rtnOrginFileNm, rtnStreFileNm, rtnFileCours, rtnImageDc, rtnThumbFileNm, rtnImgSeCode, rtnImgSeCodeName, rtnFileUrl, rtnFileUrl1, rtnFileUrl2, rtnThumbFileUrl, rtnThumbFileUrl1, rtnThumbFileUrl2, rtnFileSeCodeName, plntbneNm, plntzrNm, distbNm, fmlNm, fmlCodeNm, orgplceInfo, adviseInfo, imageEvlLinkCours, growthHgInfo, growthAraInfo, lefStleInfo, smellCode, smellCodeNm, toxctyInfo, prpgtEraInfo, etcEraInfo, managelevelCode, managelevelCodeNm, grwtveCode, grwtveCodeNm, grwhTpCode, grwhTpCodeNm, werLwetTpCode, werLwetTpCodeNm, hdCode, hdCodeNm, frtlzrInfo, soilInfo, watercycleSprngCode, watercycleSprngCodeNm, watercycleSummerCode, watercycleSummerCodeNm, watercycleAutumnCode, watercycleAutumnCodeNm, watercycleWerCode, watercycleWerCodeNm, dlthtsManageInfo, speclmanageInfo, fncltyInfo, flpodmtBigInfo, flpodmtMiddleInfo, flpodmtSmallInfo, widthBigInfo, widthMddlInfo, widthSmallInfo, vrticlBigInfo, vrticlMddlInfo, vrticlSmallInfo, hgBigInfo, hgMddlInfo, hgSmallInfo, volmeBigInfo, volmeMddlInfo, volmeSmallInfo, pcBigInfo, pcMddlInfo, pcSmallInfo, managedemanddoCode, managedemanddoCodeName, clCode, clCodeNm, grwhstleCode, grwhstleCodeNm, indoorpsncpacompositionCode, indoorpsncpacompositionCodeNm, eclgyCode, eclgyCodeNm, lefcolrCode, lefcolrCodeNm, lefmrkCode, lefmrkCodeNm, ignSeasonCode, ignSeasonCodeNm, flclrCode, flclrCodeNm, fmldecolrCode, fmldecolrCodeNm, fmldeSeasonCode, fmldeSeasonCodeNm, prpgtmthCode, prpgtmthCodeNm, lighttdemanddoCode, lighttdemanddoCodeNm, postngplaceCode, postngplaceCodeNm, dlthtsCode, dlthtsCodeNm)
@@ -157,6 +161,7 @@ public class apiParsingPlant {
 	
 	// 파이프로 구분된 문자열을 받아서 각각의 필드로 분리하고 데이터베이스에 저장하는 메소드
 	public static Plant saveParsedData(Plant plant) {
+		System.out.println("@@@@@분리 시작");
 		System.out.println("@@@아직 분리되지 않음" + plant.getRtnThumbFileUrl());
 		System.out.println("@@@아직 분리되지 않음" + plant.getRtnFileUrl());
 	    String[] fields1 = plant.getRtnThumbFileUrl().split("\\|");

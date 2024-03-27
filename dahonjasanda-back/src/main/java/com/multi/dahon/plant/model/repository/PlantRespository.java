@@ -26,6 +26,14 @@ public interface PlantRespository extends JpaRepository<Plant, Integer>, JpaSpec
 	
 	List<Plant> findFirstByOrderByPtnoDesc();
 	
+	
+	@Query("select p " +
+            "from plant p " +
+            "where p.ptno = :ptno")
+	Plant selectByPtno(@Param("ptno") Integer ptno);
+	 
+//    @Query("SELECT p FROM Plant p WHERE p.ptno = :ptno")
+//    Plant findByPtno(@Param("ptno") Long ptno);
 //	List<Plant> findFirstByOrderBy
 //	@Query(value = "SELECT * "
 //	        + "FROM HOUSING h WHERE "

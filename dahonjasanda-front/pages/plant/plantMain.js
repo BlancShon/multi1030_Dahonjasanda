@@ -15,49 +15,79 @@ import {
 } from './components';
 import axios from 'axios';
 
+// const pid =router.query.plantDetail;
+
 const plantMain = ({onData}) => {
     const [plantList, setPlantList] = useState([]);  // 전체 리스트 가져오기 위한 변수 할당
 
     const [searchList, setSearchList] = useState();  // 전체 리스트 가져오기 위한 변수 할당
+    const [detailList, setDetailList] = useState();  // 전체 리스트 가져오기 위한 변수 할당
     
     const [resultList, setResultList] = useState([])
-    const [pageable, setPageable] = useState({})
+    const [pageable, setPageable] = useState();
+    const [page, setPage] = useState(0)
 
-    // , pageInfo
-    const handleSearch = (data) => { 
-      setSearchList(data); // 검색 결과를 상태에 저장
-      console.log('검증',data);
-      console.log('검증 setSearch 길이',setSearchList.length);
-      console.log('검증 setSearch 사이즈',setSearchList.size);
-      console.log('검증 search 길이(여기서는 바뀌기 전 데이터 값이다.',Object.keys(searchList).length);
-      console.log('검색 결과 데이터:', data);
-      setSearchList(data);
-      // setPageable(pageInfo); // 페이지 정보 설정
-    };
-      console.log('searchList@@@ :', searchList);
-      console.log('searchList :', searchList);
-    // const displayList = searchResults.length > 0 ? searchResults : plantList;
-    // 전체리스트가 보여지고있고, 검색 결과를 가져와서 그위에 검색리스트로 변환
-    
+    // // , pageInfo
+    // const handleSearch = (data) => { 
+    //   setSearchList(data); // 검색 결과를 상태에 저장
+    //   console.log('검증',data);
+    //   console.log('검증 setSearch 길이',setSearchList.length);
+    //   console.log('검증 setSearch 사이즈',setSearchList.size);
+    //   console.log('검증 search 길이(여기서는 바뀌기 전 데이터 값이다.',Object.keys(searchList).length);
+    //   console.log('검색 결과 데이터:', data);
+    //   setSearchList(data);
+    //   // setPageable(pageInfo); // 페이지 정보 설정
+    // };
+    //   console.log('searchList@@@ :', searchList);
 
-    
+    //   const handleData = (onDetail) => {
+    //     setDetailList(data); // 검색 결과를 상태에 저장
+    //     // 받은 데이터를 BlogArticles 컴포넌트로 전달
+    //     console.log('다른 폴더로 데이터이동!!', setDetailList);
+    //     return <PlantDetail.BlogArticles onDetail={setDetailList} />;
+    //   };
+    //   console.log('detailList@@@ :', detailList);
+  console.log('page@@@@@@ 확인 플랜트 메인입니다.@@@@@', page);
+
     useEffect(() => {
       axios.get('http://localhost/plant')  // 전체리스트 요청
       .then(map => {
         console.log('map :', map);
         console.log('plantList :', plantList);
-          setPlantList(map.data.listsearchAll.content); // 받아온 데이터로 변환
-          setPageable({
-            pageable : map.data.listsearchAll.pageable,
-            totalPages : map.data.listsearchAll.totalPages,
-            totalElements : map.data.listsearchAll.totalElements
-          });
-              console.log('여기 찍힘')
-          })
-          .catch(error => {
-              console.error('데이터가 안옴', error);
-          });
+          // setPlantList(map.data.listsearchAll.content); // 받아온 데이터로 변환
+          // pageable : map.data.listsearchAll.pageable,
+
+        const pageInfo = map.data.listsearchAll.pageable;
+
+        setPageable({...pageInfo,  // key/value 값이 풀어져서 들어옴
+        totalPages : map.data.listsearchAll.totalPages,
+        totalElements : map.data.listsearchAll.totalElements
+      });
+      console.log('여기 찍힘')
+      
+    })
+    .catch(error => {
+      console.error('데이터가 안옴', error);
+    });
+    
   }, []);
+  //   useEffect(() => {
+  //     axios.get('http://localhost/plantDetail')  // 상세리스트 요청
+  //     .then(response => {
+  //       console.log('response :', response);
+  //       console.log('plantList :', plantList);
+  //         setPlantList(response.data.listsearchAll.content); // 받아온 데이터로 변환
+  //         setPageable({
+  //           pageable : response.data.listsearchAll.pageable,
+  //           totalPages : response.data.listsearchAll.totalPages,
+  //           totalElements : maresponsep.data.listsearchAll.totalElements
+  //         });
+  //             console.log('여기 찍힘')
+  //         })
+  //         .catch(error => {
+  //             console.error('데이터가 안옴', error);
+  //         });
+  // }, []);
 
 
   //   useEffect(() => {
@@ -95,13 +125,14 @@ const plantMain = ({onData}) => {
             zIndex: 3,
             paddingY: '0 !important',
           }}
-        >
-          <SearchBox onSearch={setSearchList} />
+        ><h1>{pageable && pageable.totalPages}</h1>
+          <SearchBox  onSearch={setPlantList} page={page}  onChangePageHandler={setPage} setPageable={setPageable} />
           <Container paddingTop={'0 !important'}></Container>
         </Container>
         <Container paddingTop={'0 !important'}>
-           {/* onChangePageHandler={setPage}  pageable={setPageable} */}
-          <LastStories  data={searchList? searchList : plantList}/> {/*AllListView={AllListView}*/}
+           {/* onChangePageHandler={setPage}  pageable={setPageable} */}                                                                        
+          <LastStories  onChangePageHandler={setPage} pageNumber={page} totalPages={pageable&&pageable.totalPages} onDetail={setDetailList} data={plantList}/> {/*AllListView={AllListView}*/}
+          {/* 서치박스에서 onSearch setPlantList함수를 통해 상태값이 변경된 PlantList는 전체 데이터가 아니라, 검색된 데이터가 들어옴 */}
          </Container>
         <Container paddingTop={'0 !important'}>
           <CaseStudies />

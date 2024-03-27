@@ -7,55 +7,32 @@ import Typography from '@mui/material/Typography';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import Button from '@mui/material/Button';
-
+import Link from 'next/link';
+import { useRouter } from 'next/router';
 // 우측 그림 이미지 및 디스크립션 = selectAll 랜덤으로 데이터 추출
-const mock = [
-  {
-    image: 'https://assets.maccarianagency.com/backgrounds/img13.jpg',
-    description:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
-    title: 'Lorem ipsum dolor sit amet',
-    author: {
-      name: 'Clara Bertoletti',
-    },
-    date: '04 Aug',
-  },
-  {
-    image: 'https://assets.maccarianagency.com/backgrounds/img14.jpg',
-    description:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
-    title: 'Consectetur adipiscing elit',
-    author: {
-      name: 'Jhon Anderson',
-    },
-    date: '12 Sep',
-  },
-  {
-    image: 'https://assets.maccarianagency.com/backgrounds/img15.jpg',
-    description:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
-    title: 'Lorem ipsum dolor sit amet',
-    author: {
-      name: 'Clara Bertoletti',
-    },
-    date: '04 Aug',
-  },
-  {
-    image: 'https://assets.maccarianagency.com/backgrounds/img16.jpg',
-    description:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
-    title: 'Consectetur adipiscing elit',
-    author: {
-      name: 'Jhon Anderson',
-    },
-    date: '12 Sep',
-  },
-];
 
-const SidebarArticles = () => {
+const SidebarArticles = ({rand}) => {
   const theme = useTheme();
+  console.log('Rand(전체리스트) 받아왔나???여기는 사이드 바 입니다. 데이터 넘겨받은 곳@@@@@@:', rand);
+  console.log(typeof rand); 
+  const router = useRouter();
+  // const {rand, setRand} = useState();
+
+  // const imageData = receivedData.rtnFileUrl ? receivedData.rtnFileUrl.split('|') : [];
+  // const mainImageUrl = imageData[0]; // 첫 번째 이미지 URL
+  // const mainImageUrl2 = imageData[1]; // 첫 번째 이미지 URL
+
+  // 여기서도 클릭하면 주소 이동하게 만들어줌 
+  const handleClick2 = (ptno)=>{
+    router.push({
+      // getDetailData(value, searchValue);
+      pathname: `/plant/${ptno}`,
+    });
+    // getRandPlant(value, number);
+  };
+
   return (
-    <Box component={Card} variant={'outlined'} padding={2}>
+    <Box component={Card} variant={'outlined'} padding={2} sx={{ maxHeight: 600, overflowY: 'auto' }}>
       <Typography
         variant="h6"
         data-aos={'fade-up'}
@@ -67,8 +44,12 @@ const SidebarArticles = () => {
         그 외 관련 식물
       </Typography>
       <Grid container spacing={2}>
-        {mock.map((item, i) => (
-          <Grid key={i} item xs={12}>
+      {rand && Object.keys(rand).slice(0,20).map((key, index) => {
+          const item = rand[key]
+           const imageUrls = item.rtnFileUrl.split('|');
+           return (
+          <Grid item xs={12}>
+            {/* key={i}  */}
             <Box
               component={Card}
               width={1}
@@ -89,7 +70,7 @@ const SidebarArticles = () => {
                   loading="lazy"
                   height={1}
                   width={1}
-                  src={item.image}
+                  src={imageUrls[0]}
                   alt="..."
                   sx={{
                     objectFit: 'cover',
@@ -105,21 +86,24 @@ const SidebarArticles = () => {
               <CardContent
                 sx={{ padding: 1, '&:last-child': { paddingBottom: 1 } }}
               >
-                <Typography fontWeight={700}>{item.title}</Typography>
+                <Typography fontWeight={700}>{item.fmlCodeNm}</Typography>
                 <Box marginY={1 / 4}>
                   <Typography
                     variant={'caption'}
                     color={'text.secondary'}
                     component={'i'}
                   >
-                    {item.author.name} - {item.date}
+                    {item.cntntsSj}
                   </Typography>
                 </Box>
-                <Button size={'small'}>Read More</Button>
+                <Button 
+                 onClick={() => handleClick2(item.ptno)}
+                size={'small'} 
+                >자세히 보기</Button>
               </CardContent>
             </Box>
           </Grid>
-        ))}
+        )})}
       </Grid>
     </Box>
   );
