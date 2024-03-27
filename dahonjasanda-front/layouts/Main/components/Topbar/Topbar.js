@@ -116,14 +116,6 @@ const Topbar = ({ onSidebarOpen, pages, colorInvert = false }) => {
           />
         </Box>
         <Box marginLeft={4}>
-          <NavItem
-            title={"쇼핑몰"}
-            id={"shopping-pages"}
-            items={shoppingPages}
-            colorInvert={colorInvert}
-          />
-        </Box>
-        <Box marginLeft={4}>
           {loginName == null && (
                     <div>
                         <CircularProgress />
