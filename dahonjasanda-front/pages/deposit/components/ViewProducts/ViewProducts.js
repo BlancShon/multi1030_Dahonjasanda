@@ -39,17 +39,6 @@ const ViewProducts = ({ category, searchTerm, checked, setChecked }) => {
           setTotalPages(1);
         } else {
 
-          // 체크된 상태를 쿼리 파라미터로 변환
-          // const searchParams = Object.entries(checked).reduce((acc, [key, values]) => {
-          //   if (values.length) {
-          //     acc.append(key, values.join('&'));
-          //   }
-          //   return acc;
-          // }, new URLSearchParams({
-          //   keyword: searchTerm,
-          //   page: currentPage - 1 // 0-based page index
-          // }));
-
           const searchParams = new URLSearchParams({
             keyword: searchTerm,
             page: currentPage - 1 // 0-based page index

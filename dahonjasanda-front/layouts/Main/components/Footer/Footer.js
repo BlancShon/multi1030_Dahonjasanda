@@ -64,6 +64,7 @@ const Footer = () => {
                 <Link href="/housingFront" color="text.primary">HOUSING</Link>
                 <Link href="/calendar" color="text.primary">CALENDAR</Link>
                 <Link href="/housing/housingMap" color="text.primary">청약맵</Link>
+                <Link href="/housing/housingBoard" color="text.primary">게시판</Link>
               </Grid>
             </Grid>
             {/* 세 번째 줄 */}

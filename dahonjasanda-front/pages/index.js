@@ -24,6 +24,15 @@ import { findLoanList } from "./loan/LoansApiService";
 import LoanListForMain from './loan/components/LoanListForMain';
 import PartyForMain from './party/components/PartyForMain';
 
+// 예금
+import { findTopInterestRateSavings, findTopInterestRateTermDeposits } from './deposit/DepositsApiService';
+import { ViewProducts } from './deposit/components';
+
+// 부동산
+import ProductTable from './deposit/components/ViewProducts/ProductTable';
+import Contact, { RightSide } from './housingFront/components/koreaMap/Contact';
+
+
 const indexPage = () => {
     const [topRateProducts, setTopRateProducts] = useState([]);
     const [pageable, setPageable] = useState({});
@@ -33,7 +42,33 @@ const indexPage = () => {
     const [indexListCount, setIndexListCount] = useState([]);
     const [stockList, setStockList] = useState([]);
     const [stockListCount, setStockListCount] = useState([]);
+    const [products, setProducts] = useState([]);
+    const [isLoading, setIsLoading] = useState(false);
+    const [error, setError] = useState(null);
     
+    useEffect(() => {
+        const fetchProducts = async () => {
+          setIsLoading(true);
+          try {
+            const savingsResponse = await findTopInterestRateSavings();
+            const termDepositsResponse = await findTopInterestRateTermDeposits();
+    
+            const savingsProducts = savingsResponse.data.content || [];
+            const termDepositsProducts = termDepositsResponse.data.content || [];
+            // 여기에서는 상위 4개 상품만을 조합합니다.
+            const combinedProducts = [...savingsProducts, ...termDepositsProducts].slice(0, 4);
+    
+            setProducts(combinedProducts);
+          } catch (error) {
+            setError(error);
+          } finally {
+            setIsLoading(false);
+          }
+        };
+    
+        fetchProducts();
+      }, []);
+
     useEffect(() => {
         const fetchTopRateProducts = async () => {
             try {
@@ -141,8 +176,9 @@ const indexPage = () => {
                     subtitleText=""
                     subtitleText2=""
                     opacity={0}
+                    maxWidth={"1600px"}
                     />
-                <Box mt={1}>
+                <Box mt={10}>
                     <h1 style={{ textAlign: 'center'}}>혼자를 위한 금융 정보</h1>
                     <hr style={{ margin: '20px 0', border: 'none', borderBottom: '1px solid black' }} />
                     <Container>
@@ -162,39 +198,21 @@ const indexPage = () => {
                                         </Typography>
                                         <WithAvatarsAndMultilineContent list={filteredList.length > 0 ? filteredList : stockList}/>
                                     </CardContent>
-                                    <CardContent>
-                                        <Typography variant="h5" component="h2" sx={{ marginBottom: '20px' }}>
-                                            오늘의 경제정보
-                                        </Typography>
-                                        {articles && articles.length > 0 ? (
-                                            <Grid container spacing={2}>
-                                                {articles.map((item, index) => (
-                                                    <Grid item key={index} xs={6}>
-                                                        <Card sx={{ flex: 1, maxWidth: 500, marginBottom: 3}}>
-                                                            <CardActionArea onClick={() => handleClick(item.url)}>
-                                                                <CardMedia
-                                                                    sx={{ height: 350 }}
-                                                                    image={item.urlToImage}
-                                                                    alt="thumbnail"
-                                                                />
-                                                                <CardContent>
-                                                                    <Typography gutterBottom variant="h5" component="div">
-                                                                        {item.title}
-                                                                    </Typography>
-                                                                    <Typography variant="body2" color="text.secondary">
-                                                                        {item.description}
-                                                                    </Typography>
-                                                                </CardContent>
-                                                            </CardActionArea>
-                                                        </Card>
-                                                    </Grid>
-                                                ))}
-                                            </Grid>
-                                        ) : (
-                                            <Typography>뉴스가 없습니다.</Typography>
-                                        )}
-                                    </CardContent>
+                                    
                                 </Card>
+                            </Box>
+                        </Box>
+                    </Container>
+                </Box>
+                <Box mt={5}>
+                    <h1 style={{ textAlign: 'center' }}>최고 금리 상품 <span style={{ color: 'red', fontWeight: 'bold' }}>TOP 4</span></h1>
+                    <hr style={{ margin: '0px 0', border: 'none', borderBottom: '1px solid black' }} />
+                    <Container>
+                        <Box>
+                            <Box className="my-0">
+                                {isLoading && <p>Loading...</p>}
+                                {error && <p>Error loading products!</p>}
+                                {!isLoading && !error && <ProductTable products={products} />}
                             </Box>
                         </Box>
                     </Container>
@@ -228,11 +246,17 @@ const indexPage = () => {
                                 </Card>
                             </Box>
                             <Box width="50%">
-                                <Card>
-                                    <CardContent>
-                                        <Typography variant="h5" component="h2">
-                                            부동산 관련 이미지 2
-                                        </Typography>
+                                <Card onClick={() => window.location.href = '/housing/housingMap'} style={{ cursor: 'pointer' }}>
+                                    <h1 style={{ textAlign: 'center' }}>전국 지도 및 부동산 정보</h1>
+                                    <CardContent sx={
+                                        {
+                                            display: 'flex',
+                                            justifyContent: 'center',
+                                            alignItems: 'center',
+                                            maxHeight: '500px'
+                                        }
+                                    }>
+                                        <Contact showMapOnly={true} />
                                         {/* Add code to display 부동산 관련 이미지 2 */}
                                     </CardContent>
                                 </Card>
@@ -294,21 +318,53 @@ const indexPage = () => {
                             </Grid>
                         </Grid>
                     </Box>
-                    
-
                 </Box>
-
+                <Box mt={5}>
+                    <h1 style={{ textAlign: 'center' }}>오늘의 경제정보</h1>
+                    <hr style={{ margin: '20px 0', border: 'none', borderBottom: '1px solid black' }} />
+                    <Container>
+                        <CardContent>
+                            {articles && articles.length > 0 ? (
+                                <Grid container spacing={2}>
+                                    {articles.map((item, index) => (
+                                        <Grid item key={index} xs={6}>
+                                            <Card sx={{ flex: 1, maxWidth: 500, marginBottom: 3}}>
+                                                <CardActionArea onClick={() => handleClick(item.url)}>
+                                                    <CardMedia
+                                                        sx={{ height: 350 }}
+                                                        image={item.urlToImage}
+                                                        alt="thumbnail"
+                                                    />
+                                                    <CardContent>
+                                                        <Typography gutterBottom variant="h5" component="div">
+                                                            {item.title}
+                                                        </Typography>
+                                                        <Typography variant="body2" color="text.secondary">
+                                                            {item.description}
+                                                        </Typography>
+                                                    </CardContent>
+                                                </CardActionArea>
+                                            </Card>
+                                        </Grid>
+                                    ))}
+                                </Grid>
+                            ) : (
+                                <Typography>뉴스가 없습니다.</Typography>
+                            )}
+                        </CardContent>
+                    </Container>
+                </Box>
+                                    
                 <Box mt={5} display="flex" justifyContent="space-between">
                     <Box width="100%">
                     <h1 style={{ textAlign: 'center' }}>만족도 99% 첫 시작하기 좋은 모임</h1>
                     <hr style={{ margin: '20px 0', border: 'none', borderBottom: '1px solid black' }} />
-                           <div className='col-11 mx-auto'>
-                            <PartyForMain />
-                            </div>                 
-
+                        <Card>
+                            <CardContent>
+                                <PartyForMain />
+                            </CardContent>
+                        </Card>
                     </Box>
-                    
-
                 </Box>
         </Main>
     );

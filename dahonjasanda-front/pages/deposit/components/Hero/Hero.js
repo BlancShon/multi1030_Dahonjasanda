@@ -25,6 +25,7 @@ const Hero = ({
         backgroundImage: `url(${imageUrl})`,
         backgroundSize: 'cover',
         backgroundPosition: 'center',
+        backgroundRepeat: 'no-repeat',
         '&:after': {
           position: 'absolute',
           content: '" "',
@@ -37,6 +38,10 @@ const Hero = ({
           zIndex: 1,
           background: '#161c2d',
           opacity: opacity,
+        },
+        '@media (min-width: 1600px)': {
+          backgroundSize: '1600px auto',
+          backgroundPosition: 'center center',
         },
       }}
     >

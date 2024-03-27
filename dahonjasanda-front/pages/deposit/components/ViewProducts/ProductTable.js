@@ -10,10 +10,12 @@ import {
   Paper,
   Button,
 } from "@mui/material";
+import Link from 'next/link';
 
 const ProductTable = ({ products, category }) => {
   const theme = useTheme();
 
+  
   // Function to return the image URL or a fallback if not available
   const getImageUrl = (finCoNo) => `/images/deposit/banks/${finCoNo}.png`;
   console.log("6. 카테고리 값 from ProductTable:", category);
@@ -71,7 +73,16 @@ const ProductTable = ({ products, category }) => {
                     />
                 </TableCell>
                 <TableCell align="center">{product.korCoNm}</TableCell>
-                <TableCell align="right">{product.finPrdtNm}</TableCell>
+                <TableCell align="right">
+                  {product.homeUrl ? (
+                    <Link href={`/${product.homeUrl}`} passHref>
+                      <a>{product.finPrdtNm}</a>
+                    </Link>
+                  ) : (
+                    // `homeUrl`이 없는 경우 대체 텍스트 또는 요소를 렌더링
+                    <span>{product.finPrdtNm}</span>
+                  )}
+                </TableCell>
                 {category === "annuity-savings" ? (
                   <>
                     <TableCell align="right">{product.monPaymAtmNm}</TableCell>
