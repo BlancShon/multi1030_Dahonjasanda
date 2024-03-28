@@ -325,7 +325,6 @@ const MapComponent = () => {
   return (
     <Main>
 
-
       <hr />
       {/* Search property form group */}
       <div style={{ marginTop: '60px' }}>
@@ -408,7 +407,7 @@ const MapComponent = () => {
               <hr className='d-md-none mt-2' />
               <Col  md={4} className='d-sm-flex align-items-center pt-4 pt-md-0'>
 
-                <div id="searchBar" className='col-xl-4 col-md-6 mb-4' style={{ marginLeft: "650px" }}>
+                <div id="searchBar" className='col-xl-4 col-md-6 mb-4' style={{ marginLeft: "450px" }}>
                   <span className="blue_window">
                     <input type="text" id="searchValue" name="searchValue" onChange={onChangeValue} value={searchValue || ''} className="input_text" />
                   </span>
@@ -426,7 +425,7 @@ const MapComponent = () => {
 
 
 
-      <div id="map" style={{ width: '1700px', height: '600px', marginLeft: '120px', border: "1px solid #ccc" }}>
+      <div id="map" style={{ width: '1400px', height: '600px', marginLeft: '120px', border: "1px solid #ccc" }}>
 
 
         {showNestedLayout && (
@@ -448,7 +447,6 @@ const MapComponent = () => {
           
 
       </div>
-
     </Main>
   );
 };
