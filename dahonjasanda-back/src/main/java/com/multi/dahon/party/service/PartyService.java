@@ -215,7 +215,8 @@ public class PartyService {
     }
 
     public List<PartySchedule> getMySchedules(Integer memberId, Pageable pageable) {
-        return partyScheduleRepository.selectByMySchedules(memberId, pageable);
+//        return partyScheduleRepository.selectByMySchedules(memberId, pageable);
+        return partyScheduleRepository.findByPartyAttendees_Member_MnoOrderByDateAsc(memberId);
     }
 
 
