@@ -86,7 +86,7 @@ const handleClick = async (anno) => {
         {/* mock 데이터를 갖고옴 */}
         {limitedData.map((item, index) => {
            return (
-            <Grid item xs={12} sm={6} md={3} key={index}>
+            <Grid item xs={12} sm={6} md={3} key={index} sx={{ marginBottom: -15}}>
             
             <Box 
               component={'a'}
