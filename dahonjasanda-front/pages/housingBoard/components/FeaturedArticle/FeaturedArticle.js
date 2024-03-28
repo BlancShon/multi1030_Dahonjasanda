@@ -65,11 +65,11 @@ export default function List() {
 
   const getBoardList = async (page, searchType, searchValue, types) => {
     try {
-      var url = "http://localhost/boardRest/list";
+      var url = "http://localhost/boardRest/list?types=HOUSE";
       if (page != null) {
-        url = url + "?page=" + page;
+        url = url + "&page=" + page;
       } else {
-        url = url + "?page=1";
+        url = url + "&page=1";
       }
       if (searchValue != null) {
         url = url + "&searchType=" + searchType;

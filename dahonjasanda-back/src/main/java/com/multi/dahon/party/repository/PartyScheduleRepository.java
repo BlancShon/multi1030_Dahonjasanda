@@ -25,7 +25,10 @@ public interface PartyScheduleRepository extends JpaRepository<PartySchedule, Lo
     @Query("select ps " +
             "from PartySchedule ps " +
             "join fetch ps.partyAttendees pa " +
-            "join pa.member m " +
+            "join fetch pa.member m " +
             "where m.mno = :memberId")
     public List<PartySchedule> selectByMySchedules(@Param("memberId")Integer memberId, Pageable pageable);
+   
+   @EntityGraph(attributePaths = {"partyAttendees", "partyAttendees.member"})
+   List<PartySchedule> findByPartyAttendees_Member_MnoOrderByDateAsc(@Param("memberId") Integer memberId);
 }

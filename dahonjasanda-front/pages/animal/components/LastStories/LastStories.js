@@ -18,13 +18,15 @@ import axios from 'axios';
 
 
 // 박스 구성
-const LastStories = ({ data, totalPages, pageNumber, onChangePageHandler, page,  }) => {
+const LastStories = ({ data, totalPages, pageNumber, onChangePageHandler, page, limit  }) => {
   console.log('LastStories 동물 전체데이터 data 시작!!!:', data);
   console.log(typeof data); // 전체데이터 
 const [searchValue, setSearchValue] = useState();
 const router = useRouter();
 
 
+const processedData = data ? Object.values(data) : [];
+const limitedData = limit ? processedData.slice(0, limit) : processedData;
 
 
 const handleClick = async (anno) => {
@@ -82,13 +84,11 @@ const handleClick = async (anno) => {
       </Box>
       <Grid container spacing={4} >
         {/* mock 데이터를 갖고옴 */}
-        {data && Object.keys(data).map((key, index) => {
-           const item = data[key];
+        {limitedData.map((item, index) => {
            return (
-          <Grid item xs={12} sm={6} md={3} sx={{marginBottom:-15}} >
+            <Grid item xs={12} sm={6} md={3} key={index}>
             
             <Box 
-              onClick={() => handleClick(data[key].anno)}
               component={'a'}
               // href={''}
               display={'block'}
@@ -104,6 +104,7 @@ const handleClick = async (anno) => {
             >
               
               <Box
+                onClick={() => handleClick(item.anno)}
                 component={Card}
                 width={1}
                 height={0.7}

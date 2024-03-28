@@ -1,19 +1,19 @@
 const pages = {
   finance: [
     {
-      title: "DEPOSIT",
+      title: "예적금",
       href: "/deposit",
     },
     {
-      title: "LOAN",
+      title: "대출",
       href: "/loan",
     },
     {
-      title: "STOCK",
+      title: "주식",
       href: "/stock",
     },
     {
-      title: "MYSTOCK",
+      title: "내 자산",
       href: "/stock/mystock",
     },
   ],
@@ -37,23 +37,15 @@ const pages = {
   ],
   animalPlant: [
     {
-      title: "PLANT",
+      title: "식물",
       href: "/plant",
     },
     {
-      title: "PLANTDETAIL",
-      href: "/plantDetail",
-    },
-    {
-      title: "ANIMAL",
+      title: "동물",
       href: "/animal",
     },
     {
-      title: "ANIMALDETAIL",
-      href: "/animalDetail",
-    },
-    {
-      title: "PLANTBOARD",
+      title: "반려 게시판",
       href: "/plantBoard",
     },
   ],
@@ -62,7 +54,7 @@ const pages = {
     { title: "나의 모임", href: "/party/myparty" },
   ],
   community: [
-    { title: "커뮤니티", href: "/community" },
+    { title: "전체 게시판", href: "/community" },
   ],
 };
 

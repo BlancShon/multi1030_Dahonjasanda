@@ -17,10 +17,10 @@ const SidebarArticles = ( { data }) => {
   const router = useRouter();
 
   // 여기서도 클릭하면 주소 이동하게 만들어줌 
-  const handleClick2 = (ptno)=>{
+  const handleClick2 = (anno)=>{
     router.push({
       // getDetailData(value, searchValue);
-      pathname: `/plant/${ptno}`,
+      pathname: `/animal/${anno}`,
     });
     // getRandPlant(value, number);
   };
@@ -91,7 +91,7 @@ const SidebarArticles = ( { data }) => {
                     발견 장소 - {item.happenPlace}
                   </Typography>
                 </Box>
-                <Button size={'small'}>자세히 보기</Button>
+                <Button onClick={() => handleClick2(item.anno)} size={'small'}>자세히 보기</Button>
               </CardContent>
             </Box>
             </Grid>

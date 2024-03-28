@@ -209,128 +209,128 @@ console.log("houseNm :" + houseNm)
 const imageLoad = () => {
  // console.log("houseNm :" + houseNm)
   
-  if (houseNm == "세운 푸르지오 헤리시티 무순위(2차),") {
+  if (houseNm == "세운 푸르지오 헤리시티 무순위(2차)") {
 
     return seun;
 
   } 
 
-  if (houseNm == "부천 원종 아이원시티 (임의공급 4차) [잔여세대 할인분양],") {
+  if (houseNm == "부천 원종 아이원시티 (임의공급 4차) [잔여세대 할인분양]") {
 
     return wonjong;
 
   } 
 
-  if (houseNm == "성남판교대장 A-10블록 신혼희망타운(공공분양) 잔여세대,") {
+  if (houseNm == "성남판교대장 A-10블록 신혼희망타운(공공분양) 잔여세대") {
 
     return sungnam;
 
   } 
 
-  if (houseNm == "세운 푸르지오 헤리시티 무순위(2차),") {
+  if (houseNm == "세운 푸르지오 헤리시티 무순위(2차)") {
 
     return seun;
 
   } 
 
-  if (houseNm == "수원당수 A-4블럭 신혼희망타운(공공분양) 잔여세대 추가입주자모집공고,") {
+  if (houseNm == "수원당수 A-4블럭 신혼희망타운(공공분양) 잔여세대 추가입주자모집공고") {
 
     return suwon;
 
   } 
 
-  if (houseNm == "송도자이풍경채 그라노블 5단지,") {
+  if (houseNm == "송도자이풍경채 그라노블 5단지") {
 
     return songdo;
 
   } 
 
-  if (houseNm == "대전 성남 우미린 뉴시티,") {
+  if (houseNm == "대전 성남 우미린 뉴시티") {
 
     return umirin;
 
   } 
 
-  if (houseNm == "백양산롯데캐슬골드센트럴,") {
+  if (houseNm == "백양산롯데캐슬골드센트럴") {
 
     return baekyangsan;
 
   } 
 
-  if (houseNm == "당진 대덕수청 중흥S-클래스 포레힐,") {
+  if (houseNm == "당진 대덕수청 중흥S-클래스 포레힐") {
 
     return dangjin;
 
   } 
 
-  if (houseNm == "성산 삼정그린코아 웰레스트,") {
+  if (houseNm == "성산 삼정그린코아 웰레스트") {
 
     return samsung;
 
   } 
 
-  if (houseNm == "서울 우남 w컨템포287 도시형생활주택,") {
+  if (houseNm == "서울 우남 w컨템포287 도시형생활주택") {
 
     return unam;
 
   } 
 
-  if (houseNm == "아산탕정일반산업단지 D1-1BL 호반써밋 그랜드마크Ⅰ,") {
+  if (houseNm == "아산탕정일반산업단지 D1-1BL 호반써밋 그랜드마크Ⅰ") {
 
     return asan;
 
   } 
 
-  if (houseNm == "세운 푸르지오 헤리시티 무순위(2차),") {
+  if (houseNm == "세운 푸르지오 헤리시티 무순위(2차)") {
 
     return seun;
 
   } 
 
-  if (houseNm == "울산 지웰시티 자이 2단지,") {
+  if (houseNm == "울산 지웰시티 자이 2단지") {
 
     return ulsan;
 
   } 
 
-  if (houseNm == "힐스테이트 익산더퍼스트,") {
+  if (houseNm == "힐스테이트 익산더퍼스트") {
 
     return iksan;
 
   } 
 
-  if (houseNm == "더샵 송파루미스타(임의공급 1차),") {
+  if (houseNm == "더샵 송파루미스타(임의공급 1차)") {
 
     return songpa;
 
   } 
 
-  if (houseNm == "힐스테이트 동탄포레,") {
+  if (houseNm == "힐스테이트 동탄포레") {
 
     return dongtan;
 
   } 
 
-  if (houseNm == "검단 한신더휴 어반파크,") {
+  if (houseNm == "검단 한신더휴 어반파크") {
 
     return gumdan;
 
   } 
 
-  if (houseNm == "광명자이힐스테이트SKVIEW,") {
+  if (houseNm == "광명자이힐스테이트SKVIEW") {
 
     return gwangMyonghillState;
 
   } 
 
-  if (houseNm == "트리우스 광명 (임의공급 2차),") {
+  if (houseNm == "트리우스 광명 (임의공급 2차)") {
 
     return gwangMyong;
 
   } 
 
 
-  if (houseNm == "남구로역 동일 센타시아,") {
+  if (houseNm == "남구로역 동일 센타시아") {
 
     return namguro;
 

@@ -27,26 +27,6 @@ const plantMain = ({onData}) => {
     const [pageable, setPageable] = useState();
     const [page, setPage] = useState(0)
 
-    // // , pageInfo
-    // const handleSearch = (data) => { 
-    //   setSearchList(data); // 검색 결과를 상태에 저장
-    //   console.log('검증',data);
-    //   console.log('검증 setSearch 길이',setSearchList.length);
-    //   console.log('검증 setSearch 사이즈',setSearchList.size);
-    //   console.log('검증 search 길이(여기서는 바뀌기 전 데이터 값이다.',Object.keys(searchList).length);
-    //   console.log('검색 결과 데이터:', data);
-    //   setSearchList(data);
-    //   // setPageable(pageInfo); // 페이지 정보 설정
-    // };
-    //   console.log('searchList@@@ :', searchList);
-
-    //   const handleData = (onDetail) => {
-    //     setDetailList(data); // 검색 결과를 상태에 저장
-    //     // 받은 데이터를 BlogArticles 컴포넌트로 전달
-    //     console.log('다른 폴더로 데이터이동!!', setDetailList);
-    //     return <PlantDetail.BlogArticles onDetail={setDetailList} />;
-    //   };
-    //   console.log('detailList@@@ :', detailList);
   console.log('page@@@@@@ 확인 플랜트 메인입니다.@@@@@', page);
 
     useEffect(() => {
@@ -71,47 +51,6 @@ const plantMain = ({onData}) => {
     });
     
   }, []);
-  
-  //   useEffect(() => {
-  //     axios.get('http://localhost/plantDetail')  // 상세리스트 요청
-  //     .then(response => {
-  //       console.log('response :', response);
-  //       console.log('plantList :', plantList);
-  //         setPlantList(response.data.listsearchAll.content); // 받아온 데이터로 변환
-  //         setPageable({
-  //           pageable : response.data.listsearchAll.pageable,
-  //           totalPages : response.data.listsearchAll.totalPages,
-  //           totalElements : maresponsep.data.listsearchAll.totalElements
-  //         });
-  //             console.log('여기 찍힘')
-  //         })
-  //         .catch(error => {
-  //             console.error('데이터가 안옴', error);
-  //         });
-  // }, []);
-
-
-  //   useEffect(() => {
-  //     axios.get('http://localhost/plant')  // 전체리스트 요청
-  //     .then(response => {
-  //           console.log('response :', response);
-  //           console.log('plantList :', plantList);
-  //             setPlantList(response.data.plantList); // 받아온 데이터로 변환
-  //             console.log('여기 찍힘')
-  //         })
-  //         .catch(error => {
-  //             console.error('데이터가 안옴', error);
-  //         });
-  // }, []);
-  
-  //여기다가 useState
-  // const [AllListView, setAllListView] = useState([]);
-
-  // const handleAllView = (results) => {
-  //   setAllListView(results);
-  // };
-  // const [searchResults, setSearchResults] = useState([]); // 사용할 검색 결과 상태
-  
   
   
   const theme = useTheme();
