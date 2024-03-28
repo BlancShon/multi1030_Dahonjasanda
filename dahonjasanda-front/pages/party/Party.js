@@ -221,7 +221,7 @@ const Party = () => {
                                       
                                         subgroupId = {subgroup.id}
                                         images={subgroup.thumbnail ? 
-                                            [[`http://localhost/parties/images/${subgroup.thumbnail}`, 400, 200, 'Image']]
+                                            [[`http://localhost/parties/images/${subgroup.thumbnail}`, 400, 260, 'Image']]
                                             // Add more images to the array to display a carousel
                                          : [["/images/job-board/about/faq.jpg", 300, 200, 'Image']]}
                                         title={subgroup.title}

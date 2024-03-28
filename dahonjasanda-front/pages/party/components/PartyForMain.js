@@ -36,7 +36,7 @@ const PartyForMain = () => {
                     Object.keys(parties).map((key) => {
                     const subgroup = parties[key];
                     return (
-                        <Col key={key} xs={6} md={4} xl={3} className="my-3">
+                        <Col key={key} xs={6} md={4} xl={3} className="my-3 mx-3">
                         <PartyCard className={"mx-2"}
                             onClick={e => location.href = `/party/${subgroup.id}`}
                             key={key}
@@ -46,8 +46,8 @@ const PartyForMain = () => {
                                 ? [
                                     [
                                     `http://localhost/parties/images/${subgroup.thumbnail}`,
-                                    300,
-                                    200,
+                                    400,
+                                    260,
                                     "Image",
                                     ],
                                 ]
