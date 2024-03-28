@@ -35,6 +35,7 @@ import PopularArticles from './housingFront/components/PopularArticles/PopularAr
 
 // 동식물
 import LastStories from './plant/components/LastStories'
+import LastStoriesAnimal from './animal/components/LastStories'
 
 const indexPage = () => {
     const [topRateProducts, setTopRateProducts] = useState([]);
@@ -49,6 +50,18 @@ const indexPage = () => {
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState(null);
     const [plantData, setPlantData] = useState([]);
+    const [animalData, setAnimalData] = useState([]);
+
+    useEffect(() => {
+        axios.get('http://localhost/animal')
+          .then(response => {
+            // Assuming the response data is an array of plants, adjust as necessary
+            setAnimalData(response.data.listsearchAll.content);
+          })
+          .catch(error => {
+            console.error('Error fetching data', error);
+          });
+      }, []);
 
     useEffect(() => {
         axios.get('http://localhost/plant')
@@ -295,28 +308,11 @@ const indexPage = () => {
                     <Box>
                     <h1 style={{ textAlign: 'center' }}>어떤 동물을 찾고 있나요?</h1>
                     <hr style={{ margin: '20px 0', border: 'none', borderBottom: '1px solid black' }} />
-                        <Grid container spacing={2}>
-                            <Grid item xs={6}>
-                                <Card>
-                                    <CardContent>
-                                        <Typography variant="h5" component="h2">
-                                            동물 1
-                                        </Typography>
-                                        {/* Add code to display top interest rate product 1 */}
-                                    </CardContent>
-                                </Card>
-                            </Grid>
-                            <Grid item xs={6}>
-                                <Card>
-                                    <CardContent>
-                                        <Typography variant="h5" component="h2">
-                                            동물 2
-                                        </Typography>
-                                        {/* Add code to display top interest rate product 2 */}
-                                    </CardContent>
-                                </Card>
-                            </Grid>
-                        </Grid>
+                    <Box display="flex" justifyContent="center"> {/* Updated to center */}
+                            <Box width="100%" maxWidth="1280px"> {/* Ensures contents are centered and do not exceed 1280px */}
+                                <LastStoriesAnimal data={animalData} limit={4} /* other props */ />
+                            </Box>
+                        </Box>
                     </Box>
                 </Box>
                 <Box mt={5}>
