@@ -84,11 +84,19 @@ const MapComponent = () => {
     try {
       var url = 'http://localhost/housingList';
       if (searchValue != null) {
-
+          
         url = url + '?transactionType=' + transactionType;
         url = url + '&location=' + location;
         url = url + '&propertyType=' + propertyType;
         url = url + '&searchValue=' + searchValue;
+      }
+
+      if(searchValue == null && transactionType == null && location == null && propertyType == null && searchValue == null) {
+
+        url = url + '?transactionType=' + "";
+        url = url + '&location=' + "";
+        url = url + '&propertyType=' + "";
+        url = url + '&searchValue=' + "";
       }
 
 
@@ -399,9 +407,9 @@ const MapComponent = () => {
               </Col>
 
               <hr className='d-md-none mt-2' />
-              <Col md={4} className='d-sm-flex align-items-center pt-4 pt-md-0'>
+              <Col  md={4} className='d-sm-flex align-items-center pt-4 pt-md-0'>
 
-                <div className='col-xl-4 col-md-6 mb-4' style={{ marginLeft: "650px" }}>
+                <div id="searchBar" className='col-xl-4 col-md-6 mb-4' style={{ marginLeft: "650px" }}>
                   <span className="blue_window">
                     <input type="text" id="searchValue" name="searchValue" onChange={onChangeValue} value={searchValue || ''} className="input_text" />
                   </span>
