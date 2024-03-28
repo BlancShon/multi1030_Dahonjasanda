@@ -46,7 +46,6 @@ const MapComponent = () => {
 
     loadKakaoMapScript();
 
-
   }, []); // Load the Kakao Map script only once
 
   const initializeMap = () => {
