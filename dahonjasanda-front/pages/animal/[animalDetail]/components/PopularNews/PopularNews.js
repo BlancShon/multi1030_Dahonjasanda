@@ -39,110 +39,182 @@ const PopularNews = ({ data }) => {
 //  const [geocoder, setGeocoder] = useState(null); // Added state for geocoder
   const [infoWindows, setInfoWindows] = useState([]);
   const [isInit, setInit] = useState(false);
+  const [address, setAddress] = useState();
+  
   
   useEffect(() => {
-    const loadKakaoMapScript = () => {
-      const script = document.createElement('script');
-      script.src = `https://dapi.kakao.com/v2/maps/sdk.js?appkey=bb83919493996c6c554671877067a90a&libraries=services,clusterer&autoload=false`;
-      script.async = true;
-      script.onload = initializeMap;
-      document.head.appendChild(script);
-    };
-
-    loadKakaoMapScript();
-  }, []); // Load the Kakao Map script only once
-
-  const initializeMap = () => {
-    kakao.maps.load(() => {
-      // setGeocoder(geocoderInstance); // Save geocoder instance in state
-      // setMap(newMap);
-      // ... (rest of your initializeMap logic)
-    });
-  };
-
-
-  useEffect(() => {
-   
-    if(dataSet.careAddr == undefined){
-      return;
+    console.log('************데이터***************', dataSet.careAddr);
+    if(dataSet.careAddr === undefined || dataSet.careAddr == null){
+      alert('맵이 없음');  // 여기서 뭔가 수정하고 저장해야 돌아감;;;
+        return;
     }
+    const script = document.createElement("script");
+    script.async = true;
+    script.src = `https://dapi.kakao.com/v2/maps/sdk.js?appkey=bb83919493996c6c554671877067a90a&libraries=services,clusterer&autoload=false`;
+    document.head.appendChild(script);
+
+    script.addEventListener("load", () => {
+      window.kakao.maps.load(() => {
+        const geocoder = new window.kakao.maps.services.Geocoder();
+        const container = document.getElementById("map");
+        
+        let housingList = [];
+        housingList[0] = {
+          hssplyAdres : dataSet.careAddr,
+          houseNm : dataSet.careNm,
+        };
+        // alert('!!');
+        const mapContainer = document.getElementById('map');
+          // const options = {
+          //   center: new kakao.maps.LatLng(37.5665, 126.9780),
+          //   level: 5,
+          // };
+          
+          // let geocoder = new kakao.maps.services.Geocoder();
+          // alert(housingList[0].hssplyAdres); // 여기까지 주소 들어옴
+          const addresses = housingList.map((item) => ({
+            hssplyAdres: item.hssplyAdres,
+            houseNm: item.houseNm,
+            houseManageNo: item.houseManageNo,
+            cnstrctEntrpsNm: item.cnstrctEntrpsNm,
+            totSuplyHshldco: item.totSuplyHshldco,
+            bsnsMbyNm: item.bsnsMbyNm,
+            houseSecdNm: item.houseSecdNm,
+          }));
+
+          console.log('************주소***************', housingList[0].hssplyAdres); // 여기까지 주소 들어옴
+        let options = {
+          center: new window.kakao.maps.LatLng(37.5665, 126.9780), // 초기 중심 좌표 (위도, 경도)
+          level: 3, // 지도 확대 레벨
+        };
+        // alert(addresses.hssplyAdres);
+        addresses.forEach((address) => {
+        geocoder.addressSearch(address.hssplyAdres, (result, status) => { 
+         console.log('***************************', result);  // undefined
+          if (status === window.kakao.maps.services.Status.OK) {
+          // alert(result[0].y, result[0].x);  // undefined
+            let markerPosition = new window.kakao.maps.LatLng(result[0].y, result[0].x);
+            options.center = markerPosition;
+
+            var marker = new window.kakao.maps.Marker({
+                position: markerPosition
+            });
+            
+            var map = new window.kakao.maps.Map(container, options);
+            marker.setMap(map);
+        }else{
+            new window.kakao.maps.Map(container, options);
+        }});
+
+      });
+    });
+  })}, []);
+
+
+  // useEffect(() => {
+  //   const loadKakaoMapScript = () => {
+  //     const script = document.createElement('script');
+  //     script.src = `https://dapi.kakao.com/v2/maps/sdk.js?appkey=bb83919493996c6c554671877067a90a&libraries=services,clusterer&autoload=false`;
+  //     script.async = true;
+  //     script.onload = initializeMap;
+  //     document.head.appendChild(script);
+  //   };
+
+  //   loadKakaoMapScript();
+  // }, []); // Load the Kakao Map script only once
+
+  // const initializeMap = () => {
+  //   kakao.maps.load(() => {
+  //     // setGeocoder(geocoderInstance); // Save geocoder instance in state
+  //     // setMap(newMap);
+  //     // ... (rest of your initializeMap logic)
+  //   });
+  // };
+
+
+  // useEffect(() => {
+   
+  //   if(dataSet.careAddr == undefined){
+  //     return;
+  //   }
     
-    let housingList = [];
-    housingList[0] = {
-      hssplyAdres : dataSet.careAddr,
-      houseNm : dataSet.careNm,
-    };
-    alert('!!');
-    const mapContainer = document.getElementById('map');
-      const options = {
-        center: new kakao.maps.LatLng(37.5665, 126.9780),
-        level: 5,
-      };
+    // let housingList = [];
+    // housingList[0] = {
+    //   hssplyAdres : dataSet.careAddr,
+    //   houseNm : dataSet.careNm,
+    // };
+    // alert('!!');
+    // const mapContainer = document.getElementById('map');
+    //   const options = {
+    //     center: new kakao.maps.LatLng(37.5665, 126.9780),
+    //     level: 5,
+    //   };
       
-      let geocoder = new kakao.maps.services.Geocoder();
+    //   let geocoder = new kakao.maps.services.Geocoder();
       
-      const addresses = housingList.map((item) => ({
-        hssplyAdres: item.hssplyAdres,
-        houseNm: item.houseNm,
-        houseManageNo: item.houseManageNo,
-        cnstrctEntrpsNm: item.cnstrctEntrpsNm,
-        totSuplyHshldco: item.totSuplyHshldco,
-        bsnsMbyNm: item.bsnsMbyNm,
-        houseSecdNm: item.houseSecdNm,
-      }));
+    //   const addresses = housingList.map((item) => ({
+    //     hssplyAdres: item.hssplyAdres,
+    //     houseNm: item.houseNm,
+    //     houseManageNo: item.houseManageNo,
+    //     cnstrctEntrpsNm: item.cnstrctEntrpsNm,
+    //     totSuplyHshldco: item.totSuplyHshldco,
+    //     bsnsMbyNm: item.bsnsMbyNm,
+    //     houseSecdNm: item.houseSecdNm,
+    //   }));
       //console.log(addresses)
 
-      addresses.forEach((address) => {
+  //     addresses.forEach((address) => {
 
-        // alert(address.houseNm);
-        geocoder.addressSearch(address.hssplyAdres, (result, status) => {
-          if (status === kakao.maps.services.Status.OK) {
-            const marker = new kakao.maps.Marker({
-              position: new kakao.maps.LatLng(result[0].y, result[0].x),
-            });
+  //       // alert(address.houseNm);
+  //       geocoder.addressSearch(address.hssplyAdres, (result, status) => {
+  //         if (status === kakao.maps.services.Status.OK) {
+  //           const marker = new kakao.maps.Marker({
+  //             position: new kakao.maps.LatLng(result[0].y, result[0].x),
+  //           });
 
-            setMarkers((prevMarkers) => [...prevMarkers, marker]);
-            marker.setMap(map);
+  //           setMarkers((prevMarkers) => [...prevMarkers, marker]);
+  //           marker.setMap(map);
 
-            const iwContent = document.createElement('div');
-            iwContent.style.padding = '5px';
-            iwContent.style.width = '200px';
+  //           const iwContent = document.createElement('div');
+  //           iwContent.style.padding = '5px';
+  //           iwContent.style.width = '200px';
 
-            const innerDiv = document.createElement('div');
-            const link = document.createElement('a');
-            link.id = 'infoWindowLink';
+  //           const innerDiv = document.createElement('div');
+  //           const link = document.createElement('a');
+  //           link.id = 'infoWindowLink';
 
-            link.style.color = 'blue';
-            link.style.cursor = 'pointer';
-            link.style.color = 'inherit';
-            //console.log(address.cntrctCnclsBgnde);
-            link.textContent = address.houseNm || 'House Name Unavailable';
+  //           link.style.color = 'blue';
+  //           link.style.cursor = 'pointer';
+  //           link.style.color = 'inherit';
+  //           //console.log(address.cntrctCnclsBgnde);
+  //           link.textContent = address.houseNm || 'House Name Unavailable';
 
-            innerDiv.appendChild(link);
-            iwContent.appendChild(innerDiv);
+  //           innerDiv.appendChild(link);
+  //           iwContent.appendChild(innerDiv);
 
-            const iwPosition = new kakao.maps.LatLng(result[0].y, result[0].x); //인포윈도우 표시 위치입니다
+  //           const iwPosition = new kakao.maps.LatLng(result[0].y, result[0].x); //인포윈도우 표시 위치입니다
 
-            const infowindow = new kakao.maps.InfoWindow({
-              position: iwPosition,
-              content: iwContent
-            })
+  //           const infowindow = new kakao.maps.InfoWindow({
+  //             position: iwPosition,
+  //             content: iwContent
+  //           })
 
-            setInfoWindows((prevInfoWindows) => [...prevInfoWindows, infowindow]);
-            infowindow.open(map, marker)
+  //           setInfoWindows((prevInfoWindows) => [...prevInfoWindows, infowindow]);
+  //           infowindow.open(map, marker)
 
-            const moveLatLon = new kakao.maps.LatLng(result[0].y, result[0].x);
+  //           const moveLatLon = new kakao.maps.LatLng(result[0].y, result[0].x);
 
-            // 지도 중심을 이동 시킵니다
-            map.setCenter(moveLatLon);
-          } else{
-            alert('fail!!!');
-          }
-        });
-      });
+  //           // 지도 중심을 이동 시킵니다
+  //           map.setCenter(moveLatLon);
+  //         } else{
+  //           alert('fail!!!');
+  //         }
+  //       });
+  //     });
     
-  }, [dataSet]); // Load the markers when geocoder or housingList changes
+  // }, [dataSet]); // Load the markers when geocoder or housingList changes
 
+  
   // Helper function to clear existing markers
   const clearMarkers = () => {
     markers.forEach((marker) => {
@@ -227,7 +299,7 @@ const PopularNews = ({ data }) => {
 
     return (
       <Box>
-        <div id='map' style={{ width: '50%', height: '50%', minHeight: 300, margin: 0 }} />
+        <div id='map' style={{ width: '100%', height: '50%', minHeight: 300, margin: 0, border:'ridge'}} />
       </Box>
       // <iframe
       //   width="50%"

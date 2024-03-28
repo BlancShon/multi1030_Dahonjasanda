@@ -12,11 +12,12 @@ const mock = {
 
   image: 'https://previews.123rf.com/images/denayunebgt/denayunebgt2110/denayunebgt211000181/175743056-%EC%A4%91%EC%9A%94%ED%95%9C-%EB%AC%B8%EC%A0%9C-%EC%8B%9C%EA%B0%84-%EA%B4%80%EB%A6%AC-%EC%9E%91%EC%97%85-%EC%A1%B0%EC%A7%81-%EB%B0%8F-%EC%83%9D%ED%99%9C-%EC%9D%B4%EB%B2%A4%ED%8A%B8-%EC%95%8C%EB%A6%BC-%EB%98%90%EB%8A%94-%ED%9C%B4%EC%9D%BC%EC%9D%84-%EA%B3%84%ED%9A%8D%ED%95%98%EA%B8%B0-%EC%9C%84%ED%95%9C-%EC%9B%90-%EA%B8%B0%ED%98%B8%EA%B0%80-%EC%9E%88%EB%8A%94-%EB%8B%AC%EB%A0%A5-%EB%B0%B0%EA%B2%BD-%EB%B2%A1%ED%84%B0.jpg',
   description:
-    '우리 집 구찌가 약은 제대로 먹었는지, 산책은 언제 했는지, 반려 동물과의 성장 일지를 작성해보세요! 더욱 가까운 가족이 될 기회일지도?',
+    '나의 반려 동식물 친구들과 함께 할 청약 캘린더도 확인해주세요',
   title:
-    '기른지 며칠이 됐지? 밥은 언제 줬더라? 치료는 언제?',
+    '새로운 가족과 살려면 나의 보금자리도 크면 좋겠어요!',
   author: {
-    name: '캘린더 입력 바로가기',
+    name: '청약 일정 바로가기',
+    url: 'http://localhost:3000/calendar',
     avatar: 'https://media.istockphoto.com/id/1262025969/ko/%EB%B2%A1%ED%84%B0/%EC%84%A0%ED%83%9D%ED%95%9C-%EB%82%A0%EC%A7%9C%EA%B0%80-%EC%9E%88%EB%8A%94-%EC%BA%98%EB%A6%B0%EB%8D%94%EC%9E%85%EB%8B%88%EB%8B%A4-%EB%B2%A1%ED%84%B0-%EC%9D%BC%EB%9F%AC%EC%8A%A4%ED%8A%B8%EB%A0%88%EC%9D%B4%EC%85%98.jpg?s=612x612&w=0&k=20&c=hIHsYdIieF5ikqCb7YiSxR-2Lznf7szkO92sxupBdYY=',
   },
 };
@@ -30,7 +31,7 @@ const FeaturedArticle = () => {
       
       <Box
         component={'a'}
-        href={''}
+        href={mock.author.url}
         display={'block'}
         width={1}
         height={1}

@@ -1,16 +1,14 @@
 'use client';
 
-import { Inter } from 'next/font/google'
-import * as React from 'react';
-import { useState, useEffect } from 'react';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
+import Box from "@mui/material/Box";
+import { createTheme } from '@mui/material/styles';
 import axios from 'axios';
-import Header from '../../components/header';
-import Footer from '../../components/footer';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { Inter } from 'next/font/google';
 import { useRouter } from 'next/router';
+import { useEffect, useState } from 'react';
 import { Main } from '../../layouts';
-
+import { Hero } from './components';
 
 const inter = Inter({ subsets: ['latin'] })
 const defaultTheme = createTheme();
@@ -179,89 +177,92 @@ export default function View() {
 
     return (
         <>
-            <Main >
-            {board != null &&
-                <section id="board-write-container" className="board-write-container">
-                    <br />
-                    <h2 align="center">게시글 상세조회</h2>
-                    <table id="tbl-board">
-                        <tbody>
-                            <tr>
-                                <th>글번호</th>
-                                <td> {board.bno} </td>
-                            </tr>
-                            <tr>
-                                <th>제 목</th>
-                                <td> {board.title} </td>
-                            </tr>
-                            <tr>
-                                <th>타 입</th>
-                                <td> {typeMap[board.boardCategory.type]} </td>
-                            </tr>
-                            <tr>
-                                <th>작성자</th>
-                                <td> {board.member.memberId} </td>
-                            </tr>
-                            <tr>
-                                <th>조회수</th>
-                                <td> {board.readCount} </td>
-                            </tr>
-                            <tr>
-                                <th>작성 시간</th>
-                                <td> {new Date(board.createDate).toLocaleDateString()}&nbsp;
-                                    {new Date(board.createDate).toLocaleTimeString()} </td>
-                            </tr>
-                            <tr>
-                                <th>첨부파일</th>
-                                <td>
-                                    {fileList == null ? '-':fileList}
-                                </td>
-                            </tr>
+            <Main colorInvert={true}>
+                <Box bgcolor={"alternate.main"} position={"relative"}>
+                    <Hero/> 
+                {board != null &&
+                    <section id="board-write-container" className="board-write-container">
+                        <br />
+                        <h2 align="center">게시글 상세조회</h2>
+                        <table id="tbl-board">
+                            <tbody>
+                                <tr>
+                                    <th>글번호</th>
+                                    <td> {board.bno} </td>
+                                </tr>
+                                <tr>
+                                    <th>제 목</th>
+                                    <td> {board.title} </td>
+                                </tr>
+                                <tr>
+                                    <th>타 입</th>
+                                    <td> {typeMap[board.boardCategory.type]} </td>
+                                </tr>
+                                <tr>
+                                    <th>작성자</th>
+                                    <td> {board.member.memberId} </td>
+                                </tr>
+                                <tr>
+                                    <th>조회수</th>
+                                    <td> {board.readCount} </td>
+                                </tr>
+                                <tr>
+                                    <th>작성 시간</th>
+                                    <td> {new Date(board.createDate).toLocaleDateString()}&nbsp;
+                                        {new Date(board.createDate).toLocaleTimeString()} </td>
+                                </tr>
+                                <tr>
+                                    <th>첨부파일</th>
+                                    <td>
+                                        {fileList == null ? '-' : fileList}
+                                    </td>
+                                </tr>
 
-                            <tr>
-                                <th>내 용</th>
-                                <td><textarea rows="8" cols="50" readOnly={'readOnly'} value={board.content} ></textarea></td>
-                            </tr>
+                                <tr>
+                                    <th>내 용</th>
+                                    <td><textarea rows="8" cols="50" readOnly={'readOnly'} value={board.content} ></textarea></td>
+                                </tr>
 
-                            <tr>
-                                <th colSpan={2}>
-                                    {loginInfo != null && (loginInfo.memberId == board.member.memberId || loginInfo.role == 'ROLE_ADMIN') && (
-                                        <div>
-                                            <button type="button" id="btnUpdate" onClick={onClickUpdate}>수정</button>
-                                            &nbsp; <button type="button" id="btnDelete" onClick={onClickDelete}>삭제</button>
-                                        </div>
+                                <tr>
+                                    <th colSpan={2}>
+                                        {loginInfo != null && (loginInfo.memberId == board.member.memberId || loginInfo.role == 'ROLE_ADMIN') && (
+                                            <div>
+                                                <button type="button" id="btnUpdate" onClick={onClickUpdate}>수정</button>
+                                                &nbsp; <button type="button" id="btnDelete" onClick={onClickDelete}>삭제</button>
+                                            </div>
 
-                                    )}
-                                </th>
-                            </tr>
-                        </tbody>
-                    </table>
-                    <br />
+                                        )}
+                                    </th>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <br />
 
-                    {
-                        loginInfo != null && (
-                            <div id="comment-container">
-                                <div className="comment-editor" align="center">
-                                    <form action="/board/reply" method="post" onSubmit={onSubmitWriteRepley}>
-                                        <input type="hidden" name="bno" value={board.bno} />
-                                        <input type="hidden" name="writerId" value={loginInfo.memberId} />
-                                        <textarea name="content" id="replyContent" cols="55" rows="2"></textarea>
-                                        <button type="submit" id="btn-insert">등록</button>
-                                    </form>
+                        {
+                            loginInfo != null && (
+                                <div id="comment-container">
+                                    <div className="comment-editor" align="center">
+                                        <form action="/board/reply" method="post" onSubmit={onSubmitWriteRepley}>
+                                            <input type="hidden" name="bno" value={board.bno} />
+                                            <input type="hidden" name="writerId" value={loginInfo.memberId} />
+                                            <textarea name="content" id="replyContent" cols="55" rows="2"></textarea>
+                                            <button type="submit" id="btn-insert">등록</button>
+                                        </form>
+                                    </div>
                                 </div>
-                            </div>
-                        )
-                    }
+                            )
+                        }
 
-                    <table id="tbl-comment">
-                        <tbody>
-                            {replyList}
-                        </tbody>
-                    </table>
-                </section>
-            }
-            {/* <Footer /> */}
-            </Main>
+                        <table id="tbl-comment">
+                            <tbody>
+                                {replyList}
+                            </tbody>
+                        </table>
+                    </section>
+                }
+                {/* <Footer /> */}
+                </Box>
+                </Main>
         </>
     );
-}
+            }

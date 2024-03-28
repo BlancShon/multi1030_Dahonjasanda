@@ -29,8 +29,9 @@ const mock = [
     description:
       '나에게도 새로운 가족이, 유기 동물에게도 새로운 가족이 되어주세요',
     title: '반려 동물 좋아하시나요? 새로운 가족을 만나보세요!',
+    url: 'http://localhost:3000/animal',
     author: {
-      name: '유기 동물 입양 센터 바로가기',
+      name: '유기 동물 페이지 바로가기',
       avatar: 'https://previews.123rf.com/images/editiinkamu/editiinkamu2008/editiinkamu200800001/155129220-%EC%95%A0%EC%99%84%EB%8F%99%EB%AC%BC-%EA%B0%80%EA%B2%8C-%EA%B1%B4%EB%AC%BC-%EB%B2%A1%ED%84%B0-%EC%95%84%EC%9D%B4%EC%BD%98-%EA%B7%B8%EB%A6%BC-%EA%B1%B4%EB%AC%BC-%EB%B0%8F-%EB%9E%9C%EB%93%9C%EB%A7%88%ED%81%AC-%EC%95%84%EC%9D%B4%EC%BD%98-%EA%B0%9C%EB%85%90.jpg',
     },
     // date: '12 Sep',

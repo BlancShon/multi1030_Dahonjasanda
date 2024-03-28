@@ -17,6 +17,7 @@ const mock = [
     description:
       '반려 동물 병원에서 치료받으세요! ',
     title: '제 반려 동물이 아픈데 어떻게 하죠?',
+    url: 'https://www.vipah.co.kr/kr/index.php',
     author: {
       name: '반려 동물 병원 바로가기 ',
       avatar: 'https://png.pngtree.com/template/20191005/ourlarge/pngtree-vector-logo-for-veterinary-clinic-logo-for-a-pet-shop-logo-image_314599.jpg',
@@ -28,6 +29,7 @@ const mock = [
     description:
       '향긋한 식물들과 가족이 되어, 초록색 힐링을 만끽하세요',
     title: '식물 좋아하시나요? 향기 가득한 가족을 만나보세요!',
+    url: 'http://localhost:3000/plant',
     author: {
       name: '나의 반려 식물 알아보기',
       avatar: 'https://www.logoyogo.com/web/wp-content/uploads/edd/2021/04/logoyogo-1-76.jpg',
@@ -73,7 +75,7 @@ const CaseStudies = () => {
           <Grid item xs={12} key={i}>
             <Box
               component={'a'}
-              href={''}
+              href={item.url}
               display={'block'}
               width={1}
               height={1}

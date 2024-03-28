@@ -181,7 +181,7 @@ export default function List() {
       </td>
       <td style={{ padding: "10px", borderBottom: "none" }}>
         <a
-          href={"/board/view?bno=" + item.bno}
+          href={"/plantBoard/view?bno=" + item.bno}
           style={{ textDecoration: "none", color: "black" }}
         >
           {item.title}

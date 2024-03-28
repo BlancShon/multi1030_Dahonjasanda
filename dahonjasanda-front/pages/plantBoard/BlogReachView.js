@@ -31,16 +31,16 @@ const BlogReachView = () => {
         <Container>
           <FeaturedArticle />
         </Container>
-        <Container paddingTop={"0 !important"}>
+        {/* <Container paddingTop={"0 !important"}> */}
           {/* <LastStories /> */}
-        </Container>
-        <Container paddingTop={"0 !important"}>
+        {/* </Container> */}
+        {/* <Container paddingTop={"0 !important"}> */}
           {/* <CaseStudies /> */}
-        </Container>
+        {/* </Container> */}
         <Box paddingBottom={{ xs: 2, sm: 3, md: 4 }}>
-          <Container paddingTop={"0 !important"}>
+          {/* <Container paddingTop={"0 !important"}> */}
             {/* <PopularArticles /> */}
-          </Container>
+          {/* </Container> */}
         </Box>
         <Box
           component={"svg"}

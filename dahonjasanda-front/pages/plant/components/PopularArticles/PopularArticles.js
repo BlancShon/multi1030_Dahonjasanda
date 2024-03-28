@@ -13,19 +13,22 @@ import Pagination from '@mui/material/Pagination';
 
 const mock = [
   {
-    image: 'https://assets.maccarianagency.com/backgrounds/img17.jpg',
-    description:
-      'Sed ut perspiciatis unde omnis iste natus error sit voluptatem',
-    title: 'Eiusmod tempor incididunt',
+    image: 'https://d2u3dcdbebyaiu.cloudfront.net/uploads/atch_img/970/6e20693d0ed9457568b95a9e8dd72951_res.jpeg',
+    title:
+      '[일반글] 우리 식물이를 소개 합니다!!!',
+    title2: 'Eiusmod tempor incididunt',
+    url2 : 'http://localhost:3000/plantBoard/view?bno=51',
+    url : 'http://localhost:3000/plantBoard',
     author: {
       name: 'Clara Bertoletti',
       avatar: 'https://assets.maccarianagency.com/avatars/img1.jpg',
     },
   },
   {
-    image: 'https://assets.maccarianagency.com/backgrounds/img13.jpg',
-    description: 'At vero eos et accusamus et iusto odio dignissimos ducimus',
-    title: 'Sed ut perspiciatis',
+    image: 'https://thumb.mtstarnews.com/06/2023/04/2023042018142885465_1.jpg/dims/optimize',
+    title: '[질문] 식물 영양제 가격 얼마인가요?',
+    title2: 'Sed ut perspiciatis',
+    url2 : 'http://localhost:3000/plantBoard/view?bno=53',
     author: {
       name: 'Jhon Anderson',
       avatar: 'https://assets.maccarianagency.com/avatars/img2.jpg',
@@ -33,10 +36,11 @@ const mock = [
     date: '02 Aug',
   },
   {
-    image: 'https://assets.maccarianagency.com/backgrounds/img14.jpg',
-    description:
-      'Qui blanditiis praesentium voluptatum deleniti atque corrupti',
-    title: 'Unde omnis iste natus',
+    image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTmUCBLuP9hHezOTuldb6QttQ26bHYDPmIo_Q&usqp=CAU',
+    title:
+      '[일반글] 제가 기르는 식물 한번 보고 가세요!',
+    title2: 'Unde omnis iste natus',
+    url2 : 'http://localhost:3000/plantBoard/view?bno=38',
     author: {
       name: 'Chary Smith',
       avatar: 'https://assets.maccarianagency.com/avatars/img3.jpg',
@@ -66,6 +70,7 @@ const PopularArticles = () => {
         </Box>
         <Box display="flex" marginTop={{ xs: 2, md: 0 }}>
           <Box
+            href='http://localhost:3000/plantBoard'
             component={Button}
             variant="outlined"
             color="primary"
@@ -81,7 +86,7 @@ const PopularArticles = () => {
           <Grid item xs={12} sm={i === 0 ? 12 : 6} md={i < 2 ? 4 : 4} key={i}>
             <Box
               component={'a'}
-              href={''}
+              href={item.url2}
               display={'block'}
               width={1}
               height={1}
@@ -112,7 +117,7 @@ const PopularArticles = () => {
                 >
                   <Box
                     component={'svg'}
-                    viewBox="0 0 2880 480"
+                    viewBox="0 0 0 480"
                     fill="none"
                     xmlns="http://www.w3.org/2000/svg"
                     sx={{
@@ -125,46 +130,14 @@ const PopularArticles = () => {
                       transformOrigin: 'top center',
                     }}
                   >
-                    <path
-                      fillRule="evenodd"
-                      clipRule="evenodd"
-                      d="M2160 0C1440 240 720 240 720 240H0v240h2880V0h-720z"
-                      fill="currentColor"
-                    />
                   </Box>
                 </CardMedia>
                 <Box component={CardContent} position={'relative'}>
-                  <Typography variant={'h6'} gutterBottom>
+                  <Typography variant={'h7'} gutterBottom>
                     {item.title}
-                  </Typography>
-                  <Typography color="text.secondary">
-                    {item.description}
                   </Typography>
                 </Box>
                 <Box flexGrow={1} />
-                <Box padding={2} display={'flex'} flexDirection={'column'}>
-                  <Box marginBottom={2}>
-                    <Divider />
-                  </Box>
-                  <Box
-                    display={'flex'}
-                    justifyContent={'space-between'}
-                    alignItems={'center'}
-                  >
-                    <Box display={'flex'} alignItems={'center'}>
-                      <Avatar
-                        src={item.author.avatar}
-                        sx={{ marginRight: 1 }}
-                      />
-                      <Typography color={'text.secondary'}>
-                        {item.author.name}
-                      </Typography>
-                    </Box>
-                    <Typography color={'text.secondary'}>
-                      {item.date}
-                    </Typography>
-                  </Box>
-                </Box>
               </Box>
             </Box>
           </Grid>
