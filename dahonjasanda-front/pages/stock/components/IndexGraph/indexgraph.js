@@ -11,7 +11,7 @@ const IndexGraph = ({ data }) => {
   const prevValue = data[data.length - 2];
   const difference = lastValue - prevValue;
 
-  const color = difference < 0 ? "blue" : "red";
+  const color = difference < 0 ? "red" : "blue";
 
   return (
       <Sparklines data={data}>

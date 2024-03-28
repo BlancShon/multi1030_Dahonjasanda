@@ -71,10 +71,10 @@ const CardWithAddButton = ({ list }) => {
                 <Typography variant={'h3'} fontWeight={400}>
                   코스피
                 </Typography>
-                <Typography variant={'h4'} color={pchangeValue <= 0 ? 'red' : 'blue'}>
+                <Typography variant={'h4'} color={pchangeValue <= 0 ? 'blue' : 'red'}>
                   {pvalue}
                 </Typography>
-                <Typography variant={'h6'} color={pchangeValue <= 0 ? 'red' : 'blue'}>
+                <Typography variant={'h6'} color={pchangeValue <= 0 ? 'blue' : 'red'}>
                   {prate}% {pchangeValue.toFixed(2)}p
                 </Typography>
                 <IndexGraph data={kospiClprList}/>
@@ -98,10 +98,10 @@ const CardWithAddButton = ({ list }) => {
                 <Typography variant={'h3'} fontWeight={400}>
                   코스닥
                 </Typography>
-                <Typography variant={'h4'} color={dchangeValue <= 0 ? 'red' : 'blue'}>
+                <Typography variant={'h4'} color={dchangeValue <= 0 ? 'blue' : 'red'}>
                   {dvalue}
                 </Typography>
-                <Typography variant={'h6'} color={dchangeValue <= 0 ? 'red' : 'blue'}>
+                <Typography variant={'h6'} color={dchangeValue <= 0 ? 'blue' : 'red'}>
                   {drate}% {dchangeValue.toFixed(2)}p
                 </Typography>
                 <IndexGraph data={kosdaqClprList} height={100}/>
@@ -125,10 +125,10 @@ const CardWithAddButton = ({ list }) => {
                 <Typography variant={'h3'} fontWeight={400}>
                   코스피 선물
                 </Typography>
-                <Typography variant={'h4'} color={prchangeValue <= 0 ? 'red' : 'blue'}>
+                <Typography variant={'h4'} color={prchangeValue <= 0 ? 'blue' : 'red'}>
                   {prvalue}
                 </Typography>
-                <Typography variant={'h6'} color={prchangeValue <= 0 ? 'red' : 'blue'}>
+                <Typography variant={'h6'} color={prchangeValue <= 0 ? 'blue' : 'red'}>
                   {prrate}% {prchangeValue.toFixed(2)}p
                 </Typography>
                 <IndexGraph data={kospi200ClprList} height={100}/>
