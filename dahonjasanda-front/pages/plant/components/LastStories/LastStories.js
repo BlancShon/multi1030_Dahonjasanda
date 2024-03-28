@@ -119,7 +119,6 @@ const LastStories = ({ data, totalPages, pageNumber, onChangePageHandler, pageab
             {/* {data[key].cntntsSj} */}
             {/* {console.log('데이터 콘솔 확인@@@@', data[key])} */}
             <Box
-              onClick={() => handleClick(data[key].ptno)}
               component={'a'}
               // href= {'http://localhost/plantDetail/${data[key].ptno}'}
               // href={`http://localhost/plantDetail/${item.ptno}`}
@@ -135,6 +134,7 @@ const LastStories = ({ data, totalPages, pageNumber, onChangePageHandler, pageab
               }}
             >
               <Box
+                onClick={() => handleClick(data[key].ptno)}
                 component={Card}
                 width={1}
                 height={0.7}

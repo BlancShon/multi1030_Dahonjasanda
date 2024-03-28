@@ -48,10 +48,10 @@ const Footer = () => {
                 <Typography color="text.primary" marginRight={5} fontWeight={"bold"}>|</Typography>
               </Grid>
               <Grid item xs={6} container justifyContent="flex-start" gap={2}>
-                <Link href="/deposit" color="text.primary">DEPOSIT</Link>
-                <Link href="/loan" color="text.primary">LOAN</Link>
-                <Link href="/stock" color="text.primary">STOCK</Link>
-                <Link href="/stock/mystock" color="text.primary">MYSTOCK</Link>
+                <Link href="/deposit" color="text.primary">예적금</Link>
+                <Link href="/loan" color="text.primary">대출</Link>
+                <Link href="/stock" color="text.primary">주식</Link>
+                <Link href="/stock/mystock" color="text.primary">내 자산</Link>
               </Grid>
             </Grid>
             {/* 두 번째 줄 */}
@@ -61,8 +61,8 @@ const Footer = () => {
                 <Typography color="text.primary" marginRight={5} fontWeight={"bold"}>|</Typography>
               </Grid>
               <Grid item xs={6} container justifyContent="flex-start" gap={2}>
-                <Link href="/housingFront" color="text.primary">HOUSING</Link>
-                <Link href="/calendar" color="text.primary">CALENDAR</Link>
+                <Link href="/housingFront" color="text.primary">청약홈</Link>
+                <Link href="/calendar" color="text.primary">캘린더</Link>
                 <Link href="/housing/housingMap" color="text.primary">청약맵</Link>
                 <Link href="/housing/housingBoard" color="text.primary">게시판</Link>
               </Grid>
@@ -70,26 +70,33 @@ const Footer = () => {
             {/* 세 번째 줄 */}
             <Grid item xs={12} container>
               <Grid item xs={6} container justifyContent="flex-end">
-                <Typography color="text.primary" marginRight={5} fontWeight={"bold"}>동식물</Typography>
+                <Typography color="text.primary" marginRight={5} fontWeight={"bold"}>반려 동식물</Typography>
                 <Typography color="text.primary" marginRight={5} fontWeight={"bold"}>|</Typography>
               </Grid>
               <Grid item xs={6} container justifyContent="flex-start" gap={2}>
-                <Link href="/plant" color="text.primary">PLANT</Link>
-                <Link href="/plantDetail" color="text.primary">PLANTDETAIL</Link>
-                <Link href="/animal" color="text.primary">ANIMAL</Link>
-                <Link href="/animalDetail" color="text.primary">ANIMALDETAIL</Link>
-                <Link href="/plantBoard" color="text.primary">PLANTBOARD</Link>
+                <Link href="/plant" color="text.primary">식물</Link>
+                <Link href="/animal" color="text.primary">동물</Link>
+                <Link href="/plantBoard" color="text.primary">반려 게시판</Link>
               </Grid>
             </Grid>
             {/* 네 번째 줄 */}
             <Grid item xs={12} container>
               <Grid item xs={6} container justifyContent="flex-end">
-                <Typography color="text.primary" marginRight={5} fontWeight={"bold"}>파티원</Typography>
+                <Typography color="text.primary" marginRight={5} fontWeight={"bold"}>취미생활</Typography>
                 <Typography color="text.primary" marginRight={5} fontWeight={"bold"}>|</Typography>
               </Grid>
               <Grid item xs={6} container justifyContent="flex-start" gap={2}>
                 <Link href="/party" color="text.primary">소모임</Link>
                 <Link href="/party/myparty" color="text.primary">나의 모임</Link>
+              </Grid>
+            </Grid>
+            <Grid item xs={12} container>
+              <Grid item xs={6} container justifyContent="flex-end">
+                <Typography color="text.primary" marginRight={5} fontWeight={"bold"}>커뮤니티</Typography>
+                <Typography color="text.primary" marginRight={5} fontWeight={"bold"}>|</Typography>
+              </Grid>
+              <Grid item xs={6} container justifyContent="flex-start" gap={2}>
+                <Link href="/community" color="text.primary">자유게시판</Link>
               </Grid>
             </Grid>
           </Grid>

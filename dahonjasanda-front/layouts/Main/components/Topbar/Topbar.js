@@ -102,7 +102,7 @@ const Topbar = ({ onSidebarOpen, pages, colorInvert = false }) => {
         </Box>
         <Box marginLeft={4}>
           <NavItem
-            title={"동식물"}
+            title={"반려 동식물"}
             id={"animalPlant-pages"}
             items={animalPlantPages}
             colorInvert={colorInvert}
@@ -110,7 +110,7 @@ const Topbar = ({ onSidebarOpen, pages, colorInvert = false }) => {
         </Box>
         <Box marginLeft={4}>
           <NavItem
-            title={"파티원"}
+            title={"취미생활"}
             id={"party-pages"}
             items={partyPages}
             colorInvert={colorInvert}
@@ -118,7 +118,7 @@ const Topbar = ({ onSidebarOpen, pages, colorInvert = false }) => {
         </Box>
         <Box marginLeft={4}>
           <NavItem
-            title={"자유게시판"}
+            title={"커뮤니티"}
             id={"community-pages"}
             items={communityPages}
             colorInvert={colorInvert}
