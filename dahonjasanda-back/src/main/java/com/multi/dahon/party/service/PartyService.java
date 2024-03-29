@@ -7,7 +7,6 @@ import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
-import org.apache.tomcat.util.http.fileupload.FileUtils;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -19,16 +18,19 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.multi.dahon.member.model.repository.MemberRepository;
 import com.multi.dahon.member.model.vo.Member;
+import com.multi.dahon.party.form.PartyMemberUpdateForm;
 import com.multi.dahon.party.form.PartyNewForm;
 import com.multi.dahon.party.form.PartyScheduleForm;
 import com.multi.dahon.party.form.PartySearchCondition;
 import com.multi.dahon.party.form.PartyUpdateForm;
+import com.multi.dahon.party.repository.ChatRepository;
 import com.multi.dahon.party.repository.InterestedPartyRepository;
 import com.multi.dahon.party.repository.PartyAttendeesRepository;
 import com.multi.dahon.party.repository.PartyMemberRepository;
 import com.multi.dahon.party.repository.PartyRepository;
 import com.multi.dahon.party.repository.PartyScheduleRepository;
 import com.multi.dahon.party.repository.PartySpec;
+import com.multi.dahon.party.vo.Chat;
 import com.multi.dahon.party.vo.InterestedParty;
 import com.multi.dahon.party.vo.Party;
 import com.multi.dahon.party.vo.PartyAttendees;
@@ -52,6 +54,7 @@ public class PartyService {
     private final PartyScheduleRepository partyScheduleRepository;
     private final PartyAttendeesRepository partyAttendeesRepository;
     private final InterestedPartyRepository interestedPartyRepository;
+    private final ChatRepository chatRepository;
 
     public List<Party> getPartyListOrderByCreatedTimeDesc() {
         return partyRepository.findAll(Sort.by(Sort.Direction.DESC, "createdTime"));
@@ -154,6 +157,12 @@ public class PartyService {
     public Optional<PartyMember> getPartyMember(Long partyMemberId) {
         return partyMemberRepository.findById(partyMemberId);
     }
+    
+    public Long updatePartyMember(Long partyId, Integer memberId, PartyMemberUpdateForm updateForm){
+    	PartyMember partyMember = partyMemberRepository.findByPartyIdAndMemberMno(partyId, memberId).orElseThrow();
+    	partyMember.setIntroduction(updateForm.getIntroduction());
+    	return partyMember.getId();
+    }
 
     public Long joinParty(Long partyId, Integer memberId, String introduction) {
         Party party = partyRepository.findById(partyId).orElseThrow();
@@ -242,6 +251,16 @@ public class PartyService {
         return interestedPartyRepository.selectByMno(memberId);
     }
 
+    public Chat createChat(Long partyId,String profile ,Long senderId, String senderName, String message) {
+        Party party = partyRepository.findById(partyId).orElseThrow();
+//        return new Chat(party, senderId, senderName, message);
+        Chat chat = new Chat(party, profile, senderId, senderName, message);
+        return chatRepository.save(chat);
+    }
+
+    public List<Chat> getChatList(Long partyId) {
+        return chatRepository.selectByPartyId(partyId);
+    }
 
     private String fileResolver(MultipartFile multipartFile) throws IOException {
         if(multipartFile.isEmpty()){

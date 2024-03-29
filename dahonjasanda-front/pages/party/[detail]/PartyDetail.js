@@ -31,12 +31,16 @@ const PartyDetail = () => {
 
     const [show, setShow] = useState(false);
     const [scheduleShow, setScheduleShow] = useState(false);
+    const [updateshow, setUpdateShow] = useState(false);
 
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
 
     const handleScheduleClose = () => setScheduleShow(false);
     const handleScheduleShow = () => setScheduleShow(true);
+
+    const handleUpdateClose = () => setUpdateShow(false);
+    const handleUpdateShow = () => setUpdateShow(true);
 
     const [partyId, setPartyId] = useState();
     const [loginInfo, setLoginInfo] = useState(null);
@@ -47,6 +51,7 @@ const PartyDetail = () => {
     const [partyMemberInfo, setPartyMemberInfo] = useState();
     const [partyScheduleInfo, SetPartyScheduleInfo] = useState();
     const [introductionState, setIntroductionState] = useState('');
+    const [updateIntroductionState, setUpdateIntroductionState] = useState('');
     const [scheduleFormData, setScheduleFormData] = useState({
         title: '',
         date: '',
@@ -180,6 +185,32 @@ const PartyDetail = () => {
         handleClose();
         getPartyMemberInfo();
         getJoinedInfo();
+        setIntroductionState('')
+
+    } catch (e) {
+        console.log("파티 가입 실패",e)
+        alert("가입에 실패하셨습니다.")
+    }
+};
+
+
+const handleUpdateSubmit = async () => {
+    try {
+        const formData = { introduction : updateIntroductionState };
+        const axiosConfig = {
+            withCredentials: true,
+            headers: {
+                "Content-Type": "multipart/form-data",
+            },
+        };
+        const response = await axios.patch(
+            `http://localhost/parties/${router.query.detail}/members/${loginInfo.mno}`,
+                formData, axiosConfig);
+        console.log("핸들 서밋에서 받은 응답", response);
+        alert("수정에 성공하셨습니다.")
+        handleUpdateClose();
+        getPartyMemberInfo();
+        setUpdateIntroductionState('')
 
     } catch (e) {
         console.log("파티 가입 실패",e)
@@ -324,9 +355,9 @@ const PartyDetail = () => {
         <>
             <Main>
     
-                {/* <div style={{ position: "fixed", top: "80%", right: "20px", transform: "translateY(-50%)", zIndex:"100"}}>
+                <div style={{ position: "fixed", top: "80%", right: "20px", transform: "translateY(-50%)", zIndex:"100"}}>
                     {areYouJoined && <Button variant='info' style={{ height: "120px", width: "120px" }} onClick={() => location.href = `/party/${pid}/chat`}>채팅방 들어가기</Button>}
-                </div> */}
+                </div>
                     <div className="col-9 mx-auto">
                         <h6 className="text-info"><i className="fi-grid mx-2"></i>카테고리 - {partyInfo && partyInfo.category}</h6>
                         <div className="d-flex justify-content-between">
@@ -430,6 +461,7 @@ const PartyDetail = () => {
                                 <Button id='prev3' variant='prev' className='position-relative mx-2' />
                                 <Button id='next3' variant='next' className='position-relative mx-2' />
                             </div>
+                           {areYouJoined && <Button onClick={handleUpdateShow}>내 한줄 소개 수정하기</Button>}
                         </div>
                             </Col>
                             <Col>
@@ -603,6 +635,34 @@ const PartyDetail = () => {
                         </Button>
                         </Modal.Footer>
                     </Modal>
+
+                    <Modal show={updateshow} onHide={handleUpdateClose}  style={{ position: 'fixed', top: '70%', left: '50%', transform: 'translate(-50%, -50%)' }}>
+                        <Modal.Header closeButton>
+                        <Modal.Title>한줄 소개 수정</Modal.Title>
+                        </Modal.Header>
+                        <Modal.Body>
+                        <Form>
+                            <Form.Group
+                            className="mb-3"
+                            controlId="introduction"
+                            name="introduction"
+                            >
+                            <Form.Label>간단한 소개글</Form.Label>
+                            <Form.Control as="textarea" rows={3}   value={updateIntroductionState}
+                                onChange={(e) => setUpdateIntroductionState(e.target.value)} />
+                            </Form.Group>
+                        </Form>
+                        </Modal.Body>
+                        <Modal.Footer>
+                        <Button variant="secondary" onClick={handleUpdateClose}>
+                            취소
+                        </Button>
+                        <Button variant="info" onClick={handleUpdateSubmit}>
+                           가입하기
+                        </Button>
+                        </Modal.Footer>
+                    </Modal>
+
 
 
                     <Modal show={scheduleShow} onHide={handleScheduleClose} size="md"  style={{height:"500px", position: 'fixed', top: '70%', left: '50%', transform: 'translate(-50%, -70%)' }}>

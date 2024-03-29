@@ -29,6 +29,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.SessionAttribute;
 
 import com.multi.dahon.member.model.vo.Member;
+import com.multi.dahon.party.form.PartyMemberUpdateForm;
 import com.multi.dahon.party.form.PartyNewForm;
 import com.multi.dahon.party.form.PartyScheduleForm;
 import com.multi.dahon.party.form.PartySearchCondition;
@@ -174,6 +175,40 @@ public class PartyController {
             log.error("파티에 가입도중 에러터짐", e);
             return new Result<>(null, false, HttpStatus.OK);
         }
+    }
+    
+    @PatchMapping("/{partyId}/members/{memberId}")
+    public Result<String> updatePartyMember(@SessionAttribute(name = "loginMember", required = true) Member loginMember,
+											@PathVariable("partyId") Long partyId,
+											@PathVariable("memberId") Integer memberId,
+											@ModelAttribute @Valid PartyMemberUpdateForm updateForm){
+    log.info("뭐가 왔을까 ??????? {} ",updateForm);
+    	boolean result = false;
+    	String message = "";
+    	HttpStatus httpStatus = null;
+    	  if (loginMember.getMno() != memberId) {
+              message = "세션아이디가 일치하지 않습니다";
+              return new Result<>(message, result, HttpStatus.UNAUTHORIZED);
+          }
+    	  try {
+    		  service.updatePartyMember(partyId, memberId, updateForm);
+    		  message = "파티멤버 수정에 성공였습니다.";
+    		  result = true;
+    		  httpStatus = HttpStatus.OK;
+    		  
+    	   } catch (NoSuchElementException ne) {
+               log.error("파티 멤버 조회 에러", ne);
+               message = "파티 멤버 조회 에러";
+               result = false;
+     		  httpStatus = HttpStatus.BAD_REQUEST;
+           } catch (Exception e) {
+               log.error("파티 수정 중 에러", e);
+               message = "파티 수정 중 에러";
+               result = false;
+      		  httpStatus = HttpStatus.INTERNAL_SERVER_ERROR;
+           } finally {
+			return new Result<>(message, result, httpStatus);
+		}
     }
 
     @DeleteMapping("/{partyId}/members/{memberId}")
